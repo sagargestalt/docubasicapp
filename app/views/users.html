@@ -1,0 +1,247 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<style type="text/css">.m-t-xl{margin-top:15px;}
+.newbtn{border-radius: 0; padding:54.4% 0px;}</style>
+<div id="wrapper">
+
+<div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="panel-body">
+               
+
+                <div class="pull-right m-t-lg" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a href="index.html">Dashboard</a></li>
+                       
+                        <li class="active">
+                            <span>Users</span>
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                   Users
+                </h2>
+                <small></small>
+            </div>
+        </div>
+    
+	</div>
+
+ <div class="content" animate-panel effect="zoomIn">
+
+  	<div class="row">
+<div class="col-lg-12" >
+<div class="hpanel">
+	 <div class="panel-body">
+	 
+  <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+  <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+  <button class="btn btn-primary pull-right"  ng-model="collapsed" ng-click="collapsed=!collapsed" ng-hide="hideadd" ng-disabled="!isAdmin">Add New</button>
+  <div class="takadd" ng-show="collapsed">
+  
+  
+  
+    <form name="resource">
+       <h3 ng-hide="update">New user</h3>
+    <h3 ng-show="update">Update user</h3> 
+    <a id="top"></a>
+          <div class="row">
+            <div class="col-md-4">
+               <div class="form-group required" ng-class="{'has-error': resource.rname.$touched && resource.rname.$error.required}">
+                 <label class="control-label">First Name</label><br>
+              <input name="rname" type="text" class="form-control" placeholder="First Name" id="user-pass" ng-model="fname" only-words ng-maxlength="20" ng-minlength="3" required>
+              <span ng-show="resource.rname.$error.minlength" class="denger">First name is too short.</span>
+            <span ng-show="resource.rname.$error.maxlength" class="has-error">First name is too long.</span>
+            </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group required" ng-class="{'has-error': resource.ltname.$touched && resource.ltname.$error.required}">
+                <label class="control-label">Last Name</label><br>
+                  <input name="ltname" type="text" only-words ng-maxlength="20" ng-minlength="3" class="form-control" placeholder="Last Name" id="user-pass" ng-model="lname" required>
+                  <span ng-show="resource.ltname.$error.minlength" class="denger">Last name is too short.</span>
+            <span ng-show="resource.ltname.$error.maxlength" class="has-error">Last name is too long.</span>
+                </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"> <label class="control-label">User Email</label><br>
+           <div class="form-group required" ng-class="{'has-error': resource.email.$touched && resource.email.$error.required}">
+                     <input name="email" ng-hide="update" type="text" class="form-control" placeholder="Email" id="user-pass" ng-model="email" required ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+                      <span ng-show="resource.email.$touched && resource.email.$invalid" class="denger">Invalid Email</span>
+                     <p ng-show="update">{{email}}</p>
+                  </div>
+                </div>
+            <div class="col-md-4"> 
+              <div class="dropdown"> <label class="control-label">Roles</label><br>
+                    <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="utype" ng-options="user.id as user.type for user in usertype" >
+           <p>Select</p></select>
+          </div>
+            </div>
+          
+            </div>
+         
+
+          <div class="row">
+            <div class="col-md-8" ng-hide="update">
+              <div class="form-group required" ng-class="{'has-error': resource.dailyprce.$touched && resource.dailyprce.$error.required}">
+                    <label class="control-label">Welcome Message</label><br>
+               <textarea  class="form-control" rows="5" id="comment" placeholder="Welcome Message For user" ng-model="message" ></textarea>
+            </div>
+            </div>
+          
+          </div>
+		  
+		   <div class="row">
+		  <div class="col-md-12">
+            <button class="btn btn-primary" ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update">save</button>
+            <button class="btn btn-primary" ng-click="updateuser()"  ng-disabled="resource.$invalid" ng-show="update">Update</button>
+            <button class="btn btn-primary" ng-click="closeuser()">Cancel</button>
+      
+              </div>
+          </div>
+          
+
+  </div>
+
+   </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+      <div class="col-md-6">
+      
+         <div class="row"  ng-repeat="info in userdata.users">
+          <div class="col-sm-11" style="padding:0px">
+            <div class="hpanel">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                     <div class="row">
+                      <div class="col-sm-12">
+                        <div class="col-sm-6 border-right">
+                          <div class="row">
+                            <!--<div class="col-sm-4" >
+                              <!--<img class="img-circle" src="images/a1.jpg" alt="logo">
+                            </div>-->
+                            <div class="col-sm-8" >
+                              <div class="m-t-sm">
+                                <strong>{{info.first_name}}</strong>
+                                <p class="small" ng-if="info.is_tenant_admin == 1"><i class="fa fa-user"></i> &nbsp; Admin</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="col-sm-6">
+                          <div class="row">
+                            <div class="col-sm-12" >
+                              <div class="m-t-sm">
+                                <p class="small">{{info.email}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      
+                      <div class="col-sm-12 ">
+                          <hr>
+                      </div>
+                      
+                      <div class="col-sm-12 ">
+                        <div class="row">
+                            <div class="col-sm-3 border-right">
+                              <div class="m-t-sm"><strong>Proposals</strong></div>
+                              <h2 class="text-info"> 20</h2>
+                            </div>
+                            <div class="col-sm-5 border-right">
+                              <div class="m-t-sm"><strong>Value</strong></div>
+                              <h2 class="text-info"> $102,000</h2>
+                            </div>
+                            <div class="col-sm-4" >
+                              <div class="m-t-sm"><strong>Win/Loss Ratio</strong></div>
+                              <h2 class="text-info"> 80%</h2>
+                            </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                    
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="col-sm-1" style="padding:0px">
+            <div class="hpanel" >
+                 <div class="panel-body no-padding">
+              
+                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" > <i class="fa fa-user" ></i></a></div>
+                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="edituser(info)"> <i class="fa fa-edit" ></i></a></div>
+                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="deleteuser(info)"> <i class="fa fa-close" ></i></a></div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+        
+            </div>
+     
+     </div>
+   </div>
+
+
+    </div>
+
+</div>
+
+
+  <!--<div class="normalheader transition ng-scope" small-header="">
+  <div class="content">
+    <div class="ng-scope" animate-panel="" ui-view="">
+      <div class="row ng-scope">
+        <div class="col-lg-3" style="">
+          <div class="hpanel hgreen contact-panel"  ng-repeat="info in userdata.users">
+            <div class="panel-body"> 
+              <div>
+              <a ng-show="isAdmin" ng-click="edituser(info)" style="float: right;"><i class="glyphicon glyphicon-pencil"></i></a><br>
+              <a ng-show="isAdmin" ng-click="deleteuser(info)"   style="float: left;"><i class="glyphicon glyphicon-trash"></i></a><br>
+            </div>
+              <span  class="label label-success pull-right" ng-if="info.is_tenant_admin == 1">Admin</span>
+              
+              <h3>
+              <a href="">{{info.first_name}}</a>
+              </h3>
+              <div class="text-muted font-bold m-b-xs">{{info.email}}</div>
+              <p></p>
+            </div>
+            <div class="panel-footer contact-footer">
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>-->
+
+
+    <div class="content" animate-panel effect="zoomIn">
+
+</div>
+

@@ -1,0 +1,152 @@
+ <div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+<container-directive></container-directive>
+
+<div id="container" >
+
+ <div class="row">
+            <div class="col-lg-12" >
+                <h3>Proposal Name</h3><br>
+                
+            </div>
+        </div>
+        
+        
+        <div class="row">
+        
+        <div class="col-md-12">
+            <div class="col-md-2 no-padding">
+                <div class="hpanel">
+                    <div class="panel-body no-padding">
+                         <div class="p20 themecolor">
+                         <p>Widgets</p>
+                         </div>
+                    </div>
+                </div>
+             </div>
+            
+            <div class="col-md-10 no-padding">
+                <div class="hpanel">
+                    <div class="panel-body no-padding">
+                        <div class="pull-left p20">
+                            <i id="draggable" class="pe-7s-upload fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-unlock fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-umbrella fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-trash fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-tools fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-speaker fa-2x prl15"></i>
+                        </div>
+                        <div class="pull-right light-blue p20">
+                            <i class="pe-7s-upload fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-unlock fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-umbrella fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-trash fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-tools fa-2x prl15 border-right"></i>
+                            <i class="pe-7s-speaker fa-2x prl15"></i>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+        
+          <div class="col-md-12">
+
+            <div class="col-md-2 no-padding">
+
+                
+
+                        <div class="hpanel zerobottom">
+                            <div class="panel-body navy-blue text-center">
+                               <!-- <img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
+                                <i class="pe-7s-config icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Cover Page</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hpanel zerobottom">
+                            <div class="panel-body text-center">
+                                <i class="pe-7s-config icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Executive Summary</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="hpanel zerobottom">
+                            <div class="panel-body text-center">
+                                <i class="pe-7s-config icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Pricing</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="hpanel zerobottom">
+                            <div class="panel-body text-center">
+                                <i class="pe-7s-config icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Terms & Conditions</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                   
+
+
+
+            </div>
+            
+            
+            <div class="col-md-10">
+
+
+               
+                <div class="hpanel">
+                    <div class="panel-body"  ng-model="ssss"  medium-editor bind-options="{'toolbar': {'buttons': ['bold', 'italic', 'underline']}}"  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;">
+
+                       <div class="pull-right">
+                            <img src="../images/chat.png">
+                        </div>
+                        
+                        <!--<h2 class="m-t-none border-all p20 text-center">You just created a new Proposal </h2>
+                        <p class="border-all p20 text-center">
+                        <br><br><br>
+                           Customize your page as you would like by dragging and dropping<br> thewidgets from the widgets panel above
+                           <br><br><br>
+                        </p>-->
+                        <br><br><br><br><br><br><br>
+                        
+                    
+
+
+                    </div>
+                </div>
+<button class="btn btn-primary" ng-click="submitpage()">Save</button>
+<button class="btn btn-primary" ng-click="updatepage()" >update</button>
+
+            </div>
+            
+            </div>
+
+        </div>
+        
+        <div class="row projects">
+            <div class="col-lg-12" >
+                <div class="pull-right">
+                    <img src="../images/floating.png">
+                </div>
+            
+            </div>
+
+        </div>
+
+    </div>
+</div>

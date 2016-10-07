@@ -1,0 +1,276 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+
+<div id="wrapper">
+
+	<div class="content animate-panel">
+	<uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+<uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+
+<div class =row>
+	
+	<!--<div class="col-md-3" style="">
+		<div class="hpanel panel-group">
+			<div class="panel-body">
+				
+				
+				<div class="text-center text-muted font-bold">All Task</div>
+				
+				
+					
+					</div>
+					<div class="panel-section"ng-repeat = "detail in todos">
+						<div class="input-group">
+					
+							<span class="input-group-btn">
+						
+						<button class="btn-sm visible-xs visible-sm collapsed btn-default btn btn-block m-t-sm" data-target="#notes" data-toggle="collapse" type="button">
+					</div>
+					<div id="notes">
+						<div class="panel-body note-link">
+							
+							<div class="panel-body note-link">
+								<a ng-click="getnotesdata(detail)">{{detail.TaskName}}<a/>
+								</div>
+								
+								
+								
+							</div>
+							
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+				<div class="col-md-3" style="">
+					
+					<div class="hpanel panel-group">
+						<div class="panel-body">
+							
+							<div class="text-center text-muted font-bold" >Activated</div>
+							<button class="btn btn-default" type="button" ng-click="addnote()">
+							<input id='box' type = "checkbox" ng-change="alltaskfinish()" ng-model="alltask" >Mark all as completed</input>
+							</button>
+						</div>
+						<div class="panel-section">
+							<div class="input-group">
+								
+								<span class="input-group-btn">
+									
+									<button class="btn-sm visible-xs visible-sm collapsed btn-default btn btn-block m-t-sm" data-target="#notes" data-toggle="collapse" type="button">
+								</div>
+								<div id="notes">
+									
+									<div class="panel-body note-link"  ng-repeat = "info in todos | filter: { IsActive: '1' }" ng-model="activetsk" >
+										<div class="panel-body note-link">
+											<input id='box' type = "checkbox" ng-change="gettask(info)" ng-model="task"><a>{{info.TaskName}}<a/></input>
+										</div>
+										
+										
+										
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3" style="">
+				
+				<div class="hpanel panel-group">
+					<div class="panel-body">
+						
+						<div class="text-center text-muted font-bold" >Completed</div>
+						
+					</div>
+					<div class="panel-section">
+						<div class="input-group">
+							
+							<span class="input-group-btn">
+								
+								<button class="btn-sm visible-xs visible-sm collapsed btn-default btn btn-block m-t-sm" data-target="#notes" data-toggle="collapse" type="button">
+							</div>
+							<div id="notes">
+								
+								<div class="panel-body note-link"  ng-repeat = "info in todos | filter: { IsActive: '0' }" >
+									<div class="panel-body note-link">
+										<input type="checkbox" ng-change="opentask(info)" ng-model="completetask" checked><a ng-click="getnotesdata(info)">{{info.TaskName}}<a/></input>
+									</div>
+									
+									
+									
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="col-md-9" ng-init="note = 'note1'" style="" >
+					<div class="hpanel">
+						<div class="panel-body">
+							<div class="text-center hidden"> We couldn't find any notes for you. </div>
+							<div>
+								<div class="" style="">
+									<div class="pull-right text-muted m-l-lg">{{date}}</div>
+									<h3>Add New Task </h3>
+									<input  class="form-control" placeholder="Task Name" ng-model="newnotename"> </input>
+									<hr>
+									<div class="note-content">
+										<textarea class="form-control" placeholder="Task Discription" ng-model="taskdiscription"> </textarea>
+									</div>
+									<div class="btn-group">
+										<button class="btn btn-sm btn-default" ng-click="submittask()">
+										<i class="fa fa-thumbs-o-up"></i>
+										Add
+										</button>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>-->
+				<!--<div class="col-md-9" ng-init="note = 'note1'" style="" ng-show="display">
+						<div class="hpanel">
+								<div class="panel-body">
+										<div class="text-center hidden"> We couldn't find any notes for you. </div>
+										<div>
+												<div class="" style="">
+														<div class="pull-right text-muted m-l-lg"></div>
+														<h3>Publishing packages</h3>
+														<input  class="form-control" ng-model="taskdiscription"> </input>
+														<hr>
+														<div class="note-content">
+																<textarea class="form-control" ng-model="taskdiscription"> </textarea>
+														</div>
+														<div class="btn-group">
+																<button class="btn btn-sm btn-default" >
+																<i class="fa fa-thumbs-o-up"></i>
+																Save
+																</button>
+																<button class="btn btn-sm btn-default">
+																<i class="fa fa-trash"></i>
+																Remove
+																</button>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+				</div>-->
+
+
+	 <div class="col-lg-12" >
+				<h3>ToDo List</h3><br>
+				
+				<button class="btn w-xs btn-primary" type="button" ng-click="alltodos()" ng-style="all">All</button>
+				<button class="btn w-xs btn-primary" type="button" ng-click="activatedtodos()" ng-style="active">Active</button>
+				<button class="btn w-xs btn-primary" type="button" ng-click="completedtodos()" ng-style="complete">Completed</button>
+				<br>
+				<br>
+			</div>
+		</div>
+		
+		
+		 <div class="row">
+		    <div class="col-lg-12" >
+				<div class="form-group"><textarea class="form-control" placeholder="What needs to be done? Start writing your task in this text field" name="message" rows="3" ng-model="newnotename"></textarea></div>
+			</div>
+			<div class="col-lg-12" >
+			
+				<button class="btn  w-xs btn-primary pull-right" ng-click="submittask()" ng-hide="update" >
+										
+										Save
+										</button>
+				<button class="btn  w-xs btn-primary pull-right" ng-click="updatetask()" ng-show="update">
+										
+										update
+										</button>
+									
+									
+			</div>
+             
+			 <div class="col-lg-12" >
+			 	 <br> 
+				<div class="hpanel forum-box" ng-repeat = "detail in todos" ng-show = "showalltask">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-11 forum-heading border-right" >
+								<div class="form-group">
+									<div>
+										<label>  <h4>{{detail.TaskName}}</h4> </label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1">
+								<div class="form-group" style="margin-top:15px;">
+								<span> <!--<i class="fa fa-edit" ng-click="edittodo(detail)"></i>Edit</span>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hpanel forum-box"  ng-repeat = "info in todos | filter: { IsActive: '1' }" ng-model="activetsk"  ng-show = "showActivatedtask">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-11 forum-heading border-right" >
+								<div class="form-group">
+									<div class="checkbox">
+										<label> <input type="checkbox"  ng-change="gettask(info)" ng-model="task"  class="i-checks"> <h4>{{info.TaskName}}</h4> </label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1">
+								<div class="form-group" style="margin-top:15px;">
+								<button ng-click="edittodo(info)" >Edit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hpanel forum-box"   ng-repeat = "info in todos | filter: { IsActive: '0' }"   ng-show = "showcompeletedtask">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-11 forum-heading border-right" >
+								<div class="form-group">
+									<div class="checkbox">
+										<label> <input type="checkbox" ng-change="opentask(info)" ng-model="completetask" class="i-checks"> <h4>{{info.TaskName}}</h4> </label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1">
+								<div class="form-group" style="margin-top:15px;">
+								<!--<button ng-click="edittodo(info)" >Edit</button>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hpanel forum-box">
+					<div class="panel-body" ng-show="showActivatedtask">
+						<div class="row">
+							<div class="col-md-11 forum-heading border-right" >
+								<div class="form-group">
+									<div class="checkbox">
+										<label> <input type="checkbox" class="i-checks" ng-change="alltaskfinish()" ng-model="alltask"> <h4> Mark all as completed</h4> </label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1">
+								<div class="form-group" style="margin-top:15px;">
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br><br><br><br><br><br><br>
+	</div>
+</div>
+</div>

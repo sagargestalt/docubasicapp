@@ -1,0 +1,92 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+<div class="col-md-3" style="">
+	<div class="hpanel panel-group">
+		<div class="panel-body">
+			<uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+   <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+			<div class="text-center text-muted font-bold"> add new note</div>
+			<button class="btn btn-default" type="button" ng-click="addnote()">
+					<i class="glyphicon glyphicon-plus small"></i>
+					</button>
+		</div>
+		<div class="panel-section">
+			<div class="input-group">
+				
+				<span class="input-group-btn">
+					
+					<button class="btn-sm visible-xs visible-sm collapsed btn-default btn btn-block m-t-sm" data-target="#notes" data-toggle="collapse" type="button">
+				</div>
+				<div id="notes">
+					<div class="panel-body note-link" ng-repeat = "info in notes">
+						<div class="panel-body note-link">
+							<a ng-click="getnotesdata(info)">{{info.Name}}<a/>{{info.CreatedDate}}
+							</div>
+							
+								
+									
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+							<div class="col-md-9" ng-init="note = 'note1'" style="" ng-hide = "display">
+								<div class="hpanel">
+									<div class="panel-body">
+										<div class="text-center hidden"> We couldn't find any notes for you. </div>
+										<div>
+											<div class="" style="">
+												<div class="pull-right text-muted m-l-lg">{{date}}</div>
+												<h3>Publishing packages</h3>
+												<label>Note Name</label><br>
+												<input  class="form-control" ng-model="notename"> </input>
+												<hr>
+												<div class="note-content">
+													<label>Note Description</label><br>
+													<textarea class="form-control" ng-model="notediscription"> </textarea>
+												</div>
+												<div class="btn-group">
+													<button class="btn btn-sm btn-default" ng-click="updatenote()">
+													<i class="fa fa-thumbs-o-up"></i>
+													Update
+													</button>
+													<button class="btn btn-sm btn-default" ng-click="deletenote()">
+													<i class="fa fa-trash"></i>
+													Remove
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-9" ng-init="note = 'note1'" style="" ng-show="display">
+								<div class="hpanel">
+									<div class="panel-body">
+										<div class="text-center hidden"> We couldn't find any notes for you. </div>
+										<div>
+											<div class="" style="">
+												<div class="pull-right text-muted m-l-lg"></div>
+												<h3>Publishing packages</h3>
+												<label>Note Name</label><br>
+												<input  class="form-control" ng-model="newnotename"> </input>
+												<hr>
+												<div class="note-content">
+													<label>Note Description</label><br>
+													<textarea class="form-control" ng-model="newnotediscription"> </textarea>
+												</div>
+												<div class="btn-group">
+													<button class="btn btn-sm btn-default" ng-click="submitnote()">
+													<i class="fa fa-thumbs-o-up"></i>
+													Save
+													</button>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
