@@ -14,37 +14,37 @@ angular.module('docubasic3App')
       'AngularJS',
       'Karma'
     ];
-     $rootScope.tenancyid = localStorageService.get('tenancyid');
-  $rootScope.userid = localStorageService.get('userid');
-   $rootScope.isAdmin = localStorageService.get('isAdmin');
-    $rootScope.username = localStorageService.get('username');
-    $rootScope.proposal_id = localStorageService.get('proposal_id');
-     $rootScope.template_id = localStorageService.get('template_id');
+      $rootScope.tenancyid = localStorageService.get('tenancyid');
+      $rootScope.userid = localStorageService.get('userid');
+      $rootScope.isAdmin = localStorageService.get('isAdmin');
+      $rootScope.username = localStorageService.get('username');
+      $rootScope.proposal_id = localStorageService.get('proposal_id');
+      $rootScope.template_id = localStorageService.get('template_id');
       $rootScope.templatename = localStorageService.get('templatename');
 
 
       var tid = {
        tenancy_id:$rootScope.tenancyid 
-};
+      };
 
- praposalservice.getpagedata.save((tid), function(data){
- $scope.alerts=[];
+        praposalservice.getpagedata.save((tid), function(data){
+        $scope.alerts=[];
         $scope.pdata= data.data[0].PageContent;
          
-    });
+      });
 
- var data = {
+      var data = {
 
-  template_id:$rootScope.template_id,
-  tenancy_id: $rootScope.tenancyid,
-  proposal_id:$rootScope.proposal_id,
- };
+        template_id:$rootScope.template_id,
+        tenancy_id: $rootScope.tenancyid,
+        proposal_id:$rootScope.proposal_id,
+      };
 
- praposalservice.getpagelist.save((data), function(data){
- $scope.alerts=[];
+      praposalservice.getpagelist.save((data), function(data){
+        $scope.alerts=[];
         $scope.pagedata= data.data;
          
-    });
+      });
  
 
 
@@ -65,11 +65,8 @@ angular.module('docubasic3App')
     };*/
 
     $scope.sendpage = function(page){
-     $scope.ssss =  page.template_page_content;
-     $scope.pageid = page.template_page_id
-
-
-
+      $scope.ssss =  page.template_page_content;
+      $scope.pageid = page.template_page_id
     };
 
     $scope.priweviemode = function(){
@@ -86,13 +83,13 @@ angular.module('docubasic3App')
         proposal_id:$rootScope.proposal_id,
         content:$scope.ssss,
         created_by:$rootScope.userid,
-      };
+        };
 
-      praposalservice.savepage.save((data), function(data1){
+        praposalservice.savepage.save((data), function(data1){
         $scope.alerts=[];
         //$scope.pagedata= data1.data;
          
-    });
+      });
 
 
 
@@ -105,32 +102,33 @@ angular.module('docubasic3App')
 
                 borderTopColor: '#999', borderBottomColor: '#999',
                 borderleftColor: '#999', borderRightColor: '#999'});
-     container.id="droppable";
-     container.className="backdrop";
+        container.id="droppable";
+        container.className="backdrop";
 
-    $scope.myCallback = function(event, ui){
-    console.log('Dropped into something');
-    $scope.droped = true;
-};
-$( ".draggable" ).draggable();
-//$( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
-$( "#dragThis" ).draggable();
+        $scope.myCallback = function(event, ui){
+        console.log('Dropped into something');
+        $scope.droped = true;
+      };
+
+        /*$( ".draggable" ).draggable();
+        $( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
+        $( "#dragThis" ).draggable();
 
 
 
 
-    $("#dgg")
-    .draggable()
-    .click(function(){
-        if ( $(this).is('.ui-draggable-dragging') ) {
-            return;
-        }
-        $(this).draggable( "option", "disabled", true );
-       $(this).attr('contenteditable','true');
-    })
-    .blur(function(){
-        $(this).draggable( 'option', 'disabled', false);
-        $(this).attr('contenteditable','false');
-    });
+            $("#dgg")
+            .draggable()
+            .click(function(){
+                if ( $(this).is('.ui-draggable-dragging') ) {
+                    return;
+                }
+                $(this).draggable( "option", "disabled", true );
+               $(this).attr('contenteditable','true');
+            })
+            .blur(function(){
+                $(this).draggable( 'option', 'disabled', false);
+                $(this).attr('contenteditable','false');
+            });*/
 
   });

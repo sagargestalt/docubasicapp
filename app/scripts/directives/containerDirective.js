@@ -11,31 +11,20 @@ angular.module('docubasic3App')
     return {
       restrict: 'E',
       scope: {
-    ssss: "=ngModel"
-},
+      ssss: "=ngModel"
+    },
       
     link: function check(scope, elem, attrs)
-{
- $( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
- $(".window").draggable({handle:'.bar'});
+  {
+      $( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
+      $(".window").draggable({handle:'.bar'});
   
 
-    $(".textbox").on("click", function(e) {
+      $(".textbox").on("click", function(e) {
         //$(".window").draggable('disable');
         $(this).find(".textbox").focus();
-        //var tid={
-        // tenancy_id:$rootScope.tenancyid,
-        // created_by:$rootScope.username ,
-        // page_name:"mainpage",
-        /// page_content:ssss,
-   // }
-
- //styleservice.getstyledata.save((tid), function(data){
- //$scope.alerts=[];
-       // $rootScope.sdata= data.data;
-         
-   // });
-    });
+      
+      });
 
     $(".textbox").on("blur", function(){
         $(".window").draggable('enable');
@@ -47,72 +36,60 @@ angular.module('docubasic3App')
       $('.draggable').draggable();  
             
             
-    $("#d")
-    .draggable()
-    .click(function(){
-        if ( $(this).is('.ui-draggable-dragging') ) {
-            return;
-        }
-        $(this).draggable( "option", "disabled", true );
-       $(this).attr('contenteditable','true');
-    })
-    .blur(function(){
-        $(this).draggable( 'option', 'disabled', false);
-        $(this).attr('contenteditable','false');
-    });        
+      $("#d")
+          .draggable()
+          .click(function(){
+          if ( $(this).is('.ui-draggable-dragging') ) {
+              return;
+          }
+          $(this).draggable( "option", "disabled", true );
+          $(this).attr('contenteditable','true');
+        })
+        .blur(function(){
+          $(this).draggable( 'option', 'disabled', false);
+          $(this).attr('contenteditable','false');
+      });        
     
 
 
 
 
-     //$( ".draggable" ).draggable();
-//$( "#draggable" ).draggable();
-$( "#dragThis" ).draggable();
-$( "#droppable" ).droppable({
-   accept: "#draggable",
-  drop: function(event , ui) {
-    alert( "dropped" );
-     ui.draggable.draggable('option', 'revert', function(){return false});
-    // var textBox = document.createElement("div");
-    //document.getElementById("droppable").appendChild(textBox);
-    //$("#droppable").append('<div  id="dgg"  class="draggable ui-widget-content      ui-draggable"><p>drag me</p></div>');
-     //$('.draggable').draggable();
+ 
+    $( "#dragThis" ).draggable();
+    $( "#droppable" ).droppable({
+        accept: "#draggable",
+        drop: function(event , ui) {
+        alert( "dropped" );
+         ui.draggable.draggable('option', 'revert', function(){return false});
+          /* var textBox = document.createElement("div");
+          document.getElementById("droppable").appendChild(textBox);
+          $("#droppable").append('<div  id="dgg"  class="draggable ui-widget-content      ui-draggable"><p>drag me</p></div>');
+           $('.draggable').draggable();
 
-        //var htmlData='<div  class="draggable ui-widget-content      ui-draggable" id="edit" >Drag me around</div>';
-        //$('#droppable').append(htmlData);
-       // $( ".draggable" ).draggable();
-      
-       $("#droppable").append('<div class=window><div class=bar>Text Block</div><p contentEditable=true class=textbox  >Type text</p> </div>');
-        $(".window").draggable({handle:'.bar'});
-  
-
-    $(".textbox").on("click", function(e) {
-        //$(".window").draggable('disable');
-        $(this).find(".textbox").focus();
-        //var tid={
-        // tenancy_id:$rootScope.tenancyid,
-        // created_by:$rootScope.username ,
-        // page_name:"mainpage",
-        /// page_content:ssss,
-   // }
-
- //styleservice.getstyledata.save((tid), function(data){
- //$scope.alerts=[];
-       // $rootScope.sdata= data.data;
-         
-   // });
-    });
-
-    $(".textbox").on("blur", function(){
-        $(".window").draggable('enable');
+              var htmlData='<div  class="draggable ui-widget-content      ui-draggable" id="edit" >Drag me around</div>';
+              $('#droppable').append(htmlData);
+             $( ".draggable" ).draggable();*/
+          
+          $("#droppable").append('<div class=window><div class=bar>Text Block</div><p contentEditable=true class=textbox  >Type text</p> </div>');
+          $(".window").draggable({handle:'.bar'});
         
-      
-    });
+
+        $(".textbox").on("click", function(e) {
+            //$(".window").draggable('disable');
+            $(this).find(".textbox").focus();
+            
+        });
+
+        $(".textbox").on("blur", function(){
+            $(".window").draggable('enable');
+            
+          
+        });
 
 
 
-  }
-});
+    }
+  });
 
 
   $( "#edit" ).draggable()
@@ -122,25 +99,25 @@ $( "#droppable" ).droppable({
         }
         $(this).draggable( "option", "disabled", true );
        $(this).attr('contenteditable','true');
-    })
-    .blur(function(){
+      })
+      .blur(function(){
         $(this).draggable( 'option', 'disabled', false);
         $(this).attr('contenteditable','false');
-    });
+      });
 
-    $("#dgg")
-    .draggable()
-    .click(function(){
+      $("#dgg")
+        .draggable()
+        .click(function(){
         if ( $(this).is('.ui-draggable-dragging') ) {
             return;
         }
         $(this).draggable( "option", "disabled", true );
        $(this).attr('contenteditable','true');
-    })
-    .blur(function(){
+        })
+      .blur(function(){
         $(this).draggable( 'option', 'disabled', false);
         $(this).attr('contenteditable','false');
-    });
+      });
 
 
 
