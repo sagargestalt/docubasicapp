@@ -8,8 +8,8 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('MainCtrl', ['$scope', '$state','$timeout','$rootScope','$routeParams','$window','settingservice','localStorageService','$location','billingservice','userservice','$route',
-  function ($scope, $state, $timeout,$rootScope,$routeParams,$window,settingservice,localStorageService,$location,billingservice,userservice,$route ) {
+  .controller('MainCtrl', ['$scope', '$state','$timeout','$rootScope','$routeParams','$window','settingservice','localStorageService','$location','billingservice','userservice','$route','$uibModal',
+  function ($scope, $state, $timeout,$rootScope,$routeParams,$window,settingservice,localStorageService,$location,billingservice,userservice,$route,$uibModal ) {
  $rootScope.tenancyid = localStorageService.get('tenancyid');
  $rootScope.isAdmin = localStorageService.get('isAdmin');
  $rootScope.userid = localStorageService.get('userid');
@@ -29,7 +29,7 @@ angular.module('docubasic3App')
 
   	var tid = {
   id:$rootScope.tenancyid 
-}
+};
 
  billingservice.getbilldetail.query((tid), function(data){
 
@@ -74,6 +74,52 @@ settingservice.getpraposaldata.query((praposaldata), function(data){
          
 
     });
+
+
+
+var data = {
+ id:$rootScope.tenancyid 
+
+
+};
+
+settingservice.getpraposalwon.query((data), function(data){
+     
+        $scope.praposalswon = data.data;
+         
+
+    });
+
+
+var data = {
+ id:$rootScope.tenancyid 
+
+
+};
+
+settingservice.getpraposalloss.query((data), function(data){
+     
+        $scope.praposalsloss = data.data;
+         
+
+    });
+$scope.createpraposal = function(){
+ $rootScope.modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'views/createpraposal.html',
+    controller: 'createpraposalCtrl',
+      windowClass: 'modal-lg',
+      //size: size,
+      resolve: {
+        
+      }
+      });
+
+
+
+
+
+};
 
     
   }]);

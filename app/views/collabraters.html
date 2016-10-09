@@ -1,0 +1,42 @@
+<div class="modal-dialog modal-lg">
+
+<div class="col-md-9">
+
+<h2>Invite people to collaborate</h2>
+
+<div>
+
+	<h4>Ready only access<h4>
+
+		<div ng-repeat="collabusers in collabdata | filter: { privilege_status : '1' }:true">
+    		<label><input type="checkbox" ng-model="mycollab" ng-true-value="'{{2}}'" ng-false-value="'{{1}}'" ng-change="editaccess(collabusers)">{{collabusers.first_name}}</label>
+
+    		{{mycollab}}
+
+		</div>
+
+
+
+	</div>
+
+
+	<div>
+
+	<h4>Edit Access<h4>
+
+		<div ng-repeat="country in collabdata | filter: { privilege_status : '2' }:true">
+    		<label><input type="checkbox" checked ng-model="myCountry" ng-true-value="'{1}'" ng-false-value="'2'" ng-change="readaccess(country)">{{country.first_name}}</label>
+
+		</div>
+{{myCountry}}
+
+	</div>
+
+ 		<!--<button type="button" class="btn btn-primary" ng-click="sharecollab()">Share</button>-->
+
+
+
+
+
+</div>
+</div>

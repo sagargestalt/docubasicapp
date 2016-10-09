@@ -19,6 +19,16 @@ angular.module('docubasic3App').factory('settingservice', ['$resource', 'apiUrl'
        getpraposaldata:$resource(apiUrl.praposalcountdata, {id:'@id'} ,{
             query: {method:'GET'}
       }),
+        getpraposalwon:$resource(apiUrl.praposalwondata, {id:'@id'} ,{
+            query: {method:'GET'}
+      }),
+
+         getpraposalloss:$resource(apiUrl.praposallossdata, {id:'@id'} ,{
+            query: {method:'GET'}
+      }),
+        
+
+
 
         
        

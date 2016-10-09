@@ -31,7 +31,10 @@ angular.module('docubasic3App')
 
      	praposalservice.praposalsummeryget.save((data), function(data1){
  			$scope.alerts=[];
+      if (data1.status == true){
         	$scope.praposaldata= data1.data.proposals;
+
+        }
          
     	});
 

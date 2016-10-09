@@ -72,16 +72,20 @@ angular.module('docubasic3App')
           
           $("#droppable").append('<div class=window><div class=bar>Text Block</div><p contentEditable=true class=textbox  >Type text</p> </div>');
           $(".window").draggable({handle:'.bar'});
+          
         
 
         $(".textbox").on("click", function(e) {
             //$(".window").draggable('disable');
             $(this).find(".textbox").focus();
+             $rootScope.callme();
             
         });
 
         $(".textbox").on("blur", function(){
             $(".window").draggable('enable');
+
+
             
           
         });

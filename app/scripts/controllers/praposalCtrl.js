@@ -8,7 +8,7 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('praposalCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location) {
+  .controller('praposalCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,userservice,settingservice,sweetAlert) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -22,7 +22,7 @@ angular.module('docubasic3App')
       $rootScope.template_id = localStorageService.get('template_id');
       $rootScope.templatename = localStorageService.get('templatename');
 
-
+function init() {
       var tid = {
        tenancy_id:$rootScope.tenancyid 
       };
@@ -45,6 +45,326 @@ angular.module('docubasic3App')
         $scope.pagedata= data.data;
          
       });
+
+      var collab = {
+        proposal_id: $rootScope.proposal_id,
+        tenancy_id: $rootScope.tenancyid
+
+        };
+
+        praposalservice.getcollabraters.save((collab), function(data){
+        $scope.alerts=[];
+        $scope.collabdata= data.data;
+         
+      });
+
+        var data =  {id:$rootScope.tenancyid }
+    userservice.getuserdetail.query((data), function(data1){
+   
+        $scope.userdata = data1.data;
+         
+
+    });
+
+    var getclint  = {
+
+        tenancy_id:$rootScope.tenancyid
+      };
+
+    settingservice.getclient.save((getclint), function(data){
+
+          $scope.clients = data.data;
+
+      });
+
+      };
+
+      init();
+
+
+      $scope.download = function(){
+      
+          proposal_id: $rootScope.proposal_id;
+
+   
+
+         /* praposalservice.downloadpraposal.save((data), function(data){
+          $scope.alerts=[];
+        //$scope.pagedata= data.data;
+         
+          });*/ 
+    // proposal_id:'@proposal_id'
+      var url = 'http://49.248.126.222:8282/services/public/api/v1/downloadProposalpdf/';
+      url = url + $rootScope.proposal_id;
+      var aEl = document.createElement('a');
+  aEl.href = url;
+  aEl.click();
+
+
+
+
+      };
+
+      $scope.readaccess = function(country){
+
+        var data = {
+          id:country.id,
+          status:2,
+          updated_by : $rootScope.userid
+
+
+        };
+
+        praposalservice.readaccessapply.save((data), function(data){
+          $scope.alerts=[];
+
+          if(data.status == true){
+
+            init()
+
+
+          }
+      
+         
+          });
+
+
+
+
+      };
+
+      $scope.editaccess = function(collabusers){
+
+        var data = {
+          id:country.id,
+          status:1,
+          updated_by : $rootScope.userid
+
+
+        };
+
+        praposalservice.readaccessapply.save((data), function(data){
+          $scope.alerts=[];
+          
+          if(data.status == true){
+
+            init()
+
+
+          }
+         
+          });
+
+
+
+
+      };
+
+
+
+
+      $scope.deletepraposal = function(){
+
+        sweetAlert.swal({
+                title: "Are you sure want to delete?",
+               //text: "Your will not be able to reco",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                closeOnConfirm: false,
+                closeOnCancel: false },
+            function (isConfirm) {
+                if (isConfirm) {
+        var data = {
+          tenancy_id:$rootScope.tenancyid,
+          updated_by:$rootScope.userid,
+          proposal_id:$rootScope.proposal_id,
+
+
+        };
+
+         praposalservice.deletepraposal.save((data), function(data){
+          $scope.alerts=[];
+      
+         
+          });
+
+          sweetAlert.swal("Deleted!", "Task category Deleted successfully", "success");
+                } else {
+                    sweetAlert.swal("Cancelled");
+                }
+            });
+
+      };
+
+      $rootScope.callme = function(){
+        var data = {
+
+        template_id:$rootScope.template_id,
+        page_id: $scope.pageid,
+        proposal_id:$rootScope.proposal_id,
+        content:$scope.ssss,
+        created_by:$rootScope.userid,
+        };
+
+        praposalservice.savepage.save((data), function(data1){
+        $scope.alerts=[];
+        //$scope.pagedata= data1.data;
+         
+      });
+
+
+
+
+      };
+
+
+      $scope.emailwindow = function(){
+        $rootScope.modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'views/email.html',
+    controller: 'praposalCtrl',
+      windowClass: 'modal-lg',
+      //size: size,
+      resolve: {
+        
+      }
+      });
+
+
+      };
+
+
+      $scope.opencollab = function(){
+        $rootScope.modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'views/collabraters.html',
+      controller: 'praposalCtrl',
+      windowClass: 'modal-lg',
+      //size: size,
+      resolve: {
+        
+      }
+      });
+
+        var collab = {
+        proposal_id: $rootScope.proposal_id,
+        tenancy_id: $rootScope.tenancyid
+
+        };
+
+        praposalservice.getcollabraters.save((collab), function(data){
+        $scope.alerts=[];
+        $scope.collabdata= data.data;
+         
+      });
+
+
+      };
+
+       $scope.clonepraposal = function(){
+        $rootScope.modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'views/clone.html',
+      controller: 'cloneCtrl',
+      windowClass: 'modal-lg',
+      //size: size,
+      resolve: {
+        
+      }
+      });
+
+      
+
+
+
+
+      };
+
+
+    $scope.send = function(){
+
+      var data = {
+         proposal_id:$rootScope.proposal_id,
+          updated_by:$rootScope.userid,
+          to:$scope.toemail,
+          cc:$scope.cc,
+          bcc:$scope.bcc,
+          message:$scope.summernoteTextTwo,
+
+
+        };
+
+        praposalservice.sendmail.save((data), function(data){
+          $scope.alerts=[];
+      
+         
+          });
+
+
+
+
+
+      };
+
+      $scope.sharecollab = function(){
+
+      var data = {
+         proposal_id:$rootScope.proposal_id,
+          updated_by:$rootScope.userid,
+          to:$scope.toemail,
+          cc:$scope.cc,
+          bcc:$scope.bcc,
+          message:$scope.summernoteTextTwo,
+
+
+        };
+
+        praposalservice.sendmail.save((data), function(data){
+          $scope.alerts=[];
+      
+         
+          });
+
+
+
+
+
+      };
+
+
+
+
+
+      $scope.submitname = function(){
+
+        var data = {
+          tenancy_id:$rootScope.tenancyid,
+           updated_by:$rootScope.userid,
+           id:$rootScope.proposal_id,
+           name:$scope.pname,
+
+          };
+          //$scope.pname = $rootScope.templatename;
+
+          praposalservice.updatename.query((data), function(data1){
+          $scope.alerts=[];
+          if(data1.status == true){
+            $scope.show = false;
+            $rootScope.templatename = $scope.pname;
+
+          }
+      
+         
+          });
+
+
+
+
+
+      };
  
 
 
@@ -130,5 +450,11 @@ angular.module('docubasic3App')
                 $(this).draggable( 'option', 'disabled', false);
                 $(this).attr('contenteditable','false');
             });*/
+
+           $scope.$watch('templatename', function () {
+            localStorageService.set('templatename',$rootScope.templatename);
+              // localStorageService.set('userid',$rootScope.userid);
+            }, true);
+
 
   });

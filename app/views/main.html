@@ -212,12 +212,12 @@
 							<div class="row">
 								<div class="col-xs-5" style="border-right:1px solid #eeeeee;">
 									<div class="m-xs font-bold no-margins">Open</div>
-									<h1 class="m-xs">10</h1>
+									<h1 class="m-xs">{{praposals.OpenCount}}</h1>
 								</div>
 								<div class="col-xs-7">
-									<div class="m-xs font-bold no-margins">Under Review  <span class="pull-right">02</span></div>
-									<div class="m-xs font-bold no-margins">Submitted <span class="pull-right">03</span></div>
-									<div class="m-xs font-bold no-margins">Closed  <span class="pull-right">20</span></div>
+									<div class="m-xs font-bold no-margins">Under Review  <span class="pull-right">{{praposals.underreviewCount}}</span></div>
+									<div class="m-xs font-bold no-margins">Submitted <span class="pull-right">{{praposals.submittedCount}}</span></div>
+									<div class="m-xs font-bold no-margins">Closed  <span class="pull-right">{{praposals.closedCount}}</span></div>
 								</div>
 							</div>
                          </div>
@@ -225,7 +225,7 @@
                     <div class="panel-footer">
 						<div class="row">
                             <div class="col-xs-1"><i class="pe-7s-plus fa-2x pull-left"></i></div>
-							<div class="col-xs-10"><h5> Create New </h5></div>
+							<div class="col-xs-10"><a ng-click="createpraposal()"><h5> Create New </h5></a></div>
                         </div>
                     </div>
                 </div>
@@ -313,12 +313,12 @@
               <div class="row">
                 <div class="col-xs-5" style="border-right:1px solid #eeeeee;">
                   <div class="m-xs font-bold no-margins">This month</div>
-                  <h1 class="m-xs">02</h1>
+                  <h1 class="m-xs">{{praposalswon.CurrentMonth}}</h1>
                 </div>
                 <div class="col-xs-7">
-                  <div class="m-xs font-bold no-margins">Last Month  <span class="pull-right">10</span></div>
-                  <div class="m-xs font-bold no-margins">This Quarter <span class="pull-right">03</span></div>
-                  <div class="m-xs font-bold no-margins">Last Quarter  <span class="pull-right">20</span></div>
+                  <div class="m-xs font-bold no-margins">Last Month  <span class="pull-right">{{praposalswon.LastMonth}}</span></div>
+                  <div class="m-xs font-bold no-margins">This Quarter <span class="pull-right">{{praposalswon.Thisquarterwonproposal}}</span></div>
+                  <div class="m-xs font-bold no-margins">Last Quarter  <span class="pull-right">{{praposalswon.Lastquarterwonproposal}}</span></div>
                 </div>
               </div>
                          </div>
@@ -341,12 +341,12 @@
               <div class="row">
                 <div class="col-xs-5" style="border-right:1px solid #eeeeee;">
                   <div class="m-xs font-bold no-margins">This month</div>
-                  <h1 class="m-xs">02</h1>
+                  <h1 class="m-xs">{{praposalsloss.CurrentMonth}}</h1>
                 </div>
                 <div class="col-xs-7">
-                  <div class="m-xs font-bold no-margins">Last Month  <span class="pull-right">10</span></div>
-                  <div class="m-xs font-bold no-margins">This Quarter <span class="pull-right">03</span></div>
-                  <div class="m-xs font-bold no-margins">Last Quarter  <span class="pull-right">20</span></div>
+                  <div class="m-xs font-bold no-margins">Last Month  <span class="pull-right">{{praposalsloss.LastMonth}}</span></div>
+                  <div class="m-xs font-bold no-margins">This Quarter <span class="pull-right">{{praposalsloss.Thisquarterlossproposal}}</span></div>
+                  <div class="m-xs font-bold no-margins">Last Quarter  <span class="pull-right">{{praposalsloss.Lastquarterlossproposal}}</span></div>
                 </div>
               </div>
                          </div>

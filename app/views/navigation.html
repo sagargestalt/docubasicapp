@@ -33,7 +33,10 @@
         <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'dashboard'}">
             <a ng-href="#/main"> <i class="pe-7s-timer size20 pull-left"></i> <span class="nav-label">  Dashboard</span> <span class="label label-success pull-right"></span> </a>
         </li>
-         <li ng-class="{active: $state.includes('dashbord')}">
+         <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'dashboard'}">
+            <a ng-href="#/settingpage"> <i class="pe-7s-timer size20 pull-left"></i> <span class="nav-label">Setting</span> <span class="label label-success pull-right"></span> </a>
+        </li>
+         <!--<li ng-class="{active: $state.includes('dashbord')}">
             <a><i class="pe-7s-config size20 pull-left"></i><span class="nav-label">Settings</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('dashbord')}">
                 <li ui-sref-active="active" >
@@ -61,7 +64,7 @@
         </li>
        
             </ul>
-        </li>
+        </li>-->
        
            <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'notes'}">
             <a ng-href="#/notes"><i class="pe-7s-note size20 pull-left"></i> <span class="nav-label">Notes</span> </a>

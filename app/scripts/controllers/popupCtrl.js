@@ -30,35 +30,35 @@ angular.module('docubasic3App')
   $scope.check = function(){
     var data = {
 
-    name:$scope.signup.orgname
-    }
+      name:$scope.signup.orgname
+      }
 
-  loginService.tanancy.save((data), function(user) {
+    loginService.tanancy.save((data), function(user) {
 
-      $scope.signup.tenancy = user.data.tenancycode;
-      $scope.orgdata = user.data;
-    });
-   // $scope.tenancy = $scope.orgData.tenancycode;     
+        $scope.signup.tenancy = user.data.tenancycode;
+        $scope.orgdata = user.data;
+      });
+     // $scope.tenancy = $scope.orgData.tenancycode;     
   };
 
   $scope.checkcode = function(){
-     $scope.alerts = [];
-    var data1 = {
-      tenancy_code:$scope.signup.tenancy
-  } 
-  loginService.tanancycode.save((data1), function(user) {
+       $scope.alerts = [];
+      var data1 = {
+        tenancy_code:$scope.signup.tenancy
+    } 
+    loginService.tanancycode.save((data1), function(user) {
 
-      //$scope.tenancy = user.data.tenancycode;
-      $scope.signup.orgmessage = user.message;
-      if(user.status === false){
+        //$scope.tenancy = user.data.tenancycode;
+        $scope.signup.orgmessage = user.message;
+        if(user.status === false){
 
-         $scope.alerts.push({msg: 'Invalid Tenancy', type:'danger'});
-      }
+           $scope.alerts.push({msg: 'Invalid Tenancy', type:'danger'});
+        }
     });
 
+  };
 
-};
-$scope.closeAlerts = function(index) {
+  $scope.closeAlerts = function(index) {
         $scope.alerts.splice(1, index);
         $scope.alerts = [];
     };
@@ -66,34 +66,34 @@ $scope.closeAlerts = function(index) {
     $scope.closeAlert = function(index) {
         $scope.errors.splice(1, index);
         $scope.errors = [];
+  };
+
+  $scope.checkid = function(){
+  var data2 = {
+      tenancy_code:$scope.signup.tenancycode
+
     };
 
-$scope.checkid = function(){
-  var data2 = {
-    tenancy_code:$scope.signup.tenancycode
+    loginService.tanancycodecheck.save((data2), function(user) {
+
+        //$scope.tenancy = user.data.tenancycode;
+        //$scope.orgmessage = user.message;
+        if(user.status === true){
+        $scope.signup.orgname = user.data.companyname;
+        $scope.org = user.data;
+      }
+
+      else if (user.status === false){
+        
+        $scope.errors = user.message;
+
+      }
+      });
+
 
   };
 
-  loginService.tanancycodecheck.save((data2), function(user) {
-
-      //$scope.tenancy = user.data.tenancycode;
-      //$scope.orgmessage = user.message;
-      if(user.status === true){
-      $scope.signup.orgname = user.data.companyname;
-      $scope.org = user.data;
-    }
-
-    else if (user.status === false){
-      
-      $scope.errors = user.message;
-
-    }
-    });
-
-
-};
-
-    $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+$scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 $scope.signup = function(){
   var data = {
     first_name:$scope.signup.fname,

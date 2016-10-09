@@ -113,6 +113,7 @@ $( "#dragThis" ).draggable();
 
         $rootScope.templateid = temp.template.id;
         $rootScope.templatename = temp.template.template_name;
+        $scope.selected = true;
 
     };
 

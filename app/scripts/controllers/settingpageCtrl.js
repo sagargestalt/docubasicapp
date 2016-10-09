@@ -20,7 +20,7 @@ $scope.opencompany = function(){
       animation: $scope.animationsEnabled,
       templateUrl: 'views/companysetting.html',
      controller: 'companysettingCtrl',
-     windowClass: 'modal-lg',
+     windowClass: 'modal-lg animated fadeInRight in',
       //size: size,
       resolve: {
         

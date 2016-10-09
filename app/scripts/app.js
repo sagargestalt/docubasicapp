@@ -192,6 +192,17 @@ angular
         controller: 'praposalsummeryCtrl',
         controllerAs: 'praposalsummeryCtrl'
       })
+         .when('/email', {
+        templateUrl: 'views/email.html',
+        controller: 'praposalCtrl',
+        controllerAs: 'praposalCtrl'
+      })
+         .when('/collabraters', {
+        templateUrl: 'views/collabraters.html',
+        controller: 'praposalCtrl',
+        controllerAs: 'praposalCtrl'
+      })
+         
       .otherwise({
         redirectTo: '/'
       })

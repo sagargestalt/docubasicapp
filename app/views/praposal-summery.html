@@ -2,17 +2,18 @@
 <!-- Navigation -->
 <aside id="menu" ng-include="'views/navigation.html'"></aside>
 <div id="wrapper">
-
-     <div class="col-lg-6" >
-        <div class="hpanel hblue">
+<div class="content animate-panel">
+<div class="row">
+     <div class="col-lg-6" ng-repeat="detail in praposaldata" >
+        <div class="hpanel " >
                     <div class="panel-body">
-                        <div class="row">
+                        <div class="row projects">
                         <div class="col-sm-12">
-                            <h4><a href="#"> Name of the Proposal</a></h4>
+                            <h4><a href="#">{{detail.name}}</a></h4>
                         
                                 <div class="well well-lg">
-                                This where is you can see the description of the Proposal
-                                <br><small>01/02/16 10:26 AM, John started writing the proposal</small>
+                                <p>{{detail.description}}</p>
+                                <br><small>{{detail.activity[0].proposal_activity}}</small>
                                 </div>
                                   
                         </div>
@@ -28,10 +29,10 @@
                                     </div>
                                     <div class="col-sm-4" >
                                         <div class="project-label">DEDLINE</div>
-                                        <small>26.02.2015</small>
+                                        <small>{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
-                                        <h2 class="text-info"> $102,000.00</h2>
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
                                     </div>
                                      <div class="col-sm-12" >
                                      <br>
@@ -53,7 +54,7 @@
                                 <div class="row">
                                     <div class="col-sm-12" >
                                         <div class="project-label">Status</div>
-                                        <small>Open <br> On Time</small>
+                                        <small>Open <br>{{detail.status}}</small>
                                         <br><br>
                                     </div>
                                     <div class="col-sm-12" >
@@ -73,7 +74,7 @@
                     <div class="panel-footer">
                        <div class="row">
                             <div class="col-sm-12" >
-                              <i class="pe-7s-upload fa-2x prl15 border-right"></i>
+                              <i class="prl15 border-right"><img src="images/widget/copy.png"></i>
                               <i class="pe-7s-unlock fa-2x prl15 border-right"></i>
                               <i class="pe-7s-umbrella fa-2x prl15 border-right"></i>
                               <i class="pe-7s-trash fa-2x prl15 border-right"></i>
@@ -86,4 +87,6 @@
                     </div>
                 </div>
         </div>
+    </div>
+       </div>
     </div>

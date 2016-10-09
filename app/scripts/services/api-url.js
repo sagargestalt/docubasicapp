@@ -100,5 +100,14 @@ return {
       'pagelist':BASE_URL +'selectedTemplates',
       'pagesave':BASE_URL +'saveContent',
       'getpraposales':BASE_URL +'allproposals',
+      'downloadpage':BASE_URL +'downloadProposalpdf',
+      'praposaldelete':BASE_URL +'deleteProposal',
+      'mailsend':BASE_URL +'sendProposal',
+      'changepname':BASE_URL +'editProposalname/:id',
+      'getcollab':BASE_URL +'allCollaborators',
+      'clone':BASE_URL +'proposal_details',
+      'getreadaccess':BASE_URL +'inviteCollaborators',
+      'praposalwondata':BASE_URL +'won/:id',
+      'praposallossdata':BASE_URL +'loss/:id'
    	};
 }());
