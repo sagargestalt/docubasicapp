@@ -25,10 +25,26 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
             getcollabraters:$resource( apiUrl.getcollab, {} ),
             clonepraposal:$resource( apiUrl.clone, {} ),
             readaccessapply:$resource( apiUrl.getreadaccess, {} ),
+            praposalreview:$resource( apiUrl.reviewproposal, {} ),
+            praposalreject:$resource( apiUrl.rejectproposal, {} ),
+            uploadsign:$resource( apiUrl.signupload, {} ),
+            praposalapprove:$resource( apiUrl.approvepraposal, {} ),
           
 
 			//praposal summery//
             praposalsummeryget: $resource( apiUrl.getpraposales, {} ),
+
+
+            //image upload//
+            getiamage:$resource(apiUrl.getiamgesdata, {} ,{
+            get: {method:'GET', params: {} , isArray:false}
+
+
+             }),
+
+            upiamage: $resource( apiUrl.imageup, {} ),
+
+
       
 
 

@@ -75,8 +75,8 @@
     "ng-intl-tel-input": "^1.4.0",
     "angular-dragdrop": "^1.0.13",
     "ng-contenteditable": "ngcontenteditable#^0.9.12",
-    "angular-medium-editor": "^1.1.1",
-    "checklist-model": "^0.10.0"
+    "checklist-model": "^0.10.0",
+    "angular-medium-editor": "^1.1.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0",

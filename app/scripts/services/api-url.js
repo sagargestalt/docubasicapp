@@ -108,6 +108,12 @@ return {
       'clone':BASE_URL +'proposal_details',
       'getreadaccess':BASE_URL +'inviteCollaborators',
       'praposalwondata':BASE_URL +'won/:id',
-      'praposallossdata':BASE_URL +'loss/:id'
+      'praposallossdata':BASE_URL +'loss/:id',
+      'reviewproposal':BASE_URL +'customerReview',
+      'rejectproposal':BASE_URL +'rejectProposal',
+      'signupload':BASE_URL +'uploadSignature',
+      'approvepraposal':BASE_URL +'approveProposal',
+      'getiamgesdata':BASE_URL +'images',
+      'imageup':BASE_URL +'upload',
    	};
 }());

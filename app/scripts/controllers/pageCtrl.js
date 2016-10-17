@@ -13,6 +13,12 @@ angular.module('docubasic3App')
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
     $rootScope.username = localStorageService.get('username');
+    $scope.closemodal = function(){
+          console.log("hi");
+          $rootScope.modalInstance.close();
+
+        };
+
    // $rootScope.ssss = $scope.ssss;
 
     /* var tid = {

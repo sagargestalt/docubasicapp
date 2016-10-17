@@ -128,9 +128,9 @@ module.exports = function(config) {
       'bower_components/ng-intl-tel-input/dist/ng-intl-tel-input.js',
       'bower_components/angular-dragdrop/src/angular-dragdrop.js',
       'bower_components/ng-contenteditable/ng-contenteditable.js',
+      'bower_components/checklist-model/checklist-model.js',
       'bower_components/medium-editor/dist/js/medium-editor.js',
       'bower_components/angular-medium-editor/dist/angular-medium-editor.js',
-      'bower_components/checklist-model/checklist-model.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-inline-text-editor/ite.js',
       // endbower

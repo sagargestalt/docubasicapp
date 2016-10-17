@@ -28,26 +28,26 @@ angular.module('docubasic3App')
   
 
   	var tid = {
-  id:$rootScope.tenancyid 
-};
+          id:$rootScope.tenancyid 
+      };
 
- billingservice.getbilldetail.query((tid), function(data){
+      billingservice.getbilldetail.query((tid), function(data){
 
         $scope.billingdata = data.data;
          
     });
 
- var notesdata={
-	tenancy_id:$rootScope.tenancyid 
-}
-settingservice.getnote.save((notesdata), function(data){
+    var notesdata={
+	     tenancy_id:$rootScope.tenancyid 
+      }
+      settingservice.getnote.save((notesdata), function(data){
 		
         $scope.notes = data.data;
          
 
     });
-var data =  {id:$rootScope.tenancyid }
-    userservice.getuserdetail.query((data), function(data1){
+    var data =  {id:$rootScope.tenancyid }
+      userservice.getuserdetail.query((data), function(data1){
     
         $scope.userdata = data1.data;
         $scope.usercount = data1.data.users_count;
@@ -56,53 +56,53 @@ var data =  {id:$rootScope.tenancyid }
     });
 
     var todosdata={
-  tenancy_id:$rootScope.tenancyid 
-};
-settingservice.gettodos.save((todosdata), function(data){
+      tenancy_id:$rootScope.tenancyid 
+      };
+      settingservice.gettodos.save((todosdata), function(data){
      
         $scope.todos = data.data;
          
 
     });
-var praposaldata={
-  id:$rootScope.tenancyid 
-};
+  var praposaldata={
+    id:$rootScope.tenancyid 
+    };
 
-settingservice.getpraposaldata.query((praposaldata), function(data){
+    settingservice.getpraposaldata.query((praposaldata), function(data){
      
-        $scope.praposals = data.data;
+          $scope.praposals = data.data;
          
 
-    });
+  });
 
 
 
-var data = {
- id:$rootScope.tenancyid 
+  var data = {
+      id:$rootScope.tenancyid 
 
 
-};
+    };
 
-settingservice.getpraposalwon.query((data), function(data){
+    settingservice.getpraposalwon.query((data), function(data){
      
         $scope.praposalswon = data.data;
          
 
-    });
+  });
 
 
-var data = {
- id:$rootScope.tenancyid 
+  var data = {
+    id:$rootScope.tenancyid 
 
 
-};
+    };
 
-settingservice.getpraposalloss.query((data), function(data){
+    settingservice.getpraposalloss.query((data), function(data){
      
         $scope.praposalsloss = data.data;
          
 
-    });
+  });
 $scope.createpraposal = function(){
  $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,

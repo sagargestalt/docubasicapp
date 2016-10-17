@@ -17,6 +17,23 @@ angular.module('docubasic3App')
 
 
 //});
+$rootScope.$on('stylenamesend', function (stylenamesend, data) {
+
+ $rootScope.stylename = data.name;
+  $scope.update = false;
+  
+
+
+});
+
+ $rootScope.$on('styldata', function() {
+        //console.log($('#proposalDropContainer').html());
+        //$scope.ssss =  $('#proposalDropContainer').html();
+        $scope.update = true;
+
+      });
+
+
   $rootScope.tenancyid = localStorageService.get('tenancyid');
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
@@ -24,8 +41,8 @@ angular.module('docubasic3App')
 
   	$scope.$watch(function () { return SocialLoginservice.getXxx(); }, function (newdata, olddata) {
   		
-        if (newdata != null) {
-           $scope.update = true;
+        if (newdata.StyleContent !== null) {
+           //$scope.update = true;
 
             //update Controller2's xxx value
             $scope.xxx= newdata.StyleContent;
@@ -35,26 +52,12 @@ angular.module('docubasic3App')
             $rootScope.id = newdata.PageId;
 
         }
-         if (newdata = null) {
+         if (newdata == null) {
+          $scope.update = false;
          
       }
     }, true);
-    $scope.$watch(function () { return SocialLoginservice.getname(); }, function (newValue, oldValue) {
-
-        if (newValue != null) {
-            //update Controller2's xxx value
-            $scope.stylename= newValue.name;
-              $scope.update = false;
-             
-            //$scope.summernoteTextTwo = $scope.xxx;
-            //$scope.update = true;
-            //$rootScope.id = newValue.PageId;
-
-        }
-         if (newValue = null) {
-        
-      }
-    }, true);
+   
 
   	$scope.updatestyle = function(){
 		var data = {
@@ -66,9 +69,15 @@ angular.module('docubasic3App')
 	style_name:$scope.istylename,
 		};
 		styleservice.styleupdate.query((data), function(data1){
+
  		$scope.alerts=[];
+    if(data1.status == true){
         $scope.sdata= data1.data;
-         
+        $scope.alerts.push({msg: 'Style updated successfully', type:'success'});
+        $scope.summernoteTextTwo = "";
+         }
+
+
     });
 
 
@@ -77,13 +86,19 @@ angular.module('docubasic3App')
   	$scope.submitstyle = function(){
     	var data ={
     	tenancy_id:$rootScope.tenancyid,
-    	style_name:$scope.stylename,
+    	style_name:$rootScope.stylename,
     	created_by:$rootScope.userid,
     	style_content:$scope.summernoteTextTwo,
     };
     styleservice.poststyledata.save((data), function(data1){
- $scope.alerts=[];
+      $scope.alerts=[];
         //$scope.pdata= data1.data.PageContent;
+        if(data1.status == true){
+          $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
+          $scope.summernoteTextTwo = "";
+
+
+        }
          
     });
 

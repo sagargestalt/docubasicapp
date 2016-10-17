@@ -13,6 +13,17 @@ angular.module('docubasic3App')
   .controller('settingpageCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal','loginService','SocialLoginservice',
   function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,loginService,$uibModalInstance,SocialLoginservice) {
 
+ $rootScope.modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'views/companysetting.html',
+     controller: 'companysettingCtrl',
+     windowClass: 'modal-lg',
+      //size: size,
+      resolve: {
+        
+      }
+    });
+
 
 $scope.opencompany = function(){
 
@@ -20,7 +31,7 @@ $scope.opencompany = function(){
       animation: $scope.animationsEnabled,
       templateUrl: 'views/companysetting.html',
      controller: 'companysettingCtrl',
-     windowClass: 'modal-lg animated fadeInRight in',
+     windowClass: 'modal-lg',
       //size: size,
       resolve: {
         

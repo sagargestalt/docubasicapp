@@ -46,6 +46,7 @@ $scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
     alert('this is handler for file reader onload event!');
   };
 
+
      function init() {
 
  	 var info = {
@@ -85,6 +86,13 @@ $scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
   	
 
 };
+
+$scope.closemodal = function(){
+          console.log("hi");
+          $rootScope.modalInstance.close();
+
+        };
+
 
 
  $scope.ph_numbr = /[0-9-()]*[1-9][0-9-()]*/;
@@ -138,7 +146,8 @@ $scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
 
             $scope.message = responce.message;
             if(responce.status === true){
-                $scope.alerts.push({msg: 'Picture Updated successfully', type:'success'});
+                //$scope.alerts.push({msg: 'Picture Updated successfully', type:'success'});
+                $scope.imageptah = responce.data.logo_path;
                 init();
             }
             if(responce.status === false){

@@ -202,6 +202,12 @@ angular
         controller: 'praposalCtrl',
         controllerAs: 'praposalCtrl'
       })
+
+          .when('/proposalReview/:proposal_id/:updated_by', {
+        templateUrl: 'views/proposalReview.html',
+        controller: 'customerreviewCtrl',
+        controllerAs: 'customerreviewCtrl'
+      })
          
       .otherwise({
         redirectTo: '/'

@@ -4493,6 +4493,10 @@ padding: 20px 30px !important
 	line-height: 20px;
 	}
 
+  .p20 i img{width:20px !important;}
+
+  .pull-right .pe-7s-close{margin-right:20px;}
+
 /*--tumblr------
 .tumblr{
 	background:#9bb8d2;

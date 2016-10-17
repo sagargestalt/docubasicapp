@@ -112,7 +112,7 @@ $( "#dragThis" ).draggable();
     $scope.selecttemp = function(temp){
 
         $rootScope.templateid = temp.template.id;
-        $rootScope.templatename = temp.template.template_name;
+        //$rootScope.templatename = temp.template.template_name;
         $scope.selected = true;
 
     };
@@ -134,8 +134,9 @@ $( "#dragThis" ).draggable();
       };
 
        praposalservice.createpraposal.save((data), function(data1){
- $scope.alerts=[];
+        $scope.alerts=[];
         $scope.templates= data1.data;
+        $rootScope.praposalname =  $scope.praposalname;
 
         if(data1.status == true){
 
@@ -154,6 +155,8 @@ $( "#dragThis" ).draggable();
 
     };
 
+   
+
      $scope.$watch('template_id', function () {
       localStorageService.set('template_id',$rootScope.template_id);
      // localStorageService.set('userid',$rootScope.userid);
@@ -164,8 +167,8 @@ $( "#dragThis" ).draggable();
      // localStorageService.set('userid',$rootScope.userid);
     }, true);
 
-     $scope.$watch('templatename', function () {
-      localStorageService.set('templatename',$rootScope.templatename);
+     $scope.$watch('praposalname', function () {
+      localStorageService.set('praposalname',$rootScope.praposalname);
      // localStorageService.set('userid',$rootScope.userid);
     }, true);
 

@@ -5,11 +5,13 @@
 <container-directive></container-directive>
 
 <div id="container" >
+  <uib-alert ng-repeat="alert in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert}}</uib-alert>
+    <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
 <div class="panel-body no-padding" >
                 <div summernote ng-model="summernoteTextTwo" config="summernoteOpt"></div>
             </div>
-   <button class="btn btn-primary"  ng-click="submitstyle()">Save</button>
-    <button class="btn btn-primary"  ng-click="updatestyle()">Update</button>
+   <button class="btn btn-primary"  ng-hide="update" ng-click="submitstyle()">Save</button>
+    <button class="btn btn-primary" ng-show="update"  ng-click="updatestyle()">Update</button>
 
 <!--<span  id="draggable"  >Text block
 </span>

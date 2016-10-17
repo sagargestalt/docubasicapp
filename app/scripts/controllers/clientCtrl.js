@@ -25,6 +25,8 @@ angular.module('docubasic3App')
 
     };
 
+    
+
     $scope.closeclient = function(){
 
     	$scope.collapsed = false;

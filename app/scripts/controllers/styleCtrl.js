@@ -13,6 +13,11 @@ angular.module('docubasic3App')
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
     $rootScope.username = localStorageService.get('username');
+    $scope.closemodal = function(){
+          console.log("hi");
+          $rootScope.modalInstance.close();
+
+        };
 
      var tid = {
        tenancy_id:$rootScope.tenancyid 
@@ -58,6 +63,8 @@ $scope.summernoteOpt = {
     	$scope.summernoteTextTwo = styles.StyleContent;
     	//$rootScope.$broadcast('catchuser', styles);
     	SocialLoginservice.setXxx(styles);
+         $rootScope.$broadcast('styldata');
+
     	$location.path( "/createstyle" );
     	
 
@@ -68,8 +75,11 @@ $scope.summernoteOpt = {
     		name:$scope.stylename
     	}
     	
-    	SocialLoginservice.setname(data);
+    	//SocialLoginservice.setname(data);
+        $rootScope.$broadcast('stylenamesend', data);
+
     	$location.path( "/createstyle" );
+         $rootScope.modalInstance.close();
     	
 
 

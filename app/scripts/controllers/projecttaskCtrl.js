@@ -22,6 +22,11 @@ angular.module('docubasic3App')
         $scope.errors.splice(1, index);
         $scope.errors = [];
     };
+    $scope.closemodal = function(){
+          console.log("hi");
+          $rootScope.modalInstance.close();
+
+        };
 
     $scope.projecttasksection = function(){
     	$scope.collapsed = true;

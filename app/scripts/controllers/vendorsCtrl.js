@@ -28,6 +28,11 @@ angular.module('docubasic3App')
 
 
     };
+     $scope.closemodal = function(){
+          console.log("hi");
+          $rootScope.modalInstance.close();
+
+        };
 
     $scope.closevendor = function(){
     	$scope.collapsed = false;

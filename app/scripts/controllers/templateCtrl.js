@@ -8,12 +8,17 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('templateCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location) {
+  .controller('templateCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,$timeout) {
  $rootScope.tenancyid = localStorageService.get('tenancyid');
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
     $rootScope.username = localStorageService.get('username');
    // $rootScope.ssss = $scope.ssss;
+   $scope.closemodal = function(){
+          console.log("hi");
+          $rootScope.modalInstance.close();
+
+        };
 
 
     function init() {
@@ -41,6 +46,17 @@ angular.module('docubasic3App')
 };
 init();
 
+var countUp = function() {
+
+    $scope.alerts = [];
+     $scope.errors = [];
+
+      $timeout(countUp, 10000);
+
+    };
+
+   $timeout(countUp, 10000);
+
 
  	$scope.create = function(){
  		var data = {
@@ -56,6 +72,15 @@ init();
  		pageservice.settempdata.save((data), function(data){
  			$scope.alerts=[];
         $scope.pdata= data.data;
+        if(data.status == true){
+        $rootScope.modalInstance.close();
+      }
+      if(data.status == false){
+         $scope.errors = data.message;
+      }
+
+
+
          
     });
 
@@ -87,9 +112,17 @@ init();
  	pageservice.updatetempdata.save((data), function(data){
  			$scope.alerts=[];
        // $scope.pdata= data.data;
+       if(data.status == true){
+        $rootScope.modalInstance.close();
+     
        init();
        $scope.update = false;
  		$scope.show = false;
+  }
+
+   if(data.status == false){
+         $scope.errors = data.message;
+      }
 
          
     });

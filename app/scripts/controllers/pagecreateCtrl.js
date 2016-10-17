@@ -34,6 +34,16 @@ angular.module('docubasic3App')
       }
     }, true);
 
+    var countUp = function() {
+
+    $scope.alerts = [];
+     $scope.errors = [];
+
+      $timeout(countUp, 10000);
+
+    };
+ $timeout(countUp, 10000);
+
     /* $scope.$watch(function () { return pagenameservice.getXxx(); }, function (newvalue, oldvalue) {
   		
         if (newvalue != null) {
@@ -83,7 +93,16 @@ $( "#dragThis" ).draggable();
 
         pageservice.postpage.save((tid), function(data){
             $scope.alerts=[];
+            if(data.status = true){
         $rootScope.sdata= data.data;
+        $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
+      }
+
+      else{
+
+                $scope.errors = data.message;
+            }
+       
          
             });
 
@@ -100,7 +119,16 @@ $( "#dragThis" ).draggable();
 
         pageservice.updatepage.query((tid), function(data){
             $scope.alerts=[];
-        $rootScope.sdata= data.data;
+            if(data.status = true){
+               $rootScope.sdata= data.data;
+              $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
+            }
+
+            else{
+
+                $scope.errors = data.message;
+            }
+       
          
             });
 

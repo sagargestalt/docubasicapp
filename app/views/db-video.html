@@ -1,0 +1,12 @@
+<div class="db-video-widget" db-resizable ng-class="{'show-config': toggleShowHide}">
+  <iframe class="video-container" ng-src="{{ trustSrc(videoSource) }}">
+  </iframe>
+  <div class="config-area">
+    <div>URL : <input type="url" placeholder="Enter video url here" ng-model="videoUrl"/></div>
+    <br/>
+    <div><button type="button" class="btn btn-success" ng-click="submitUrl()">OK</button></div>
+  </div>
+  <div class="config-controlls">
+    <i class="pe-7s-edit fa-2x prl15 pull-right" ng-click="toggleShowHideConfig()"></i>
+  </div>
+</div>
