@@ -7,20 +7,20 @@
  * # containerDirective
  */
 angular.module('docubasic3App')
-  .directive('containerDirective', function ($rootScope,styleservice) {
+  .directive('containerDirective', function ($rootScope) {
     return {
       restrict: 'E',
       scope: {
       ssss: "=ngModel"
     },
       
-    link: function check(scope, elem, attrs)
+    link: function check()
   {
       $( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
       $(".window").draggable({handle:'.bar'});
   
 
-      $(".textbox").on("click", function(e) {
+      $(".textbox").on("click", function() {
         //$(".window").draggable('disable');
         $(this).find(".textbox").focus();
       
@@ -59,7 +59,7 @@ angular.module('docubasic3App')
     $( "#droppable" ).droppable({
         accept: "#draggable",
         drop: function(event , ui) {
-        alert( "dropped" );
+       
          ui.draggable.draggable('option', 'revert', function(){return false});
           /* var textBox = document.createElement("div");
           document.getElementById("droppable").appendChild(textBox);
@@ -75,7 +75,7 @@ angular.module('docubasic3App')
           
         
 
-        $(".textbox").on("click", function(e) {
+        $(".textbox").on("click", function() {
             //$(".window").draggable('disable');
             $(this).find(".textbox").focus();
              $rootScope.callme();
@@ -128,7 +128,7 @@ angular.module('docubasic3App')
 
 	}  
 
-  }
+  };
 
  
 

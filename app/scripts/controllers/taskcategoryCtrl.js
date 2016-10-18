@@ -33,7 +33,7 @@ angular.module('docubasic3App')
     	var id ={
          tenancy_id:$rootScope.tenancyid  
 
-    	}
+    	};
 
     	settingservice.task.save((id), function (data3){
       		$scope.gettasks = data3.data;
@@ -43,7 +43,7 @@ angular.module('docubasic3App')
 
      
 
-	};
+	}
 
 
   var countUp = function() {
@@ -81,7 +81,7 @@ angular.module('docubasic3App')
         };
          settingservice.tasks.save((task), function(responce){
 
-            $scope.message = responce.message
+            $scope.message = responce.message;
             if(responce.status === true){
                 $scope.alerts.push({msg: 'Task category added successfully', type:'success'});
                 $scope.taskname = "";

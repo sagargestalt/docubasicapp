@@ -21,7 +21,7 @@ angular.module('docubasic3App')
 
      var tid = {
        tenancy_id:$rootScope.tenancyid 
-		}
+		};
 
  styleservice.getstyledata.save((tid), function(data){
  $scope.alerts=[];
@@ -29,7 +29,7 @@ angular.module('docubasic3App')
          
     });
 
- $( ".draggable" ).draggable();
+ /*$( ".draggable" ).draggable();
 $( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
 $( "#dragThis" ).draggable();
 
@@ -48,7 +48,7 @@ $( "#dragThis" ).draggable();
     .blur(function(){
         $(this).draggable( 'option', 'disabled', false);
         $(this).attr('contenteditable','false');
-    });
+    });*/
 $scope.summernoteOpt = {
         toolbar: [
             ['headline', ['style']],
@@ -73,7 +73,7 @@ $scope.summernoteOpt = {
     $scope.create = function(){
     	var data = {
     		name:$scope.stylename
-    	}
+    	};
     	
     	//SocialLoginservice.setname(data);
         $rootScope.$broadcast('stylenamesend', data);

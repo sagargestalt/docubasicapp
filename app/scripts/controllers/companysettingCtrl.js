@@ -42,9 +42,9 @@ angular.module('docubasic3App')
         $scope.errors.splice(1, index);
         $scope.errors = [];
     };
-$scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
+/*$scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
     alert('this is handler for file reader onload event!');
-  };
+  };*/
 
 
      function init() {
@@ -75,7 +75,7 @@ $scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
        //$scope.allstates = data.data.states;
    });
 
-    var data =  {id:$rootScope.tenancyid }
+    var data =  {id:$rootScope.tenancyid };
     userservice.getuserdetail.query((data), function(data1){
      $scope.alerts=[];
         $scope.userdata = data1.data.users;
@@ -85,7 +85,7 @@ $scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
 
   	
 
-};
+}
 
 $scope.closemodal = function(){
           console.log("hi");

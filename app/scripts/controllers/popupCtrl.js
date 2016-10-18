@@ -10,8 +10,8 @@
  */
   
 angular.module('docubasic3App')
-  .controller('popupCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal','loginService','SocialLoginservice',
-  function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,loginService,$uibModalInstance,SocialLoginservice) {
+  .controller('popupCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal','loginService',
+  function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,loginService) {
 
 
   
@@ -31,7 +31,7 @@ angular.module('docubasic3App')
     var data = {
 
       name:$scope.signup.orgname
-      }
+      };
 
     loginService.tanancy.save((data), function(user) {
 
@@ -45,7 +45,7 @@ angular.module('docubasic3App')
        $scope.alerts = [];
       var data1 = {
         tenancy_code:$scope.signup.tenancy
-    } 
+    };
     loginService.tanancycode.save((data1), function(user) {
 
         //$scope.tenancy = user.data.tenancycode;

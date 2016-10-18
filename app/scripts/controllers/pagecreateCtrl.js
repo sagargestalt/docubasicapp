@@ -8,16 +8,16 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('pagecreateCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,updatepageservice,pagenameservice) {
+  .controller('pagecreateCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,updatepageservice,pagenameservice,$timeout,$) {
  $rootScope.tenancyid = localStorageService.get('tenancyid');
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
     $rootScope.username = localStorageService.get('username');
       $rootScope.pagename = localStorageService.get('pname');
 
-    $scope.$watch(function () { return updatepageservice.getXxx(); }, function (newdata, olddata) {
+    $scope.$watch(function () { return updatepageservice.getXxx(); }, function (newdata) {
   		
-        if (newdata != null) {
+        if (newdata !== null) {
            
 
             //update Controller2's xxx value
@@ -89,7 +89,7 @@ $( "#dragThis" ).draggable();
                 created_by:$rootScope.userid ,
                 page_name: $rootScope.pagename,
                 page_content:$scope.ssss,
-                }
+                };
 
         pageservice.postpage.save((tid), function(data){
             $scope.alerts=[];
@@ -115,7 +115,7 @@ $( "#dragThis" ).draggable();
                 updated_by:$rootScope.userid ,
                 page_name:$scope.pgname,
                 page_content:$scope.ssss,
-                }
+                };
 
         pageservice.updatepage.query((tid), function(data){
             $scope.alerts=[];

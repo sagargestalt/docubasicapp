@@ -24,7 +24,7 @@ angular.module('docubasic3App')
     function init() {
    var tid = {
        tenancy_id:$rootScope.tenancyid 
-        }
+        };
 
  pageservice.getpagedata.save((tid), function(data){
  $scope.alerts=[];
@@ -34,7 +34,7 @@ angular.module('docubasic3App')
 
  	 var id = {
        tenancy_id:$rootScope.tenancyid 
-        }
+        };
 
  pageservice.gettempdata.save((id), function(data){
  $scope.alerts=[];
@@ -43,7 +43,7 @@ angular.module('docubasic3App')
     });
 
 
-};
+}
 init();
 
 var countUp = function() {
@@ -72,10 +72,10 @@ var countUp = function() {
  		pageservice.settempdata.save((data), function(data){
  			$scope.alerts=[];
         $scope.pdata= data.data;
-        if(data.status == true){
+        if(data.status === true){
         $rootScope.modalInstance.close();
       }
-      if(data.status == false){
+      if(data.status === false){
          $scope.errors = data.message;
       }
 
@@ -112,7 +112,7 @@ var countUp = function() {
  	pageservice.updatetempdata.save((data), function(data){
  			$scope.alerts=[];
        // $scope.pdata= data.data;
-       if(data.status == true){
+       if(data.status === true){
         $rootScope.modalInstance.close();
      
        init();
@@ -120,7 +120,7 @@ var countUp = function() {
  		$scope.show = false;
   }
 
-   if(data.status == false){
+   if(data.status === false){
          $scope.errors = data.message;
       }
 

@@ -1,5 +1,6 @@
+'use strict';
 angular.module('docubasic3App')
-  .directive('dbImage', function ($rootScope, styleservice) {
+  .directive('dbImage', function () {
     return {
       restrict: 'E',
       replace: true,
@@ -12,5 +13,5 @@ angular.module('docubasic3App')
           $(this).focus();
         });*/
       }
-    }
+    };
   });

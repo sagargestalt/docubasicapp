@@ -1,8 +1,9 @@
+'use strict';
 angular.module('docubasic3App')
-  .directive('dbDroppable', function ($compile, $rootScope, styleservice) {
+  .directive('dbDroppable', function ($compile, $rootScope) {
     return {
       restrict: 'AE',
-      link: function(scope, element, attrs) {
+      link: function(scope, element) {
         $(".db-square-widget").draggable({containment: "#proposalDropContainer"});
          //$(".window").draggable({handle:'.bar'});
         $(element).droppable({
@@ -54,10 +55,10 @@ angular.module('docubasic3App')
       $rootScope.imageinsert = function(){
         var dynamicId = new Date().getTime(); //Date.now();
           $(element).append('<db-image dynamic-id=' + dynamicId + '></db-image>'); 
-          needCompile = true;
+         // needCompile = true;
 
       };
 
     }
-  }
+  };
 });

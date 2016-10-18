@@ -39,14 +39,14 @@ angular.module('docubasic3App')
 
     var notesdata={
 	     tenancy_id:$rootScope.tenancyid 
-      }
+      };
       settingservice.getnote.save((notesdata), function(data){
 		
         $scope.notes = data.data;
          
 
     });
-    var data =  {id:$rootScope.tenancyid }
+    var data =  {id:$rootScope.tenancyid };
       userservice.getuserdetail.query((data), function(data1){
     
         $scope.userdata = data1.data;
@@ -77,13 +77,13 @@ angular.module('docubasic3App')
 
 
 
-  var data = {
+  var data1 = {
       id:$rootScope.tenancyid 
 
 
     };
 
-    settingservice.getpraposalwon.query((data), function(data){
+    settingservice.getpraposalwon.query((data1), function(data){
      
         $scope.praposalswon = data.data;
          
@@ -91,13 +91,13 @@ angular.module('docubasic3App')
   });
 
 
-  var data = {
+  var data2 = {
     id:$rootScope.tenancyid 
 
 
     };
 
-    settingservice.getpraposalloss.query((data), function(data){
+    settingservice.getpraposalloss.query((data2), function(data){
      
         $scope.praposalsloss = data.data;
          

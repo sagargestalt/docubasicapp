@@ -22,7 +22,7 @@ angular.module('docubasic3App')
       //$rootScope.template_id = localStorageService.get('template_id');
       $rootScope.templatename = localStorageService.get('templatename');
 
-       var data =  {id:$rootScope.tenancyid }
+       var data =  {id:$rootScope.tenancyid };
     userservice.getuserdetail.query((data), function(data1){
    
         $scope.userdata = data1.data;
@@ -43,18 +43,18 @@ angular.module('docubasic3App')
 
 
 
-    var data = {
+    var data1 = {
          proposal_id:$rootScope.proposal_id,
 
       };
 
-      praposalservice.clonepraposal.save((data), function(data){
+      praposalservice.clonepraposal.save((data1), function(data){
           $scope.alerts=[];
           $scope.clonedata = data.data.proposal;
           $scope.praposalname = $scope.clonedata[0].Name;
           $scope.myDate =  new Date($scope.clonedata[0].Delivery_date);
           $scope.cname = $scope.clonedata[0].Customer_id;
-          $scope.tid = $scope.clonedata[0].template_id
+          $scope.tid = $scope.clonedata[0].template_id;
           $scope.coname = data.data.collaborators;
       
          
@@ -80,7 +80,7 @@ angular.module('docubasic3App')
  $scope.alerts=[];
         $scope.templates= data1.data;
 
-        if(data1.status == true){
+        if(data1.status === true){
 
         $rootScope.template_id = $scope.templates.template_id;
         $rootScope.proposal_id = $scope.templates.proposal_id;

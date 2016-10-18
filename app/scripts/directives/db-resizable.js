@@ -1,5 +1,6 @@
+'use strict';
 angular.module('docubasic3App')
-  .directive('dbResizable', function ($rootScope, styleservice) {
+  .directive('dbResizable', function () {
     return {
       restrict: 'A',
       link: function(scope, element, attr) {
@@ -14,5 +15,5 @@ angular.module('docubasic3App')
           aspectRatio: aspectRatio
         });
       }
-    }
+    };
   });

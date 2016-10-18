@@ -157,7 +157,7 @@ angular.module('docubasic3App')
 
              $timeout(countUp, 10000);
 
-   		 };
+   		 }
 
 
    		$scope.mul = function(quantity,unitcost){
@@ -238,7 +238,7 @@ $scope.mulall = function(quantity,unitcost,unitprice){
         $scope.quantity = info.quantity;
         $scope.unitcost = info.unitcost;
         $scope.unitprice = info.unitprice;
-        user_id:$rootScope.userid,
+        //user_id:$rootScope.userid;
         //$scope.source = info.type;
         $scope.discriptions = info.description;
         $scope.totalcost =  info.totalcost;

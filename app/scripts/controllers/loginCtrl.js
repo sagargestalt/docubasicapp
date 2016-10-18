@@ -8,8 +8,8 @@
  * Controller of the WhoositApp
  */
 angular.module('docubasic3App')
-  .controller('loginCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal','loginService','localStorageService','$location','GooglePlus','SocialLoginservice',
-  function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,loginService,localStorageService,$location,GooglePlus,SocialLoginservice,$uibModalInstance) {
+  .controller('loginCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal','loginService','localStorageService','$location','GooglePlus',
+  function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,loginService,localStorageService,$location,GooglePlus) {
 
 
 $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
@@ -119,13 +119,13 @@ $rootScope.closeAlerts = function(index) {
                 $scope.alerts.push({msg: 'Invalid Username or password. Please try again', type:'danger'});
             }
 
-             if(data.data.istenantadmin == 1){
+             if(data.data.istenantadmin === 1){
 
                     $rootScope.isAdmin = true;
 
                   }
 
-              if(data.data.istenantadmin == 0){
+              if(data.data.istenantadmin === 0){
 
                     $rootScope.isAdmin = false;
 
@@ -163,7 +163,7 @@ $rootScope.closeAlerts = function(index) {
             return false;
         }
          
-    };
+    }
     init();
 
      $rootScope.signup = function () {
@@ -335,7 +335,7 @@ $scope.closeAlerts = function(index) {
      $scope.alerts = [];
     var data1 = {
       tenancy_code:$scope.tenancy
-    } 
+    }; 
     loginService.tanancycode.save((data1), function(user) {
 
       //$scope.tenancy = user.data.tenancycode;
@@ -370,7 +370,7 @@ $scope.closeAlerts = function(index) {
 
   };
 
-  $scope.socialsignup = function($uibModalInstance){
+  $scope.socialsignup = function(){
 
     var data = {
     first_name:$scope.fname,

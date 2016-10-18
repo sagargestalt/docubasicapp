@@ -83,7 +83,7 @@ angular.module('docubasic3App')
     		});
 
       $timeout(countUp, 10000);
-	};
+	}
 
 
 

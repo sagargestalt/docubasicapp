@@ -8,7 +8,7 @@
  * Service in the docubasic3App.
  */
 
-angular.module('docubasic3App').factory('styleservice', ['$resource', 'apiUrl','$rootScope', function ($resource, apiUrl,$rootScope) {
+angular.module('docubasic3App').factory('styleservice', ['$resource', 'apiUrl', function ($resource, apiUrl) {
       //return $resource( apiUrl.getGenericData, {} );
       return{
       styleupdate:$resource(apiUrl.updatestyle, {id:'@id'} ,{

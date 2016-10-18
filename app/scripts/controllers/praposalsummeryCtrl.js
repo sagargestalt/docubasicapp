@@ -28,11 +28,11 @@ angular.module('docubasic3App')
       	tenancy_id: $rootScope.tenancyid,
       	proposal_status:0,
       	created_by:$rootScope.userid,
-      }
+      };
 
      	praposalservice.praposalsummeryget.save((data), function(data1){
  			$scope.alerts=[];
-      if (data1.status == true){
+      if (data1.status === true){
         	$scope.praposaldata= data1.data.proposals;
           $scope.praposalactivitydata = data1.data.proposals[0].activity;
           $scope.praposalcollab = data1.data.proposals[1].collaborator;
@@ -82,13 +82,14 @@ angular.module('docubasic3App')
 
         };
 
-         praposalservice.deletepraposal.save((data), function(data){
+         praposalservice.deletepraposal.save((data), function(){
+
           $scope.alerts=[];
       
          
           });
 
-          sweetAlert.swal("Deleted!", "Task category Deleted successfully", "success");
+          sweetAlert.swal("Deleted!", " Deleted successfully", "success");
                 } else {
                     sweetAlert.swal("Cancelled");
                 }

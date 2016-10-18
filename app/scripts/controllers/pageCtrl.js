@@ -8,7 +8,7 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('pageCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,updatepageservice,pagenameservice) {
+  .controller('pageCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,updatepageservice,$,styleservice) {
  $rootScope.tenancyid = localStorageService.get('tenancyid');
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
@@ -32,7 +32,7 @@ angular.module('docubasic3App')
     });*/
 var tid = {
        tenancy_id:$rootScope.tenancyid 
-        }
+        };
 
  pageservice.getpagedata.save((tid), function(data){
  $scope.alerts=[];
@@ -97,7 +97,7 @@ $(".window").draggable({
         stop: function() {
           var tid = {
        tenancy_id:$rootScope.tenancyid 
-    }
+    };
 
  styleservice.getstyledata.save((tid), function(data){
  //$scope.alerts=[];

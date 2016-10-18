@@ -39,7 +39,7 @@ $rootScope.$on('stylenamesend', function (stylenamesend, data) {
    $rootScope.isAdmin = localStorageService.get('isAdmin');
     $rootScope.username = localStorageService.get('username');
 
-  	$scope.$watch(function () { return SocialLoginservice.getXxx(); }, function (newdata, olddata) {
+  	$scope.$watch(function () { return SocialLoginservice.getXxx(); }, function (newdata) {
   		
         if (newdata.StyleContent !== null) {
            //$scope.update = true;
@@ -52,7 +52,7 @@ $rootScope.$on('stylenamesend', function (stylenamesend, data) {
             $rootScope.id = newdata.PageId;
 
         }
-         if (newdata == null) {
+         if (newdata === null) {
           $scope.update = false;
          
       }
@@ -71,7 +71,7 @@ $rootScope.$on('stylenamesend', function (stylenamesend, data) {
 		styleservice.styleupdate.query((data), function(data1){
 
  		$scope.alerts=[];
-    if(data1.status == true){
+    if(data1.status === true){
         $scope.sdata= data1.data;
         $scope.alerts.push({msg: 'Style updated successfully', type:'success'});
         $scope.summernoteTextTwo = "";
@@ -93,7 +93,7 @@ $rootScope.$on('stylenamesend', function (stylenamesend, data) {
     styleservice.poststyledata.save((data), function(data1){
       $scope.alerts=[];
         //$scope.pdata= data1.data.PageContent;
-        if(data1.status == true){
+        if(data1.status === true){
           $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
           $scope.summernoteTextTwo = "";
 

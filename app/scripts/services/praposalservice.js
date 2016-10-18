@@ -8,7 +8,7 @@
  * Service in the docubasic3App.
  */
 
-angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl','$rootScope', function ($resource, apiUrl,$rootScope) {
+angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl', function ($resource, apiUrl) {
       //return $resource( apiUrl.getGenericData, {} );
       return{
             updatename:$resource(apiUrl.changepname, {id:'@id'} ,{
@@ -38,10 +38,7 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
             //image upload//
             getiamage:$resource(apiUrl.getiamgesdata, {} ,{
             get: {method:'GET', params: {} , isArray:false}
-
-
-             }),
-
+            }),
             upiamage: $resource( apiUrl.imageup, {} ),
 
 

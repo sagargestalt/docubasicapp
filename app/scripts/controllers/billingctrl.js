@@ -15,7 +15,7 @@ angular.module('docubasic3App')
   $rootScope.userid = localStorageService.get('userid');
 var tid = {
   id:$rootScope.tenancyid 
-}
+};
 
  billingservice.getbilldetail.query((tid), function(data){
  $scope.alerts=[];

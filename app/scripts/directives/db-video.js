@@ -1,5 +1,6 @@
+'use strict';
 angular.module('docubasic3App')
-  .directive('dbVideo', function ($rootScope, $sce, styleservice) {
+  .directive('dbVideo', function ($sce) {
     return {
       restrict: 'E',
       replace: true,
@@ -22,11 +23,11 @@ angular.module('docubasic3App')
 
         scope.trustSrc = function(src) {
           return $sce.trustAsResourceUrl(src);
-        }
+        };
 
         scope.toggleShowHideConfig = function() {
           scope.toggleShowHide = !scope.toggleShowHide;
         };
       }
-    }
+    };
   });

@@ -10,8 +10,8 @@
  */
   
 angular.module('docubasic3App')
-  .controller('settingpageCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal','loginService','SocialLoginservice',
-  function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,loginService,$uibModalInstance,SocialLoginservice) {
+  .controller('settingpageCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal',
+  function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal) {
 
  $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,

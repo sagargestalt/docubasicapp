@@ -25,7 +25,7 @@ function init() {
 	
 var notesdata={
 	tenancy_id:$rootScope.tenancyid 
-}
+};
 settingservice.getnote.save((notesdata), function(data){
 		 
         $scope.notes = data.data;
@@ -44,7 +44,7 @@ settingservice.gettodos.save((todosdata), function(data){
     });
  
 
-};
+}
 init();
 
   
@@ -229,7 +229,7 @@ settingservice.postnote.save((notesdata), function(data){
 
 
 
-	}
+	};
 
 
 
@@ -422,7 +422,7 @@ updated_by:$rootScope.userid,
         id:$scope.todoid,
         taskname:$scope.newnotename,
 
-}
+};
 
 settingservice.updatetodos.update((data), function(data1){
      $scope.alerts=[];

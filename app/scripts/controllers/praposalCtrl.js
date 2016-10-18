@@ -59,8 +59,8 @@ function init() {
          
       });
 
-        var data =  {id:$rootScope.tenancyid }
-    userservice.getuserdetail.query((data), function(data1){
+        var data2 =  {id:$rootScope.tenancyid };
+    userservice.getuserdetail.query((data2), function(data1){
    
         $scope.userdata = data1.data;
          
@@ -78,7 +78,7 @@ function init() {
 
       });
 
-      };
+      }
 
       init();
 
@@ -131,9 +131,9 @@ function init() {
         praposalservice.readaccessapply.save((data), function(data){
           $scope.alerts=[];
 
-          if(data.status == true){
+          if(data.status === true){
 
-            init()
+            init();
 
 
           }
@@ -159,9 +159,9 @@ function init() {
         praposalservice.readaccessapply.save((data), function(data){
           $scope.alerts=[];
           
-          if(data.status == true){
+          if(data.status === true){
 
-            init()
+            init();
 
 
           }
@@ -198,7 +198,7 @@ function init() {
 
         };
 
-         praposalservice.deletepraposal.save((data), function(data){
+         praposalservice.deletepraposal.save((data), function(){
           $scope.alerts=[];
       
          
@@ -334,7 +334,7 @@ function init() {
         praposalservice.sendmail.save((data), function(data){
           $scope.alerts=[];
 
-          if(data.status == true){
+          if(data.status === true){
              $scope.alerts.push({msg: 'Email Sended successfully', type:'success'});
              $rootScope.modalInstance.close();
 
@@ -367,7 +367,7 @@ function init() {
 
         };
 
-        praposalservice.sendmail.save((data), function(data){
+        praposalservice.sendmail.save((data), function(){
           $scope.alerts=[];
       
          
@@ -396,7 +396,7 @@ function init() {
 
           praposalservice.updatename.query((data), function(data1){
           $scope.alerts=[];
-          if(data1.status == true){
+          if(data1.status === true){
             $scope.show = false;
             $rootScope.praposalname = $scope.pname;
 
@@ -434,7 +434,7 @@ function init() {
         $scope.htmlString = $sce.trustAsHtml(page.template_page_content);
         console.log($scope.htmlString);
         //$scope.ssss =  $('#proposalDropContainer').html();
-      $scope.pageid = page.template_page_id
+      $scope.pageid = page.template_page_id;
     };
 
     $scope.priweviemode = function(){
@@ -453,7 +453,7 @@ function init() {
         created_by:$rootScope.userid,
         };
 
-        praposalservice.savepage.save((data), function(data1){
+        praposalservice.savepage.save((data), function(){
         $scope.alerts=[];
         //$scope.pagedata= data1.data;
          
@@ -464,7 +464,7 @@ function init() {
     };
 
 
-     var container = $(document.createElement('div')).css({
+    /* var container = $(document.createElement('div')).css({
 
                 padding: '5px', margin: '20px' , width: '170px', border: '1px dashed',
 
@@ -518,8 +518,7 @@ function init() {
               image_raw:$scope.files[0].base64,
                tenancy_id:$rootScope.tenancyid,
                created_by:$rootScope.userid,
-
-          };
+           };
 
             praposalservice.upiamage.save((data), function(data){
               //$scope.alerts=[];
@@ -527,10 +526,6 @@ function init() {
               $scope.iamge= data.data;
          
             });
-
-
-
-
 
         };
 

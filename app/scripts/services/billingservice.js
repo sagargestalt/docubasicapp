@@ -8,7 +8,7 @@
  * Service in the docubasic3App.
  */
 
-angular.module('docubasic3App').factory('billingservice', ['$resource', 'apiUrl','$rootScope', function ($resource, apiUrl,$rootScope) {
+angular.module('docubasic3App').factory('billingservice', ['$resource', 'apiUrl', function ($resource, apiUrl) {
       //return $resource( apiUrl.getGenericData, {} );
       return{
        getbilldetail:$resource(apiUrl.billingdata, {id:'@id'} ,{

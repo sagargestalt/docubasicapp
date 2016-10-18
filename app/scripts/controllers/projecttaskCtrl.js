@@ -38,7 +38,7 @@ angular.module('docubasic3App')
        $scope.taskcategory = "";
                 $scope.category ="";
                 $scope.discription="";
-                $scope.taskdetail=""
+                $scope.taskdetail="";
                 $scope.vendors="";
                 $scope.mandays="";
                 $scope.source="";
@@ -103,7 +103,7 @@ angular.module('docubasic3App')
     				});
 
 
-    };
+    }
 
 
     $scope.submitprojecttask = function(){
@@ -135,7 +135,7 @@ settingservice.postptask.save((postdata), function(data){
                 $scope.taskcategory = "";
                 $scope.category ="";
 				        $scope.discription="";
-				        $scope.taskdetail=""
+				        $scope.taskdetail="";
 				        $scope.vendors="";
 				        $scope.mandays="";
 				        $scope.source="";
@@ -213,7 +213,7 @@ $scope.updateprojecttaskdata = function(){
                 $scope.update = false;
                 $scope.category ="";
 				        $scope.discription="";
-				        $scope.taskdetail=""
+				        $scope.taskdetail="";
 				        $scope.vendors="";
 				        $scope.mandays="";
 				        $scope.source="";

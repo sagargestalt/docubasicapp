@@ -19,7 +19,7 @@ var data = {
 
   email:$scope.email,
   activation_key:$scope.activation_key,
-}
+};
 loginService.checkuser.save((data), function(data1){
   $rootScope.alerts=[];
   if(data1.status === false){

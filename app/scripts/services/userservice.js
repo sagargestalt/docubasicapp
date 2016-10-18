@@ -8,7 +8,7 @@
  * Service in the docubasic3App.
  */
 
-angular.module('docubasic3App').factory('userservice', ['$resource', 'apiUrl','$rootScope', function ($resource, apiUrl,$rootScope) {
+angular.module('docubasic3App').factory('userservice', ['$resource', 'apiUrl', function ($resource, apiUrl) {
       //return $resource( apiUrl.getGenericData, {} );
       return{
        getuserdetail:$resource(apiUrl.userdata, {id:'@id'} ,{

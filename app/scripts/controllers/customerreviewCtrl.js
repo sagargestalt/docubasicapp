@@ -25,14 +25,14 @@ angular.module('docubasic3App')
 
         praposalservice.praposalreview.save((data), function(data1){
             $scope.alerts=[];
-          if (data1.status == true){
+          if (data1.status === true){
 
             $scope.review = data1.data;
             $scope.pagecontent = data1.data.proposal_page_data;
             //$scope.praposaldata= data1.data.proposals;
             //$scope.praposalactivitydata = data1.data.proposals[0].activity;
             //$scope.praposalcollab = data1.data.proposals[1].collaborator;
-              if(data1.data.proposal_status == 4){
+              if(data1.data.proposal_status === 4){
                 $rootScope.approve = true;
 
               }
@@ -95,7 +95,7 @@ angular.module('docubasic3App')
 
       $scope.sendpage = function(pagecnt){
       $scope.ssss =  pagecnt.page_content;
-      $scope.pageid = pagecnt.template_page_id
+      $scope.pageid = pagecnt.template_page_id;
     };
 
 
@@ -109,7 +109,7 @@ angular.module('docubasic3App')
 
       praposalservice.praposalreject.save((data), function(data1){
             $scope.alerts=[];
-          if (data1.status == true){
+          if (data1.status === true){
             $rootScope.modalInstance.close();
 
             }
@@ -132,11 +132,11 @@ angular.module('docubasic3App')
             $scope.message = responce.message;
             if(responce.status === true){
                 $scope.alerts.push({msg: 'Picture Updated successfully', type:'success'});
-                init();
+                //init();
             }
             if(responce.status === false){
                 $scope.alerts.push({msg: 'error occurd', type:'denger'});
-                init();
+                //init();
             }
             });
 
@@ -152,12 +152,12 @@ angular.module('docubasic3App')
       praposalservice.praposalapprove.save((data), function(data1){
             $scope.alerts=[];
             $scope.errors=[];
-          if (data1.status == true){
+          if (data1.status === true){
             $rootScope.modalInstance.close();
 
             }
 
-            if (data1.status == false){
+            if (data1.status === false){
               $scope.alerts.push({msg: 'plz upload signature', type:'denger'});
 
             }

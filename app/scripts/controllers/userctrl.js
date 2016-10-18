@@ -19,7 +19,7 @@ angular.module('docubasic3App')
     function init() {
    $scope.collapsed = false;
    $scope.edit = false;
-var data =  {id:$rootScope.tenancyid }
+var data =  {id:$rootScope.tenancyid };
     userservice.getuserdetail.query((data), function(data1){
    
         $scope.userdata = data1.data;
@@ -27,7 +27,7 @@ var data =  {id:$rootScope.tenancyid }
 
     });
    
-  };
+  }
 
 
   var countUp = function() {
@@ -118,7 +118,7 @@ $scope.usertype = [{id:1,type:'Tenant Admin'},
     $scope.lname = info.last_name;
     $scope.email = info.email;
 
-    if(info.is_tenant_admin == 1){
+    if(info.is_tenant_admin === 1){
 
       $scope.utype = 1;
     }
@@ -150,7 +150,7 @@ $location.hash('top');
      $scope.alerts=[];
        // $scope.userdata = data1;
         
-        if(data1.status == true){
+        if(data1.status === true){
           //$scope.edit = false;
           $scope.collapsed = false;
     $scope.update = false;
@@ -164,7 +164,7 @@ $location.hash('top');
          init();
          }
 
-           if(data1.status == false){
+           if(data1.status === false){
 
             $scope.errors = data1.message;
 
@@ -197,10 +197,10 @@ $location.hash('top');
      $scope.alerts=[];
        // $scope.userdata = data1;
         //$scope.collapsed = false;
-        if(data1.status == true){
+        if(data1.status === true){
          //$scope.alerts.push({msg: 'User deleted successfully', type:'success'});
          init();
-         };
+         }
 
     });
                     sweetAlert.swal("Deleted!", "User deleted successfully", "success");

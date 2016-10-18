@@ -92,7 +92,7 @@ angular.module('docubasic3App')
     	});
          
 
-     };
+     }
 
 
      $scope.submitvendor = function(){

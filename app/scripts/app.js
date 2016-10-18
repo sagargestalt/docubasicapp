@@ -46,7 +46,7 @@ angular
       
       
   ])
-  .config(function ($routeProvider,$locationProvider) {
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/main', {
         templateUrl: 'views/main.html',
@@ -211,7 +211,7 @@ angular
          
       .otherwise({
         redirectTo: '/'
-      })
+      });
       
 
   })

@@ -21,7 +21,7 @@ angular.module('docubasic3App')
 
       var tid = {
        tenancy_id:$rootScope.tenancyid 
-}
+};
 
  praposalservice.getpagedata.save((tid), function(data){
  $scope.alerts=[];
@@ -29,7 +29,7 @@ angular.module('docubasic3App')
          
     });
 
- var data =  {id:$rootScope.tenancyid }
+ var data =  {id:$rootScope.tenancyid };
     userservice.getuserdetail.query((data), function(data1){
    
         $scope.userdata = data1.data;
@@ -69,13 +69,13 @@ angular.module('docubasic3App')
         page_name:"main",
         created_by:$rootScope.userid,
         page_content:$scope.ssss,
-      }
+      };
       praposalservice.pagedata.save((data),function(){
 
     }); 
      
     };
-     var container = $(document.createElement('div')).css({
+     /*var container = $(document.createElement('div')).css({
 
                 padding: '5px', margin: '20px' , width: '170px', border: '1px dashed',
 
@@ -107,7 +107,7 @@ $( "#dragThis" ).draggable();
     .blur(function(){
         $(this).draggable( 'option', 'disabled', false);
         $(this).attr('contenteditable','false');
-    });
+    });*/
 
     $scope.selecttemp = function(temp){
 
@@ -138,7 +138,7 @@ $( "#dragThis" ).draggable();
         $scope.templates= data1.data;
         $rootScope.praposalname =  $scope.praposalname;
 
-        if(data1.status == true){
+        if(data1.status === true){
 
         $rootScope.template_id = $scope.templates.template_id;
         $rootScope.proposal_id = $scope.templates.proposal_id;

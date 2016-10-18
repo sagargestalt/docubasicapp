@@ -8,7 +8,7 @@
  * Service in the docubasic3App.
  */
 
-angular.module('docubasic3App').service('pagenameservice', ['$resource', 'apiUrl','$rootScope', function ($resource, apiUrl,$rootScope) {
+angular.module('docubasic3App').service('pagenameservice',  function () {
 
  /*var userlist = [];
 
@@ -48,4 +48,4 @@ return {
 
 };
 
-	 }]);
+	 });
