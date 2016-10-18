@@ -14,7 +14,7 @@ angular.module('docubasic3App')
       'AngularJS',
       'Karma'
     ];
-     $(".db-square-widget").draggable({containment: "#proposalDropContainer"}); 
+     $(".db-square-widget").draggable({containment: "#proposalDropContainer"});
       $rootScope.tenancyid = localStorageService.get('tenancyid');
       $rootScope.userid = localStorageService.get('userid');
       $rootScope.isAdmin = localStorageService.get('isAdmin');
@@ -25,13 +25,13 @@ angular.module('docubasic3App')
 
 function init() {
       var tid = {
-       tenancy_id:$rootScope.tenancyid 
+       tenancy_id:$rootScope.tenancyid
       };
 
         praposalservice.getpagedata.save((tid), function(data){
         $scope.alerts=[];
         $scope.pdata= data.data[0].PageContent;
-         
+
       });
 
       var data = {
@@ -44,7 +44,7 @@ function init() {
       praposalservice.getpagelist.save((data), function(data){
         $scope.alerts=[];
         $scope.pagedata= data.data;
-         
+
       });
 
       var collab = {
@@ -56,14 +56,14 @@ function init() {
         praposalservice.getcollabraters.save((collab), function(data){
         $scope.alerts=[];
         $scope.collabdata= data.data;
-         
+
       });
 
         var data2 =  {id:$rootScope.tenancyid };
     userservice.getuserdetail.query((data2), function(data1){
-   
+
         $scope.userdata = data1.data;
-         
+
 
     });
 
@@ -85,7 +85,7 @@ function init() {
        praposalservice.getiamage.get({}, function(data){
         //$scope.alerts=[];
         $scope.iamgedata= data.data;
-         
+
       });
 
       $scope.closemodal = function(){
@@ -96,16 +96,16 @@ function init() {
 
 
       $scope.download = function(){
-      
-          proposal_id: $rootScope.proposal_id;
 
-   
+          // proposal_id: $rootScope.proposal_id;
+
+
 
          /* praposalservice.downloadpraposal.save((data), function(data){
           $scope.alerts=[];
         //$scope.pagedata= data.data;
-         
-          });*/ 
+
+          });*/
     // proposal_id:'@proposal_id'
           var url = 'http://49.248.126.222:8282/services/public/api/v1/downloadProposalpdf/';
           url = url + $rootScope.proposal_id;
@@ -137,8 +137,8 @@ function init() {
 
 
           }
-      
-         
+
+
           });
 
 
@@ -158,14 +158,14 @@ function init() {
 
         praposalservice.readaccessapply.save((data), function(data){
           $scope.alerts=[];
-          
+
           if(data.status === true){
 
             init();
 
 
           }
-         
+
           });
 
 
@@ -200,8 +200,8 @@ function init() {
 
          praposalservice.deletepraposal.save((data), function(){
           $scope.alerts=[];
-      
-         
+
+
           });
 
           sweetAlert.swal("Deleted!", "Task category Deleted successfully", "success");
@@ -228,7 +228,7 @@ function init() {
         $scope.alerts=[];
         //$scope.pagedata= data1.data;
         $scope.ssss = data1.data.page_contents;
-         
+
       });
 
 
@@ -244,7 +244,7 @@ function init() {
       //windowClass: 'modal-lg',
       //size: size,
       resolve: {
-        
+
       }
       });
 
@@ -261,7 +261,7 @@ function init() {
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
-        
+
       }
       });
 
@@ -277,7 +277,7 @@ function init() {
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
-        
+
       }
       });
 
@@ -292,7 +292,7 @@ function init() {
         praposalservice.getcollabraters.save((collab), function(data){
         $scope.alerts=[];
         $scope.collabdata= data.data;
-         
+
       });
 
 
@@ -306,11 +306,11 @@ function init() {
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
-        
+
       }
       });
 
-      
+
 
 
 
@@ -344,8 +344,8 @@ function init() {
             $scope.alerts.push({msg: 'Email Sending Failed', type:'denger'});
 
           }
-      
-         
+
+
           });
 
 
@@ -369,8 +369,8 @@ function init() {
 
         praposalservice.sendmail.save((data), function(){
           $scope.alerts=[];
-      
-         
+
+
           });
 
 
@@ -401,8 +401,8 @@ function init() {
             $rootScope.praposalname = $scope.pname;
 
           }
-      
-         
+
+
           });
 
 
@@ -410,7 +410,7 @@ function init() {
 
 
       };
- 
+
 
 
 
@@ -425,8 +425,8 @@ function init() {
       }
       praposalservice.pagedata.save((data),function(){
 
-    }); 
-     
+    });
+
     };*/
 
     $scope.sendpage = function(page){
@@ -456,7 +456,7 @@ function init() {
         praposalservice.savepage.save((data), function(){
         $scope.alerts=[];
         //$scope.pagedata= data1.data;
-         
+
       });
 
 
@@ -524,11 +524,11 @@ function init() {
               //$scope.alerts=[];
               $rootScope.imageinsert();
               $scope.iamge= data.data;
-         
+
             });
 
         };
 
-           
+
 
   });

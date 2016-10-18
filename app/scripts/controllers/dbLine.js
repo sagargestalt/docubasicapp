@@ -1,5 +1,7 @@
+'use strict';
+
 angular.module('docubasic3App')
-  .directive('dbLine', function ($rootScope, styleservice) {
+  .directive('dbLine', function () {
     return {
       restrict: 'E',
       replace: true,
@@ -12,5 +14,5 @@ angular.module('docubasic3App')
           $(this).focus();
         });*/
       }
-    }
+    };
   });

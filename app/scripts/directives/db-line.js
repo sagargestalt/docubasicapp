@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('docubasic3App')
-  .directive('dbLine', function ($rootScope) {
+  .directive('dbLine', function () {
     return {
       restrict: 'E',
       replace: true,

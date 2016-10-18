@@ -16,20 +16,20 @@ angular.module('docubasic3App')
       $rootScope.pagename = localStorageService.get('pname');
 
     $scope.$watch(function () { return updatepageservice.getXxx(); }, function (newdata) {
-  		
+
         if (newdata !== null) {
-           
+
 
             //update Controller2's xxx value
             $scope.xxx= newdata.PageContent;
             $scope.istylename = newdata.StyleName;
             $scope.ssss = $scope.xxx;
             $scope.pgname = newdata.PageName;
-      
+
             $rootScope.id = newdata.Page_id;
 
         }
-         if (newdata = null) {
+         if (newdata === null) {
          $scope.update = true;
       }
     }, true);
@@ -45,21 +45,21 @@ angular.module('docubasic3App')
  $timeout(countUp, 10000);
 
     /* $scope.$watch(function () { return pagenameservice.getXxx(); }, function (newvalue, oldvalue) {
-  		
+
         if (newvalue != null) {
-          
+
 
             //update Controller2's xxx value
             $scope.xxx= newvalue.name;
             //$scope.istylename = newdata.StyleName;
            // $scope.ssss = $scope.xxx;
-      
+
             $rootScope.pname = $scope.xxx;
 
         }
          if (newvalue = null) {
          	 $scope.update = false;
-         
+
       }
     }, true);*/
     $( ".draggable" ).draggable();
@@ -93,7 +93,7 @@ $( "#dragThis" ).draggable();
 
         pageservice.postpage.save((tid), function(data){
             $scope.alerts=[];
-            if(data.status = true){
+            if(data.status){
         $rootScope.sdata= data.data;
         $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
       }
@@ -102,8 +102,8 @@ $( "#dragThis" ).draggable();
 
                 $scope.errors = data.message;
             }
-       
-         
+
+
             });
 
         };
@@ -119,7 +119,7 @@ $( "#dragThis" ).draggable();
 
         pageservice.updatepage.query((tid), function(data){
             $scope.alerts=[];
-            if(data.status = true){
+            if(data.status){
                $rootScope.sdata= data.data;
               $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
             }
@@ -128,8 +128,8 @@ $( "#dragThis" ).draggable();
 
                 $scope.errors = data.message;
             }
-       
-         
+
+
             });
 
 
