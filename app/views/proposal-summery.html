@@ -1,0 +1,363 @@
+ <div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+<div class="content animate-panel">
+<div class="row">
+  <div class="col-lg-12" >
+            <h3>Proposal Summary View</h3>
+            <br>
+        
+<button class="btn w-xs btn-primary" type="button" ng-click="allpraposal()">All</button>
+<button class="btn w-xs btn-success" type="button" ng-click="open()">Open</button>
+<button class="btn w-xs btn-primary" type="button" ng-click="underreview()">Under Review</button>
+<button class="btn w-xs btn-primary" type="button" ng-click="closed()">Closed</button>
+<br>
+<br>
+            </div>
+        
+  <div class="col-lg-12">
+  <button class="btn btn-primary pull-right" ng-click="createpraposal()" >New Praposal</button>
+</div>
+</div>
+<br>
+<div class="row">
+     <div class="col-lg-6" ng-show="praposalall" ng-repeat="detail in praposaldata" >
+        <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4><a href="#">{{detail.name}}</a></h4>
+                        
+                                <div class="well well-lg">
+                                <p>{{info[0].created_at}}</p>
+                                <br><small>{{info[0].proposal_activity}}</small>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">CLIENT</div>
+                                        <small>Acme & Co.</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">VERSION</div>
+                                        <small>1.0.4</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">DEDLINE</div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small>Open <br>{{detail.status}}</small>
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2 class="text-info">79%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div class=" progress-bar progress-bar-info" style="width: 79%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/copy.png"></i></a>
+                   <a ng-click="deletepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/close.png"></i></a>
+                    <a ng-click="priweviemode()"><i class="prl15 border-right"><img src="images/widget/summery/search.png"></i></a>
+                    <a ng-click="download()"><i class="prl15 border-right"><img src="images/widget/summery/download.png"></i></a>
+                     <a ng-click="opencollab()"><i class="prl15 border-right"><img src="images/widget/summery/pagesend.png"></i></a>
+                      <a ng-click="emailwindow()"><i class="prl15 border-right"><img src="images/widget/summery/send.png"></i></a>
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-6" ng-show="openpraposal" ng-repeat="detail in praposaldata | filter: { proposal_status: '1' }" >
+        <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4><a href="#">{{detail.name}}</a></h4>
+                        
+                                <div class="well well-lg">
+                                <p>{{info[0].created_at}}</p>
+                                <br><small>{{info[0].proposal_activity}}</small>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">CLIENT</div>
+                                        <small>Acme & Co.</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">VERSION</div>
+                                        <small>1.0.4</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">DEDLINE</div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small>Open <br>{{detail.status}}</small>
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2 class="text-info">79%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div class=" progress-bar progress-bar-info" style="width: 79%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/copy.png"></i></a>
+                   <a ng-click="deletepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/close.png"></i></a>
+                    <a ng-click="priweviemode()"><i class="prl15 border-right"><img src="images/widget/summery/search.png"></i></a>
+                    <a ng-click="download()"><i class="prl15 border-right"><img src="images/widget/summery/download.png"></i></a>
+                     <a ng-click="opencollab()"><i class="prl15 border-right"><img src="images/widget/summery/pagesend.png"></i></a>
+                      <a ng-click="emailwindow()"><i class="prl15 border-right"><img src="images/widget/summery/send.png"></i></a>
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-6" ng-show="underreviewpraposal" ng-repeat="detail in praposaldata | filter: { proposal_status: '3' }" >
+        <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4><a href="#">{{detail.name}}</a></h4>
+                        
+                                <div class="well well-lg">
+                                <p>{{info[0].created_at}}</p>
+                                <br><small>{{info[0].proposal_activity}}</small>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">CLIENT</div>
+                                        <small>Acme & Co.</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">VERSION</div>
+                                        <small>1.0.4</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">DEDLINE</div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small>Open <br>{{detail.status}}</small>
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2 class="text-info">79%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div class=" progress-bar progress-bar-info" style="width: 79%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/copy.png"></i></a>
+                   <a ng-click="deletepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/close.png"></i></a>
+                    <a ng-click="priweviemode()"><i class="prl15 border-right"><img src="images/widget/summery/search.png"></i></a>
+                    <a ng-click="download()"><i class="prl15 border-right"><img src="images/widget/summery/download.png"></i></a>
+                     <a ng-click="opencollab()"><i class="prl15 border-right"><img src="images/widget/summery/pagesend.png"></i></a>
+                      <a ng-click="emailwindow()"><i class="prl15 border-right"><img src="images/widget/summery/send.png"></i></a>
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-6" ng-show="closedpraposal" ng-repeat="detail in praposaldata | filter: { proposal_status: '4' }" >
+        <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4><a href="#">{{detail.name}}</a></h4>
+                        
+                                <div class="well well-lg">
+                                <p>{{info[0].created_at}}</p>
+                                <br><small>{{info[0].proposal_activity}}</small>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">CLIENT</div>
+                                        <small>Acme & Co.</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">VERSION</div>
+                                        <small>1.0.4</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label">DEDLINE</div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small>Open <br>{{detail.status}}</small>
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2 class="text-info">79%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div class=" progress-bar progress-bar-info" style="width: 79%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/copy.png"></i></a>
+                   <a ng-click="deletepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/close.png"></i></a>
+                    <a ng-click="priweviemode()"><i class="prl15 border-right"><img src="images/widget/summery/search.png"></i></a>
+                    <a ng-click="download()"><i class="prl15 border-right"><img src="images/widget/summery/download.png"></i></a>
+                     <a ng-click="opencollab()"><i class="prl15 border-right"><img src="images/widget/summery/pagesend.png"></i></a>
+                      <a ng-click="emailwindow()"><i class="prl15 border-right"><img src="images/widget/summery/send.png"></i></a>
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+       </div>
+    </div>

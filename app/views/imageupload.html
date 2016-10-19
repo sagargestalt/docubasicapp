@@ -1,8 +1,10 @@
 <div class="panel-body">
   <div class = "row">
     <div class = "col-md-12">
-
-
+      <h4>Select From Library</h4>
+    <div ng-repeat="thumbs in iamgedata">
+       <a ng-click="selectimage(thumbs)"><img style="margin-bottom:5px; border: 5px solid #e0e1e7;" height="100" width="100" ng-src="{{thumbs.image_path}}"></a>
+     </div>
       </div>
     </div>
     <div class = "row">

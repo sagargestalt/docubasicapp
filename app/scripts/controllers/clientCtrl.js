@@ -44,7 +44,7 @@ angular.module('docubasic3App')
                 $scope.summary="";
                 $scope.phone="";
                  $scope.clientid="";
-                 $scope.cname-"";
+                 $scope.cname="";
                 $scope.update =false;
 
 
@@ -91,7 +91,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
 
 
 
-    };
+    }
 
 
 
@@ -300,5 +300,4 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
 
     init();
 
-
-    }]);
+}]);

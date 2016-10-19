@@ -1,0 +1,159 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+<container-directive></container-directive>
+<div db-droppable class="proposal-drop-container"  id="proposalDropContainer" >
+    <div data-ng-bind-html="htmlString">
+    </div>
+</div>
+<div class="setting">
+    <div id="container" class="content" >
+        <div class="row" >
+            <div class = "col-md-4">
+                <h3 ng-hide="show">{{praposalname}} <a class="pull-right" ng-click="show=!show" ng-show="isAdmin"><i class="glyphicon glyphicon-pencil"></i></a></h3>
+            </div>
+            <!--<div class = "col-md-2">
+                <a class="pull-right" ng-click="show=!show" ng-show="isAdmin"><i class="glyphicon glyphicon-pencil"></i></a>
+            </div> -->
+            <div class = "col-md-4">
+                <input name="pname" ng-show="show" id="sender-Tenancy" type="text" placeholder="Praposal Name" class="form-control email" ng-model="pname" required>
+            </div>
+            <div class = "col-md-2">
+                <button class="btn btn-primary" ng-show="show" ng-click="submitname()">Save</button>
+            </div>
+            
+        </div>
+        
+        
+        
+        
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="col-md-2 no-padding">
+                    <div class="hpanel">
+                        <div class="panel-body no-padding">
+                            <div class="p20 themecolor">
+                                <p>Widgets</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <style>.p20 i img{width:20px !important;}</style>
+                <div class="col-md-10 no-padding">
+                    <div class="hpanel">
+                        <div class="panel-body no-padding">
+                            <div class="pull-left p20">
+                                <i id="draggable" class="prl15 border-right"><img src="images/widget/text.png"></i>
+                                <i class="pe-7s-folder fa-2x prl15 border-right" db-draggable data-text="true"></i>
+                                <i class="pe-7s-monitor fa-2x prl15 border-right" db-draggable data-square="true"></i>
+                                <i class="pe-7s-close-circle fa-2x prl15 border-right" db-draggable data-circle="true"></i>
+                                <i class="pe-7s-video fa-2x prl15" db-draggable data-video="true"></i>
+                                <i class="pe-7s-video fa-2x prl15" db-draggable data-line="true"></i>
+                                <i class="prl15 border-right"db-draggable data-triangle="true"><img src="images/widget/shape.png"></i>
+                                <i class="prl15 border-right"><img src="images/widget/table.png"></i>
+                                <a ng-click="uploadimage()"><i class="prl15 border-right"><img src="images/widget/image.png"></i></a>
+                                <i class="prl15 border-right"><img src="images/widget/video.png"></i>
+                                <i class="prl15"></i>
+                            </div>
+                            <div class="pull-right light-blue p20">
+                                <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/copy.png"></i></a>
+                                <a ng-click="deletepraposal()"> <i class="prl15 border-right"><img src="images/widget/close.png"></i></a>
+                                <a ng-click="priweviemode()">   <i class="prl15 border-right"><img src="images/widget/search.png"></i></a>
+                                <a ng-click="download()"> <i class="prl15 border-right"><img src="images/widget/download.png"></i></a>
+                                <a ng-click="opencollab()"> <i class=" prl15 border-right"><img src="images/widget/collab.png"></i></a>
+                                <a ng-click="emailwindow()">  <i class="prl15 border-right"><img src="images/widget/send.png"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="col-md-2 no-padding">
+                    
+                    <div class="hpanel zerobottom" ng-repeat="pagecnt in pagedata">
+                        <div class="panel-body navy-blue text-center">
+                            <a ng-click="sendpage(pagecnt)">
+                                <!--<img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
+                                <i class="pe-7s-config icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>{{pagecnt.template_page_name}}</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--<div class="hpanel zerobottom">
+                        <div class="panel-body text-center">
+                            <i class="pe-7s-config icon-lg" ></i>
+                            <div class="m-t-sm">
+                                <strong>Executive Summary</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hpanel zerobottom">
+                        <div class="panel-body text-center">
+                            <i class="pe-7s-config icon-lg" ></i>
+                            <div class="m-t-sm">
+                                <strong>Pricing</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hpanel zerobottom">
+                        <div class="panel-body text-center">
+                            <i class="pe-7s-config icon-lg" ></i>
+                            <div class="m-t-sm">
+                                <strong>Terms & Conditions</strong>
+                            </div>
+                        </div>
+                    </div>-->
+                    
+                </div>
+                
+                
+                <div class="col-md-10">
+                    
+                    <div class="hpanel">
+                        <div class="panel-body"  ng-model="ssss"  medium-editor bind-options="{'toolbar': {'buttons': ['bold', 'italic', 'underline']}}"  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;">
+                            <div class="pull-right">
+                                <img src="../images/chat.png">
+                            </div>
+                            
+                            <!--<h2 class="m-t-none border-all p20 text-center">You just created a new Proposal </h2>
+                            <p class="border-all p20 text-center">
+                                <br><br><br>
+                                Customize your page as you would like by dragging and dropping<br> thewidgets from the widgets panel above
+                                <br><br><br>
+                            </p>-->
+                            <br><br><br><br><br><br><br>
+                            
+                            
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" ng-click="submitpage()">Save</button>
+                    <!--<button class="btn btn-primary" ng-click="updatepage()" >update</button>-->
+                    <div style="height:0;width:900px;border:0;border-bottom:3px;border-style: solid;border-color: #000000"></div>
+                </div>
+                
+            </div>
+        </div>
+        <ng-bind-html ng-bind-html="ssss"></ng-bind-html>
+        
+        <div class="row projects">
+            <div class="col-lg-12" >
+                <div class="pull-right">
+                    <img src="../images/floating.png">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

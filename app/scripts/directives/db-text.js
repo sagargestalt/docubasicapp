@@ -13,6 +13,14 @@ angular.module('docubasic3App')
         $(element).find('.editable-area').on('click', function() {
           $(this).focus();
         });
+          $(element).find('.editable-area').on("blur", function(){
+            $(this).draggable('enable');
+
+
+            
+          
+        });
+
       }
     };
   });

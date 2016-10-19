@@ -142,10 +142,10 @@ angular
         controller: 'billingctrl',
         controllerAs: 'billingctrl'
       })
-          .when('/praposal', {
-        templateUrl: 'views/praposal.html',
-        controller: 'praposalCtrl',
-        controllerAs: 'praposalCtrl'
+          .when('/proposal', {
+        templateUrl: 'views/proposal.html',
+        controller: 'proposalCtrl',
+        controllerAs: 'proposalCtrl'
       })
            .when('/pages', {
         templateUrl: 'views/pages.html',
@@ -177,30 +177,30 @@ angular
         controller: 'settingpageCtrl',
         controllerAs: 'settingpageCtrl'
       })
-        .when('/createpraposal', {
-        templateUrl: 'views/createpraposal.html',
-        controller: 'createpraposalCtrl',
-        controllerAs: 'createpraposalCtrl'
+        .when('/createproposal', {
+        templateUrl: 'views/createproposal.html',
+        controller: 'createproposalCtrl',
+        controllerAs: 'createproposalCtrl'
       })
         .when('/preview', {
         templateUrl: 'views/preview.html',
-        controller: 'praposalCtrl',
-        controllerAs: 'praposalCtrl'
+        controller: 'proposalCtrl',
+        controllerAs: 'proposalCtrl'
       })
          .when('/praposal-summery', {
-        templateUrl: 'views/praposal-summery.html',
-        controller: 'praposalsummeryCtrl',
-        controllerAs: 'praposalsummeryCtrl'
+        templateUrl: 'views/proposal-summery.html',
+        controller: 'proposalsummeryCtrl',
+        controllerAs: 'proposalsummeryCtrl'
       })
          .when('/email', {
         templateUrl: 'views/email.html',
-        controller: 'praposalCtrl',
-        controllerAs: 'praposalCtrl'
+        controller: 'proposalCtrl',
+        controllerAs: 'proposalCtrl'
       })
          .when('/collabraters', {
         templateUrl: 'views/collabraters.html',
-        controller: 'praposalCtrl',
-        controllerAs: 'praposalCtrl'
+        controller: 'proposalCtrl',
+        controllerAs: 'proposalCtrl'
       })
 
           .when('/proposalReview/:proposal_id/:updated_by', {

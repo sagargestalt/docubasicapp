@@ -101,3 +101,12 @@ border: 5px solid #e0e1e7;
 
 }
 
+.db-triangle-widget{
+
+  width: 0;
+   height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid;
+}
+

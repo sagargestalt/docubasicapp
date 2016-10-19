@@ -40,7 +40,7 @@ $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
                     $rootScope.username = data.data.firstname;
 
 
-                     if(data.data.istenantadmin = 1){
+                     if(data.data.istenantadmin === 1){
 
                     $rootScope.isAdmin = true;
                   }
@@ -247,7 +247,7 @@ $scope.closeAlerts = function(index) {
                     $rootScope.username = data.data.firstname;
 
 
-                     if(data.data.istenantadmin = 1){
+                     if(data.data.istenantadmin === 1){
 
                     $rootScope.isAdmin = true;
                   }
@@ -401,7 +401,7 @@ $scope.closeAlerts = function(index) {
                   $rootScope.username = message.data.firstname;
                   $rootScope.modalInstance.close();
 
-                  if(message.data.istenantadmin = 1){
+                  if(message.data.istenantadmin === 1){
 
                     $rootScope.isAdmin = true;
                   }
@@ -423,7 +423,7 @@ $scope.closeAlerts = function(index) {
 
 
 
-  };
+};
 
   $scope.socialsignupnew = function(){
     
@@ -457,7 +457,7 @@ $scope.closeAlerts = function(index) {
                   $rootScope.username = message.data.firstname;
                   $rootScope.modalInstance.close();
 
-                  if(message.data.istenantadmin = 1){
+                  if(message.data.istenantadmin === 1){
 
                     $rootScope.isAdmin = true;
                   }

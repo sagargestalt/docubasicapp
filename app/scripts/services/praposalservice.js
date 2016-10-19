@@ -36,9 +36,7 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
 
 
             //image upload//
-            getiamage:$resource(apiUrl.getiamgesdata, {} ,{
-            get: {method:'GET', params: {} , isArray:false}
-            }),
+            getiamage:$resource(apiUrl.getiamgesdata, {} ),
             upiamage: $resource( apiUrl.imageup, {} ),
 
 

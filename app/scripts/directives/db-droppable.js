@@ -34,6 +34,12 @@ angular.module('docubasic3App')
             if(configData.text) {
               $(element).append('<db-text dynamic-id=' + dynamicId + ' db-aspect-ratio="6"></db-text>');
               needCompile = true;
+
+              $(".editable-area").on("click", function() {
+              //$(".window").draggable('disable');
+                $(this).find(".editable-area").focus();
+            
+              });
             }
 
             if(configData.video) {
@@ -44,6 +50,10 @@ angular.module('docubasic3App')
               $(element).append('<db-line dynamic-id=' + dynamicId + '></db-line>');
               needCompile = true;
             }
+            if(configData.triangle) {
+              $(element).append('<db-triangle dynamic-id=' + dynamicId + '></db-triangle>');
+              needCompile = true;
+            }
 
             if(needCompile) {
               $compile(element)(scope);
@@ -52,8 +62,9 @@ angular.module('docubasic3App')
           }
         });
 
-      $rootScope.imageinsert = function(){
+      $rootScope.imageinsert = function(imagepath){
         var dynamicId = new Date().getTime(); //Date.now();
+         scope.imageSource = angular.copy(imagepath);
           $(element).append('<db-image dynamic-id=' + dynamicId + '></db-image>'); 
          // needCompile = true;
 

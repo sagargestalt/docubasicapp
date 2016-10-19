@@ -75,9 +75,9 @@ angular.module('docubasic3App')
           
         
 
-        $(".textbox").on("click", function() {
+        $(".editable-area").on("click", function() {
             //$(".window").draggable('disable');
-            $(this).find(".textbox").focus();
+            $(this).find(".editable-area").focus();
              $rootScope.callme();
             
         });

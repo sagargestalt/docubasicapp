@@ -1,13 +1,13 @@
 'use strict';
 angular.module('docubasic3App')
-  .directive('dbCircle', function ($rootScope, styleservice) {
+  .directive('dbTriangle', function ($rootScope, styleservice) {
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: '/views/db-circle.html',
+      templateUrl: '/views/db-triangle.html',
       link: function(scope, element, attr) {
 
-        $(element).attr('id', 'db-circle-' + attr.dynamicId);
+        $(element).attr('id', 'db-triangle-' + attr.dynamicId);
         $(element).draggable({containment: '#proposalDropContainer'});
         $(element).on("resizestop", function( event, ui ) {
           var paddingAfterResize = ui.size.height / 6;
