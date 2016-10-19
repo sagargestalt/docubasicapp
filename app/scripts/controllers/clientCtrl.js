@@ -138,7 +138,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
                 $scope.summary="";
                  $scope.phone="";
                  $scope.clientid="";
-                 $scope.cname-"";
+                 $scope.cname="";
 
 
 
@@ -229,7 +229,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
                 $scope.summary="";
                  $scope.phone="";
                   $scope.clientid="";
-                 $scope.cname-"";
+                 $scope.cname="";
 
                 init();
             }
