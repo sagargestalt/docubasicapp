@@ -22,14 +22,14 @@
             <div class = "col-md-2">
                 <button class="btn btn-primary" ng-show="show" ng-click="submitname()">Save</button>
             </div>
-            
+
         </div>
-        
-        
-        
-        
+
+
+
+
         <div class="row">
-            
+
             <div class="col-md-12">
                 <div class="col-md-2 no-padding">
                     <div class="hpanel">
@@ -52,7 +52,7 @@
                                 <i class="pe-7s-video fa-2x prl15" db-draggable data-video="true"></i>
                                 <i class="pe-7s-video fa-2x prl15" db-draggable data-line="true"></i>
                                 <i class="prl15 border-right"><img src="images/widget/shape.png"></i>
-                                <i class="prl15 border-right"><img src="images/widget/table.png"></i>
+                                <i class="prl15 border-right" db-draggable data-table="true"><img src="images/widget/table.png"></i>
                                 <a ng-click="uploadimage()"><i class="prl15 border-right"><img src="images/widget/image.png"></i></a>
                                 <i class="prl15 border-right"><img src="images/widget/video.png"></i>
                                 <i class="prl15"></i>
@@ -70,13 +70,13 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
         <div class="row">
-            
+
             <div class="col-md-12">
                 <div class="col-md-2 no-padding">
-                    
+
                     <div class="hpanel zerobottom" ng-repeat="pagecnt in pagedata">
                         <div class="panel-body navy-blue text-center">
                             <a ng-click="sendpage(pagecnt)">
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="hpanel zerobottom">
                         <div class="panel-body text-center">
                             <i class="pe-7s-config icon-lg" ></i>
@@ -113,18 +113,18 @@
                             </div>
                         </div>
                     </div>-->
-                    
+
                 </div>
-                
-                
+
+
                 <div class="col-md-10">
-                    
+
                     <div class="hpanel">
                         <div class="panel-body"  ng-model="ssss"  medium-editor bind-options="{'toolbar': {'buttons': ['bold', 'italic', 'underline']}}"  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;">
                             <div class="pull-right">
                                 <img src="../images/chat.png">
                             </div>
-                            
+
                             <!--<h2 class="m-t-none border-all p20 text-center">You just created a new Proposal </h2>
                             <p class="border-all p20 text-center">
                                 <br><br><br>
@@ -132,25 +132,25 @@
                                 <br><br><br>
                             </p>-->
                             <br><br><br><br><br><br><br>
-                            
-                            
+
+
                         </div>
                     </div>
                     <button class="btn btn-primary" ng-click="submitpage()">Save</button>
                     <!--<button class="btn btn-primary" ng-click="updatepage()" >update</button>-->
                     <div style="height:0;width:900px;border:0;border-bottom:3px;border-style: solid;border-color: #000000"></div>
                 </div>
-                
+
             </div>
         </div>
         <ng-bind-html ng-bind-html="ssss"></ng-bind-html>
-        
+
         <div class="row projects">
             <div class="col-lg-12" >
                 <div class="pull-right">
                     <img src="../images/floating.png">
                 </div>
-                
+
             </div>
         </div>
     </div>

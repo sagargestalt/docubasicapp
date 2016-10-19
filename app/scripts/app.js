@@ -22,7 +22,7 @@ angular
     'ui.map',
     'ui.calendar',              // UI Calendar
     'summernote',
-    'ngGrid', 
+    'ngGrid',
     'ui.grid',                  // Angular ng Grid
     'ui.tree',                  // Angular ui Tree
     'bm.bsTour',                // Angular bootstrap tour
@@ -34,17 +34,14 @@ angular
     'gridshore.c3js.chart',     // C3 charts
     'angular-ladda',                               // Datatables Buttons
     'ui.codemirror',                       // Ladda - loading buttons
-    'ngFileUpload',   
-    'googleplus' ,   
-    'naif.base64',   
-    'socialLogin',  
-    'ngDragDrop',   
-    'ngContentEditable',   
-    'angular-medium-editor',  
+    'ngFileUpload',
+    'googleplus' ,
+    'naif.base64',
+    'socialLogin',
+    'ngDragDrop',
+    'ngContentEditable',
+    'angular-medium-editor',
     'checklist-model',
-           
-      
-      
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -208,14 +205,14 @@ angular
         controller: 'customerreviewCtrl',
         controllerAs: 'customerreviewCtrl'
       })
-         
+
       .otherwise({
         redirectTo: '/'
       });
-      
+
 
   })
-  
+
   .config(['$resourceProvider', function($resourceProvider) {
     // Don't strip trailing slashes from calculated URLs
     // $resourceProvider.defaults.stripTrailingSlashes = false;
@@ -225,13 +222,13 @@ angular
     // console.log( 'This is sample test' );
   }])
 
- 
+
   .config(function(socialProvider){
-   
+
     socialProvider.setLinkedInKey("819mzc7g75upnl");
     //socialProvider.setFbKey({appId: "YOUR FACEBOOK APP ID", apiVersion: "API VERSION"});
   })
- 
+
 
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
       localStorageServiceProvider.setPrefix('ls');
@@ -244,11 +241,11 @@ angular
      });
   }])
 
-  
+
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
          //$httpProvider.defaults.withCredentials = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 ]);
- 
+

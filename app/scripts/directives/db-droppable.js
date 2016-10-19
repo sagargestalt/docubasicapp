@@ -55,6 +55,11 @@ angular.module('docubasic3App')
               needCompile = true;
             }
 
+            if(configData.table) {
+              $(element).append('<db-table dynamic-id=' + dynamicId + '></db-table>');
+              needCompile = true;
+            }
+
             if(needCompile) {
               $compile(element)(scope);
               $rootScope.$broadcast('SAVE_PROPOSAL_MARKUP');
@@ -64,8 +69,12 @@ angular.module('docubasic3App')
 
       $rootScope.imageinsert = function(imagepath){
         var dynamicId = new Date().getTime(); //Date.now();
+<<<<<<< HEAD
          scope.imageSource = angular.copy(imagepath);
           $(element).append('<db-image dynamic-id=' + dynamicId + '></db-image>'); 
+=======
+          $(element).append('<db-image dynamic-id=' + dynamicId + '></db-image>');
+>>>>>>> dacaa34f3809320b3ebc6ed3b1c5823052fb5db8
          // needCompile = true;
 
       };

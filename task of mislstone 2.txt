@@ -1,0 +1,11 @@
+1.do unit testing in all functionality
+2.check proper messges in every section
+3.go through all the naming convention and code formating
+4.resolving all the jshint warnings
+5.dubble check the propoal creation section
+6.test corss browser compablity
+7.highlight selection of tabs
+8.reslove proposal edit section issues(IMP)
+9.text formating in praposal section
+10.delete each component in proposal section
+11.table component

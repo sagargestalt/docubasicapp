@@ -25,7 +25,7 @@ angular.module('docubasic3App')
 
     };
 
-    
+
 
     $scope.closeclient = function(){
 
@@ -55,7 +55,7 @@ angular.module('docubasic3App')
         $scope.errors = [];
     };
 
-      
+
   var countUp = function() {
 
     $scope.alerts = [];
@@ -98,7 +98,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
     $scope.submitclient = function() {
     	$scope.alerts=[];
 		var clientdata = {
-    	tenancy_id:$rootScope.tenancyid, 
+    	tenancy_id:$rootScope.tenancyid,
     	firstname:$scope.fname,
     	lastname:$scope.lname,
     	email:$scope.email,
@@ -207,7 +207,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
         company_name:$scope.cname,
         customer_code:$scope.clientid,
 	};
-  
+
   		settingservice.updateclient.update((clientdata), function(data){
 
         $scope.allresource = data.data;
@@ -265,7 +265,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
                     var clientdata= {
 
         id:$scope.id,
-        updated_by:$rootScope.userid 
+        updated_by:$rootScope.userid
         };
 
         settingservice.deleteclient.save((clientdata), function(data){
@@ -283,16 +283,16 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
              }
 
         });
-                    
+
                     sweetAlert.swal("Deleted!", "Client Deleted successfully", "success");
                 } else {
                     sweetAlert.swal("Cancelled");
                 }
             });
-		
- 		
 
- 		
+
+
+
 
 
 	};

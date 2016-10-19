@@ -31,6 +31,19 @@
   padding: 5px;
 }
 
+.db-table-widget {
+  height: 30px;
+  width: 150px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.db-table-widget td {
+  border: 1px solid #000;
+  min-width: 25px;
+  padding: 3px;
+}
+
 .db-video-widget {
   height: 200px;
   width: 300px;

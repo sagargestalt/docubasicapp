@@ -8,9 +8,9 @@
     <link id="apiRoot" href="http://localhost:8081/dbasic/public/"/>
     <!--<link id="apiRoot" href="http://49.248.126.222:8282/services/public/">-->
     <!--<link id="apiRoot" href="http://104.236.223.122/services/public/index.php/">-->
-    
+
     <!--<link id="apiRoot" href="http://107.170.27.172/dbasic/services/public/"/>-->
-  
+
    <!--<link id="apiRoot" href="http://192.168.100.111:8282/services/public/"/>-->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
@@ -55,6 +55,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
@@ -78,12 +79,12 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-   
+
    <div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>DOCUBASIC</h1><p> </p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
     <div ng-view=""></div>
     </div>
 
-    
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -97,7 +98,7 @@
     </script>
 
 
-    
+
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -201,7 +202,7 @@
      <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
     <script src="bower_components/ng-contenteditable/ng-contenteditable.js"></script>
     <script src="bower_components/checklist-model/checklist-model.js"></script>
-   
+
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -247,6 +248,7 @@
         <script src="scripts/directives/db-line.js"></script>
         <script src="scripts/directives/db-image.js"></script>
         <script src="scripts/directives/db-triangle.js"></script>
+        <script src="scripts/directives/db-table.js"></script>
         <script src="scripts/services/praposalservice.js"></script>
         <script src="scripts/services/styleservice.js"></script>
         <script src="scripts/controllers/styleCtrl.js"></script>
@@ -263,10 +265,10 @@
         <script src="scripts/controllers/proposalsummeryCtrl.js"></script>
         <script src="scripts/controllers/cloneCtrl.js"></script>
         <script src="scripts/controllers/customerreviewCtrl.js"></script>
-        
-        
 
-        
+
+
+
         <!-- endbuild -->
 </body>
 </html>
