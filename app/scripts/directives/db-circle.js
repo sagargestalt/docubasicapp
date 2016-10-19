@@ -1,6 +1,6 @@
 'use strict';
 angular.module('docubasic3App')
-  .directive('dbCircle', function ($rootScope, styleservice,$) {
+  .directive('dbCircle', function ($rootScope, styleservice) {
     return {
       restrict: 'E',
       replace: true,

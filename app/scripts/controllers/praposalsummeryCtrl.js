@@ -37,7 +37,7 @@ angular.module('docubasic3App')
           $scope.praposalactivitydata = data1.data.proposals[0].activity;
           $scope.praposalcollab = data1.data.proposals[1].collaborator;
         }
-         
+
     	});
 
       $scope.clonepraposal = function(){
@@ -48,11 +48,11 @@ angular.module('docubasic3App')
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
-        
+
       }
       });
 
-      
+
 
 
 
@@ -85,8 +85,8 @@ angular.module('docubasic3App')
          praposalservice.deletepraposal.save((data), function(){
 
           $scope.alerts=[];
-      
-         
+
+
           });
 
           sweetAlert.swal("Deleted!", " Deleted successfully", "success");
@@ -103,16 +103,16 @@ angular.module('docubasic3App')
        };
 
        $scope.download = function(){
-      
-          proposal_id: $rootScope.proposal_id;
 
-   
+          // proposal_id: $rootScope.proposal_id;
+
+
 
                /* praposalservice.downloadpraposal.save((data), function(data){
                 $scope.alerts=[];
               //$scope.pagedata= data.data;
-               
-                });*/ 
+
+                });*/
           // proposal_id:'@proposal_id'
             var url = 'http://49.248.126.222:8282/services/public/api/v1/downloadProposalpdf/';
             url = url + $rootScope.proposal_id;
@@ -133,7 +133,7 @@ angular.module('docubasic3App')
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
-        
+
       }
       });
 
@@ -146,7 +146,7 @@ angular.module('docubasic3App')
         praposalservice.getcollabraters.save((collab), function(data){
         $scope.alerts=[];
         $scope.collabdata= data.data;
-         
+
       });
 
 
@@ -160,7 +160,7 @@ angular.module('docubasic3App')
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
-        
+
       }
       });
 
@@ -176,7 +176,7 @@ angular.module('docubasic3App')
         windowClass: 'modal-lg',
         //size: size,
         resolve: {
-        
+
         }
       });
 

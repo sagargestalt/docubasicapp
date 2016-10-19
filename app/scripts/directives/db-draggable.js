@@ -1,6 +1,6 @@
 'use strict';
 angular.module('docubasic3App')
-  .directive('dbDraggable', function ($rootScope) {
+  .directive('dbDraggable', function () {
     return {
       restrict: 'A',
       link: function(scope, element) {
