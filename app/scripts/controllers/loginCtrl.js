@@ -48,7 +48,7 @@ $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
                    $location.path( "/main" );
 
                  }
-
+                 
 
                   else if(data.status === false){
 
@@ -58,7 +58,7 @@ $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
                       controller: 'loginCtrl',
                      //size: size,
                       resolve: {
-
+        
                       }
                   });
 
@@ -66,25 +66,25 @@ $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
 
 
                  }
+                
 
-
-
+                
 
 
                   });
 });
-//$scope.userdata = userDetails;
- // $rootScope.login=true;
-$rootScope.closeAlerts = function(index) {
-        $rootScope.alerts.splice(1, index);
-        $rootScope.alerts = [];
-    };
-    $scope.closeAlerts = function(index) {
-       $rootScope.loginalerts.splice(1, index);
-        $rootScope.loginalerts = [];
-    };
+    //$scope.userdata = userDetails;
+     // $rootScope.login=true;
+        $rootScope.closeAlerts = function(index) {
+            $rootScope.alerts.splice(1, index);
+            $rootScope.alerts = [];
+        };
+        $scope.closeAlerts = function(index) {
+           $rootScope.loginalerts.splice(1, index);
+            $rootScope.loginalerts = [];
+        };
 
-
+ 
 
   	 $scope.loginSubmit = function() {
     	var loginCredentials = {
@@ -162,7 +162,7 @@ $rootScope.closeAlerts = function(index) {
             $location.path( "/login" );
             return false;
         }
-
+         
     }
     init();
 
@@ -174,7 +174,7 @@ $rootScope.closeAlerts = function(index) {
      controller: 'popupCtrl',
       //size: size,
       resolve: {
-
+        
       }
     });
 };
@@ -187,12 +187,12 @@ $rootScope.closeAlerts = function(index) {
       controller: 'popupCtrl',
       //size: size,
       resolve: {
-
+        
       }
     });
 };
-
-
+  
+  
 
  $rootScope.Logout = function() {
       $rootScope.unableLogin = false;
@@ -240,7 +240,7 @@ $scope.closeAlerts = function(index) {
               loginService.login.save(angular.toJson(data1), function(data) {
 
                  if (data.status === true) {
-
+                    
                     $rootScope.isLogin = true;
                     $rootScope.tenancyid = data.data.tenancy_id;
                     $rootScope.userid = data.data.id;
@@ -255,7 +255,7 @@ $scope.closeAlerts = function(index) {
                    $location.path( "/main" );
 
                  }
-
+                 
 
                   else if(data.status === false){
 
@@ -265,7 +265,7 @@ $scope.closeAlerts = function(index) {
                       controller: 'loginCtrl',
                      //size: size,
                       resolve: {
-
+        
                       }
                   });
 
@@ -273,13 +273,13 @@ $scope.closeAlerts = function(index) {
 
 
                  }
+                
 
-
-
+                
 
 
                   });
-
+ 
             });
         }, function (err) {
             console.log(err);
@@ -328,14 +328,14 @@ $scope.closeAlerts = function(index) {
       }
 
     });
-   // $scope.tenancy = $scope.orgData.tenancycode;
+   // $scope.tenancy = $scope.orgData.tenancycode;     
   };
 
   $scope.checkcode = function(){
      $scope.alerts = [];
     var data1 = {
       tenancy_code:$scope.tenancy
-    };
+    }; 
     loginService.tanancycode.save((data1), function(user) {
 
       //$scope.tenancy = user.data.tenancycode;
@@ -405,7 +405,7 @@ $scope.closeAlerts = function(index) {
 
                     $rootScope.isAdmin = true;
                   }
-
+                    
       $location.path( "/main" );
      }
    else if(message.status === false){
@@ -413,9 +413,9 @@ $scope.closeAlerts = function(index) {
 
      }
 
+      
 
-
-
+      
 
     });
 
@@ -426,7 +426,7 @@ $scope.closeAlerts = function(index) {
 };
 
   $scope.socialsignupnew = function(){
-
+    
   var odata = {
 
    first_name:$scope.fname,
@@ -441,7 +441,7 @@ $scope.closeAlerts = function(index) {
     name:$scope.orgname,
     tenancy_id:$scope.org.tenancy_id,
     social_media_token:$rootScope.token
-
+    
 
 
   };
@@ -450,7 +450,7 @@ $scope.closeAlerts = function(index) {
       $scope.alerts = [];
     $scope.responce = message.data;
      if(message.status === true){
-
+      
       $rootScope.isLogin = true;
                 $rootScope.tenancyid = message.data.tenancy_id;
                   $rootScope.userid = message.data.id;
@@ -461,14 +461,14 @@ $scope.closeAlerts = function(index) {
 
                     $rootScope.isAdmin = true;
                   }
-
+                  
       $location.path( "/main" );
      }
       else if(message.status === false){
        $scope.errors = message.message;
      }
 
-
+   
       //$scope.orgData = user.userdata;
     });
 
@@ -478,6 +478,6 @@ $scope.closeAlerts = function(index) {
 
   };
 
-
+  
 
 }]);

@@ -2,17 +2,37 @@
 <!-- Navigation -->
 <aside id="menu" ng-include="'views/navigation.html'"></aside>
 <div id="wrapper">
+
 <container-directive></container-directive>
 
 <div id="container" >
+   <div class="pull-right m-t-lg" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
+                       
+                        <li class="active">
+                          <a ng-href="#/styles">Styles</a>
+                        </li>
+                         <li class="active">
+                            <span>New Style</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <div>
+  {{stylename}}
+
+  
   <uib-alert ng-repeat="alert in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert}}</uib-alert>
     <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
-<div class="panel-body no-padding" >
+  </div><br><br><br>
+    <div class="form-group">
+<div class="panel-body" >
                 <div summernote ng-model="summernoteTextTwo" config="summernoteOpt"></div>
             </div>
    <button class="btn btn-primary"  ng-hide="update" ng-click="submitstyle()">Save</button>
     <button class="btn btn-primary" ng-show="update"  ng-click="updatestyle()">Update</button>
-
+</div>
 <!--<span  id="draggable"  >Text block
 </span>
 <div  id="d" data-ng-model="index.highlights">

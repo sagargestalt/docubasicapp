@@ -334,7 +334,20 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
           $scope.allresource = data.data;
            if(data.status === true){
-               
+               $scope.pricesectionshow = false;
+                $scope.pricesectionshow ="";
+                $scope.updateprice ="" ;
+                $scope.productname ="" ;
+                  $scope.skuid ="";
+                  $scope.quantity ="";
+                  $scope.unitcost ="";
+                  $scope.unitprice ="";
+                  $scope.source ="";
+                  $scope.discriptions ="" ;
+                  $scope.totalprice="";
+                  $scope.totalcost="";
+                  $scope.moneys="";
+                    $scope.updateprice = false;
                 init();
             }
 
@@ -410,7 +423,7 @@ $scope.mulall = function(quantity,unitcost,unitprice){
   		$scope.discountname = detail.discountname;
   		$scope.distype = detail.type;
   		$scope.value = detail.value;
-       $location.hash('top');
+       //$location.hash('top');
 
       // call $anchorScroll()
       $anchorScroll();
@@ -479,6 +492,11 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
         $scope.allresource = data.data;
          if(data.status === true){
+          $scope.collapsed1 = false;
+            $scope.discountname="";
+                $scope.distype="";
+                $scope.value="";
+                $scope.dupdate = false;
                 //$scope.alerts.push({msg: 'Discount Block Deleted successfully', type:'success'});
                 init();
             }
@@ -549,7 +567,7 @@ $scope.mulall = function(quantity,unitcost,unitprice){
      	$scope.id = detail.id;
     	$scope.taxPercentage = detail.percentage;
     	$scope.taxname = detail.taxname;
-       $location.hash('top');
+       //$location.hash('top');
 
       // call $anchorScroll()
       $anchorScroll();
@@ -618,6 +636,11 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
         $scope.allresource = data.data;
          if(data.status === true){
+            $scope.collapsed2 = false;
+              $scope.taxname ="";
+                $scope.taxPercentage="";
+                $scope.tupdate = false;
+
                 //$scope.alerts.push({msg: 'Tax Block Deleted successfully', type:'success'});
                 init();
             }

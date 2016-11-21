@@ -17,7 +17,7 @@
 
                 <div class="pull-right m-t-lg" id="hbreadcrumb">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a ng-href="#/main">Dashboard</a></li>
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
                        
                         <li class="active">
                             <span>Resource Type</span>
@@ -43,7 +43,7 @@
 	 <div class="panel-body">
  
  		
- 		<button class="btn btn-primary pull-right"  ng-model="collapsed" ng-click="resourcesection()" >Add New</button>
+ 		<button class="btn btn-success pull-left"  ng-model="collapsed" ng-click="resourcesection()" >Add New</button>
  	<br>
  	<div class="takadd" ng-show="collapsed"><br>
     <form name="resource">
@@ -51,7 +51,7 @@
                     Add New Resource
                 </h2><br>
                 <h2 class="font-light m-b-xs" ng-show="update">
-                    Add New Resource
+                    Update Resource
                 </h2><br>
  					<div class="row">
  						<div class="col-md-4">
@@ -111,11 +111,11 @@
  						</div>
 						</div>
  					
-
+</form>
  					<div class="row">
  					<div class="col-md-12">
- 						<button class="btn btn-primary" ng-click="insertresource()"  ng-disabled="resource.$invalid" ng-hide="update">Save</button>
-              <button class="btn btn-primary" ng-click="updateresourcedata()"  ng-disabled="resource.$invalid" ng-show="update">Update</button>
+ 						<button class="btn btn-success" ng-click="insertresource()"  ng-disabled="resource.$invalid" ng-hide="update">Save</button>
+              <button class="btn btn-success" ng-click="updateresourcedata()"  ng-disabled="resource.$invalid" ng-show="update">Update</button>
               <button class="btn btn-primary" ng-click="closeresource()">Cancel</button>
  					</div>
  					</div><br>

@@ -10,6 +10,12 @@
 angular.module('docubasic3App')
   .controller('createproposalCtrl', function ($scope,$location, $rootScope,localStorageService,praposalservice,userservice,pageservice,settingservice) {
    
+
+      $scope.closemodal = function(){
+          $rootScope.modalInstance.close();
+
+        };
+        
       $rootScope.tenancyid = localStorageService.get('tenancyid');
       $rootScope.userid = localStorageService.get('userid');
       $rootScope.isAdmin = localStorageService.get('isAdmin');
@@ -102,12 +108,13 @@ angular.module('docubasic3App')
                     $(this).draggable( 'option', 'disabled', false);
                     $(this).attr('contenteditable','false');
                 });*/
-
-    $scope.selecttemp = function(temp){
+    $scope.selecttemp = function(temp,i){
 
         $rootScope.templateid = temp.template.id;
         //$rootScope.templatename = temp.template.template_name;
         $scope.selected = true;
+
+       $scope.selectedIndex=i;
 
     };
 
@@ -136,11 +143,15 @@ angular.module('docubasic3App')
 
         $rootScope.template_id = $scope.templates.template_id;
         $rootScope.proposal_id = $scope.templates.proposal_id;
-         $rootScope.modalInstance.close();
+         
+         $scope.praposalname = "";
+         $scope.coname = "";
+         $scope.myDate = "";
+         $scope.cname = "";
 
+        $rootScope.modalInstance.close();
 
-
-            $location.path( "/praposal" );
+            $location.path( "/proposal" );
 
 
         }

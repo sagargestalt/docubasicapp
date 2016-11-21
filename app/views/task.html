@@ -18,7 +18,7 @@
 
                 <div class="pull-right m-t-lg" id="hbreadcrumb">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a ng-href="#/main">Dashboard</a></li>
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
                        
                         <li class="active">
                             <span>Task Categories</span>
@@ -45,7 +45,7 @@
 <div class="hpanel">
    <div class="panel-body">
     
-  <button class="btn btn-primary pull-right" ng-model="collapsed" ng-click="tasksection()" >Add New</button>
+  <button class="btn btn-success pull-left" ng-model="collapsed" ng-click="tasksection()" ng-hide="collapsed" >Add New</button>
     <div class="takadd" ng-show="collapsed"><br>
       <form name="taskForm">
     <h3 class="font-light m-b-xs" ng-hide = "update">
@@ -60,8 +60,8 @@
   <input name="Taskcategory" type="text" class="form-control" placeholder="Task Name" id="user-pass" ng-model="taskname" required>
   </div>
   </form>
-      <button class="btn btn-primary" ng-click="insert()" ng-disabled="taskForm.$invalid" ng-hide = "update" >Save</button>
-       <button class="btn btn-primary" ng-click="updatetaskdata()" ng-disabled="taskForm.$invalid" ng-show="update">Update</button>
+      <button class="btn btn-success" ng-click="insert()" ng-disabled="taskForm.$invalid" ng-hide = "update" >Save</button>
+       <button class="btn btn-success" ng-click="updatetaskdata()" ng-disabled="taskForm.$invalid" ng-show="update">Update</button>
        <button class="btn btn-primary" ng-click="closetask()">Cancel</button>
 
 

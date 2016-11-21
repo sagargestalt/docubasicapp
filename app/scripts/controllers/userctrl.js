@@ -8,8 +8,8 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('userctrl',['$scope', '$state','$timeout','$rootScope','$routeParams','$window','settingservice','localStorageService','$location','userservice','sweetAlert','$route','$anchorScroll',
-  function ($scope, $state, $timeout,$rootScope,$routeParams,$window,settingservice,localStorageService,$location,userservice,sweetAlert,$route,$anchorScroll  ) {
+  .controller('userctrl',['$scope', '$state','$timeout','$rootScope','$routeParams','$window','settingservice','localStorageService','$location','userservice','sweetAlert','$route',
+  function ($scope, $state, $timeout,$rootScope,$routeParams,$window,settingservice,localStorageService,$location,userservice,sweetAlert,$route) {
  $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
    $rootScope.tenancyid = localStorageService.get('tenancyid');
@@ -55,6 +55,8 @@ var data =  {id:$rootScope.tenancyid };
     };
 
     $scope.closeuser = function(){
+      init();
+
        $scope.collapsed = false;
        $scope.update = false;
        $scope.hideadd = false;
@@ -101,6 +103,7 @@ $scope.usertype = [{id:1,type:'Tenant Admin'},
        else if (data1.status === false){
 
         $scope.errors = data1.message;
+        // init();
 
        }
 
@@ -126,10 +129,10 @@ $scope.usertype = [{id:1,type:'Tenant Admin'},
     else{
       $scope.utype = 0;
     }
-$location.hash('top');
+//$location.hash('top');
 
       // call $anchorScroll()
-      $anchorScroll();
+      //$anchorScroll();
 
   };
 
@@ -167,7 +170,7 @@ $location.hash('top');
            if(data1.status === false){
 
             $scope.errors = data1.message;
-
+           
            }
 
 

@@ -14,7 +14,7 @@
         
         <div class="pull-right m-t-lg" id="hbreadcrumb">
           <ol class="hbreadcrumb breadcrumb">
-            <li><a ng-href="#/main">Dashboard</a></li>
+            <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
             
             <li class="active">
               <span>Company</span>
@@ -45,7 +45,7 @@
             
             <input type="file" ng-model="files" name="files" multiple accept="image/*, .zip" maxsize="500" required base-sixty-four-input>
             <span ng-show="logovalidate.files.$error.maxsize">Files must not exceed 500 KB</span><br>
-            <button class="btn btn-primary" ng-click="send()"  ng-disabled="logovalidate.$invalid" >Upload</button>
+            <button class="btn btn-success" ng-click="send()"  ng-disabled="logovalidate.$invalid" >Upload</button>
             </form>
           </div>
           <br><br>
@@ -148,7 +148,7 @@
             </form>
             <div class="col-md-12" ng-show="editaddress">
               <br>
-              <button class="btn btn-primary" ng-click="address()" >Save</button>
+              <button class="btn btn-success" ng-click="address()" >Save</button>
               <button class="btn btn-primary" ng-click="canceladdress()"  >Cancel</button>
             </div>
           </div>
@@ -171,7 +171,7 @@
                     <span class="caret"></span>Select</select><br>
                     
                   </div><br>
-                  <button class="btn btn-primary" ng-click="saveadmin()"  >Save</button>
+                  <button class="btn btn-success" ng-click="saveadmin()"  >Save</button>
                   <button class="btn btn-primary" ng-click="cancleeditadmin()"  >Cancel</button>
                 </div>
               </div>
@@ -186,7 +186,7 @@
             <!--dd<div ng-repeat="info in currancys | filter: { currencyid :money}">
               <h5>{{info.currencyName}}</h5>
             </div>oo-->
-            <h5>Doller</h5>
+            <h5>USD</h5>
             
             <div class="row">
               

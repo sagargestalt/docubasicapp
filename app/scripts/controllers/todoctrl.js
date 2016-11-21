@@ -122,8 +122,10 @@ settingservice.updatenote.update((data), function(data){
 
 
 };
-
+$scope.isProcessing = false;
 	$scope.submitnote = function(){
+     $scope.isProcessing = true;
+  
 		var notesdata = {
 
 		tenancy_id:$rootScope.tenancyid ,
@@ -137,9 +139,11 @@ settingservice.postnote.save((notesdata), function(data){
 		 $scope.alerts=[];
         $scope.message = data.message;
          if(data.status === true){
+
                 $scope.alerts.push({msg: 'Note added successfully', type:'success'});
                 $scope.newnotediscription="";
                 $scope.newnotename="";
+                 //$scope.saving = false;
 
                 init();
             }
@@ -147,7 +151,7 @@ settingservice.postnote.save((notesdata), function(data){
              else if(data.status === false){
 
              	 $scope.errors = data.message;
-
+                $scope.saving = false;
 
              }
 
@@ -377,9 +381,9 @@ settingservice.postnote.save((notesdata), function(data){
         $scope.showalltask = true;
         $scope.showActivatedtask = false;
         $scope.showcompeletedtask = false;
-        $scope.all = {'background-color': 'green'};
-         $scope.complete = {'background-color': 'blue'};
-            $scope.active = {'background-color': 'blue'};
+        $scope.all = {'background-color': '#63c685'};
+         $scope.complete = {'background-color': '#919bb6'};
+            $scope.active = {'background-color': '#919bb6'};
             $scope.newnotename = "";
     };
 
@@ -388,9 +392,9 @@ settingservice.postnote.save((notesdata), function(data){
         $scope.showalltask = false;
         $scope.showActivatedtask = true;
         $scope.showcompeletedtask = false;
-         $scope.active = {'background-color': 'green'};
-          $scope.all = {'background-color': 'blue'};
-           $scope.complete = {'background-color': 'blue'};
+         $scope.active = {'background-color': '#63c685'};
+          $scope.all = {'background-color': '#919bb6'};
+           $scope.complete = {'background-color': '#919bb6'};
     };
 
    
@@ -399,9 +403,9 @@ settingservice.postnote.save((notesdata), function(data){
         $scope.showalltask = false;
         $scope.showActivatedtask = false;
         $scope.showcompeletedtask = true;
-        $scope.complete = {'background-color': 'green'};
-         $scope.all = {'background-color': 'blue'};
-           $scope.active = {'background-color': 'blue'};
+        $scope.complete = {'background-color': '#63c685'};
+         $scope.all = {'background-color': '#919bb6'};
+           $scope.active = {'background-color': '#919bb6'};
             $scope.newnotename = "";
     };
 

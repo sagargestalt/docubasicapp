@@ -257,28 +257,40 @@ $scope.deleteprojecttask = function(detail){
                 if (isConfirm) {
                    $scope.id = detail.id;
 
-var projectdata= {
+                var projectdata= {
 
-  id:$scope.id,
-  updated_by:$rootScope.userid
-};
+                  id:$scope.id,
+                  updated_by:$rootScope.userid
+                };
 
-settingservice.deleteproject.save((projectdata), function(data){
+              settingservice.deleteproject.save((projectdata), function(data){
 
-        $scope.allresource = data.data;
-         if(data.status === true){
-               
-                init();
-            }
+                  $scope.allresource = data.data;
+                   if(data.status === true){
+                          $scope.collapsed = false;
+                          $scope.taskcategory = "";
+                          $scope.category ="";
+                          $scope.discription="";
+                          $scope.taskdetail="";
+                          $scope.vendors="";
+                          $scope.mandays="";
+                          $scope.source="";
+                          $scope.dailycost="";
+                          $scope.totalcost="";
+                          $scope.dailyrate="";
+                          $scope.totalrate="";
+                         $scope.update = false;
+                          init();
+                      }
 
-            
-    });
-                    
+                      
+              });
+                              
                     sweetAlert.swal("Deleted!", "Task Deleted successfully", "success");
                 } else {
                     sweetAlert.swal("Cancelled");
                 }
-            });
+  });
    
  
 

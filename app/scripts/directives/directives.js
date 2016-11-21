@@ -1,3 +1,4 @@
+
 'use strict';
 /**
  * HOMER - Responsive Admin Theme
@@ -18,7 +19,7 @@ angular
     .directive('animatePanel', animatePanel)
     .directive('landingScrollspy', landingScrollspy)
     .directive('clockPicker', clockPicker)
-    .directive('dateTimePicker', dateTimePicker);
+    .directive('dateTimePicker', dateTimePicker)
 
 /**
  * pageTitle - Directive for set Page title - mata title
@@ -28,17 +29,17 @@ function pageTitle($rootScope, $timeout) {
         link: function(scope, element) {
             var listener = function(event, toState, toParams, fromState, fromParams) {
                 // Default title
-                var title = 'docubasic3App | AngularJS Responsive WebApp';
+                var title = 'HOMER | AngularJS Responsive WebApp';
                 // Create your own title pattern
-                if (toState.data && toState.data.pageTitle) title = 'docubasic3App | ' + toState.data.pageTitle;
+                if (toState.data && toState.data.pageTitle) title = 'HOMER | ' + toState.data.pageTitle;
                 $timeout(function() {
                     element.text(title);
                 });
             };
             $rootScope.$on('$stateChangeStart', listener);
         }
-    };
-}
+    }
+};
 
 /**
  * sideNavigation - Directive for run metsiMenu on sidebar navigation
@@ -79,10 +80,10 @@ function minimalizaMenu($rootScope) {
                 } else {
                     $("body").toggleClass("hide-sidebar");
                 }
-            };
+            }
         }
     };
-}
+};
 
 
 /**

@@ -3,21 +3,31 @@
 <aside id="menu" ng-include="'views/navigation.html'"></aside>
 <div id="wrapper">
 <div class="content animate-panel">
-<div class="row">
-  <div class="col-lg-12" >
+<div class="row"  ng-init="selectedTab === 'all'" >
+    <div class="pull-right m-t-lg" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a ng-href="#/main">Dashboard</a></li>
+                       
+                        <li class="active">
+                            <span>Proposal-Summary</span>
+                        </li>
+                    </ol>
+                </div>
+  <div class="col-lg-12">
             <h3>Proposal Summary View</h3>
             <br>
         
-<button class="btn w-xs btn-primary" type="button" ng-click="allpraposal()">All</button>
-<button class="btn w-xs btn-success" type="button" ng-click="open()">Open</button>
-<button class="btn w-xs btn-primary" type="button" ng-click="underreview()">Under Review</button>
-<button class="btn w-xs btn-primary" type="button" ng-click="closed()">Closed</button>
+<button class="btn w-xs btn-primary" ng-class="{ 'btn-success' :selectedTab === 'all'}" type="button"  ng-click="allpraposal(); selectedTab = 'all'">All</button>
+<button class="btn w-xs btn-primary" ng-class="{ 'btn-success' :selectedTab === 'open'}" type="button" ng-click="open(); selectedTab = 'open'">Open</button>
+<button class="btn w-xs btn-primary" ng-class="{ 'btn-success' :selectedTab === 'under'}" type="button" ng-click="underreview();selectedTab = 'under'">Under Review</button>
+<button class="btn w-xs btn-primary" ng-class="{ 'btn-success' :selectedTab === 'closed'}"  type="button" ng-click="closed();selectedTab = 'closed'">Closed</button>
 <br>
 <br>
             </div>
+
         
   <div class="col-lg-12">
-  <button class="btn btn-primary pull-right" ng-click="createpraposal()" >New Praposal</button>
+  <button class="btn btn-success pull-right" ng-click="createpraposal()" ><i class="icon-plus" ></i> New Proposal</button>
 </div>
 </div>
 <br>
@@ -27,7 +37,7 @@
                     <div class="panel-body"  >
                         <div class="row projects">
                         <div class="col-sm-12">
-                            <h4><a href="#">{{detail.name}}</a></h4>
+                            <h4>{{detail.name}}</h4>
                         
                                 <div class="well well-lg">
                                 <p>{{info[0].created_at}}</p>
@@ -38,15 +48,15 @@
                          <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
                                <div class="row">
                                     <div class="col-sm-4" >
-                                        <div class="project-label">CLIENT</div>
+                                        <div class="project-label"><a>Client</a></div>
                                         <small>Acme & Co.</small>
                                     </div>
                                     <div class="col-sm-4" >
-                                        <div class="project-label">VERSION</div>
+                                        <div class="project-label"><a>Version</a></div>
                                         <small>1.0.4</small>
                                     </div>
                                     <div class="col-sm-4" >
-                                        <div class="project-label">DEDLINE</div>
+                                        <div class="project-label"><a>Deadline</a></div>
                                         <small>{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
@@ -93,12 +103,16 @@
                     <div class="panel-footer">
                        <div class="row">
                             <div class="col-sm-12" >
-                            <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/copy.png"></i></a>
-                   <a ng-click="deletepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/close.png"></i></a>
-                    <a ng-click="priweviemode()"><i class="prl15 border-right"><img src="images/widget/summery/search.png"></i></a>
-                    <a ng-click="download()"><i class="prl15 border-right"><img src="images/widget/summery/download.png"></i></a>
-                     <a ng-click="opencollab()"><i class="prl15 border-right"><img src="images/widget/summery/pagesend.png"></i></a>
-                      <a ng-click="emailwindow()"><i class="prl15 border-right"><img src="images/widget/summery/send.png"></i></a>
+                            <a ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal()"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab()"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px" ></i></a>
+                   <a ng-click="deletepraposal()"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download()"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a  ng-href="#/costprofitanalysis"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
                               <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
                              
                             </div>
@@ -111,7 +125,7 @@
                     <div class="panel-body"  >
                         <div class="row projects">
                         <div class="col-sm-12">
-                            <h4><a href="#">{{detail.name}}</a></h4>
+                            <h4>{{detail.name}}</h4>
                         
                                 <div class="well well-lg">
                                 <p>{{info[0].created_at}}</p>
@@ -122,15 +136,15 @@
                          <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
                                <div class="row">
                                     <div class="col-sm-4" >
-                                        <div class="project-label">CLIENT</div>
+                                        <a><div class="project-label"><a>Client</a></div></a>
                                         <small>Acme & Co.</small>
                                     </div>
-                                    <div class="col-sm-4" >
-                                        <div class="project-label">VERSION</div>
-                                        <small>1.0.4</small>
+                                     <div class="col-sm-4" >
+                                       <div class="project-label"><a>Version</a></div>
+                                        <small>1.0.4</small> 
                                     </div>
-                                    <div class="col-sm-4" >
-                                        <div class="project-label">DEDLINE</div>
+                                   <div class="col-sm-4" >
+                                       <div class="project-label"><a>Deadline</a></div>
                                         <small>{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
@@ -177,12 +191,17 @@
                     <div class="panel-footer">
                        <div class="row">
                             <div class="col-sm-12" >
-                            <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/copy.png"></i></a>
-                   <a ng-click="deletepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/close.png"></i></a>
-                    <a ng-click="priweviemode()"><i class="prl15 border-right"><img src="images/widget/summery/search.png"></i></a>
-                    <a ng-click="download()"><i class="prl15 border-right"><img src="images/widget/summery/download.png"></i></a>
-                     <a ng-click="opencollab()"><i class="prl15 border-right"><img src="images/widget/summery/pagesend.png"></i></a>
-                      <a ng-click="emailwindow()"><i class="prl15 border-right"><img src="images/widget/summery/send.png"></i></a>
+                              <a ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal()"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab()"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px"></i></a>
+                   <a ng-click="deletepraposal()"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download()"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a  ng-href="#/costprofitanalysis"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
+                      
                               <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
                              
                             </div>
@@ -195,7 +214,7 @@
                     <div class="panel-body"  >
                         <div class="row projects">
                         <div class="col-sm-12">
-                            <h4><a href="#">{{detail.name}}</a></h4>
+                            <h4>{{detail.name}}</h4>
                         
                                 <div class="well well-lg">
                                 <p>{{info[0].created_at}}</p>
@@ -206,15 +225,15 @@
                          <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
                                <div class="row">
                                     <div class="col-sm-4" >
-                                        <div class="project-label">CLIENT</div>
+                                        <a><div class="project-label"><a>Client</a></div></a>
                                         <small>Acme & Co.</small>
                                     </div>
-                                    <div class="col-sm-4" >
-                                        <div class="project-label">VERSION</div>
-                                        <small>1.0.4</small>
+                                     <div class="col-sm-4" >
+                                       <div class="project-label"><a>Version</a></div>
+                                        <small>1.0.4</small> 
                                     </div>
-                                    <div class="col-sm-4" >
-                                        <div class="project-label">DEDLINE</div>
+                                     <div class="col-sm-4" >
+                                       <div class="project-label"><a>Deadline</a></div>
                                         <small>{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
@@ -261,12 +280,17 @@
                     <div class="panel-footer">
                        <div class="row">
                             <div class="col-sm-12" >
-                            <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/copy.png"></i></a>
-                   <a ng-click="deletepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/close.png"></i></a>
-                    <a ng-click="priweviemode()"><i class="prl15 border-right"><img src="images/widget/summery/search.png"></i></a>
-                    <a ng-click="download()"><i class="prl15 border-right"><img src="images/widget/summery/download.png"></i></a>
-                     <a ng-click="opencollab()"><i class="prl15 border-right"><img src="images/widget/summery/pagesend.png"></i></a>
-                      <a ng-click="emailwindow()"><i class="prl15 border-right"><img src="images/widget/summery/send.png"></i></a>
+                              <a ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal()"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab()"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px"></i></a>
+                   <a ng-click="deletepraposal()"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download()"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a  ng-href="#/costprofitanalysis"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
+                      
                               <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
                              
                             </div>
@@ -279,7 +303,7 @@
                     <div class="panel-body"  >
                         <div class="row projects">
                         <div class="col-sm-12">
-                            <h4><a href="#">{{detail.name}}</a></h4>
+                            <h4>{{detail.name}}</h4>
                         
                                 <div class="well well-lg">
                                 <p>{{info[0].created_at}}</p>
@@ -290,15 +314,15 @@
                          <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
                                <div class="row">
                                     <div class="col-sm-4" >
-                                        <div class="project-label">CLIENT</div>
+                                        <a><div class="project-label"><a>Client</a></div></a>
                                         <small>Acme & Co.</small>
                                     </div>
-                                    <div class="col-sm-4" >
-                                        <div class="project-label">VERSION</div>
-                                        <small>1.0.4</small>
+                                     <div class="col-sm-4" >
+                                       <div class="project-label"><a>Version</a></div>
+                                        <small>1.0.4</small> 
                                     </div>
                                     <div class="col-sm-4" >
-                                        <div class="project-label">DEDLINE</div>
+                                       <div class="project-label"><a>Deadline</a></div>
                                         <small>{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
@@ -345,12 +369,17 @@
                     <div class="panel-footer">
                        <div class="row">
                             <div class="col-sm-12" >
-                            <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/copy.png"></i></a>
-                   <a ng-click="deletepraposal()"><i class="prl15 border-right"><img src="images/widget/summery/close.png"></i></a>
-                    <a ng-click="priweviemode()"><i class="prl15 border-right"><img src="images/widget/summery/search.png"></i></a>
-                    <a ng-click="download()"><i class="prl15 border-right"><img src="images/widget/summery/download.png"></i></a>
-                     <a ng-click="opencollab()"><i class="prl15 border-right"><img src="images/widget/summery/pagesend.png"></i></a>
-                      <a ng-click="emailwindow()"><i class="prl15 border-right"><img src="images/widget/summery/send.png"></i></a>
+                              <a ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal()"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab()"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px"></i></a>
+                   <a ng-click="deletepraposal()"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download()"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a  ng-href="#/costprofitanalysis"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
+                      
                               <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
                              
                             </div>

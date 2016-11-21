@@ -9,11 +9,6 @@
  */
 angular.module('docubasic3App')
   .controller('praposalCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,userservice,settingservice,sweetAlert,$sce) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
      $(".db-square-widget").draggable({containment: "#proposalDropContainer"});
       $rootScope.tenancyid = localStorageService.get('tenancyid');
       $rootScope.userid = localStorageService.get('userid');
@@ -89,7 +84,6 @@ function init() {
       });
 
       $scope.closemodal = function(){
-          console.log("hi");
           $rootScope.modalInstance.close();
 
         };

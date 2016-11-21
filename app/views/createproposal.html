@@ -8,7 +8,7 @@
                 
                                 <div class="color-line"></div>
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Add New Proposal<span class="pull-right"><a data-dismiss="modal"> <i class="pe-7s-close fa-2x"></i></a> </span></h4>
+                                    <h4 class="modal-title">Add New Proposal<span class="pull-right"><a ng-click="closemodal()"> <i class="pe-7s-close fa-2x"></i></a> </span></h4>
                                   
                                 </div>
                                 <div class="modal-body">
@@ -38,8 +38,9 @@
                                     <div class="col-md-6">
                                         <label class="control-label">End Date</label>
                                         <div class="form-group required" >
-                                            <input type="date" id="exampleInput-txt" name="input" class="form-control" ng-model="myDate"
-                                                placeholder="yyyy-MM-dd"  required />
+                                           <input type="date" class="form-control" id="exampleInput-txt" name="input" ng-model="myDate"
+                                            placeholder="yyyy-MM-dd"  required />
+
                                                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -80,7 +81,7 @@
                                             <div class="panel-body">
                                                 <div class="text-center">
                                                 <br>
-                                                    <i class="pe-7s-note fa-4x"></i><br>
+                                                    <i class="icon-342 fa-4x"></i><br>
                                                     <small>Create Proposal</small>
                                                     <br><br>
                                                 </div>
@@ -99,11 +100,11 @@
                                 </div>
                                 
                                  <div class="row" >
-                                     <div class="col-md-3" style=""ng-repeat="temp in templates" ng-click="selecttemp(temp)">
-                                        <div class="hpanel"  ng-class="{ 'hnavyblue' : selected}">
+                                     <div class="col-md-3" style=""ng-repeat="temp in templates" ng-click="selecttemp(temp, $index)">
+                                        <div class="hpanel"  ng-class="{ 'hnavyblue' : $index===selectedIndex}">
                                             <div class="panel-body">
                                                 <div class="text-center">
-                                                    <i class="pe-7s-config icon-lg"></i><br>
+                                                  
                                                     <small>{{temp.template.template_name}}</small>
                                                 </div>
                                             </div>
@@ -145,8 +146,8 @@
                                   
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>-->
                                 </div>
                            
 

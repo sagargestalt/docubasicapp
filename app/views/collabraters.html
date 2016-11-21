@@ -6,12 +6,12 @@
 
 <div>
 
-	<h4>Ready only access<h4>
+	<h4>Read only access<h4>
 
 		<div ng-repeat="collabusers in collabdata | filter: { privilege_status : '1' }:true">
     		<label><input type="checkbox" ng-model="mycollab" ng-true-value="'{{2}}'" ng-false-value="'{{1}}'" ng-change="editaccess(collabusers)">{{collabusers.first_name}}</label>
 
-    		{{mycollab}}
+
 
 		</div>
 
@@ -28,7 +28,7 @@
     		<label><input type="checkbox" checked ng-model="myCountry" ng-true-value="'{1}'" ng-false-value="'2'" ng-change="readaccess(country)">{{country.first_name}}</label>
 
 		</div>
-{{myCountry}}
+
 
 	</div>
 

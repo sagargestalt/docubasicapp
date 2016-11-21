@@ -18,6 +18,7 @@ angular.module('docubasic3App')
       templateUrl: 'views/companysetting.html',
      controller: 'companysettingCtrl',
      windowClass: 'modal-lg',
+
       //size: size,
       resolve: {
         
@@ -26,7 +27,7 @@ angular.module('docubasic3App')
 
 
 $scope.opencompany = function(){
-
+    //$scope.active = true;
  $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'views/companysetting.html',

@@ -31,10 +31,22 @@
 
     <ul side-navigation class="nav" id="side-menu">
         <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'dashboard'}">
-            <a ng-href="#/main"> <i class="pe-7s-timer size20 pull-left"></i> <span class="nav-label">  Dashboard</span> <span class="label label-success pull-right"></span> </a>
+            <a ng-href="#/main"> <span class="icon-dashboard size20"> </span> <span class="nav-label">  Dashboard</span> <span class="label label-success pull-right"></span> </a>
         </li>
-         <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'dashboard'}">
-            <a ng-href="#/settingpage"> <i class="pe-7s-timer size20 pull-left"></i> <span class="nav-label">Setting</span> <span class="label label-success pull-right"></span> </a>
+         <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'proposal'}">
+            <a ng-href="#/proposal-summery"><span class="icon-proposal size20"> </span>  <span class="nav-label">Proposals</span> </a>
+        </li>
+        <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'users'}">
+            <a ng-href="#/users"><span class="icon-user size20"> </span>  <span class="nav-label">Users</span> </a>
+        </li>
+        <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'todos'}">
+            <a ng-href="#/todos"><span class="icon-todos2 size20"> </span> <span class="nav-label">Todo's</span> </a>
+        </li>
+        <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'notes'}">
+            <a ng-href="#/notes"><span class="icon-notes size20"> </span>  <span class="nav-label">Notes</span> </a>
+        </li>
+         <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'settingpage'}">
+            <a ng-href="#/settingpage"> <span class="icon-setting size20"> </span> <span class="nav-label">Settings</span> <span class="label label-success pull-right"></span> </a>
         </li>
          <!--<li ng-class="{active: $state.includes('dashbord')}">
             <a><i class="pe-7s-config size20 pull-left"></i><span class="nav-label">Settings</span><span class="fa arrow"></span> </a>
@@ -65,19 +77,11 @@
        
             </ul>
         </li>-->
-        <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'notes'}">
-            <a ng-href="#/praposal-summery"><i class="pe-7s-note size20 pull-left"></i> <span class="nav-label">Proposal</span> </a>
-        </li>
        
-           <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'notes'}">
-            <a ng-href="#/notes"><i class="pe-7s-note size20 pull-left"></i> <span class="nav-label">Notes</span> </a>
-        </li>
-         <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'todos'}">
-            <a ng-href="#/todos"><i class="fa fa-list-ul size20 pull-left"></i> <span class="nav-label">Todo's</span> </a>
-        </li>
-         <li ui-sref-active="active" ng-class="{active: $route.current.activetab == 'users'}">
-            <a ng-href="#/users"><i class="pe-7s-users  size20 pull-left"></i> <span class="nav-label">Users</span> </a>
-        </li>
+       
+           
+         
+         
         <!-- <li ui-sref-active="active">
             <a ng-href="#/billing"> <span class="nav-label">billing</span> </a>
         </li>

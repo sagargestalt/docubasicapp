@@ -18,7 +18,19 @@ angular.module('docubasic3App')
       $rootScope.template_id = localStorageService.get('template_id');
       $rootScope.templatename = localStorageService.get('templatename');
       $scope.praposalall = true;
+      $scope.selectedTab = 'all';
 
+      function init(){
+       var costdata = {
+
+      tenancy_id: $rootScope.tenancyid,
+    created_by:  $rootScope.userid,
+     proposal_id: $rootScope.proposal_id
+ 
+      };
+        praposalservice.costprofit.save((costdata), function(data1){
+         $scope.costprofitdata = data1.data;
+          });
       var data = {
       	tenancy_id: $rootScope.tenancyid,
       	proposal_status:0,
@@ -34,6 +46,10 @@ angular.module('docubasic3App')
         }
          
     	});
+
+
+     }
+     init();
 
       $scope.clonepraposal = function(){
         $rootScope.modalInstance = $uibModal.open({
@@ -85,6 +101,7 @@ angular.module('docubasic3App')
           });
 
           sweetAlert.swal("Deleted!", " Deleted successfully", "success");
+          init();
                 } else {
                     sweetAlert.swal("Cancelled");
                 }
@@ -124,7 +141,7 @@ angular.module('docubasic3App')
         $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'views/collabraters.html',
-      controller: 'praposalCtrl',
+      controller: 'proposalCtrl',
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
@@ -147,11 +164,12 @@ angular.module('docubasic3App')
 
       };
 
-      $scope.emailwindow = function(){
+      $scope.emailwindow = function(detail){
+         $rootScope.proposal_id = detail.id;
         $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'views/email.html',
-      controller: 'praposalCtrl',
+      controller: 'proposalCtrl',
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
@@ -166,8 +184,8 @@ angular.module('docubasic3App')
       $scope.createpraposal = function(){
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
-        templateUrl: 'views/createpraposal.html',
-         controller: 'createpraposalCtrl',
+        templateUrl: 'views/createproposal.html',
+         controller: 'createproposalCtrl',
         windowClass: 'modal-lg',
         //size: size,
         resolve: {
@@ -216,7 +234,22 @@ angular.module('docubasic3App')
          $scope.praposalall = false;
 
       };
+      $scope.editpraposal = function(detail){
+        $rootScope.template_id = detail.template_id
+        $rootScope.proposal_id =  detail.id;
+         $rootScope.praposalname = detail.name;
+        $location.path( "/proposal" );
 
+      };
+
+$scope.$watch('proposal_id', function () {
+      localStorageService.set('proposal_id',$rootScope.proposal_id);
+     // localStorageService.set('userid',$rootScope.userid);
+    }, true);
+$scope.$watch('template_id', function () {
+      localStorageService.set('template_id',$rootScope.template_id);
+     // localStorageService.set('userid',$rootScope.userid);
+    }, true);
 
 
 

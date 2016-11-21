@@ -8,13 +8,16 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('pageCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,updatepageservice,$,styleservice) {
+  .controller('pageCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,updatepageservice,styleservice) {
  $rootScope.tenancyid = localStorageService.get('tenancyid');
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
     $rootScope.username = localStorageService.get('username');
+     $scope.close = function(){
+            $scope.show = false;
+            $scope.pagename = "";
+           };
     $scope.closemodal = function(){
-          console.log("hi");
           $rootScope.modalInstance.close();
 
         };

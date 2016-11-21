@@ -30,13 +30,13 @@
                            	<div class="form-group">
 								<div class="inner-addon left-addon">
 									<i class="glyphicon"><img src="images/icons/user.png"></i>
-									<input type="text" placeholder="example@gmail.com" title="Please enter your username" required="" value="" name="username" id="username" class="form-control" ng-model="email">
+									<input type="text" placeholder="example@gmail.com" title="Please enter your username" required="" value="" name="username" id="username" class="form-control" ng-model="email" style="color:#d1eed8 !important;">
                                </div>
 							</div>
 							<div class="form-group">
 								<div class="inner-addon left-addon">
 									<i class="glyphicon"><img src="images/icons/password.png"></i>
-								   <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control" ng-model="password">
+								   <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control" ng-model="password" style="color:#d1eed8 !important;">
 							   </div>
 							</div>
                             <!--<div>
@@ -47,7 +47,7 @@
                             </div>-->
                             <button class="btn btn-default btn-block h50" ng-click="loginSubmit()">Login <img class="loginarrow" src="images/icons/arrow_right.png"></button><br>
 							 <p class="text-center pull-left">
-                                    <a ng-click="forgotpassword()" class="white"> Forgot password? </a>
+                                    <a  ng-href="#/forgot-password" class="white"> Forgot password? </a>
                             </p>
                         </form>
                     </div>
@@ -87,7 +87,7 @@
             </div>
         </div>
 		 <div class="col-md-12">
-				<h3 class="login-h1 white" style="font-size:16px;">Don’t have an account? <a ng-click="signup()" style="color:#63C685">Sign Up Now</a></h3>
+				<h3 class="login-h1 white" style="font-size:18px;font-family:.AppleSystemUIFont;">Don’t have an account? <a ng-href="#/sign-upnew" style="color:#63C685">Sign Up Now</a></h3>
          </div>
 
     </div>

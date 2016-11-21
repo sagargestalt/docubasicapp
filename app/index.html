@@ -5,8 +5,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link id="apiRoot" href="http://localhost:8081/dbasic/public/"/>
-    <!--<link id="apiRoot" href="http://49.248.126.222:8282/services/public/">-->
+    <!--<link id="apiRoot" href="http://localhost:8081/dbasic/public/"/>-->
+    <link id="apiRoot" href="http://49.248.126.222:8282/services/public/">
     <!--<link id="apiRoot" href="http://104.236.223.122/services/public/index.php/">-->
 
     <!--<link id="apiRoot" href="http://107.170.27.172/dbasic/services/public/"/>-->
@@ -50,18 +50,20 @@
     <link rel="stylesheet" href="bower_components/ng-contenteditable/ng-contenteditable.css" />
     <link rel="stylesheet" href="bower_components/medium-editor/dist/css/medium-editor.css" />
     <link rel="stylesheet" href="bower_components/medium-editor/dist/css/themes/default.css" />
-    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="bower_components/angular-color-picker/dist/angularjs-color-picker.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
     <!-- endbower -->
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css" />
+   
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/font-awesome.css" />
     <link rel="stylesheet" href="styles/login.css" />
     <link rel="stylesheet" href="styles/db-directives.css" />
+   
 
      <!-- <script type="text/javascript" src="//platform.linkedin.com/in.js">
     api_key:   [unPsauETUkPjEg12]
@@ -104,6 +106,21 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+     <script src="bower_components/fabric.js/dist/fabric.js"></script>
+     <script src="bower_components/angular-fabric/assets/fabric.js">
+      </script>
+    <script src="bower_components/angular-fabric/assets/fabricCanvas.js">
+      </script>
+    <script src="bower_components/angular-fabric/assets/fabricConstants.js">
+      </script>
+    <script src="bower_components/angular-fabric/assets/fabricDirective.js">
+      </script>
+    <script src="bower_components/angular-fabric/assets/fabricDirtyStatus.js">
+      </script>
+    <script src="bower_components/angular-fabric/assets/fabricUtilities.js">
+      </script>
+    <script src="bower_components/angular-fabric/assets/fabricWindow.js">
+      </script>
     <script src="bower_components/medium-editor/dist/js/medium-editor.min.js"></script>
     <script src="bower_components/angular-medium-editor/dist/angular-medium-editor.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
@@ -177,6 +194,9 @@
     <script src="bower_components/codemirror/lib/codemirror.js"></script>
     <script src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
     <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/ng-contenteditable/ng-contenteditable.js"></script>
+    <script src="bower_components/checklist-model/checklist-model.js"></script>
+
     <script src="bower_components/ladda/dist/ladda.min.js"></script>
     <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
     <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
@@ -199,10 +219,11 @@
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
      <script src="bower_components/angular-base64-upload/dist/angular-base64-upload.js"></script>
      <script src="bower_components/angularjs-social-login/angularjs-social-login.js"></script>
-     <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
-    <script src="bower_components/ng-contenteditable/ng-contenteditable.js"></script>
-    <script src="bower_components/checklist-model/checklist-model.js"></script>
-
+    <script src="bower_components/ngDraggable/ngDraggable.js"></script>
+    <script src="bower_components/angular-bind-html-compile/angular-bind-html-compile.min.js"></script>
+    <script src="bower_components/tinycolor/dist/tinycolor-min.js"></script>
+    <script src="bower_components/angular-color-picker/dist/angularjs-color-picker.min.js"></script>
+    
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -249,6 +270,8 @@
         <script src="scripts/directives/db-image.js"></script>
         <script src="scripts/directives/db-triangle.js"></script>
         <script src="scripts/directives/db-table.js"></script>
+        <script src="scripts/directives/db-pricetable.js"></script>
+        <script src="scripts/directives/db-tasktable.js"></script>
         <script src="scripts/services/praposalservice.js"></script>
         <script src="scripts/services/styleservice.js"></script>
         <script src="scripts/controllers/styleCtrl.js"></script>
@@ -265,6 +288,9 @@
         <script src="scripts/controllers/proposalsummeryCtrl.js"></script>
         <script src="scripts/controllers/cloneCtrl.js"></script>
         <script src="scripts/controllers/customerreviewCtrl.js"></script>
+         <script src="scripts/directives/db-draggablenew.js"></script>
+         <script src="scripts/directives/compile.js"></script>
+         <script src="scripts/controllers/fabricCtrl.js"></script>
 
 
 

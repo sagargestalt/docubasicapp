@@ -1,0 +1,62 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+<div class="normalheader transition animated fadeIn">
+	<div class="hpanel">
+		<div class="panel-body">
+			<div class="panel-body pn" >
+  <h2>Cost Profit Analysis</h2><br>
+   <table class="table table-striped table-bordered table-hover"  >
+      <thead>
+        <tr>
+         <th>
+
+In house resources, Hardware/Software and any license cost
+</th>
+          <th>Company Cost</th>
+          <th>Customer Price</th>
+          <th>Profit Margin</th>
+          
+        
+        </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="detail in costprofitdata | filter: { resource_type: '1' }" >
+       	<td>{{detail.name}}</td>
+          <td >${{detail.company_cost}}</td>
+          <td>{{detail.customer_price}}</td>
+           <td>{{detail.profit_margin}}</td>
+       </tr>
+      </tbody>
+    </table>
+      </div><br>
+      <div class="panel-body">
+			<div class="panel-body pn" >
+   <table  class="table table-striped table-bordered table-hover" >
+      <thead>
+        <tr  ng-repeat="data in costprofitdata | filter: { resource_type: '2' }">
+         <th>Vendor Costs (Products and Services)</th>
+         <th>Vendor Name</th>
+          <th>Cost</th>
+          <th>Customer_price</th>
+          <th>Profit Margin</th>
+          
+        
+        </tr>
+      </thead>
+      <tbody>
+       <tr >
+       	<td>{{detail.name}}</td>
+       	<td>{{data.vendor_name}}</td>
+          <td >${{data.company_cost}}</td>
+          <td>{{data.customer_price}}</td>
+           <td>{{data.profit_margin}}</td>
+       </tr>
+      </tbody>
+    </table>
+      </div><br>
+		</div>
+	</div>
+</div>
+</div>

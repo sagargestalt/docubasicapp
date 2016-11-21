@@ -9,11 +9,9 @@
  */
 angular.module('docubasic3App')
   .controller('customerreviewCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,sweetAlert,$routeParams) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+   $scope.reject = false;
+   $scope.approve = false;
+    
 
     $rootScope.proposal_id  = $routeParams.proposal_id;
     $rootScope.userid = $routeParams.updated_by;
@@ -93,7 +91,10 @@ angular.module('docubasic3App')
 
 
 
-      $scope.sendpage = function(pagecnt){
+      $scope.sendpage = function(pagecnt,i){
+         $scope.selected = true;
+
+       $scope.selectedIndex=i;
       $scope.ssss =  pagecnt.page_content;
       $scope.pageid = pagecnt.template_page_id;
     };
@@ -111,6 +112,7 @@ angular.module('docubasic3App')
             $scope.alerts=[];
           if (data1.status === true){
             $rootScope.modalInstance.close();
+            $scope.reject = true;
 
             }
          
@@ -131,6 +133,7 @@ angular.module('docubasic3App')
 
             $scope.message = responce.message;
             if(responce.status === true){
+              $scope.imageptah = responce.data.logo_path;
                 $scope.alerts.push({msg: 'Picture Updated successfully', type:'success'});
                 //init();
             }
@@ -154,6 +157,7 @@ angular.module('docubasic3App')
             $scope.errors=[];
           if (data1.status === true){
             $rootScope.modalInstance.close();
+            $scope.approve = true;
 
             }
 

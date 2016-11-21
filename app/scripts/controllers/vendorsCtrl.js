@@ -283,7 +283,25 @@ angular.module('docubasic3App')
 
           $scope.allresource = data.data;
           if(data.status === true){
-                $scope.alerts.push({msg: 'Vendor Deleted successfully', type:'success'});
+                $scope.collapsed = false;
+                $scope.hidesubmit = false;
+                $scope.fname="";
+                $scope.vendorname="";
+                $scope.vendorid="";
+                $scope.phone="";
+                $scope.lname="";
+                $scope.email="";
+                $scope.displayname="";
+                $scope.mobile="";
+                $scope.url="";
+                $scope.addressdetail="";
+                $scope.country="";
+                $scope.state="";
+                $scope.city="";
+                $scope.pcode="";
+                $scope.summary="";
+              sweetAlert.swal("Deleted!", "Vendor Deleted successfully", "success");
+                //$scope.alerts.push({msg: 'Vendor Deleted successfully', type:'success'});
                 init();
             }
 
@@ -295,7 +313,7 @@ angular.module('docubasic3App')
       });
 
 
-                    sweetAlert.swal("Deleted!", "Vendor Deleted successfully", "success");
+                   
                 } else {
                     sweetAlert.swal("Cancelled");
                 }

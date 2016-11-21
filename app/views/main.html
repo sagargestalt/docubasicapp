@@ -64,11 +64,11 @@
 		</div>
 	</div>-->
 
-  <div class="row">
+  <!--<div class="row">
         <div class="col-lg-12" >
         <h3>Dashboard</h3><br>
       </div>
-    </div>
+    </div>-->
 
 <div class="row">
 	<div class="col-lg-3" ng-show="isAdmin">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="panel-footer">
                       <div class="row">
-                            <div class="col-xs-1"><i class="pe-7s-right-arrow fa-2x pull-left"></i></div>
+                            <div class="col-xs-1"><i class="icon-more fa-2x pull-left"></i></div>
 							<a ng-href="#/billing"><div class="col-xs-10"><h5>View Details </h5></div></a>
                         </div>
                     </div>
@@ -131,6 +131,34 @@
             </div>
           </div>
         </div>-->
+         <div class="col-lg-3">
+                <div class="hpanel stats">
+                    <div class="panel-body h-200">
+                        <div class="stats-title">
+                            <h4><img src="images/icons/dashboard/icon2.png"> &nbsp;Proposals</h4>
+                        </div>
+                        <div class="m-t-xl">
+              <div class="row">
+                <div class="col-xs-5" style="border-right:1px solid #eeeeee;">
+                  <div class="m-xs font-bold no-margins">Open</div>
+                  <h1 class="m-xs">{{praposals.OpenCount}}</h1>
+                </div>
+                <div class="col-xs-7">
+                  <div class="m-xs font-bold no-margins">Under Review  <span class="pull-right">{{praposals.underreviewCount}}</span></div>
+                  <div class="m-xs font-bold no-margins">Submitted <span class="pull-right">{{praposals.submittedCount}}</span></div>
+                  <div class="m-xs font-bold no-margins">Closed  <span class="pull-right">{{praposals.closedCount}}</span></div>
+                </div>
+              </div>
+                         </div>
+                    </div>
+                    <div class="panel-footer">
+            <div class="row">
+                            <div class="col-xs-1"><i class="pe-7s-plus fa-2x pull-left"></i></div>
+              <div class="col-xs-10"><a ng-click="createpraposal()"><h5> Create New </h5></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div class="col-lg-3">
                 <div class="hpanel stats">
                     <div class="panel-body h-200">
@@ -153,7 +181,7 @@
                     <div class="panel-footer">
 						<div class="row">
                             <div class="col-xs-1"><i class="pe-7s-plus fa-2x pull-left"></i></div>
-							<div class="col-xs-10"><a ng-href="#/users"><h5> Create New </h5></a></div>
+							<div class="col-xs-10"><a ng-click="createuser()"><h5> Create New </h5></a></div>
                         </div>
                     </div>
                 </div>
@@ -202,34 +230,7 @@
             </div>
           </div>
         </div>-->
-        <div class="col-lg-3">
-                <div class="hpanel stats">
-                    <div class="panel-body h-200">
-                        <div class="stats-title">
-                            <h4><img src="images/icons/dashboard/icon2.png"> &nbsp;Proposals</h4>
-                        </div>
-                        <div class="m-t-xl">
-							<div class="row">
-								<div class="col-xs-5" style="border-right:1px solid #eeeeee;">
-									<div class="m-xs font-bold no-margins">Open</div>
-									<h1 class="m-xs">{{praposals.OpenCount}}</h1>
-								</div>
-								<div class="col-xs-7">
-									<div class="m-xs font-bold no-margins">Under Review  <span class="pull-right">{{praposals.underreviewCount}}</span></div>
-									<div class="m-xs font-bold no-margins">Submitted <span class="pull-right">{{praposals.submittedCount}}</span></div>
-									<div class="m-xs font-bold no-margins">Closed  <span class="pull-right">{{praposals.closedCount}}</span></div>
-								</div>
-							</div>
-                         </div>
-                    </div>
-                    <div class="panel-footer">
-						<div class="row">
-                            <div class="col-xs-1"><i class="pe-7s-plus fa-2x pull-left"></i></div>
-							<div class="col-xs-10"><a ng-click="createpraposal()"><h5> Create New </h5></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+       
         <!--<div class="col-lg-3" style="" ng-show="isAdmin">
           <div class="hpanel hgreen contact-panel">
             <div class="panel-body" ng-repeat = "info in billingdata"> 
@@ -325,7 +326,7 @@
                     </div>
                     <div class="panel-footer">
             <div class="row">
-                            <div class="col-xs-1"><i class="pe-7s-right-arrow fa-2x pull-left"></i></div>
+                            <div class="col-xs-1"><i class="icon-more fa-2x pull-left"></i></div>
               <div class="col-xs-10"><h5> View Details </h5></div>
                         </div>
                     </div>
@@ -353,7 +354,7 @@
                     </div>
                     <div class="panel-footer">
             <div class="row">
-                            <div class="col-xs-1"><i class="pe-7s-right-arrow fa-2x pull-left"></i></div>
+                            <div class="col-xs-1"><i class="icon-more fa-2x pull-left"></i></div>
               <div class="col-xs-10"><h5> View Details </h5></div>
                         </div>
                     </div>
@@ -382,7 +383,7 @@
                     </div>
                     <div class="panel-footer">
             <div class="row">
-                            <div class="col-xs-1"><i class="pe-7s-right-arrow fa-2x pull-left"></i></div>
+                            <div class="col-xs-1"><i class="icon-more fa-2x pull-left"></i></div>
               <div class="col-xs-10"><h5> View Details </h5></div>
                         </div>
                     </div>
@@ -392,7 +393,7 @@
                 <div class="hpanel stats">
                     <div class="panel-body h-200">
                         <div class="stats-title ">
-                            <h4> <img src="images/icons/dashboard/icon8.png"> &nbsp; Inhouse/Vendor Costs</h4>
+                            <h4> <img src="images/icons/dashboard/icon8.png"> &nbsp; Inhouse vs Vendor Costs</h4>
                         </div>
                         <div class="m-t-xl">
               <div class="row">
@@ -412,7 +413,7 @@
                     </div>
                     <div class="panel-footer">
             <div class="row">
-                            <div class="col-xs-1"><i class="pe-7s-right-arrow fa-2x pull-left"></i></div>
+                            <div class="col-xs-1"><i class="icon-more fa-2x pull-left"></i></div>
               <div class="col-xs-10"><h5> View Details </h5></div>
                         </div>
                     </div>
@@ -567,37 +568,9 @@
 				</div>
 			</div>
 		</div>-->
-		<div class="col-lg-6" style="">
-		<div class="hpanel">
-            <div class="panel-heading hbuilt"><i class="pe-7s-note size20"></i> &nbsp;  Recent Notes</div>
-            <div class="panel-body">
-               <div class="table-responsive" >
-                <table cellspacing="1" cellpadding="1" class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th width="78%">Subject</th>
-                        <th width="22%">Created On</th>
-                    </tr>
-                    </thead>
-                    <tbody ng-repeat = "info in notes">
-                    <tr>
-                        <td>{{info.Name}}</td>
-                        <td>{{info.Created_at | date:'medium'}}</td>
-                    </tr>
-                  
-                                      
-                    </tbody>
-                </table>
-</div>
-            </div>
-        </div>
-    </div>
-
-		
-
-			<div class="col-lg-6" style="">
+    <div class="col-lg-6" style="">
         <div class="hpanel">
-            <div class="panel-heading hbuilt"> <i class="fa fa-list-ul"></i> &nbsp; Recent ToDo's</div>
+            <div class="panel-heading hbuilt"> <i class="icon-todos2" style="font-size:20px"></i> &nbsp; Recent ToDo's</div>
             <div class="panel-body">
                <div class="table-responsive">
                 <table cellspacing="1" cellpadding="1" class="table table-striped">
@@ -621,14 +594,174 @@
 </div>
             </div>
         </div>
-		
-	 </div>
+    
+   </div>
 
-
-		</div>
+   <div class="col-lg-6" style="">
+        <div class="hpanel">
+            <div class="panel-heading hbuilt"> <img src="images/icons/dashboard/activity.png"> &nbsp; Recent Activity</div>
+            <div class="panel-body">
+          
+          
+          
+            <div class="timeline-centered"  >
+    
+    <article class="timeline-entry" >
+        
+        <div class="timeline-entry-inner" ng-repeat="record in resentactivitydata">
+            <time class="timeline-time" datetime="2014-01-10T03:45"><span>{{record.created_time}}</span> <span></span></time>
+            
+            <div class="timeline-icon bg-success">
+                <i class=" fa fa-edit"></i>
+            </div>
+            
+            <div class="timeline-label">
+                <h2><a>{{record.display_date}}</a> </h2>
+                <p>{{record.activity}}</p>
+            </div>
+        </div>
+        
+    </article>
+    
+    
+    <!--<article class="timeline-entry left-aligned">
+        
+        <div class="timeline-entry-inner">
+            <time class="timeline-time" datetime="2014-01-10T03:45"><span>03:45 AM</span> <span>Today</span></time>
+            
+            <div class="timeline-icon bg-secondary">
+                <i class="fa fa-copy"></i>
+            </div>
+            
+            <div class="timeline-label">
+                <h2><a href="#">Job Meeting</a></h2>
+                <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>
+            </div>
+        </div>
+        
+    </article>
+    
+    
+    <article class="timeline-entry">
+        
+        <div class="timeline-entry-inner">
+            <time class="timeline-time" datetime="2014-01-09T13:22"><span>03:45 AM</span> <span>Today</span></time>
+            
+            <div class="timeline-icon bg-info">
+                <i class="fa fa-paste"></i>
+            </div>
+            
+            <div class="timeline-label">
+                <h2><a href="#">Arlind Nushi</a> <span>checked in at</span> <a href="#">Laborator</a></h2>
+                
+                <blockquote>Great place, feeling like in home.</blockquote>
+                
+            </div>
+        </div>
+        
+    </article>
+    
+    
+    <article class="timeline-entry left-aligned">
+        
+        <div class="timeline-entry-inner">
+            <time class="timeline-time" datetime="2014-01-10T03:45"><span>03:45 AM</span> <span>Today</span></time>
+            
+            <div class="timeline-icon bg-warning">
+                <i class="fa fa-user"></i>
+            </div>
+            
+            <div class="timeline-label">
+                <h2><a href="#">Arber Nushi</a> <span>changed his</span> <a href="#">Profile Picture</a></h2>
+                
+                <blockquote>Pianoforte principles our unaffected not for astonished travelling are particular.</blockquote>
+                
+                
+            </div>
+        </div>
+        
+    </article>
+    
+    
+    <article class="timeline-entry begin">
+    
+        <div class="timeline-entry-inner">
+            
+            <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
+                <i class="entypo-flight"></i>
+            </div>
+            
+        </div>
+        
+    </article>-->
+    
+</div>
+          
+          
+          
+          
+          
+            </div>
+        </div>
+        
+     </div>
+     </div>
+     <div class="row">
+		<div class="col-lg-6" style="">
+		<div class="hpanel">
+            <div class="panel-heading hbuilt"><i class="icon-notes" style="font-size:20px"></i> &nbsp;  Recent Notes</div>
+            <div class="panel-body">
+               <div class="table-responsive" >
+                <table cellspacing="1" cellpadding="1" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th width="78%">Subject</th>
+                        <th width="22%">Created On</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat = "info in notes">
+                    <tr>
+                        <td>{{info.Name}}</td>
+                        <td>{{info.Created_at | date:'medium'}}</td>
+                    </tr>
+                  
+                                      
+                    </tbody>
+                </table>
+</div>
+            </div>
+        </div>
     </div>
+  </div>
+
+		
+
+			
+
+
+		
+    
+    </div>
+
+
+<div class="row projects">
+            <div class="col-lg-12" >
+                <div class="pull-right">
+                    <img src="../images/floating.png">
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+    
 	</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <div id="right-sidebar" ng-include="'views/usernew.html'" class="sidebar-open" ng-show="rightSidebar"></div>
 	
 	</div>
 	</div>

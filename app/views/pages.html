@@ -19,16 +19,19 @@
                                 </div>
                                 <div class="modal-body">
                                   
-                                  <div class="row">
-                                  	 <button type="button" class="btn btn-primary" ng-click="show=!show">New Page</button><br><br>
+                                  
+                                  	 <button type="button" class="btn btn-success" ng-click="show=!show">New Page</button><br><br>
                                   	 <div ng-show="show">
+                                        <div class="row">
                                     <div class="col-md-6" >
                                         <div class="form-group required" >
                                             <input name="name" type="text" class="form-control" ng-maxlength="50" placeholder="Name of Page" ng-model="pagename" maxlength="20"  minlength="3" required>
                                         </div>
                                     </div>
-                                     <button type="button" class="btn btn-primary" ng-click="create()">Create</button>
-                                 </div>
+                                     </div>
+                                     <button type="button" class="btn btn-success" ng-click="create()">Create</button>
+                                      <button class="btn btn-primary" ng-click="close()">Cancel</button>
+                                
                                     <!--<div class="col-md-6">
                                         <div class="form-group required" >
                                             <input name="client_name" type="text" class="form-control" ng-maxlength="50" placeholder="Client Name " required>

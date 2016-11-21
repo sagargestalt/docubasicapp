@@ -68,10 +68,10 @@
                         <div class="hpanel zerobottom" ng-repeat="pagecnt in pagedata">
                             <div class="panel-body navy-blue text-center">
                                 <a ng-click="sendpage(pagecnt)">
-                               <img alt="logo" class="img-circle img-small" src="images/a1.jpg">
+                               <!--<img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
                                 <i class="pe-7s-config icon-lg" ></i>
                                 <div class="m-t-sm">
-                                    <strong>{{pagecnt.PageName}}</strong>
+                                    <strong>{{pagecnt.template_page_name}}</strong>
                                 </div>
                             </a>
                             </div>
@@ -116,24 +116,30 @@
 
                
                 <div class="hpanel">
-                    <div class="panel-body"  ng-model="ssss"  medium-editor  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;" data-disable-editing="true">
+                     <div db-droppable class="proposal-drop-container"  id="proposalDropContainer" >
+    <div data-ng-bind-html="htmlString" id="pagecontaint" >
+       
+       
+    </div>
+</div>
+                    <!--<div class="panel-body"  ng-model="ssss"  medium-editor  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;" data-disable-editing="true">
 
                        <div class="pull-right">
                             <img src="../images/chat.png">
                         </div>
                         
-                        <!--<h2 class="m-t-none border-all p20 text-center">You just created a new Proposal </h2>
+                        <h2 class="m-t-none border-all p20 text-center">You just created a new Proposal </h2>
                         <p class="border-all p20 text-center">
                         <br><br><br>
                            Customize your page as you would like by dragging and dropping<br> thewidgets from the widgets panel above
                            <br><br><br>
-                        </p>-->
+                        </p>
                         <br><br><br><br><br><br><br>
                         
                     
 
 
-                    </div>
+                    </div>-->
                 </div>
 <!--<button class="btn btn-primary" ng-click="submitpage()">Save</button>
 <!--<button class="btn btn-primary" ng-click="updatepage()" >update</button>-->

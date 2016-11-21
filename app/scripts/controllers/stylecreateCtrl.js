@@ -75,6 +75,7 @@ $rootScope.$on('stylenamesend', function (stylenamesend, data) {
         $scope.sdata= data1.data;
         $scope.alerts.push({msg: 'Style updated successfully', type:'success'});
         $scope.summernoteTextTwo = "";
+         $location.path( "/settingpage" );
          }
 
 
@@ -94,8 +95,9 @@ $rootScope.$on('stylenamesend', function (stylenamesend, data) {
       $scope.alerts=[];
         //$scope.pdata= data1.data.PageContent;
         if(data1.status === true){
-          $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
+          $scope.alerts.push({msg: 'Style created successfully', type:'success'});
           $scope.summernoteTextTwo = "";
+          $location.path( "/settingpage" );
 
 
         }

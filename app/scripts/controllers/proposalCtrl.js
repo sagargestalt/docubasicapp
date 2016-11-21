@@ -8,7 +8,7 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('proposalCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,userservice,settingservice,sweetAlert,$sce) {
+  .controller('proposalCtrl', function ($scope, $rootScope,$timeout, localStorageService,praposalservice,$location,$uibModal,userservice,settingservice,sweetAlert,$sce,$compile,Fabric, FabricConstants) {
     
      
       $rootScope.tenancyid = localStorageService.get('tenancyid');
@@ -20,6 +20,7 @@ angular.module('docubasic3App')
       $rootScope.templatename = localStorageService.get('templatename');
 
 function init() {
+     $scope.vUrl= "";
       var tid = {
        tenancy_id:$rootScope.tenancyid 
       };
@@ -74,6 +75,21 @@ function init() {
 
       });
 
+
+       var tabledata ={
+
+        tenancy_id: $rootScope.tenancyid
+       };
+        praposalservice.getproposaltask.save((tabledata), function(data){
+        //$scope.alerts=[];
+        $scope.dblock = data.data.discountblock;
+        $rootScope.tblock = data.data.taxblock;
+        $scope.pblock = data.data.priceblock;
+        $scope.alldata = data.data;
+         
+      });
+
+
 }
 
       init();
@@ -92,6 +108,11 @@ function init() {
 
       $scope.closemodal = function(){
           $rootScope.modalInstance.close();
+
+      };
+      $scope.closebar = function(){
+          $rootScope.rightSidebar = false;
+          $rootScope.rightSidebar1 = false;
 
       };
 
@@ -123,7 +144,7 @@ function init() {
 
           var data = {
             id:country.id,
-            status:2,
+            status:1,
             updated_by : $rootScope.userid
 
 
@@ -147,7 +168,7 @@ function init() {
 
         var data = {
           id:collabusers.id,
-          status:1,
+          status:2,
           updated_by : $rootScope.userid
 
 
@@ -201,7 +222,8 @@ function init() {
                    
                     });
 
-                    sweetAlert.swal("Deleted!", "Task category Deleted successfully", "success");
+                    sweetAlert.swal("Deleted!", " Deleted successfully", "success");
+                    $location.path( "/proposal-summery" );
                       } else {
                           sweetAlert.swal("Cancelled");
                       }
@@ -210,6 +232,7 @@ function init() {
       };
 
       $rootScope.callme = function(){
+       // $scope.videoSource = "https://www.youtube.com/embed/r4O4Xec60_k";
         var data = {
 
         template_id:$rootScope.template_id,
@@ -217,14 +240,19 @@ function init() {
         proposal_id:$rootScope.proposal_id,
         content:$('#proposalDropContainer').html(),
         created_by:$rootScope.userid,
-        video_url:"https://www.youtube.com/embed/r4O4Xec60_k",
+        video_url: $scope.vUrl,
+        //video_url:"https://www.youtube.com/embed/r4O4Xec60_k",
         tenancy_id: $rootScope.tenancyid,
+         pricetable_content:$rootScope.finalpricedata,
+            taxtable_content:$rootScope.finaltaxdata,
+            distable_content:$rootScope.finaldisdata,
+             
         };
 
         praposalservice.savepage.save((data), function(data1){
         $scope.alerts=[];
         //$scope.pagedata= data1.data;
-        $scope.ssss = data1.data.page_contents;
+        //$scope.ssss = data1.data.page_contents;
          
       });
 
@@ -237,7 +265,7 @@ function init() {
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/imageupload.html',
-        controller: 'praposalCtrl',
+        controller: 'proposalCtrl',
         //windowClass: 'modal-lg',
         //size: size,
         resolve: {
@@ -254,7 +282,7 @@ function init() {
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/email.html',
-        controller: 'praposalCtrl',
+        controller: 'proposalCtrl',
         windowClass: 'modal-lg',
         //size: size,
         resolve: {
@@ -270,7 +298,7 @@ function init() {
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/collabraters.html',
-        controller: 'praposalCtrl',
+        controller: 'proposalCtrl',
         windowClass: 'modal-lg',
         //size: size,
         resolve: {
@@ -373,7 +401,7 @@ function init() {
           tenancy_id:$rootScope.tenancyid,
            updated_by:$rootScope.userid,
            id:$rootScope.proposal_id,
-           name:$scope.pname,
+           name: $rootScope.praposalname,
 
           };
           //$scope.pname = $rootScope.templatename;
@@ -382,7 +410,7 @@ function init() {
           $scope.alerts=[];
           if(data1.status === true){
             $scope.show = false;
-            $rootScope.praposalname = $scope.pname;
+            //$rootScope.praposalname = $scope.pname;
 
           }
       
@@ -408,12 +436,47 @@ function init() {
      
     };*/
 
-    $scope.sendpage = function(page){
-      $scope.ssss =  page.template_page_content;
-        $scope.htmlString = $sce.trustAsHtml(page.template_page_content);
-        console.log($scope.htmlString);
+    $scope.sendpage = function(page,i){
+     // $scope.htmlString = "";
+      //$scope.ssss =  page.template_page_content;
+        //$scope.htmlString = $sce.trustAsHtml(page.template_page_content);
+     
+           $scope.selected = true;
+
+       $scope.selectedIndex=i;
         //$scope.ssss =  $('#proposalDropContainer').html();
       $rootScope.pageid = page.template_page_id;
+        var data = {
+
+          page_id:$rootScope.pageid,
+          proposal_id:$rootScope.proposal_id,
+        };
+        $scope.demo = true;
+         praposalservice.getpagecontent.save((data), function(data1){
+          $scope.alerts=[];
+          //$scope.ssss = data1.data.page_contents;
+           //$scope.htmlString = $sce.trustAsHtml(data1.data.page_contents);
+            // $scope.html = data1.data.proposal_page_contents;
+               console.log($scope.html);
+            var link = $compile(data1.data.proposal_page_contents);
+            var compiledText = link($scope);
+            console.log(compiledText);
+            $('#proposalDropContainer').append(compiledText);
+            //$scope.html = compiledText;   
+            //$scope.demo = false;
+            //$timeout(function() {
+              // $scope.demo = true;
+            //}, 5000);
+            //$scope.contentdata = compiledText;
+
+
+           //$rootScope.loaddata();
+          //$scope.pagedata= data1.data;
+           
+        });
+
+
+
     };
 
     $scope.priweviemode = function(){
@@ -478,15 +541,45 @@ function init() {
                 $(this).attr('contenteditable','false');
             });*/
 
-           $scope.$watch('templatename', function () {
-            localStorageService.set('templatename',$rootScope.templatename);
-              // localStorageService.set('userid',$rootScope.userid);
-            }, true);
+      $scope.$watch('templatename', function () {
+          localStorageService.set('templatename',$rootScope.templatename);
+          // localStorageService.set('userid',$rootScope.userid);
+        }, true);
 
-           $rootScope.$on('SAVE_PROPOSAL_MARKUP', function() {
-        console.log($('#proposalDropContainer').html());
+        $rootScope.$on('SAVE_PROPOSAL_MARKUP', function() {
+            console.log($('#proposalDropContainer').html());
+            $scope.vurl=[];
+            var url = 'https://www.youtube.com/embed/r4O4Xec60_k';
+            $scope.vurl.push(url);
 
-      });
+            var data = {
+
+            template_id:$rootScope.template_id,
+            page_id: $rootScope.pageid,
+            //page_id:2,
+            proposal_id:$rootScope.proposal_id,
+            content:$('#proposalDropContainer').html(),
+            created_by:$rootScope.userid,
+            //video_url: $scope.vUrl,
+            video_url:$scope.vurl,
+            tenancy_id: $rootScope.tenancyid,
+           pricetable_content:"",
+           taxtable_content:"",
+           distable_content:"",
+            //pricetable_content:$rootScope.finalpricedata,
+            //taxtable_content:$rootScope.finaltaxdata,
+            //distable_content:$rootScope.finaldisdata,
+            //customer_price:$rootScope.customerval
+            };
+
+              praposalservice.savepage.save((data), function(data1){
+              $scope.alerts=[];
+              //$scope.pagedata= data1.data;
+              $scope.ssss = data1.data.page_contents;
+               
+            });
+
+        });
 
 
       $scope.imageupload = function(){
@@ -509,15 +602,78 @@ function init() {
         };
 
 
-    $scope.selectimage = function(thumbs){
-      $scope.imagepath = thumbs.image_path;
-       $rootScope.imageinsert($scope.imagepath);
 
+          
+         $rootScope.pushdata = function(detail){
+           $rootScope.finalpricedata = [];
+          $scope.newprice=[];
+          var pricedata = detail;
+          //console.log(info);
+          $scope.newprice.push(pricedata);
+          console.log($scope.pblock);
+          //$rootScope.finalpricedata.push($scope.customerprice);
+          $rootScope.finalpricedata.push(pricedata);
+          //appendtax={};
 
+         };
 
-
-    };
-
+          $rootScope.pushtaxdata = function(detail){
+            $rootScope.finaltaxdata=[];
+          $scope.newtax=[];
+          var appendtax = detail;
+          //console.log(info);
+          $scope.newtax.push(appendtax);
            
+          console.log($scope.pblock);
+          $rootScope.finaltaxdata.push(appendtax);
+          //appendtax={};
 
+         };
+
+         $rootScope.pushdisdata = function(detail){
+          $rootScope.finaldisdata = [];
+          $scope.newdis=[];
+          var appenddis = detail;
+          //console.log(info);
+          $scope.newdis.push(appenddis);
+          console.log($scope.pblock);
+           $rootScope.finaldisdata.push(appenddis);
+          //appendtax={};
+          console.log($rootScope.finaldata);
+         };
+
+         $rootScope.catchcustomerprice = function(txt){
+          $rootScope.customerval=[];
+
+          $rootScope.customerval.push(txt);
+
+         };
+         $rootScope.pushtask = function(tasklist){
+           $rootScope.finaltask = [];
+         // $scope.newprice=[];
+          var taskdata = tasklist;
+          console.log(taskdata);
+          //$scope.newprice.push(pricedata);
+          //console.log($scope.pblock);
+          //$rootScope.finalpricedata.push($scope.customerprice);
+          $rootScope.finaltask.push(taskdata);
+          //appendtax={};
+
+         };
+
+          $scope.dynamicPopover = {
+              content: 'hhh',
+              templateUrl: 'views/myPopoverTemplate.html',
+              title: 'Title'
+            };
+$scope.color = '#FF0000';
+
+            $scope.options = {
+    
+    format:'hex',
+  
+};
+
+
+            
   });

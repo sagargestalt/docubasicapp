@@ -9,7 +9,7 @@
 
                 <div class="pull-right m-t-lg" id="hbreadcrumb">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
                        
                         <li class="active">
                             <span>Notes</span>
@@ -124,13 +124,13 @@
 													<textarea class="form-control" ng-model="notediscription"> </textarea>
 												</div><br>
 												<div class="btn-group">
-													<button class="btn btn-primary" ng-click="updatenote()">
+													<button class="btn btn-success" ng-click="updatenote()">
 												
 													Save
 													</button>&nbsp;&nbsp;&nbsp;
 													</div>
 													<div class="btn-group">
-													<button class="btn btn-primary" ng-click="addnote()" >
+													<button class="btn btn-primary" ng-click="addnote()" style="height: 47px;">
 													
 													Cancel
 													</div>
@@ -202,7 +202,7 @@
 													<textarea class="form-control" ng-model="newnotediscription"> </textarea>
 												</div><br>
 												<div class="btn-group">
-													<button class="btn btn-primary" ng-click="submitnote()">
+													<button class="btn btn-success" ng-click="submitnote()">
 													
 													Save
 													</button>

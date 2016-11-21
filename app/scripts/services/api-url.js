@@ -55,6 +55,8 @@ return {
       'changeadmin':BASE_URL +'companyadmin',
       'praposalcountdata':BASE_URL +'proposal/:id',
       'validuser':BASE_URL +'chkemail',
+      'resentactivitydata':BASE_URL +'recentproposals',
+            
 
       //update service//
       'updatepricedata':BASE_URL +'priceblocks/:id',
@@ -115,5 +117,8 @@ return {
       'approvepraposal':BASE_URL +'approveProposal',
       'getiamgesdata':BASE_URL +'images',
       'imageup':BASE_URL +'upload',
+      'pagecontent':BASE_URL +'pagecontent',
+      'proposaltask':BASE_URL +'alldata',
+      'profitanalysys':BASE_URL +'costProfitview',
    	};
 }());

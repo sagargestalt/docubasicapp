@@ -8,13 +8,8 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('praposalsummeryCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,sweetAlert) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
+  .controller('proposalsummeryCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,sweetAlert) {
+    
       $rootScope.tenancyid = localStorageService.get('tenancyid');
       $rootScope.userid = localStorageService.get('userid');
       $rootScope.isAdmin = localStorageService.get('isAdmin');
@@ -23,6 +18,16 @@ angular.module('docubasic3App')
       $rootScope.template_id = localStorageService.get('template_id');
       $rootScope.templatename = localStorageService.get('templatename');
       $scope.praposalall = true;
+      var costdata = {
+
+      tenancy_id: $rootScope.tenancyid,
+    created_by:  $rootScope.userid,
+     created_bproposal_id: $rootScope.proposal_id
+ 
+      };
+        praposalservice.costprofit.save((costdata), function(data1){
+          console.log('hi');
+          });
 
       var data = {
       	tenancy_id: $rootScope.tenancyid,
@@ -40,7 +45,7 @@ angular.module('docubasic3App')
 
     	});
 
-      $scope.clonepraposal = function(){
+      $scope.clonepraposal = function(detail){
         $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'views/clone.html',
@@ -129,7 +134,7 @@ angular.module('docubasic3App')
         $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'views/collabraters.html',
-      controller: 'praposalCtrl',
+      controller: 'proposalCtrl',
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
@@ -152,11 +157,12 @@ angular.module('docubasic3App')
 
       };
 
-      $scope.emailwindow = function(){
+      $scope.emailwindow = function(detail){
+         $rootScope.proposal_id = detail.id;
         $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'views/email.html',
-      controller: 'praposalCtrl',
+      controller: 'proposalCtrl',
       windowClass: 'modal-lg',
       //size: size,
       resolve: {
@@ -172,7 +178,7 @@ angular.module('docubasic3App')
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/createpraposal.html',
-         controller: 'createpraposalCtrl',
+         controller: 'createproposalCtrl',
         windowClass: 'modal-lg',
         //size: size,
         resolve: {
@@ -222,7 +228,10 @@ angular.module('docubasic3App')
 
       };
 
-
+$scope.$watch('proposal_id', function () {
+      localStorageService.set('proposal_id',$rootScope.proposal_id);
+     // localStorageService.set('userid',$rootScope.userid);
+    }, true);
 
 
       });

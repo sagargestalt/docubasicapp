@@ -17,7 +17,7 @@
 
                 <div class="pull-right m-t-lg" id="hbreadcrumb">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a ng-href="#/main">Dashboard</a></li>
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
                        
                         <li class="active">
                             <span>Pricing</span>
@@ -41,11 +41,11 @@
 <div class="col-lg-12" >
 <div class="hpanel">
    <div class="panel-body">
-   <div class="pull-right">
+   <div class="pull-left">
   <a id="top"></a>
-  <button class="btn btn-primary"  ng-model="collapsed" ng-click="pricesection()" >New Price</button>
-  <button class="btn btn-primary" ng-model="collapsed1" ng-click="discontsection()" >New Discount</button>
-  <button class="btn btn-primary" ng-model="collapsed2" ng-click="taxsection()" >New Tax</button>
+  <button class="btn btn-success "  ng-model="collapsed" ng-click="pricesection()" ng-hide="pricesectionshow" >New Price</button>
+  <button class="btn btn-success" ng-model="collapsed1" ng-click="discontsection()" ng-hide="collapsed1" >New Discount</button>
+  <button class="btn btn-success" ng-model="collapsed2" ng-click="taxsection()" ng-hide="collapsed2" >New Tax</button>
   </div>
   <br>
     <div class="takadd" ng-show="pricesectionshow"><br><br>
@@ -75,7 +75,7 @@
               <div class="col-md-2">
                 <div class="form-group required" ng-class="{'has-error': priceForm.quntaty.$touched && priceForm.quntaty.$error.required}">
                    <label class="control-label">Quantity</label><br>
-               <input name="quntaty" type="number" class="form-control" placeholder="Quantity" id="user-pass" ng-model="quantity" ng-blur="mulall(quantity,unitcost,unitprice)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+               <input name="quntaty" type="number" class="form-control" placeholder="QTY" id="user-pass" ng-model="quantity" ng-blur="mulall(quantity,unitcost,unitprice)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
                <span class="help-block"  ng-show="priceForm.quntaty.$touched && priceForm.quntaty.$invalid">Invalid</span>
               </div>
             </div>
@@ -148,8 +148,8 @@
         </form>
           <div class="row">
               <div class="col-md-12">
-                <button class="btn btn-primary" ng-click="submitdata()" ng-disabled="priceForm.$invalid" ng-hide="updateprice">Save</button>
-                 <button class="btn btn-primary" ng-click="updatepriceblock()" ng-show ="updateprice">Update</button>
+                <button class="btn btn-success" ng-click="submitdata()" ng-disabled="priceForm.$invalid" ng-hide="updateprice">Save</button>
+                 <button class="btn btn-success" ng-click="updatepriceblock()" ng-disabled="priceForm.$invalid" ng-show ="updateprice">Update</button>
                   <button class="btn btn-primary" ng-click="closeprice()" >Cancel</button>
             </div>
           </div>
@@ -177,7 +177,7 @@
            <p>Select</p></select>
           </div>
              </div>
-       <div class="col-md-3">
+       <div class="col-md-4">
                <div class="form-group required" ng-class="{'has-error': discountForm.val.$touched && discountForm.val.$error.required}">
                  <label class="control-label">Amount</label><br>
                 <input name="val" type="number" class="form-control" placeholder="Amount/Percentage" id="user-pass" ng-model="value" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required >
@@ -187,8 +187,8 @@
            </div>
             <div class="row">
              <div class="col-md-6">
-               <button class="btn btn-primary" ng-click="adddiscount()" ng-disabled="discountForm.$invalid" ng-hide="dupdate" >Save</button>
-                 <button class="btn btn-primary" ng-click="updatediscount()" ng-show="dupdate" >Update</button>
+               <button class="btn btn-success" ng-click="adddiscount()" ng-disabled="discountForm.$invalid" ng-hide="dupdate" >Save</button>
+                 <button class="btn btn-succes" ng-click="updatediscount()"  ng-disabled="discountForm.$invalid" ng-show="dupdate" >Update</button>
                  <button class="btn btn-primary" ng-click="closediscount()" >Cancel</button>
              </div>
        </div>
@@ -221,8 +221,8 @@
            </div>
         <div class="row">
              <div class="col-md-12">
-               <button class="btn btn-primary" ng-click="addtax()"  ng-disabled="taxForm.$invalid" ng-hide="tupdate">Save</button>
-                <button class="btn btn-primary" ng-click="updatetax()" ng-show="tupdate">Update</button>
+               <button class="btn btn-success" ng-click="addtax()"  ng-disabled="taxForm.$invalid" ng-hide="tupdate">Save</button>
+                <button class="btn btn-success" ng-click="updatetax()" ng-disabled="taxForm.$invalid" ng-show="tupdate">Update</button>
                  <button class="btn btn-primary" ng-click="closetax()" >Cancel</button>
 
              </div>

@@ -9,11 +9,7 @@
  */
 angular.module('docubasic3App')
   .controller('cloneCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,userservice,settingservice) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+   
     $rootScope.tenancyid = localStorageService.get('tenancyid');
       $rootScope.userid = localStorageService.get('userid');
       $rootScope.isAdmin = localStorageService.get('isAdmin');
@@ -21,6 +17,17 @@ angular.module('docubasic3App')
       $rootScope.proposal_id = localStorageService.get('proposal_id');
       //$rootScope.template_id = localStorageService.get('template_id');
       $rootScope.templatename = localStorageService.get('templatename');
+      $scope.closeAlerts = function(index) {
+        $scope.alerts.splice(1, index);
+        $scope.alerts = [];
+    };
+
+    $scope.closeAlert = function(index) {
+        $scope.errors.splice(1, index);
+        $scope.errors = [];
+    };
+
+
 
        var data =  {id:$rootScope.tenancyid };
     userservice.getuserdetail.query((data), function(data1){
@@ -86,10 +93,12 @@ angular.module('docubasic3App')
         $rootScope.proposal_id = $scope.templates.proposal_id;
 
 
+          $rootScope.modalInstance.close();
 
-            $location.path( "/praposal" );
 
-
+        }
+        if(data1.status === false){
+          $scope.alerts.push({msg: 'Task Updated Failed', type:'danger'});
         }
          
     });

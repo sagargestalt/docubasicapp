@@ -5,7 +5,7 @@ angular.module('docubasic3App')
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: '/views/db-line.html',
+      templateUrl: 'views/db-line.html',
       link: function(scope, element, attr) {
         $(element).draggable({containment: '#proposalDropContainer'});
         $(element).attr('id', 'db-line-' + attr.dynamicId);

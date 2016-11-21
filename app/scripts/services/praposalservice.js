@@ -29,6 +29,7 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
             praposalreject:$resource( apiUrl.rejectproposal, {} ),
             uploadsign:$resource( apiUrl.signupload, {} ),
             praposalapprove:$resource( apiUrl.approvepraposal, {} ),
+            getpagecontent:$resource( apiUrl.pagecontent, {} ),
           
 
 			//praposal summery//
@@ -38,6 +39,8 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
             //image upload//
             getiamage:$resource(apiUrl.getiamgesdata, {} ),
             upiamage: $resource( apiUrl.imageup, {} ),
+            getproposaltask:$resource( apiUrl.proposaltask, {} ),
+            costprofit:$resource( apiUrl.profitanalysys, {} ),
 
 
       

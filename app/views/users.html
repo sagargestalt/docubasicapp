@@ -10,20 +10,27 @@
             <div class="panel-body">
                
 
-                <div class="pull-right m-t-lg" id="hbreadcrumb">
+                <div class="pull-right" id="hbreadcrumb">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
                        
                         <li class="active">
                             <span>Users</span>
                         </li>
+                        <li>
+                          <span><button class="btn btn-xs btn-success" ng-model="collapsed" ng-click="collapsed=!collapsed" ng-hide="hideadd" ng-disabled="!isAdmin" ><i class="icon-plus" ></i> New User</button></span>
+                       
+                      </li>
                     </ol>
+
                 </div>
                 <h2 class="font-light m-b-xs">
                    Users
                 </h2>
                 <small></small>
+
             </div>
+
         </div>
     
 	</div>
@@ -33,12 +40,12 @@
   	<div class="row">
 <div class="col-lg-12" >
 <div class="hpanel">
-	 <div class="panel-body">
+	 <div >
 	 
   <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
   <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
-  <button class="btn btn-primary pull-right"  ng-model="collapsed" ng-click="collapsed=!collapsed" ng-hide="hideadd" ng-disabled="!isAdmin">Add New</button>
-  <div class="takadd" ng-show="collapsed">
+ 
+  <div class="panel-body" ng-show="collapsed">
   
   
   
@@ -95,8 +102,8 @@
 		  
 		   <div class="row">
 		  <div class="col-md-12">
-            <button class="btn btn-primary" ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update">save</button>
-            <button class="btn btn-primary" ng-click="updateuser()"  ng-disabled="resource.$invalid" ng-show="update">Update</button>
+            <button class="btn btn-success" ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update">save</button>
+            <button class="btn btn-success" ng-click="updateuser()"  ng-disabled="resource.$invalid" ng-show="update">Update</button>
             <button class="btn btn-primary" ng-click="closeuser()">Cancel</button>
       
               </div>
@@ -110,13 +117,14 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" >
 
-    <div class="col-md-12">
+    <div class="col-md-12" >
 
-      <div class="col-md-6">
+      <div class="col-md-6" style="padding:0px 5px"  ng-repeat="info in userdata.users">
       
-         <div class="row"  ng-repeat="info in userdata.users">
+         <div class="row" >
+          <div class="col-sm-12">
           <div class="col-sm-11" style="padding:0px">
             <div class="hpanel">
               <div class="panel-body">
@@ -133,6 +141,7 @@
                               <div class="m-t-sm">
                                 <strong>{{info.first_name}}</strong>
                                 <p class="small" ng-if="info.is_tenant_admin == 1"><i class="fa fa-user"></i> &nbsp; Admin</p>
+                                 <p class="small" ng-if="info.is_tenant_admin == 0"><i class="fa fa-user"></i> &nbsp; End User</p>
                               </div>
                             </div>
                           </div>
@@ -186,14 +195,14 @@
           <div class="col-sm-1" style="padding:0px">
             <div class="hpanel" >
                  <div class="panel-body no-padding">
-              
-                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" > <i class="fa fa-user" ></i></a></div>
-                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="edituser(info)"> <i class="fa fa-edit" ></i></a></div>
-                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="deleteuser(info)"> <i class="fa fa-close" ></i></a></div>
+              <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="deleteuser(info)"> <i class="icon-close4" ></i></a></div>
+                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" > <i class="icon-copy" ></i></a></div>
+                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="edituser(info)"> <i class="icon-edit3" ></i></a></div>
+                
               </div>
             </div>
           </div>
-          
+          </div>
           
         </div>
         

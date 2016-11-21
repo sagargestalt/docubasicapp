@@ -15,6 +15,7 @@ angular.module('docubasic3App')
     },
 
     link: function check()
+   
   {
       $( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
       $(".window").draggable({handle:'.bar'});
@@ -33,7 +34,7 @@ angular.module('docubasic3App')
     });
 
 
-      $('.draggable').draggable();
+      $('.db-circle-widget').draggable();
 
 
       $("#d")
@@ -75,9 +76,9 @@ angular.module('docubasic3App')
 
 
 
-        $(".editable-area").on("click", function() {
+        $(".textbox").on("click", function() {
             //$(".window").draggable('disable');
-            $(this).find(".editable-area").focus();
+            $(this).find(".textbox").focus();
              $rootScope.callme();
 
         });

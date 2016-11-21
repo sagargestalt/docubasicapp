@@ -167,6 +167,9 @@ angular.module('docubasic3App')
 
             $scope.allresource = data.data;
             if(data.status === true){
+              $scope.collapsed = false;
+               $scope.taskname = "";
+               $scope.update = false;
                 
                 init();
               }

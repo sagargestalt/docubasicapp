@@ -8,7 +8,7 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('pagecreateCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,updatepageservice,pagenameservice,$timeout,$) {
+  .controller('pagecreateCtrl', function ($scope, $rootScope,localStorageService,pageservice,$location,updatepageservice,pagenameservice,$timeout,$sce) {
  $rootScope.tenancyid = localStorageService.get('tenancyid');
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
@@ -24,6 +24,7 @@ angular.module('docubasic3App')
             $scope.xxx= newdata.PageContent;
             $scope.istylename = newdata.StyleName;
             $scope.ssss = $scope.xxx;
+             $scope.htmlString = $sce.trustAsHtml(newdata.PageContent);
             $scope.pgname = newdata.PageName;
 
             $rootScope.id = newdata.Page_id;
@@ -62,40 +63,25 @@ angular.module('docubasic3App')
 
       }
     }, true);*/
-    $( ".draggable" ).draggable();
-$( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
-$( "#dragThis" ).draggable();
+  
 
 
-
-
-    $("#dgg")
-    .draggable()
-    .click(function(){
-        if ( $(this).is('.ui-draggable-dragging') ) {
-            return;
-        }
-        $(this).draggable( "option", "disabled", true );
-       $(this).attr('contenteditable','true');
-    })
-    .blur(function(){
-        $(this).draggable( 'option', 'disabled', false);
-        $(this).attr('contenteditable','false');
-    });
 
     $scope.submitpage = function(){
             var tid={
                 tenancy_id:$rootScope.tenancyid,
                 created_by:$rootScope.userid ,
                 page_name: $rootScope.pagename,
-                page_content:$scope.ssss,
+                page_content:$('#proposalDropContainer').html(),
                 };
 
         pageservice.postpage.save((tid), function(data){
             $scope.alerts=[];
-            if(data.status){
+            if(data.status === true){
         $rootScope.sdata= data.data;
-        $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
+        $scope.alerts.push({msg: 'Page created uccessfully', type:'success'});
+         $scope.pgname = "";
+              $scope.ssss = "";
       }
 
       else{
@@ -114,14 +100,16 @@ $( "#dragThis" ).draggable();
                 tenancy_id:$rootScope.tenancyid,
                 updated_by:$rootScope.userid ,
                 page_name:$scope.pgname,
-                page_content:$scope.ssss,
+                page_content:$('#proposalDropContainer').html(),
                 };
 
         pageservice.updatepage.query((tid), function(data){
             $scope.alerts=[];
-            if(data.status){
+            if(data.status === true){
                $rootScope.sdata= data.data;
-              $scope.alerts.push({msg: 'Style created uccessfully', type:'success'});
+              $scope.alerts.push({msg: 'Page updated successfully', type:'success'});
+              $scope.pgname = "";
+              $scope.ssss = "";
             }
 
             else{

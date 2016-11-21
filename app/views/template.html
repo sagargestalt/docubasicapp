@@ -22,7 +22,7 @@
                                 <div class="modal-body">
                                   
                                   <div class="row">
-                                  	 <button type="button" class="btn btn-primary" ng-click="show=!show">New Template</button><br><br>
+                                  	 <button type="button" class="btn btn-success" ng-click="show=!show" ng-hide="update">New Template</button><br><br>
                                   	 <div ng-show="show">
                                     <div class="col-md-6" >
                                         <div class="form-group required" >
@@ -41,8 +41,9 @@
                   </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary" ng-hide="update" ng-click="create()">Create</button>
-                                      <button type="button" class="btn btn-primary" ng-show="update" ng-click="updatetemp()">Update</button>
+                                    <button type="button" class="btn btn-success" ng-hide="update" ng-click="create()">Create</button>
+                                    <button class="btn btn-primary" ng-click="closetask()">Cancel</button>
+                                      <button type="button" class="btn btn-success" ng-show="update" ng-click="updatetemp()">Update</button>
                                  </div>
 
                                     <!--<div class="col-md-6">

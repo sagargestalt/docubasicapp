@@ -5,7 +5,7 @@ angular.module('docubasic3App')
       restrict: 'E',
       replace: true,
       scope: {},
-      templateUrl: '/views/db-video.html',
+      templateUrl: 'views/db-video.html',
       link: function(scope, element, attr) {
         scope.toggleShowHide = false;
         $(element).draggable({containment: '#proposalDropContainer'});
@@ -18,6 +18,7 @@ angular.module('docubasic3App')
 
         scope.submitUrl = function() {
           scope.videoSource = angular.copy(scope.videoUrl);
+          scope.vUrl = angular.copy(scope.videoUrl);
           scope.toggleShowHide = false;
         };
 
@@ -27,6 +28,9 @@ angular.module('docubasic3App')
 
         scope.toggleShowHideConfig = function() {
           scope.toggleShowHide = !scope.toggleShowHide;
+        };
+         scope.delete = function() {
+           $(element).remove();  
         };
       }
     };

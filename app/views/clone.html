@@ -4,6 +4,8 @@
 <div id="wrapper">-->
 
                <div class="modal-dialog modal-lg">
+                <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+   <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
 
                 
                                 <div class="color-line"></div>
@@ -47,7 +49,7 @@
                   
                 </div>
                                     </div>
-                                   
+                                     <button type="button" class="btn btn-success" ng-click="submit()">Clone</button>
 
                                     <!--<div class="col-md-3">
                                          <br>
@@ -142,7 +144,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                                    <button type="button" class="btn btn-primary" ng-click="submit()">Clone</button>
+                                  
                                 </div>
                            
 

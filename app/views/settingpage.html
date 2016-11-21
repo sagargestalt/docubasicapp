@@ -16,13 +16,13 @@
                 </div>-->
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" ng-init="selectedTab = 'Company'">
 
-                        <div class="hpanel zerobottom">
-                            <div class="panel-body navy-blue text-center">
+                        <div class="hpanel zerobottom "  ng-class="{ 'hnavyblue' :selectedTab === 'Company'}">
+                            <div class="panel-body text-center ">
                                <!-- <img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
-                               <a ng-click="opencompany()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                               <a ng-click="opencompany(); selectedTab = 'Company'">
+                                <i class="icon-company icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Company</strong>
                                 </div>
@@ -30,10 +30,10 @@
                             </div>
                         </div>
 
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Categories'}">
                             <div class="panel-body text-center">
-                                 <a ng-click="opentask()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                                 <a ng-click="opentask(); selectedTab = 'Categories'">
+                                <i class="icon-taskcategories icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Task Categories</strong>
                                 </div>
@@ -41,10 +41,10 @@
                             </div>
                         </div>
 
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Tasks'}">
                             <div class="panel-body text-center">
-                                <a ng-click="openprojecttask()">
-                               <i class="pe-7s-config icon-lg" ></i>
+                                <a ng-click="openprojecttask(); selectedTab = 'Tasks'">
+                               <i class="icon-projecttask icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Project Tasks</strong>
                                </div>
@@ -53,10 +53,10 @@
                         </div>
 
 
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Pricing'}">
                             <div class="panel-body text-center">
-                                <a ng-click="openprice()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                                <a ng-click="openprice();  selectedTab = 'Pricing'">
+                                <i class="icon-pricing2 icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Pricing</strong>
                                 </div>
@@ -66,10 +66,10 @@
 
           
 
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Vendors'}" >
                             <div class="panel-body text-center">
-                                <a ng-click="openvendor()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                                <a ng-click="openvendor(); selectedTab = 'Vendors'">
+                                <i class="icon-vendors icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Vendors</strong>
                                 </div>
@@ -77,10 +77,10 @@
                             </div>
                         </div>
 
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Resource'}">
                             <div class="panel-body text-center">
-                                <a ng-click="openresource()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                                <a ng-click="openresource(); selectedTab = 'Resource'">
+                                <i class="icon-resourcetypes icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Resource Types</strong>
                                 </div>
@@ -88,10 +88,10 @@
                             </div>
                         </div>
 
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Clients'}">
                             <div class="panel-body text-center">
-                                 <a ng-click="openclient()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                                 <a ng-click="openclient(); selectedTab = 'Clients'">
+                                <i class="icon-resourcetypes icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Clients</strong>
                                 </div>
@@ -99,10 +99,10 @@
                             </div>
                         </div>
 
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Styles'}">
                             <div class="panel-body text-center">
-                                 <a ng-click="openstyle()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                                 <a ng-click="openstyle(); selectedTab = 'Styles'">
+                                <i class="icon-styletheme icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Styles</strong>
                                 </div>
@@ -110,20 +110,20 @@
                             </div>
                         </div>
 
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Pages'}">
                             <div class="panel-body text-center">
-                                 <a ng-click="openpage()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                                 <a ng-click="openpage(); selectedTab = 'Pages'">
+                                <i class="icon-page2 icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Pages</strong>
                                 </div>
                             </a>
                             </div>
                         </div>
-                        <div class="hpanel zerobottom">
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Template'}">
                             <div class="panel-body text-center">
-                                 <a ng-click="opentemplate()">
-                                <i class="pe-7s-config icon-lg" ></i>
+                                 <a ng-click="opentemplate(); selectedTab = 'Template'">
+                                <i class="icon-1 icon-lg" ></i>
                                 <div class="m-t-sm">
                                     <strong>Template</strong>
                                 </div>

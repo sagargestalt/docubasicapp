@@ -47,7 +47,7 @@
                             <i class="pe-7s-umbrella fa-2x prl15 border-right"></i>
                             <i class="pe-7s-trash fa-2x prl15 border-right"></i>
                             <i class="pe-7s-tools fa-2x prl15 border-right"></i>-->
-                            <a ng-click="openreject()"><i class="pe-7s-speaker fa-2x prl15">Reject</i></a>
+                            <a ng-click="openreject()" ng-hide="reject"><i class="pe-7s-speaker fa-2x prl15">Reject</i></a>
                         </div>
                     </div>  
                 </div>
@@ -64,7 +64,7 @@
 
                 
 
-                        <div class="hpanel zerobottom" ng-repeat="pagecnt in pagecontent">
+                        <!--<div class="hpanel zerobottom" ng-repeat="pagecnt in pagecontent">
                             <div class="panel-body navy-blue text-center">
                                 <a ng-click="sendpage(pagecnt)">
                                 <i class="pe-7s-config icon-lg" ></i>
@@ -73,7 +73,19 @@
                                 </div>
                             </a>
                             </div>
+                        </div>-->
+
+
+                          <div class="hpanel zerobottom" ng-repeat="pagecnt in pagecontent" ng-class="{ 'hnavyblue' : $index===selectedIndex}">
+                        <div class="panel-body text-center" >
+                            <a ng-click="sendpage(pagecnt,  $index)">
+                                <!--<img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
+                                <div class="m-t-sm" style="margin-bottom:10px;">
+                                    <strong>{{pagecnt.page_name}}</strong>
+                                </div>
+                            </a>
                         </div>
+                    </div>
 
                         <!--<div class="hpanel zerobottom">
                             <div class="panel-body text-center">

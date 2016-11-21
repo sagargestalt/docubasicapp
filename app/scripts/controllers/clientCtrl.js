@@ -25,6 +25,11 @@ angular.module('docubasic3App')
 
     };
 
+    $scope.closemodal = function(){
+          $rootScope.modalInstance.close();
+
+        };
+
 
 
     $scope.closeclient = function(){
@@ -272,6 +277,23 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
 
             $scope.allresource = data.data;
             if(data.status === true){
+                $scope.collapsed = false;
+                $scope.fname="";
+                $scope.lname="";
+                $scope.email="";
+                $scope.displayname="";
+                $scope.mobile="";
+                $scope.url="";
+                $scope.addressdetail="";
+                $scope.country="";
+                $scope.state="";
+                $scope.city="";
+                $scope.pcode="";
+                $scope.summary="";
+                $scope.phone="";
+                 $scope.clientid="";
+                 $scope.cname="";
+                $scope.update =false;
                 //$scope.alerts.push({msg: 'Client Deleted successfully', type:'success'});
                 init();
                 }

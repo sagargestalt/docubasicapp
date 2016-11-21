@@ -18,7 +18,7 @@
 
                 <div class="pull-right m-t-lg" id="hbreadcrumb">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a ng-href="#/main">Dashboard</a></li>
+                        <li><a  ng-href="#/main"><i class="icon-page-14"></i> Dashboard</a></li>
                        
                         <li class="active">
                             <span>Client</span>
@@ -43,7 +43,7 @@
 <div class="hpanel">
 	 <div class="panel-body">
  
- 	<button class="btn btn-primary pull-right"  ng-model="collapsed" ng-click="clientsection()" >Add New</button><br>
+ 	<button class="btn btn-success pull-left"  ng-model="collapsed" ng-click="clientsection()" ng-hide="collapsed" >Add New</button><br>
  
  		<div class="takadd" ng-show="collapsed">
       <h3 class="font-light m-b-xs" ng-hide="update">
@@ -54,7 +54,7 @@
                 </h3><br>
  		<form name="clientform">
  					<div class="row">
- 						<div class="col-md-4">
+ 						<div class="col-md-6">
               <div class="form-group required" ng-class="{'has-error': clientform.fname.$touched && clientform.fname.$error.required}">
                <label class="control-label">First Name</label><br>
  							 <input name="fname" type="text"  only-words ng-maxlength="20" ng-minlength="3" class="form-control" placeholder="First name" id="user-pass" ng-model="fname" required>
@@ -62,7 +62,7 @@
             <span ng-show="clientform.fname.$error.maxlength" class="has-error">First name is too long.</span>
               </div>
  							</div>
- 							<div class="col-md-4">
+ 							<div class="col-md-6">
                 <div class="form-group required" ng-class="{'has-error': clientform.lname.$touched && clientform.lname.$error.required}">
                  <label class="control-label">Last Name</label><br>
  							 <input name="lname" type="text" only-words ng-maxlength="20" ng-minlength="3"  class="form-control" placeholder="Last name" id="user-pass" ng-model="lname" required>
@@ -73,14 +73,14 @@
 							</div>
 							<div class="row">
  							
- 							<div class="col-md-4">
+ 							<div class="col-md-6">
                  <div class="form-group required" ng-class="{'has-error': clientform.email.$touched && clientform.email.$error.required}">
                  <label class="control-label">Email</label><br>
  							 <input name="email" type="text" class="form-control" placeholder="Email" id="user-pass" ng-model="email" required  ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
                 <span ng-show="clientform.email.$touched && clientform.email.$invalid" class="denger">Invalid Email</span>
               </div>
  							</div>
- 							<div class="col-md-4">
+ 							<div class="col-md-6">
                 <div class="form-group required" ng-class="{'has-error': clientform.cpname.$touched && clientform.cpname.$error.required}">
                  <label class="control-label">Company Name</label><br>
  							 <input name="cpname" type="text" ng-maxlength="20" ng-minlength="3" class="form-control" placeholder="Company name" id="user-pass" ng-model="cname" required>
@@ -90,7 +90,7 @@
  							</div>
 							</div>
 							<div class="row">
- 							<div class="col-md-4">
+ 							<div class="col-md-6">
                  <div class="form-group required" ng-class="{'has-error': clientform.dname.$touched && clientform.dname.$error.required}">
                  <label class="control-label">Display Name</label><br>
  							 <input name="dname" type="text" class="form-control" placeholder="Display name" id="user-pass" ng-model="displayname" required>
@@ -98,7 +98,7 @@
             <span ng-show="clientform.dname.$error.maxlength" class="has-error">Display name is too long.</span>
               </div>
  							</div>
-							<div class="col-md-4">
+							<div class="col-md-6">
                  <label class="control-label">Client Id</label><br>
  							<input name="Task category" type="text" class="form-control" placeholder="Client id" id="user-pass" ng-model="clientid" required>
  							</div>
@@ -106,7 +106,7 @@
 
 
  						<div class="row">
- 							<div class="col-md-4">
+ 							<div class="col-md-6">
                  <div class="form-group required" ng-class="{'has-error': clientform.pnumber.$touched && clientform.pnumber.$error.required}">
                  <label class="control-label">Phone Number </label><br>
  							  <input name="pnumber" type="text" class="form-control" placeholder="Phone number" id="user-pass" ng-model="phone" ng-maxlength="20" ng-minlength="8" ng-pattern="ph_numbr"  required>
@@ -115,7 +115,7 @@
             <span ng-show="clientform.pnumber.$error.maxlength" class="has-error">Phone number is too long.</span>
               </div>
  							</div>
- 							<div class="col-md-4">
+ 							<div class="col-md-6">
                 <div class="form-group required" ng-class="{'has-error': clientform.mnumber.$touched && clientform.mnumber.$error.required}">
                 <label class="control-label">Mobile Number</label><br>
  						 <input name="mnumber" type="text" ng-pattern="ph_numbr" class="form-control" placeholder="Mobile number" id="user-pass" ng-model="mobile"  ng-maxlength="20" ng-minlength="8" required>
@@ -128,7 +128,7 @@
 
 						
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-md-6">
                 <div class="form-group required" ng-class="{'has-error': clientform.site.$touched && clientform.site.$error.required}">
                  <label class="control-label">Website Url</label><br>
 							 <input name="site" type="url" class="form-control" placeholder="Website url" id="user-pass" ng-model="url" required>
@@ -136,21 +136,21 @@
       Not valid url!</span>
               </div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-6">
               <label class="control-label">Street Address</label><br>
 						   <input name="Task category" type="text" class="form-control" placeholder="Street address" id="user-pass" ng-model="addressdetail" required>
 								</div>
 					</div>
           
 		  <div class="row">
-              <div class="col-md-4"> <label class="control-label">Country</label><br>
+              <div class="col-md-6"> <label class="control-label">Country</label><br>
                 <div class="dropdown">
                     <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="value.countryid as value.countryname for value in allProducts" ng-model="country" >
       <span class="caret"></span>Country:{{orgdata[0].country_id}}</select>
                       
                  </div>
                 </div>
-            <div class ="col-md-4"><label class="control-label">State </label><br>
+            <div class ="col-md-6"><label class="control-label">State </label><br>
                <div class="dropdown">
                 <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="value.stateid as value.statename for value in allstates | filter: { countryid:country }" ng-model="state" ng-init="state = allstates[0]">
         <span class="caret"></span>Select</select>
@@ -161,10 +161,10 @@
         </div><br>
          
  				<div class ="row">
-				 <div class = "col-md-4"> <label class="control-label">City </label><br>
+				 <div class = "col-md-6"> <label class="control-label">City </label><br>
                 <input name="Task category" type="text" only-words class="form-control" placeholder="City" id="user-pass" ng-model="city" required>
               </div>
-          <div class ="col-md-4">
+          <div class ="col-md-6">
             <div class="form-group required" ng-class="{'has-error': clientform.pcode.$touched && clientform.pcode.$error.required}">
             <label class="control-label">Postal Code </label><br>
                <input name="pcode" type="text" class="form-control" placeholder="Postal code" id="user-pass" ng-model="pcode" required ng-minlength="4">
@@ -174,7 +174,7 @@
 			</div>
          
  				<div class ="row">
-            <div class ="col-md-8">
+            <div class ="col-md-12">
                <label class="control-label">Detailed Summary </label><br>
               <textarea class="form-control" rows="5" id="comment" placeholder="Detailed Summary" ng-model="summary" ></textarea>
             </div>
@@ -182,8 +182,8 @@
       </form>
 		<div class ="row">
             <div class ="col-md-8">
-        <button class="btn btn-primary" ng-model="collapsed" ng-click="submitclient()" ng-hide="update" >Save</button>
-         <button class="btn btn-primary" ng-model="collapsed" ng-click="updateclientdata()" ng-show="update" >Update</button>
+        <button class="btn btn-success" ng-model="collapsed" ng-click="submitclient()" ng-hide="update" >Save</button>
+         <button class="btn btn-success" ng-model="collapsed" ng-click="updateclientdata()" ng-show="update" >Update</button>
          <button class="btn btn-primary" ng-click="closeclient()">Cancel</button>
 		 </div>
 		 </div>

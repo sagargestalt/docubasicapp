@@ -38,10 +38,16 @@ angular
     'googleplus' ,
     'naif.base64',
     'socialLogin',
-    'ngDragDrop',
     'ngContentEditable',
     'angular-medium-editor',
     'checklist-model',
+    'ngDraggable',
+     'common.fabric',
+    'common.fabric.utilities',
+    'common.fabric.constants',
+    'angular-bind-html-compile',
+    'color.picker'
+
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -184,7 +190,7 @@ angular
         controller: 'proposalCtrl',
         controllerAs: 'proposalCtrl'
       })
-         .when('/praposal-summery', {
+         .when('/proposal-summery', {
         templateUrl: 'views/proposal-summery.html',
         controller: 'proposalsummeryCtrl',
         controllerAs: 'proposalsummeryCtrl'
@@ -204,6 +210,33 @@ angular
         templateUrl: 'views/proposalReview.html',
         controller: 'customerreviewCtrl',
         controllerAs: 'customerreviewCtrl'
+      })
+            .when('/sign-upnew', {
+        templateUrl: 'views/sign-upnew.html',
+        controller: 'popupCtrl',
+        controllerAs: 'popupCtrl'
+      })
+            .when('/costprofitanalysis', {
+        templateUrl: 'views/costprofitanalysis.html',
+        controller: 'proposalsummeryCtrl',
+        controllerAs: 'proposalsummeryCtrl'
+      })
+
+         .when('/forgot-password', {
+        templateUrl: 'views/forgot-password.html',
+        controller: 'popupCtrl',
+        controllerAs: 'popupCtrl'
+      })
+
+         .when('/fabricdemo', {
+        templateUrl: 'views/fabricdemo.html',
+        controller: 'fabricCtrl',
+        controllerAs: 'fabricCtrl'
+      })
+         .when('/demoproposal', {
+        templateUrl: 'views/demoproposal.html',
+        controller: 'proposalCtrl',
+        controllerAs: 'proposalCtrl'
       })
 
       .otherwise({
@@ -248,4 +281,5 @@ angular
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 ]);
+
 

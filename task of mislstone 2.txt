@@ -8,4 +8,5 @@
 8.reslove proposal edit section issues(IMP)
 9.text formating in praposal section
 10.delete each component in proposal section
+11.css fixi
 11.table component

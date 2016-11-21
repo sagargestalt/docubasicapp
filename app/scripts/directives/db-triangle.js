@@ -1,10 +1,10 @@
 'use strict';
 angular.module('docubasic3App')
-  .directive('dbTriangle', function ($rootScope, styleservice) {
+  .directive('dbTriangle', function () {
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: '/views/db-triangle.html',
+      templateUrl: 'views/db-triangle.html',
       link: function(scope, element, attr) {
 
         $(element).attr('id', 'db-triangle-' + attr.dynamicId);

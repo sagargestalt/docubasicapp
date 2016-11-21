@@ -4,7 +4,13 @@ angular.module('docubasic3App')
     return {
       restrict: 'AE',
       link: function(scope, element) {
-        $(".db-square-widget").draggable({containment: "#proposalDropContainer"});
+        $rootScope.loaddata = function(){
+           $(".db-square-widget").draggable({containment: "#proposalDropContainer"});
+         $('.db-circle-widget').draggable({containment: '#proposalDropContainer'});
+
+        };
+
+       
          //$(".window").draggable({handle:'.bar'});
         $(element).droppable({
           accept: '.ui-draggable',
@@ -35,11 +41,6 @@ angular.module('docubasic3App')
               $(element).append('<db-text dynamic-id=' + dynamicId + ' db-aspect-ratio="6"></db-text>');
               needCompile = true;
 
-              $(".editable-area").on("click", function() {
-              //$(".window").draggable('disable');
-                $(this).find(".editable-area").focus();
-            
-              });
             }
 
             if(configData.video) {
@@ -59,6 +60,47 @@ angular.module('docubasic3App')
               $(element).append('<db-table dynamic-id=' + dynamicId + '></db-table>');
               needCompile = true;
             }
+            if(configData.tasktable) {
+               $(element).append('<db-pricetable dynamic-id=' + dynamicId + '></db-pricetable>');
+                var detail = configData.tasktable;
+                $rootScope.pushdata(detail);
+               //$(ui.draggable).clone().appendTo($(this));  
+               //$(this).append(ui.helper.children());
+                //$('.selectedRow').remove();
+                $rootScope.rightSidebar = false;
+                needCompile = true;
+            }
+             if(configData.taskrow) {
+              //$(ui.draggable).clone().appendTo('#ttable');  
+              var detail = configData.taskrow;
+              $rootScope.droptax = true;
+              $rootScope.pushtaxdata(detail);
+             
+              //$(this).append(ui.helper.children());
+              //$(this).appendTo(ui.helper.children('#ttable'));
+              //$('.selectedRow').remove();
+              $rootScope.rightSidebar = false;
+              needCompile = true;
+            }
+            if(configData.dtask) {
+              //$(ui.draggable).clone().appendTo('#ttable'); 
+              //$(this).append(ui.helper.children());
+              var detail = configData.dtask;
+              $rootScope.droptdiscount = true;
+              $rootScope.pushdisdata(detail);
+              $rootScope.rightSidebar = false;
+              needCompile = true;
+            }
+            if(configData.taskcategories) {
+               $(element).append('<db-takstable dynamic-id=' + dynamicId + '></db-tasktable>');
+                var tasklist = configData.taskcategories;
+                $rootScope.pushtask(tasklist);
+               //$(ui.draggable).clone().appendTo($(this));  
+               //$(this).append(ui.helper.children());
+                //$('.selectedRow').remove();
+                $rootScope.rightSidebar1 = false;
+                needCompile = true;
+            }
 
             if(needCompile) {
               $compile(element)(scope);
@@ -69,13 +111,9 @@ angular.module('docubasic3App')
 
       $rootScope.imageinsert = function(imagepath){
         var dynamicId = new Date().getTime(); //Date.now();
-<<<<<<< HEAD
          scope.imageSource = angular.copy(imagepath);
           $(element).append('<db-image dynamic-id=' + dynamicId + '></db-image>'); 
-=======
-          $(element).append('<db-image dynamic-id=' + dynamicId + '></db-image>');
->>>>>>> dacaa34f3809320b3ebc6ed3b1c5823052fb5db8
-         // needCompile = true;
+          $compile(element)(scope);
 
       };
 
