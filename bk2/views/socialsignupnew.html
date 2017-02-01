@@ -1,0 +1,171 @@
+<!--<div class="color-line"></div>
+
+<div class="back-link">
+</div>-->
+
+<style>
+    body{
+   background-color: #fff;
+   font-size: 14px;
+   color: #8c8c8c ;
+   font-weight: 400;
+    background: url(images/login_bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+</style>
+
+<div>
+
+<div class="signup-container" >
+    <div class="row">
+        <div class="col-md-12">
+
+       <div class="col-md-4 col-md-offset-4 text-center m-b-md">
+                <img class="img-responsive" src="images/docubasic_white_logo.png" />
+             </div>
+        </div>
+    <br><br>
+     <div class="col-md-12">
+        <uib-alert ng-repeat="alert in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert}}</uib-alert>
+                <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+                <uib-alert ng-repeat="alert in loginalerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+            </div>
+     <div class="col-md-6">
+        <h4 class="login-h1 white">New Company Users</h4>
+         </div>
+         <div class="col-md-6 no-padding">
+        <h4 class="login-h1 white">Existing Company Users</h4>
+         </div>
+        <div class="col-md-12">
+            
+            <div class="hpanel">
+
+                <div class="col-sm-6 no-padding">
+                    <div class="signup_doccolor">
+                        <form name="etuser">
+               <div class="form-group required" ng-class="{'has-error': etuser.companyname.$touched && etuser.companyname.$error.required}">
+                <label for="sender-email" class="control-label">Company Name</label>
+               
+                  <input name="companyname" id="sender-companyname" type="text"  ng-blur="check()" placeholder="Company Name" class="form-control email" ng-model="orgname" required>
+
+                
+              </div>
+              
+              <!-- <div class="form-group required" ng-class="{'has-error': etuser.Tenancy.$touched && etuser.Tenancy.$error.required}" >
+                <label for="sender-email" class="control-label">Company Code</label>
+                
+                  <input name="Tenancy" id="sender-Tenancy" type="text" placeholder="Company Code " class="form-control email" ng-model="tenancy" 
+                  ng-blur="checkcode()" required>
+                  <!--<a ng-click="company"><span>don't have Tenancy ID?<span></a>
+                
+              </div>-->
+              <div class="form-group required" ng-class="{'has-error': etuser.username.$touched && etuser.userphone.$error.required}">
+                <label for="sender-email" class="control-label">First Name</label>
+               
+                  <input name="username" id="sender-name" type="text" placeholder="First Name" class="form-control email" ng-model="fname" required>
+                
+              </div>
+              <div class="form-group required" ng-class="{'has-error': etuser.userlname.$touched && etuser.userlname.$error.required}">
+                <label for="sender-email" class="control-label">Last Name</label>
+               
+                  <input name="userlname" id="sender-userlname" type="text" placeholder="Last Name" class="form-control Name" ng-model="lname" required>
+                
+              </div>
+              <div class="form-group required">
+                <label for="sender-email" class="control-label" >Email</label>
+               
+                  
+                   <p>{{semail}}</p>
+              
+              </div>
+            </form>
+              <div class="form-group">
+               
+                <button class="btn btn-default "  ng-disabled="etuser.$invalid" ng-click="socialsignup()">Sign Up</button>
+
+                 
+              </div>
+            
+                    </div>
+                </div>
+                <div class="col-sm-6 no-padding">
+                    <div class="signup_whitecolor">
+                        <form name="ntuser">
+                           <div class="form-group required" ng-class="{'has-error': ntuser.Tenancy.$touched && ntuser.Tenancy.$error.required}">
+                <label for="sender-email" class="control-label">Company Code </label>
+             
+                  <input name="Tenancy" id="sender-Tenancy" type="text" placeholder="Company Code " class="form-control email" ng-model="tenancycode"
+                    ng-blur="checkid()" required>
+                    
+                  <!--<a ng-click="company"><span>don't have Tenancy ID?<span></a>-->
+               
+              </div>
+
+            <div class="form-group required" ng-class="{'has-error': ntuser.companyname.$touched && ntuser.companyname.$error.required}">
+                <label for="sender-email" class="control-label">Company Name</label>
+               
+                  <input name="companyname" id="sender-companyname" type="text" placeholder="Company Name" class="form-control email" ng-model="orgname" ng-chnage="check()" required>
+
+                             </div>
+              
+              <div class="form-group required" ng-class="{'has-error': ntuser.ntuser.$touched && ntuser.ntuser.$error.required}">
+                <label for="sender-email" class="control-label">First Name</label>
+                
+                  <input name="username" id="sender-name" type="text" placeholder="First Name" class="form-control email" ng-model="fname" required>
+                
+              </div>
+              <div class="form-group required" ng-class="{'has-error': ntuser.userlname.$touched && ntuser.userlname.$error.required}">
+                <label for="sender-email" class="control-label">Last Name</label>
+                
+                  <input name="userlname" id="sender-userlname" type="text" placeholder="Last Name" class="form-control Name" ng-model="lname" required>
+               
+              </div>
+              <div class="form-group required" >
+                <label for="sender-email" class="control-label" >Email</label>
+                
+                 
+                 <p>{{semail}}</p>
+                
+              </div>
+            </form>
+             <div class="form-group">
+                <button class="btn btn-success" type="button" ng-click="socialsignupnew()" ng-disabled="ntuser.$invalid"><strong>Sign Up !</strong></button>
+               
+              </div>
+
+                
+
+</div>
+
+
+
+
+
+
+              
+            </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+    
+    
+
+        <br><br><br>
+
+        </div>
+    </div>
+</div>
+</div>

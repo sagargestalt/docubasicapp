@@ -3,7 +3,22 @@
 <div class="back-link">
 </div>-->
 
-<div class="bgimg">
+<style>
+    body{
+   background-color: #fff;
+   font-size: 14px;
+   color: #8c8c8c ;
+   font-weight: 400;
+    background: url(images/login_bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+</style>
+
+<div>
 
 <div class="signup-container" data-ng-init="init()">
     <div class="row">
@@ -11,16 +26,19 @@
 
        <div class="col-md-4 col-md-offset-4 text-center m-b-md">
                 <img class="img-responsive" src="images/docubasic_white_logo.png" />
-                <uib-alert ng-repeat="alert in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert}}</uib-alert>
+             </div>
+        </div>
+		<br><br>
+		 <div class="col-md-12">
+		    <uib-alert ng-repeat="alert in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert}}</uib-alert>
                 <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
                 <uib-alert ng-repeat="alert in loginalerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
             </div>
-        </div>
 		 <div class="col-md-6">
-				<h3 class="login-h1 white">New Tenancy Users</h3>
+				<h4 class="login-h1 white">New Company Users</h4>
          </div>
-         <div class="col-md-6">
-        <h3 class="login-h1 white">Existing Tenancy Users</h3>
+         <div class="col-md-6 no-padding">
+        <h4 class="login-h1 white">Existing Company Users</h4>
          </div>
         <div class="col-md-12">
             
@@ -29,16 +47,18 @@
                 <div class="col-sm-6 no-padding">
                     <div class="signup_doccolor">
                         <form name="etuser">
-               <div class="form-group left-addon1 required" ng-class="{'has-error': etuser.companyname.$touched && etuser.companyname.$error.required}">
-                <label for="sender-email" class="control-label">Company Name:</label>
+               <div class="form-group left-addon1 required" >
+                <label for="sender-email" class="control-label">Company Name</label>
                
                  
-                  <input name="companyname" id="sender-companyname" type="text"  ng-blur="check()" placeholder="Organisation Name" class="form-control email" ng-model="signup.orgname" style="color:#d1eed8 !important;" ng-trim="false" required>
+                  <input name="companyname" id="sender-companyname" type="text"  ng-blur="check()" placeholder="Company Name" class="form-control email" ng-model="signup.orgname" style="color:#d1eed8 !important;" ng-trim="false" required>
+                    <div class="help-block" ng-show="etuser.companyname.$touched && etuser.companyname.$error.required">
+                  Company name is Required!</div>
 
                
               </div>
               
-               <div class="form-group left-addon1 required" ng-class="{'has-error': etuser.Tenancy.$touched && etuser.Tenancy.$error.required}" >
+               <div class="form-group left-addon1 required" ng-class="{'has-error': etuser.Tenancy.$touched && etuser.Tenancy.$error.required}" ng-show="dontshow" >
                 <label for="sender-email" class="control-label">Tenancy ID </label>
                 
                
@@ -46,34 +66,44 @@
                   <!--<a ng-click="company"><span>don't have Tenancy ID?<span></a>-->
                 
               </div>
-              <div class="form-group left-addon1 required" ng-class="{'has-error': etuser.username.$touched && etuser.username.$error.required}">
-                <label for="sender-email" class="control-label">First Name:</label>
+              <div class="form-group left-addon1 required">
+                <label for="sender-email" class="control-label">First Name</label>
                 
                 
                   <input name="username" only-words  id="sender-name" ng-minlength="3" ng-maxlength="20" type="text" placeholder="First Name" class="form-control" style="color:#d1eed8 !important;" ng-model="signup.fname" required>
                 
                 <p ng-show="etuser.username.$error.minlength">First name is too short.</p>
             <p ng-show="etuser.username.$error.maxlength" >First name is too long.</p>
+            <div class="help-block" ng-show="etuser.username.$touched && etuser.username.$error.required">
+                  First name is Required!</div>
               </div>
-              <div class="form-group left-addon1 required" ng-class="{'has-error': etuser.userlname.$touched && etuser.userlname.$error.required}">
-                <label for="sender-email" class="control-label">Last Name:</label>
+              <div class="form-group left-addon1 required">
+                <label for="sender-email" class="control-label">Last Name</label>
                
                  
                   <input name="userlname" only-words ng-minlength="3" ng-maxlength="20"  id="sender-userlname" type="text" placeholder="Last Name" class="form-control Name" style="color:#d1eed8 !important;" ng-model="signup.lname" required>
                
                 <p ng-show="etuser.userlname.$error.minlength" class="danger">Last name is too short.</p>
                 <p ng-show="etuser.userlname.$error.maxlength" class="danger">Last name is too long.</p>
+                <div class="help-block" ng-show="etuser.userlname.$touched && etuser.userlname.$error.required">
+                  Last name is Required!</div>
+              
               </div>
-              <div class="form-group left-addon1 required" ng-class="{'has-error': etuser.email.$touched && etuser.email.$error.required}">
-                <label for="sender-email" class="control-label" >Email:</label>
+              <div class="form-group left-addon1 required" >
+                <label for="sender-email" class="control-label" >Email</label>
                 
                 
-                  <input name="useremail" id="sender-email" type="text" placeholder="Email" ng-pattern="emailFormat" class="form-control email" style="color:#d1eed8 !important;" ng-model="signup.email" required>
+                  <input name="useremail" id="sender-email" type="text" placeholder="Email" ng-pattern="emailFormat" class="form-control email" style="color:#d1eed8 !important;" ng-model="signup.email" ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                  <div class="help-block" ng-show="etuser.useremail.$touched && etuser.useremail.$error.required">
+                  Email is Required!</div>
+                  <div class="help-block"  ng-show="etuser.useremail.$touched && etuser.useremail.$invalid">Invalid Email</div>
+
+
                
               </div>
             </form>
               <div class="form-group">
-                <button class="btn btn-default " ng-click="signup()">Sign Up ! </button>
+                <button class="btn btn-default "  ng-disabled="etuser.$invalid" ng-click="signup()">Sign Up</button>
                  
               </div>
             
@@ -82,53 +112,64 @@
                 <div class="col-sm-6 no-padding">
                     <div class="signup_whitecolor">
                         <form name="ntuser">
-                <div class="form-group required" ng-class="{'has-error': ntuser.Tenancy.$touched && ntuser.Tenancy.$error.required}">
-                <label for="sender-email" class="control-label">Tenancy ID </label>
+                <div class="form-group required" >
+                <label for="sender-email" class="control-label">Company Code </label>
                 
                   
-                  <input name="Tenancy" id="sender-Tenancy" type="text" placeholder="Tenancy ID " class="form-control email" ng-model="signup.tenancycode"
+                  <input name="Tenancy" id="sender-Tenancy" type="text" placeholder="Company Code " class="form-control email" ng-model="signup.tenancycode"
                     ng-blur="checkid()"  required>
+                     <div class="help-block" ng-show="ntuser.Tenancy.$touched && ntuser.Tenancy.$error.required">
+                  Company code is Required!</div>
                     
                   <!--<a ng-click="company"><span>don't have Tenancy ID?<span></a>-->
                
               </div>
 
-            <div class="form-group required" ng-class="{'has-error': ntuser.companyname.$touched && ntuser.companyname.$error.required}">
-                <label for="sender-email" class="control-label">Company Name:</label>
+            <div class="form-group required" >
+                <label for="sender-email" class="control-label">Company Name</label>
                 
                  
-                  <input name="companyname" id="sender-companyname" type="text" placeholder="Organisation Name" class="form-control email" ng-model="signup.orgname" ng-chnage="check()" required>
+                  <input name="companyname" id="sender-companyname" type="text" placeholder="Company Name" class="form-control email" ng-model="signup.orgnamenew" ng-chnage="check()" required>
+                   <div class="help-block" ng-show="ntuser.companyname.$touched && ntuser.companyname.$error.required">
+                  Company code is Required!</div>
 
                
               </div>
               
-              <div class="form-group required" ng-class="{'has-error': ntuser.ntuser.$touched && ntuser.ntuser.$error.required}">
-                <label for="sender-email" class="control-label">First Name:</label>
+              <div class="form-group required" >
+                <label for="sender-email" class="control-label">First Name</label>
                 
                   
                   <input name="username" id="sender-name" only-words  type="text" placeholder="First Name" ng-minlength="3" ng-maxlength="20"  class="form-control email" ng-model="signup.nfname" required>
                
                 <p ng-show="ntuser.username.$error.minlength" class="denger">First name is too short.</p>
                 <p ng-show="ntuser.username.$error.maxlength" class="denger">First name is too long.</p>
+                  <div class="help-block" ng-show="ntuser.username.$touched && ntuser.username.$error.required">
+                 First name is Required!</div>
               </div>
-              <div class="form-group required" ng-class="{'has-error': ntuser.userlname.$touched && ntuser.userlname.$error.required}">
-                <label for="sender-email" class="control-label">Last Name:</label>
+              <div class="form-group required">
+                <label for="sender-email" class="control-label">Last Name</label>
                 
                  
                   <input name="userlname" id="sender-userlname" only-words  type="text" ng-minlength="3" ng-maxlength="20" placeholder="Last Name" class="form-control Name" ng-model="signup.nlname" required>
                 
                 <p ng-show="ntuser.userlname.$error.minlength" class="denger">Last name is too short.</p>
                 <p ng-show="ntuser.userlname.$error.maxlength" class="denger">Last name is too long.</p>
+                 <div class="help-block" ng-show="ntuser.userlname.$touched && ntuser.userlname.$error.required">
+                 Last name is Required!</div>
               </div>
-              <div class="form-group required" ng-class="{'has-error': ntuser.useremail.$touched && ntuser.useremail.$error.required}">
-                <label for="sender-email" class="control-label" >Email:</label>
+              <div class="form-group required" >
+                <label for="sender-email" class="control-label" >Email</label>
                 
-                  <input name="useremail" id="sender-email" type="text" placeholder="Email"  ng-pattern="emailFormat" class="form-control email" ng-model="signup.nemail" required>
+                  <input name="useremail" id="sender-email" type="text" placeholder="Email"  ng-pattern="emailFormat" class="form-control email" ng-model="signup.nemail" ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"  required>
+                  <div class="help-block" ng-show="ntuser.useremail.$touched && ntuser.useremail.$error.required">
+                 Email is Required!</div>
+                  <div class="help-block"  ng-show="ntuser.useremail.$touched && ntuser.useremail.$invalid">Invalid Email</div>
                
               </div>
             </form>
              <div class="form-group">
-                <button class="btn btn-success" type="button" ng-click="signupnew()" ng-disabled="ntuser.$invalid"><strong>Sign Up !</strong></button>
+                <button class="btn btn-success" type="button" ng-click="signupnew()" ng-disabled="ntuser.$invalid"><strong>Sign Up</strong></button>
                
               </div>
              
@@ -156,7 +197,7 @@
 		
 		
 
-
+        <br><br><br>
 
         </div>
     </div>

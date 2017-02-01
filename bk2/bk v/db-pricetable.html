@@ -1,0 +1,66 @@
+<div class="db-pricingtable-widget">
+  <table db-resizable class="table table-striped" id="thistable">
+
+  	<thead>
+      <th>
+       Task Description
+      </th>
+      <th>
+       Quantity
+      </th>
+      <th>
+       Price
+      </th>
+       <th>
+       Unit
+      </th>
+      <th>
+      Total
+      </th>
+     
+      </thead>
+      <tbody id="tbody"  >
+        <tr ng-repeat="detail in newprice  track by $index">
+          <td ng-bind="detail.categoryname"></td>
+          <td  id="price" ng-bind="detail.mandays"></td>
+           <td ng-bind="detail.totalcost"></td>
+           <td></td>
+           <td ng-bind="detail.totalrate"></td>
+         
+            
+        </tr>
+         <tr ng-if="droptax" ng-repeat="info in newtax  track by $index">
+          <td ng-bind="info.taxname"></td>
+           <td></td>
+            <td></td>
+             <td></td>
+                    <td ng-bind="info.percentage"></td>
+                   
+         </tr> 
+         <tr ng-if="droptdiscount" ng-repeat="data in newdis track by $index" db-draggable data-dtask="true" >
+          <td ng-bind="data.name"></td>
+          <td></td>
+            <td></td>
+             <td></td>
+           <td ng-bind="data.value"></td>
+          
+           
+         
+        </tr>
+
+        <tr>
+          <td >
+
+Total Cost of the Project
+</td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td>{{detail.totalprice * data.value}}</td>
+           
+         
+        </tr>
+      </tbody>
+
+  </table>
+  {{customerprice}}

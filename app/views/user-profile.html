@@ -1,0 +1,105 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<style type="text/css">
+
+.m-t-xl{margin-top:15px;}
+.newbtn{border-radius: 0;  } 
+
+.row-eq-height {
+    display: flex;
+}</style>
+<div id="wrapper">
+
+
+
+ <div class="content" animate-panel effect="zoomIn">
+
+  <div class="row">
+    <div class="col-lg-12">
+         
+                <h3 class="font-light m-b-xs">
+                   User-Profile <div class="pull-right" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i> &nbsp; &nbsp; Dashboard</a></li>
+                       
+                        <li class="active">
+                            <span>User-profile</span>
+                        </li>
+                        
+                    </ol>
+
+                </div>
+                </h3>
+    </div>
+  </div>
+
+  	<div class="row">
+<div class="col-lg-12" >
+  <br>
+<div class="hpanel">
+	 <div >
+	 
+  <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+  <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+ 
+  <div class="panel-body" >
+  
+  
+  
+    <form name="resource">
+       
+  
+    <a id="top"></a>
+          <div class="row">
+            <div class="col-md-4">
+               <div class="form-group required" ng-class="{'has-error': resource.rname.$touched && resource.rname.$error.required }">
+                 <label class="control-label">First Name</label><br>
+              <input name="rname" type="text" class="form-control" placeholder="First Name" id="user-pass" ng-model="fname" only-words ng-maxlength="20" ng-minlength="3" required>
+              <span class="help-block"  ng-show="resource.rname.$error.minlength" >First name is too short.</span>
+            <span class="help-block"  ng-show="resource.rname.$error.maxlength" >First name is too long.</span>
+            </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group required" ng-class="{'has-error': resource.ltname.$touched && resource.ltname.$error.required }">
+                <label class="control-label">Last Name</label><br>
+                  <input name="ltname" type="text" only-words ng-maxlength="20" ng-minlength="3" class="form-control" placeholder="Last Name" id="user-pass" ng-model="lname" required>
+                  <span class="help-block"  ng-show="resource.ltname.$error.minlength" >Last name is too short.</span>
+            <span class="help-block"  ng-show="resource.ltname.$error.maxlength">Last name is too long.</span>
+                </div>
+          </div>
+        </div>
+
+     
+
+        
+
+          <div class="row">
+            <div class="col-md-4">
+               <label class="control-label">Profile Picture</label><br>
+               <input type="file" ng-model="files" name="files" multiple accept="image/*, .zip" maxsize="500"  base-sixty-four-input>
+            <span class="help-block" ng-show="resource.files.$error.maxsize">File size must not exceed 500 KB</span><br>
+            <span>File size must not exceed 500 KB</span><br>
+          
+              
+          </div>
+           <div class="col-md-4">
+             <img style="margin-bottom:5px; border: 5px solid #e0e1e7;" height="210" width="250" ng-src="{{imageurl}}"><loading></loading>
+          
+          </div>
+        </div>
+		    </form> 
+		   <div class="row">
+		  <div class="col-md-12">
+            <button class="btn btn-success" ng-click="send()"  ng-disabled="resource.$invalid"  >Save</button>
+         
+          
+      
+              </div>
+          </div>
+          
+
+  </div>
+</div>
+</div>
+</div>

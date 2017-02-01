@@ -1,0 +1,18 @@
+<div class="panel-body">
+  <div class = "row">
+    <div class = "col-md-12">
+      <h4>Select From Library</h4>
+    <div ng-repeat="thumbs in iamgedata">
+       <a ng-click="selectimage(thumbs)"><img style="margin-bottom:5px; border: 5px solid #e0e1e7;" height="100" width="100" ng-src="{{thumbs.image_path}}"></a>
+     </div>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-md-12">
+      <input type="file" ng-model="files" name="files" multiple accept="image/*, .zip" maxsize="500" required base-sixty-four-input>
+            <span ng-show="logovalidate.files.$error.maxsize">Files must not exceed 500 KB</span><br>
+            <button class="btn btn-primary" ng-click="imageupload()" >Upload</button>
+
+      </div>
+    </div>
+          </div>

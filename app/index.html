@@ -6,7 +6,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!--<link id="apiRoot" href="http://localhost:8081/dbasic/public/"/>-->
-    <link id="apiRoot" href="http://49.248.126.222:8282/services/public/">
+    <link id="apiRoot" href="http://107.170.59.79/services/public/"/>
+    <!--<link id="apiRoot" href="http://49.248.126.222:8282/services/public/">-->
     <!--<link id="apiRoot" href="http://104.236.223.122/services/public/index.php/">-->
 
     <!--<link id="apiRoot" href="http://107.170.27.172/dbasic/services/public/"/>-->
@@ -52,11 +53,12 @@
     <link rel="stylesheet" href="bower_components/medium-editor/dist/css/themes/default.css" />
     <link rel="stylesheet" href="bower_components/angular-color-picker/dist/angularjs-color-picker.css" />
     <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <link rel="stylesheet" href="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox.min.css" />
     <!-- endbower -->
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-   
+   <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"> 
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
@@ -138,6 +140,7 @@
     <script src="bower_components/jquery-flot/jquery.flot.js"></script>
     <script src="bower_components/angular-flot/angular-flot.js"></script>
     <script src="bower_components/flot/jquery.flot.js"></script>
+    <script src="bower_components/jquery-flot/jquery.flot.pie.js"></script>
     <script src="bower_components/flot.curvedlines/curvedLines.js"></script>
     <script src="bower_components/iCheck/icheck.min.js"></script>
     <script src="bower_components/jquery.flot.spline/index.js"></script>
@@ -223,10 +226,22 @@
     <script src="bower_components/angular-bind-html-compile/angular-bind-html-compile.min.js"></script>
     <script src="bower_components/tinycolor/dist/tinycolor-min.js"></script>
     <script src="bower_components/angular-color-picker/dist/angularjs-color-picker.min.js"></script>
+    <script src="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox-tpls.min.js"></script>
+
     
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="https://www.2checkout.com/checkout/api/2co.min.js"></script>
+     
+        <script src="scripts/assets/fabric.js"></script>
+        <script src="scripts/assets/fabricCanvas.js"></script>
+        <script src="scripts/assets/fabricConstants.js"></script>
+        <script src="scripts/assets/fabricDirective.js"></script>
+        <script src="scripts/assets/fabricDirtyStatus.js"></script>
+         <script src="scripts/assets/fabricUtilities.js"></script>
+         <script src="scripts/assets/fabricWindow.js"></script>
+
         <script src="scripts/homer.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
@@ -288,10 +303,44 @@
         <script src="scripts/controllers/proposalsummeryCtrl.js"></script>
         <script src="scripts/controllers/cloneCtrl.js"></script>
         <script src="scripts/controllers/customerreviewCtrl.js"></script>
-         <script src="scripts/directives/db-draggablenew.js"></script>
-         <script src="scripts/directives/compile.js"></script>
-         <script src="scripts/controllers/fabricCtrl.js"></script>
+        <script src="scripts/directives/db-draggablenew.js"></script>
+        <script src="scripts/directives/compile.js"></script>
+        <script src="scripts/controllers/fabricCtrl.js"></script>
+        <script src="scripts/controllers/analyticsCtrl.js"></script>
+        <script src="scripts/controllers/searchCtrl.js"></script>
+        <script src="scripts/controllers/paymentCtrl.js"></script>
+         <script src="scripts/directives/print-div.js"></script>
+          <script src="scripts/directives/loading.js"></script>
+         <script src="scripts/controllers/packagemgtctrl.js"></script>
+          <script src="scripts/controllers/discountmgtctrl.js"></script>
+          <script src="scripts/directives/ngFiles.js"></script>
+           <script src="scripts/controllers/adminloginCtrl.js"></script>
+        <script src="scripts/controllers/userprofileCtrl.js"></script>
+        <script src="scripts/services/packageService.js"></script>
+         <script src="scripts/services/dbFabricservice.js"></script>
+         
 
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $(".show-modal").click(function(){
+
+            $(".modal-lg").modal({
+
+                backdrop: 'static',
+
+                keyboard: false
+
+            });
+
+        });
+
+    });
+
+  
+  
+    </script>
 
 
 

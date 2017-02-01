@@ -1,0 +1,48 @@
+<!--<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation 
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">-->
+
+               <div class="modal-dialog modal-lg">
+                <uib-alert ng-repeat="alert in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert}}</uib-alert>
+                <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+
+                
+                                <div class="color-line"></div>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+
+                                        Add your signature
+                                        <span class="pull-right"><a data-dismiss="modal"> <i class="pe-7s-close fa-2x"></i></a> </span></h4>
+                                  
+                                </div>
+                                <div class="modal-body">
+                                  
+                                  <div class="row">
+                                  	
+                                  	
+                                    <div>
+              <img style="margin-bottom:5px; border: 5px solid #e0e1e7;" height="210" width="250" ng-src="{{imageptah}}">
+           
+            </div>
+            
+            <input type="file" ng-model="files" name="files" multiple accept="image/*, .zip" maxsize="500" required base-sixty-four-input>
+            <span ng-show="logovalidate.files.$error.maxsize">Files must not exceed 500 KB</span><br>
+            <button class="btn btn-success" ng-click="send()"   >Upload</button>
+                                   
+                                
+                                    
+                                </div>
+                                  
+                                  
+                                </div>
+								
+                                 <div class="row">
+								  <div class="col-md-12">
+                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                                    <button type="button" class="btn btn-success" ng-click="approvep()">Approve</button>
+									</div>
+                                </div>
+                           
+
+</div>

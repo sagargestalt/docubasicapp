@@ -22,6 +22,7 @@ angular
     'ui.map',
     'ui.calendar',              // UI Calendar
     'summernote',
+    'angular-flot',
     'ngGrid',
     'ui.grid',                  // Angular ng Grid
     'ui.tree',                  // Angular ui Tree
@@ -42,11 +43,14 @@ angular
     'angular-medium-editor',
     'checklist-model',
     'ngDraggable',
-     'common.fabric',
-    'common.fabric.utilities',
-    'common.fabric.constants',
     'angular-bind-html-compile',
-    'color.picker'
+    'color.picker',
+    'angular-advanced-searchbox',
+    'angular-peity',
+    'angles',
+    'common.fabric',
+    'common.fabric.utilities',
+    'common.fabric.constants'   
 
   ])
   .config(function ($routeProvider) {
@@ -130,10 +134,21 @@ angular
         controllerAs: 'todoctrl',
         activetab: 'todos'
       })
+          .when('/analytics', {
+        templateUrl: 'views/analytics.html',
+        controller: 'analyticsCtrl',
+        controllerAs: 'analyticsCtrl',
+         activetab: 'analytics'
+      })
         .when('/subscription', {
         templateUrl: 'views/subscription.html',
-        controller: 'billingctrl',
-        controllerAs: 'billingctrl'
+        controller: 'popupCtrl',
+        controllerAs: 'popupCtrl'
+      })
+        .when('/social-subscription', {
+        templateUrl: 'views/social-subscription.html',
+        controller: 'loginCtrl',
+        controllerAs: 'loginCtrl'
       })
          .when('/demo', {
         templateUrl: 'views/demo.html',
@@ -178,7 +193,9 @@ angular
         .when('/settingpage', {
         templateUrl: 'views/settingpage.html',
         controller: 'settingpageCtrl',
-        controllerAs: 'settingpageCtrl'
+        controllerAs: 'settingpageCtrl',
+        activetab: 'setting'
+
       })
         .when('/createproposal', {
         templateUrl: 'views/createproposal.html',
@@ -193,7 +210,8 @@ angular
          .when('/proposal-summery', {
         templateUrl: 'views/proposal-summery.html',
         controller: 'proposalsummeryCtrl',
-        controllerAs: 'proposalsummeryCtrl'
+        controllerAs: 'proposalsummeryCtrl',
+        activetab: 'proposal'
       })
          .when('/email', {
         templateUrl: 'views/email.html',
@@ -206,13 +224,18 @@ angular
         controllerAs: 'proposalCtrl'
       })
 
-          .when('/proposalReview/:proposal_id/:updated_by', {
+          .when('/proposalReview/:proposal_id/:updated_by/:tenancy_id/:version_id', {
         templateUrl: 'views/proposalReview.html',
         controller: 'customerreviewCtrl',
         controllerAs: 'customerreviewCtrl'
       })
             .when('/sign-upnew', {
         templateUrl: 'views/sign-upnew.html',
+        controller: 'popupCtrl',
+        controllerAs: 'popupCtrl'
+      })
+              .when('/socialsignupnew', {
+        templateUrl: 'views/socialsignupnew.html',
         controller: 'popupCtrl',
         controllerAs: 'popupCtrl'
       })
@@ -235,12 +258,66 @@ angular
       })
          .when('/demoproposal', {
         templateUrl: 'views/demoproposal.html',
-        controller: 'proposalCtrl',
-        controllerAs: 'proposalCtrl'
+        controller: 'fabricCtrl',
+        controllerAs: 'fabricCtrl'
       })
 
+
+         .when('/payment', {
+        templateUrl: 'views/payment.html',
+        controller: 'paymentCtrl',
+        controllerAs: 'paymentCtrl'
+      })
+         .when('/searchresult', {
+        templateUrl: 'views/searchresult.html',
+        controller: 'searchCtrl',
+        controllerAs: 'searchCtrl'
+      })
+         .when('/billing-history', {
+        templateUrl: 'views/billing-history.html',
+        controller: 'billingctrl',
+        controllerAs: 'billingctrl'
+      })
+
+         .when('/headers', {
+        templateUrl: 'views/headers.html',
+        controller: 'loginCtrl',
+        controllerAs: 'loginCtrl'
+      })
+         .when('/package-management', {
+        templateUrl: 'views/package-management.html',
+        controller: 'packagemgtctrl',
+        controllerAs: 'packagemgtctrl'
+      })
+
+          .when('/discount-management', {
+        templateUrl: 'views/discount-management.html',
+        controller: 'discountmgtctrl',
+        controllerAs: 'discountmgtctrl'
+      })
+           .when('/admin-login', {
+        templateUrl: 'views/admin-login.html',
+        controller: 'adminloginCtrl',
+        controllerAs: 'adminloginCtrl'
+      })
+
+      .when('/user-profile', {
+        templateUrl: 'views/user-profile.html',
+        controller: 'userprofileCtrl',
+        controllerAs: 'userprofileCtrl',
+        activetab: 'userprofile'
+      })
+
+      .when('/users-listing', {
+        templateUrl: 'views/users-listing.html',
+        controller: 'discountmgtctrl',
+        controllerAs: 'discountmgtctrl'
+      })
+
+
+
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
 
 
@@ -273,6 +350,46 @@ angular
         apiKey: 'AIzaSyCVGfT6dfG_cExOpD4sy7QbWYC-jFuhxDo'
      });
   }])
+  .run(function($rootScope, $timeout, $document,$location) {    
+    //console.log('starting run');
+
+    // Timeout timer value
+    var TimeOutTimerValue = 300000;
+
+    // Start a timeout
+    var TimeOut_Thread = $timeout(function(){ LogoutByTimer() } , TimeOutTimerValue);
+    var bodyElement = angular.element($document);
+
+    angular.forEach(['keydown', 'keyup', 'click', 'mousemove', 'DOMMouseScroll', 'mousewheel', 'mousedown', 'touchstart', 'touchmove', 'scroll', 'focus'], 
+    function(EventName) {
+         bodyElement.bind(EventName, function (e) { TimeOut_Resetter(e) });  
+    });
+
+    function LogoutByTimer(){
+        console.log('Logout');
+         $rootScope.isLogin = false;
+                $rootScope.tenancyid = undefined;
+                  $rootScope.userid =undefined;
+                  $rootScope.username = undefined;
+                  $rootScope.tenancy_code = undefined;
+        $location.path( "/login" );
+
+        ///////////////////////////////////////////////////
+        /// redirect to another page(eg. Login.html) here
+        ///////////////////////////////////////////////////
+    }
+
+    function TimeOut_Resetter(e){
+        //console.log(' ' + e);
+
+        /// Stop the pending timeout
+        $timeout.cancel(TimeOut_Thread);
+
+        /// Reset the timeout
+        TimeOut_Thread = $timeout(function(){ LogoutByTimer() } , TimeOutTimerValue);
+    }
+
+})
 
 
     .config(['$httpProvider', function($httpProvider) {

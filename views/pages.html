@@ -1,0 +1,143 @@
+<!--<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation 
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">-->
+
+               
+                <!--<div class="modal modalnew animated fadeInRight"  id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">-->
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="color-line"></div>
+                                <div class="panel-body">
+            <div class="pull-right">
+              <a  ng-click="closemodal()" > <i class="pe-7s-close fa-2x"></i></a>
+            </div>
+          </div>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add New Page<span class="pull-right"></span></h4>
+                                  
+                                </div>
+                                <div class="modal-body">
+                                  
+                                  
+                                  	 <button type="button" class="btn btn-success" ng-click="show=!show">New Page</button><br><br>
+                                  	 <div ng-show="show">
+                                        <div class="row">
+                                    <div class="col-md-6" >
+                                        <div class="form-group required" >
+                                            <input name="name" type="text" class="form-control" ng-maxlength="50" placeholder="Name of Page" ng-model="pagename" maxlength="20"  minlength="3" required>
+                                        </div>
+                                    </div>
+                                     </div>
+                                     <button type="button" class="btn btn-success" ng-click="create()">Create</button>
+                                      <button class="btn btn-primary" ng-click="close()">Cancel</button>
+                                
+                                    <!--<div class="col-md-6">
+                                        <div class="form-group required" >
+                                            <input name="client_name" type="text" class="form-control" ng-maxlength="50" placeholder="Client Name " required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required" >
+                                            <input name="date" type="text" class="form-control" ng-maxlength="50" placeholder="DD/MM/YYYY" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required" >
+                                            <input name="collebrators" type="text" class="form-control" ng-maxlength="50" placeholder="Multiple Collebrators" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="hpanel" style="border:1px dotted #434E6E">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <img src="images/portrait.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="hpanel" style="border:1px dotted #434E6E">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                   <img src="images/ladscape.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="hpanel hbggreen">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                <br>
+                                                    <i class="pe-7s-note fa-4x"></i><br>
+                                                    <small>Create Proposal</small>
+                                                    <br><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                                 
+                                <br><br><br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <strong> Select a page from the gallery to edit</strong>
+                                        <hr>
+                                    </div>
+                                </div>
+                                
+                                 <div class="row" >
+                                    <div class="col-md-3" style=""ng-repeat="page in sdata" ng-click="updatepage(page,$index)">
+                                        <div class="hpanel" ng-class="{ 'hnavyblue' : $index===selectedIndex}">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                            
+                                                    <small>{{page.PageName}}</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-md-3" style="">
+                                        <div class="hpanel hbgblue">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <i class="pe-7s-config icon-lg"></i><br>
+                                                    <small>IT Infrastructure and Delivery</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" style="">
+                                        <div class="hpanel hbgyellow">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <i class="pe-7s-config icon-lg"></i><br>
+                                                    <small>Application Development</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" style="">
+                                        <div class="hpanel hbgred">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <i class="pe-7s-config icon-lg"></i><br>
+                                                    <small>Hardware/Software License quote</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                                  
+                                  
+                                </div>
+                               <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>-->
+                            </div>
+                        </div>
+                  <!--  </div>-->
+
+</div>

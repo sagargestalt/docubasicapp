@@ -1,41 +1,38 @@
-<!--<div id="header" ng-include="'views/header.html'"></div>
 
-<!-- Navigation 
-<aside id="menu" ng-include="'views/navigation.html'"></aside>
-<div id="wrapper">-->
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg" style="margin:0px; width:100% !important;" ng-controller="pricingsettingCtrl">
+  
+  
+  <div class="color-line"></div>   
+<div class="modal-header"> 
+	<h4 class="modal-title">Pricing
+		<span class="pull-right">
+			<a ng-click="closemodal()"> <i class="pe-7s-close fa-2x"></i></a> 
+		</span>
+	</h4> 
+</div>
 
-<div class="normalheader transition animated fadeIn">
-        <div class="hpanel">
-          <div class="panel-body">
-            <div class="pull-right">
-              <a  ng-click="closemodal()" > <i class="pe-7s-close fa-2x"></i></a>
-            </div>
-          </div>
-            <div class="panel-body">
-               
 
-                <div class="pull-right m-t-lg" id="hbreadcrumb">
-                    <ol class="hbreadcrumb breadcrumb">
-                        <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
-                       
-                        <li class="active">
-                            <span>Pricing</span>
-                        </li>
-                    </ol>
-                </div>
-                <h2 class="font-light m-b-xs">
-                    Pricing
-                </h2>
-                <small></small>
-            </div>
-        </div>
-    </div>
+<div class="content" effect="zoomIn">
+      <div class="row">
+		<div class="col-lg-12" >
+			<div class="pull-right m-t-lg" id="hbreadcrumb">
+			<ol class="hbreadcrumb breadcrumb">
+				<li><a ng-href="#/main"><i class="icon-page-14"></i> &nbsp; Dashboard</a></li>
+				<li class="active"><span>Pricing</span></li>
+			</ol>
+			</div>
+		</div>
+   </div>
+   <br>
+
 
 <div class="setting">
-   <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
-    <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
- <div class="content" animate-panel effect="zoomIn">
+	<div class="row">
+		<div class="col-lg-12" >
+			<uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+			<uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+		</div>
+	</div>
 
     <div class="row">
 <div class="col-lg-12" >
@@ -59,37 +56,37 @@
           <div class="row">
           
             <div class="col-md-4">
-                <div class="form-group required" ng-class="{'has-error': priceForm.Taskcategory.$touched && priceForm.Taskcategory.$error.required}">
+                <div class="form-group required" ng-class="{'has-error': priceForm.Taskcategory.$touched && priceForm.Taskcategory.$error.required  && priceForm.submit}">
                   <label class="control-label">Product/Service name</label><br>
                <input name="Taskcategory" type="text" class="form-control" placeholder="Product/Service name" id="user-pass" ng-model="productname" required>
               </div>
               </div>
               <div class="col-md-2">
                 
-                <div class="form-group required" ng-class="{'has-error': priceForm.skid.$touched && priceForm.skid.$error.required}">
+                <div class="form-group required" ng-class="{'has-error': priceForm.skid.$touched && priceForm.skid.$error.required   && priceForm.submit}">
                   <label class="control-label">SKU</label><br>
                <input name="skid" type="text" class="form-control" placeholder="SKU" id="user-pass" ng-model="skuid" required>
               </div>
             </div>
               
               <div class="col-md-2">
-                <div class="form-group required" ng-class="{'has-error': priceForm.quntaty.$touched && priceForm.quntaty.$error.required}">
+                <div class="form-group required" ng-class="{'has-error': priceForm.quntaty.$touched && priceForm.quntaty.$error.required  && priceForm.submit}">
                    <label class="control-label">Quantity</label><br>
-               <input name="quntaty" type="number" class="form-control" placeholder="QTY" id="user-pass" ng-model="quantity" ng-blur="mulall(quantity,unitcost,unitprice)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+               <input name="quntaty" type="text" class="form-control" placeholder="QTY" id="user-pass" ng-model="quantity" ng-blur="mulall(quantity,unitcost,unitprice)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
                <span class="help-block"  ng-show="priceForm.quntaty.$touched && priceForm.quntaty.$invalid">Invalid</span>
               </div>
             </div>
               <div class="col-md-2">
-                  <div class="form-group required" ng-class="{'has-error': priceForm.ucost.$touched && priceForm.ucost.$error.required}">
+                  <div class="form-group required" ng-class="{'has-error': priceForm.ucost.$touched && priceForm.ucost.$error.required && priceForm.submit}">
                      <label class="control-label">Unit Cost</label><br>
-               <input name="ucost" type="number" class="form-control" placeholder="Unit Cost" id="user-pass" ng-model="unitcost" required ng-blur="mul(quantity,unitcost)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
+               <input name="ucost" type="text" class="form-control" placeholder="Unit Cost" id="user-pass" ng-model="unitcost" required ng-blur="mul(quantity,unitcost)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
                  <span class="help-block"  ng-show="priceForm.ucost.$touched && priceForm.ucost.$invalid">Invalid</span>
               </div>
             </div>
               <div class="col-md-2">
-                 <div class="form-group required" ng-class="{'has-error': priceForm.uprice.$touched && priceForm.uprice.$error.required}">
+                 <div class="form-group required" ng-class="{'has-error': priceForm.uprice.$touched && priceForm.uprice.$error.required && priceForm.submit}">
                   <label class="control-label">Unit Price</label><br>
-               <input name="uprice" type="number" class="form-control" placeholder="Unit Price" id="user-pass"  ng-model="unitprice" required ng-blur="mul1(quantity,unitprice)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
+               <input name="uprice" type="text" class="form-control" placeholder="Unit Price" id="user-pass"  ng-model="unitprice" required ng-blur="mul1(quantity,unitprice)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
                 <span class="help-block"  ng-show="priceForm.uprice.$touched && priceForm.uprice.$invalid">Invalid</span>
               </div>
             </div>
@@ -97,54 +94,57 @@
 
 
             <div class="row">
-              <div class="col-md-3"> <label class="control-label">Currency</label><br> 
+              <div class="col-md-3"><div class="form-group required" > <label class="control-label">Currency</label><br> 
               <div class="dropdown">
-                    <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="money.currencyid as money.currencyName for money in currancys" ng-model="moneys">
-          Select</select>
-                   
+                    <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="money.currencyid as money.currency_code for money in currancys" ng-model="moneys">
+          <option value="">--Select--</option></select></select>
+                   </div>
                   </div>
               </div>
             
 
               
               
-              <div class="col-md-3"><label class="control-label">Source</label><br>
+              <div class="col-md-3"><div class="form-group required" ><label class="control-label">Source</label><br>
              <div class="dropdown">
                      <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="source" ng-options="s.id as s.type for s in sources">
-           </select>
+           <option value="">--Select--</option></select>
           </div>
+        </div>
               </div>
-              <div class="col-md-2" ng-show="source == '2'"><label class="control-label">Vendors</label><br> 
+              <div class="col-md-2" ng-show="source == '2'"><div class="form-group required" ><label class="control-label">Vendors</label><br> 
                 <div class="dropdown">
                      <select class="form-control dropdown-toggle"  type="button" data-toggle="dropdown"  ng-model="vendors"  ng-options="vd.vendor_id as vd.displayname for vd in vendorsdata ">
-           select</select>
-                    
+           <option value="">--Select--</option></select>
+                    </div>
                   </div>
               </div>
                 <div class="col-md-2">
-                 <div class="form-group required" ng-class="{'has-error': priceForm.uprice.$touched && priceForm.uprice.$error.required}">
+                
                <!--<input name="uprice" type="text" class="form-control" placeholder="Total Price" id="user-pass" ng-model="totalprice" required>-->
-                <label class="control-label">Total Cost</label><br>
-                <label  class="control-label" ng-if="unitprice && unitcost" >{{totalcost| number: 2}}</label>
-              </div>
+                <p>Total Cost</p><br>
+                <p>{{totalcost| number: 2}}</p>
+             
             </div>
               <div class="col-md-2">
-                 <div class="form-group required" ng-class="{'has-error': priceForm.uprice.$touched && priceForm.uprice.$error.required}">
+                
                <!--<input name="uprice" type="text" class="form-control" placeholder="Total Cost" id="user-pass" ng-model="totalcost" required>-->
               
-                 <label class="control-label">Total Price</label><br>
-               <label  class="control-label" ng-if="unitcost && unitprice" >{{totalprice| number: 2}}</label>
-              </div>
+                 <p>Total Price</p><br>
+               <p>{{totalprice| number: 2}}</p>
+             
             </div>
             </div>
 
             
             <div class="row"><br>
               <div class="col-md-10">
+                <div class="form-group required" >
                  <label class="control-label">Price detailed summary</label><br>
               <textarea class="form-control" rows="5" id="comment" placeholder="Price detailed summary" ng-model="discriptions" ></textarea>
             </div>
           </div><br>
+        </div>
         </form>
           <div class="row">
               <div class="col-md-12">
@@ -166,21 +166,22 @@
                 </h3><br>
         <div class="row">
             <div class="col-md-3">
-               <div class="form-group required" ng-class="{'has-error': discountForm.distname.$touched && discountForm.distname.$error.required}">
+               <div class="form-group required" ng-class="{'has-error': discountForm.distname.$touched && discountForm.distname.$error.required && discountForm.submit}">
                   <label class="control-label">Discount Name</label><br>
                <input name="distname" type="text" class="form-control" placeholder="Discount Name" id="user-pass" ng-model="discountname" required>
              </div>
            </div>
-             <div class="col-md-3"><label class="control-label">Discount Type </label>
+             <div class="col-md-3"><div class="form-group required" ><label class="control-label">Discount Type </label>
              <div class="dropdown">
                      <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="distype" ng-options="types.id as types.type for types in dbased" >
-           <p>Select</p></select>
+           <option value="">--Select--</option></select>
           </div>
+        </div>
              </div>
        <div class="col-md-4">
-               <div class="form-group required" ng-class="{'has-error': discountForm.val.$touched && discountForm.val.$error.required}">
+               <div class="form-group required" ng-class="{'has-error': discountForm.val.$touched && discountForm.val.$error.required && discountForm.submit}">
                  <label class="control-label">Amount</label><br>
-                <input name="val" type="number" class="form-control" placeholder="Amount/Percentage" id="user-pass" ng-model="value" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required >
+                <input name="val" type="text" class="form-control" placeholder="Amount/Percentage" id="user-pass" ng-model="value" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required >
                  <span class="help-block"  ng-show="discountForm.val.$touched && discountForm.val.$invalid">Invalid</span>
               </div>
              </div>
@@ -188,7 +189,7 @@
             <div class="row">
              <div class="col-md-6">
                <button class="btn btn-success" ng-click="adddiscount()" ng-disabled="discountForm.$invalid" ng-hide="dupdate" >Save</button>
-                 <button class="btn btn-succes" ng-click="updatediscount()"  ng-disabled="discountForm.$invalid" ng-show="dupdate" >Update</button>
+                 <button class="btn btn-success" ng-click="updatediscount()"  ng-disabled="discountForm.$invalid" ng-show="dupdate" >Update</button>
                  <button class="btn btn-primary" ng-click="closediscount()" >Cancel</button>
              </div>
        </div>
@@ -206,15 +207,15 @@
                 </h3><br>
         <div class="row">
             <div class="col-md-4">
-               <div class="form-group required" ng-class="{'has-error': taxForm.Txname.$touched && taxForm.Txname.$error.required}">
+               <div class="form-group required" ng-class="{'has-error': taxForm.Txname.$touched && taxForm.Txname.$error.required && taxForm.submit}">
                  <label class="control-label">Tax Name</label><br>
                <input name="Txname" type="text" class="form-control" placeholder="Tax Name" id="user-pass" ng-model="taxname" required>
              </div>
              </div>
        <div class="col-md-4">
-               <div class="form-group required" ng-class="{'has-error': taxForm.txPercentage.$touched && taxForm.txPercentage.$error.required}">
+               <div class="form-group required" ng-class="{'has-error': taxForm.txPercentage.$touched && taxForm.txPercentage.$error.required && taxForm.submit}">
                 <label class="control-label">Percentage</label><br>
-               <input name="txPercentage" type="number" class="form-control" placeholder="Percentage" id="user-pass" ng-model="taxPercentage" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"required>
+               <input name="txPercentage" type="text" class="form-control" placeholder="Percentage" id="user-pass" ng-model="taxPercentage" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"required>
                <span class="help-block"  ng-show="taxForm.txPercentage.$touched && taxForm.txPercentage.$invalid">Invalid</span>
              </div>
              </div>
@@ -279,8 +280,8 @@
       <tbody>
         <tr ng-repeat="detail in discountblock" >
           <td >{{detail.discountname}}</td>
-          <td ng-if="detail.type ==1">Amount</td>
-          <td ng-if="detail.type ==2">Percentage</td>
+          <td ng-if="detail.type ==2">Amount</td>
+          <td ng-if="detail.type ==1">Percentage</td>
            <td>{{detail.value}}</td>
             <td>{{detail.email}}<br>
           {{detail.created_time}}</td>

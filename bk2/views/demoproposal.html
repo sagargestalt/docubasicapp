@@ -1,0 +1,192 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+<div class="setting">
+    <div id="container" class="content" >
+         <div class="pull-right m-t-lg" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a ng-href="#/main">Dashboard</a></li>
+                       
+                        <li class="active">
+                            <span><a ng-href="#/proposal-summery">Proposal Summary</a></span>
+                        </li>
+                        <li class="active">
+                            <span><a ng-href="#/main">Proposal Detailed View</a></span>
+                        </li>
+                    </ol>
+                </div>
+        <div class="row" >
+            <div class = "col-md-4">
+                <h3 ng-hide="show">{{praposalname}} <a class="pull-right" ng-click="show=!show" ><i class="icon-edit"></i></a></h3>
+                <input name="pname" ng-if="show" id="sender-Tenancy" type="text" placeholder="Proposal Name" class="form-control email" ng-model="praposalname" required>
+            </div>
+                <div class = "col-md-2">
+                <button class="btn btn-primary" ng-show="show" ng-click="submitname()">Save</button>
+            </div>
+            <!--<div class = "col-md-2">
+                <a class="pull-right" ng-click="show=!show" ng-show="isAdmin"><i class="glyphicon glyphicon-pencil"></i></a>
+            </div> -->
+           
+           
+            
+        </div><br>        
+        
+        
+        
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="col-md-2 no-padding">
+                    <div class="hpanel">
+                        <div class="panel-body no-padding">
+                            <div class="p15 themecolor">
+                                <p>Widgets</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-10 no-padding">
+                    <div class="hpanel">
+                        <div class="panel-body no-padding">
+                            <div class="pull-left p15">
+
+                               
+                                <!--<i id="draggable" class="prl15 border-right"><img src="images/widget/text.png"></i>-->
+                                <i title="Text" class="icon-text2 fa-2x prl10 border-right" db-draggable data-text="true"></i>
+                                <a ng-click="uploadimage()" title="Image"><i class="icon-image2 fa-2x prl10 border-right"></i></a>
+                                <i class="icon-video2 fa-2x prl10 border-right" title="Video" db-draggable data-video="true"></i>
+                                <i class="icon-application fa-2x prl10 border-right" title="Table" db-draggable data-table="true"></i>
+
+                                 <div class="btn-group" uib-dropdown is-open="status.isopen" title="Shapes" > 
+              <button id="single-button" type="button" class="btn btn-default" style="padding: 0px; border: 0px none; width: 70px ! important; margin-top: -15px;" uib-dropdown-toggle ng-disabled="disabled" >
+                <i class="icon-shape3  fa-2x" ></i> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" style="min-width: 70px !important;">
+                <li role="menuitem"><a><i class="icon-rectangle-38 fa-2x" db-draggable data-square="true"></i></a></li>
+            <li class="divider"></li>
+                <li role="menuitem"><a><i class="icon-oval fa-2x" db-draggable data-circle="true"></i></a></li>
+            <li class="divider"></li>
+                <li role="menuitem"><a><i class="icon-triangle fa-2x"db-draggable data-triangle="true"></i></a></li>
+              
+              </ul>
+            </div>
+                                
+                                
+                                
+                                <i class="fa fa-arrows-h fa-2x prl10 border-left" title="Line" aria-hidden="true" db-draggable data-line="true"></i>
+                                <!--<i class="pe-7s-male fa-2x prl15" db-draggable data-line="true"></i>-->
+                                
+                                
+                                
+                                
+                            </div>
+                            <div class="pull-right light-blue p18">
+                                <a ng-click="clonepraposal()"><i class="icon-92 prl10 fa-2x border-right"></i></a>
+                                <a ng-click="deletepraposal()"> <i class="icon-45 prl10 fa-2x border-right"></i></a>
+                                <a ng-click="priweviemode()">   <i class="icon-search2 fa-2x prl10 border-right"></i></a>
+                                <a ng-href="#/costprofitanalysis"> <i class="icon-amount prl10 fa-2x border-right"></i></a>
+                                <a ng-click="download()"> <i class="icon-download prl10 fa-2x border-right"></i></a>
+                                <a ng-click="opencollab()"> <i class="icon-share prl10 fa-2x border-right"></i></a>
+                                <a ng-click="emailwindow()">  <i class="icon-send prl10 fa-2x"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="col-md-2 no-padding">
+                    
+                    <div class="hpanel zerobottom" ng-repeat="pagecnt in pagedata" ng-class="{ 'hnavyblue' : $index===selectedIndex}">
+                        <div class="panel-body text-center" >
+                            <a ng-click="sendpage(pagecnt,  $index)">
+                                <!--<img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
+                                <div class="m-t-sm" style="margin-bottom:10px;">
+                                    <strong>{{pagecnt.template_page_name}}</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--<div class="hpanel zerobottom">
+                        <div class="panel-body text-center">
+                            <i class="pe-7s-config icon-lg" ></i>
+                            <div class="m-t-sm">
+                                <strong>Executive Summary</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hpanel zerobottom">
+                        <div class="panel-body text-center">
+                            <i class="pe-7s-config icon-lg" ></i>
+                            <div class="m-t-sm">
+                                <strong>Pricing</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hpanel zerobottom">
+                        <div class="panel-body text-center">
+                            <i class="pe-7s-config icon-lg" ></i>
+                            <div class="m-t-sm">
+                                <strong>Terms & Conditions</strong>
+                            </div>
+                        </div>
+                    </div>-->
+                    
+                </div>
+                
+                
+                <div class="col-md-10 " >
+                    
+                    <div class="hpanel">
+                         <canvas id="c" db-droppable width="500" height="200"></canvas>
+                        <!--<div class="panel-body"  ng-model="ssss"  medium-editor bind-options="{'toolbar': {'buttons': ['bold',
+                            <div class="pull-right">
+                                <img src="../images/chat.png">
+                            </div>
+                            
+                            <!--<h2 class="m-t-none border-all p20 text-center">You just created a new Proposal </h2>
+                            <p class="border-all p20 text-center">
+                                <br><br><br>
+                                Customize your page as you would like by dragging and dropping<br> thewidgets from the widgets panel above
+                                <br><br><br>
+                            </p>
+                            <br><br><br><br><br><br><br>
+                            
+                            
+                        </div>-->
+                    </div>
+                    <button class="btn btn-primary" ng-click="submitpage()">Save</button>
+                    <!--<button class="btn btn-primary" ng-click="updatepage()" >update</button>-->
+                    
+                </div>
+                
+            </div>
+        </div>
+      
+        
+        <div class="row projects">
+            <div class="col-lg-12" >
+                <a ng-click="$root.rightSidebar = !$root.rightSidebar">
+                    
+                    
+                    <div class="pull-right">
+                        <img src="images/floating.png">
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+        <div id="right-sidebar" ng-include="'views/proposal-task.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+        
+        
+    </div>
+</div>
+</div>
+</div>

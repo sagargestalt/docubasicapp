@@ -1,0 +1,106 @@
+<style>#droppable{margin:0px !important;}</style>
+<div id="wrapper" style="margin:0px;">
+
+
+ <div id="container" class="content" >
+
+ <div class="row">
+        
+        <div class="col-md-12">
+           
+            
+       
+                <div class="hpanel">
+                    <div class="panel-body no-padding">
+                        <div class="row">
+                            <div class="col-md-2">
+                                 <h4 style="padding-top:10px; padding-left:10px;">Total Price:{{customertotal}}</h4>
+                             </div>
+                             <div class="col-md-2">
+                                 <h4 style="padding-top:10px; padding-left:10px;"> Discounted Price:{{discount}}</h4>
+                             </div>
+                            <div class="col-md-2">
+                                 <h4 style="padding-top:10px;  padding-left:10px;">Timeline:{{deadline}}</h4>
+                             </div>
+                              <div class="col-md-2">
+                                <a ng-click="download()"><i class="pe-7s-cloud-download fa-4x"></i></a>
+                             </div>
+                             <div class="col-md-4">
+                                <div class="pull-right light-blue p20">
+                                    <a ng-click="$root.rightSidebarsign = !$root.rightSidebarsign" style="color:#ffffff; font-size:18px;" ng-hide="approve">Sign and Approve</i><a> &nbsp; &nbsp;&nbsp;&nbsp;
+                                    
+                                    <a ng-click="$root.rightSidebarreject = !$root.rightSidebarreject"  style="color:#ffffff; font-size:18px;" ng-hide="approve">Reject</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            
+            </div>
+        </div>
+        <h3>{{praposalname}}</h3>
+        
+        <div class="row">
+        
+          <div class="col-md-12">
+
+            <div class="col-md-2 no-padding">
+
+                
+
+                       
+
+
+                          <div class="hpanel zerobottom" ng-repeat="pagecnt in pagecontent" ng-class="{ 'hnavyblue' : $index===selectedIndex}">
+                        <div class="panel-body text-center" >
+                            <a ng-click="sendpage(pagecnt,  $index)">
+                                <!--<img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
+                                <div class="m-t-sm" style="margin-bottom:10px;">
+                                    <strong>{{pagecnt.page_name}}</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                        
+
+                   
+
+
+
+            </div>
+            
+            
+            <div class="col-md-10">
+
+
+               
+                <div class="hpanel">
+                    <div class="panel-body"  ng-model="ssss"  medium-editor  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;">
+
+                      
+                       
+                    
+
+
+                    </div>
+                     
+                        
+                </div>
+
+                 <div id="right-sidebar" ng-include="'views/signature.html'" class="sidebar-open" ng-if="rightSidebarsign"></div>
+                  <div id="right-sidebar" ng-include="'views/reject.html'" class="sidebar-open" ng-if="rightSidebarreject"></div>
+<!--<button class="btn btn-primary" ng-click="submitpage()">Save</button>
+<button class="btn btn-primary" ng-click="updatepage()" >update</button>-->
+
+            </div>
+            
+            </div>
+
+        </div>
+        
+        
+
+    </div>
+</div>
+

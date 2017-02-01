@@ -10,12 +10,12 @@
  */
   
 angular.module('docubasic3App')
-  .controller('popupCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal','loginService',
-  function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,loginService) {
+  .controller('popupCtrl',['$scope', '$state', '$timeout','$rootScope','$stateParams','$uibModal','loginService','$location','billingservice','packageService',
+  function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,loginService,$location,billingservice,packageService) {
 
 
   
-
+    $rootScope.alerts = [];
     $scope.collapsed = function(){
 
       $scope.collapsedold = true;
@@ -40,6 +40,13 @@ angular.module('docubasic3App')
       });
      // $scope.tenancy = $scope.orgData.tenancycode;     
   };
+
+  billingservice.getpackages.query({}, function(data){
+     $scope.alerts=[];
+        $scope.packagedata = data.data;
+         
+
+    });
 
   $scope.checkcode = function(){
        $scope.alerts = [];
@@ -79,7 +86,7 @@ angular.module('docubasic3App')
         //$scope.tenancy = user.data.tenancycode;
         //$scope.orgmessage = user.message;
         if(user.status === true){
-        $scope.signup.orgname = user.data.companyname;
+        $scope.signup.orgnamenew = user.data.companyname;
         $scope.org = user.data;
       }
 
@@ -95,6 +102,8 @@ angular.module('docubasic3App')
 
 $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 $scope.signup = function(){
+  $scope.tprovider = '0';
+  $scope.stoken ='0';
   var data = {
     first_name:$scope.signup.fname,
     last_name:$scope.signup.lname,
@@ -103,11 +112,11 @@ $scope.signup = function(){
     tenancy_code:$scope.signup.tenancy,
     is_tenant_admin:$scope.orgdata.istenantadmin,
     is_billable:$scope.orgdata.isbillable,
-    token_provider:'0',
+    token_provider:$scope.tprovider,
     created_by:'0',
     name:$scope.signup.orgname,
     tenancy_id:'0',
-    social_media_token:0
+    social_media_token:$scope.stoken
 
 
   };
@@ -118,6 +127,8 @@ $scope.signup = function(){
     $scope.responce = data1.data;
       //$scope.orgData = user.userdata;
       if(data1.status === true){
+        $location.path( "/login" );
+       
 
          /* $scope.fname="";
           $scope.lname="";
@@ -126,17 +137,47 @@ $scope.signup = function(){
           $scope.orgname="";*/
           $scope.signup="";
 
-       $rootScope.loginalerts.push({msg: 'Check your Email for password setup.', type:'success'});
-       $rootScope.modalInstance.close();
+       $rootScope.alerts.push({msg: 'Thank you signing up with DocuBasic. Please check your email for password setup.', type:'success'});
+       //$rootScope.modalInstance.close();
        
      }
     else if(data1.status === false){
-      $scope.errors = data1.message;
+      $location.path( "/sign-upnew" );
+     $rootScope.alerts = data1.message;
       //$scope.alerts.push({msg: $scope.errors, type:'danger'});
 
      }
 
     });
+ 
+
+};
+  
+$scope.active = function(info){
+
+  $rootScope.packageid = info.package_id;
+  $scope.products = packageService.getXxx();
+  console.log($scope.products);
+  var data = {
+    first_name:$scope.products.first_name,
+    last_name:$scope.products.last_name,
+    email:$scope.products.email,
+    //password:$scope.password,
+    tenancy_code:$scope.products.tenancy_code,
+    is_tenant_admin:$scope.products.is_tenant_admin,
+    is_billable:$scope.products.is_billable,
+    token_provider:$scope.products.token_provider,
+    created_by:'0',
+    name:$scope.products.name,
+    tenancy_id:'0',
+    social_media_token:$scope.products.social_media_token,
+    package_id:$rootScope.packageid
+
+
+  };
+
+
+  
 
 };
 
@@ -152,7 +193,7 @@ $scope.signupnew = function() {
     is_billable:$scope.org.isbillable,
     token_provider:'0',
     created_by:'0',
-    name:$scope.signup.orgname,
+    name:$scope.signup.orgnamenew,
     tenancy_id:$scope.org.tenancy_id,
     social_media_token:0
 
@@ -162,8 +203,9 @@ $scope.signupnew = function() {
   loginService.orgsignup.save((odata), function(message) {
       $rootScope.alerts = [];
       $rootScope.loginalerts=[];
-    $scope.responce = message.data;
+   // $scope.responce = message.data;
      if(message.status === true){
+       $location.path( "/login" );
       /*$scope.nfname="";
       $scope.nlname="";
       $scope.nemail="";
@@ -173,8 +215,9 @@ $scope.signupnew = function() {
       $scope.tenancycode = "";*/
       $scope.signup="";
 
-       $rootScope.loginalerts.push({msg: 'Check your Email for password setup.', type:'success'});
-        $rootScope.modalInstance.close();
+       $rootScope.alerts.push({msg: 'Thank you signing up with DocuBasic. Please check your email for password setup.', type:'success'});
+        //$rootScope.modalInstance.close();
+        
 
      }
       else if(message.status === false){

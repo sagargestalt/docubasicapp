@@ -56,6 +56,31 @@ return {
       'praposalcountdata':BASE_URL +'proposal/:id',
       'validuser':BASE_URL +'chkemail',
       'resentactivitydata':BASE_URL +'recentproposals',
+      'searchanalys':BASE_URL +'analyticSearch',
+      'packageupgrade':BASE_URL +'process',
+      'searchquery':BASE_URL +'dashboardSearch',
+      'collabdatapost':BASE_URL +'showUsers',
+      'resourceprice':BASE_URL +'resources/:id',
+      'getchart':BASE_URL +'proposal_graph',
+      'getchartloss':BASE_URL +'proposal_loss_graph',
+      'getchartown':BASE_URL +'proposal_won_graph',
+      'packageadd':BASE_URL +'packages',
+      'alltenancy':BASE_URL +'showTenancy',
+      'disscountadd':BASE_URL +'discounts',
+      'discountedtenancys':BASE_URL +'discounts',
+      'costinhouse':BASE_URL +'inhouseCost',
+      'usersall':BASE_URL +'allusers',
+      'userlogo':BASE_URL +'updatelogo',
+      'singleuser':BASE_URL +'users/:id',
+      'profileupdate':BASE_URL +'updateProfile',
+      'versionchange':BASE_URL +'insert_version/:id/:tid',
+      'pagesort':BASE_URL +'page_sorting',
+      'billinggraph':BASE_URL +'billing_graph_day',
+      'getallcomments':BASE_URL +'allcomments',
+      'addcomments':BASE_URL +'comments',
+      'deletecomment':BASE_URL +'comments/:id',
+      'commentedit':BASE_URL +'comments/:id',
+      'canvassave':BASE_URL +'saveNewContent',
             
 
       //update service//
@@ -75,6 +100,9 @@ return {
       'completealltask':BASE_URL +'todos/complete/:id',
       'opentask':BASE_URL +'todos/active/:id',
       'uptask':BASE_URL +'todos/:id',
+      'searchbilling':BASE_URL +'billing_history',
+      'packageupdate':BASE_URL +'packages/:id',
+      'discountupdate':BASE_URL +'discounts/:id',
 
       //delete service//
       'removetask':BASE_URL +'deleteCategory',
@@ -86,6 +114,9 @@ return {
       'deletepricedata':BASE_URL +'priceblocks/:id',
       'deletediscountdata':BASE_URL +'discountblocks/:id',
       'deletetaxdata':BASE_URL +'taxblocks/:id',
+      'stylecontent':BASE_URL +'style/details/:id',
+      'packagedelete':BASE_URL +'packages/:id',
+      'discountdelete':BASE_URL +'discounts/:id',
 
       'sendpagedata':BASE_URL +'pages',
       'getpage':BASE_URL +'allpages',
@@ -120,5 +151,7 @@ return {
       'pagecontent':BASE_URL +'pagecontent',
       'proposaltask':BASE_URL +'alldata',
       'profitanalysys':BASE_URL +'costProfitview',
+      'cstprofit':BASE_URL +'dashboardcostprofit',
+      'costprofitgraph':BASE_URL +'costprofit_graph_day',
    	};
 }());

@@ -1,0 +1,138 @@
+ <div id="header" ng-include="'views/header.html'"></div>
+
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+
+
+<div id="container" class="content" >
+
+
+            <div class="row" >
+                
+				 <div class="col-md-5">
+        <h3>{{praposalname}}(Preview Mode)</h3>
+		</div>
+		
+		 <div class = "col-md-7">
+           <div class="pull-right m-t-lg" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb" style="padding-top:10px;">
+                        <li><a ng-href="#/main"><i class="icon-page-14">&nbsp; </i>Dashboard</a></li>
+                       
+                        <li class="active">
+                            <span><a ng-href="#/proposal-summery">Proposal Summary</a></span>
+                        </li>
+                        <li class="active">
+                            <span><a ng-href="">Proposal Preview</a></span>
+                        </li>
+                    </ol>
+                </div>
+				 </div>
+		</div>
+		<br>
+        
+        <div class="row">
+        
+          <div class="col-md-12">
+
+            <div class="col-md-2 no-padding">
+
+                
+
+                        <div class="hpanel zerobottom" ng-repeat="pagecnt in pagedata" ng-class="{ 'hnavyblue' : $index === selectedIndex}">
+                        <div class="panel-body text-center" >
+                            <a ng-click="sendpage(pagecnt,  $index)">
+                                <!--<img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
+								  <i class="icon-{{pagecnt.icon}} icon-lg" ></i>
+                                <div class="m-t-sm" style="margin-bottom:10px;">
+                                    <strong>{{pagecnt.template_page_name}}</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                        <!--<div class="hpanel zerobottom">
+                            <div class="panel-body text-center">
+                                <i class="pe-7s-config icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Executive Summary</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="hpanel zerobottom">
+                            <div class="panel-body text-center">
+                                <i class="pe-7s-config icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Pricing</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="hpanel zerobottom">
+                            <div class="panel-body text-center">
+                                <i class="pe-7s-config icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Terms & Conditions</strong>
+                                </div>
+                            </div>
+                        </div>-->
+
+                   
+
+
+
+            </div>
+            
+            
+            <div class="col-md-9" style="padding-right:0px;">
+
+
+               
+                <div class="hpanel">
+                     <div db-droppable class="proposal-drop-container"  id="proposalDropContainer" >
+   
+</div>
+                    <!--<div class="panel-body"  ng-model="ssss"  medium-editor  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;" data-disable-editing="true">
+
+                       <div class="pull-right">
+                            <img src="../images/chat.png">
+                        </div>
+                        
+                        <h2 class="m-t-none border-all p20 text-center">You just created a new Proposal </h2>
+                        <p class="border-all p20 text-center">
+                        <br><br><br>
+                           Customize your page as you would like by dragging and dropping<br> thewidgets from the widgets panel above
+                           <br><br><br>
+                        </p>
+                        <br><br><br><br><br><br><br>
+                        
+                    
+
+
+                    </div>-->
+                </div>
+<!--<button class="btn btn-primary" ng-click="submitpage()">Save</button>
+<!--<button class="btn btn-primary" ng-click="updatepage()" >update</button>-->
+
+            </div>
+
+             <div class="col-md-1 no-padding">
+                     <div class="pull-right" >
+                      <a  uib-popover-template="dynamicPopovernew.templateUrl" popover-title="{{dynamicPopovernew.title}}"  popover-placement="bottom-right" >
+                        <img src="images/chat.png">
+                    </a>
+
+
+                    
+                     </div>
+                  </div>
+            
+            </div>
+
+        </div>
+        
+        
+
+    </div>
+</div>
+

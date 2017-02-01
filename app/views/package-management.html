@@ -1,0 +1,136 @@
+<div id="header" ng-include="'views/admin-header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/admin-navigation.html'"></aside>
+<div id="wrapper">
+<div class="content animate-panel">
+<div class="row"  >
+
+
+   
+  <div class="col-md-12"  >
+            <h3>Package Management   <div class="pull-right" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                       
+                       
+                        <li class="active">
+                            <span>Package Management</span>
+                        </li>
+                    </ol>
+                </div></h3>
+            <br>
+        
+ <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+   <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+ <button class="btn btn-success pull-right" ng-hide="update" ng-click="createpackage()" ><i class="pe-7s-plus " ></i>&nbsp; New Package</button>
+<br>
+<br>
+            </div><br>
+            <br>
+			
+<div class="col-md-12"  >            
+<div class="hpanel">
+		
+             <div class="panel-body" ng-show="collapsed" >
+  
+ 
+  
+    <form name="resource">
+       <h4 ng-hide="update">New Package</h4>
+    <h4 ng-show="update">Update Package</h4> 
+	<hr>
+    <a id="top"></a>
+          <div class="row">
+            <div class="col-md-4">
+               <div class="form-group required" ng-class="{'has-error': resource.pname.$touched && resource.pname.$error.required  && resource.submit}">
+                 <label class="control-label">Package Name</label><br>
+              <input name="pname" type="text" class="form-control" placeholder="Package Name" id="user-pass" ng-model="pkgname"  ng-maxlength="20" ng-minlength="3" required>
+              <span class="help-block"  ng-show="resource.pname.$error.minlength" >Package Name is too short.</span>
+            <span class="help-block"  ng-show="resource.pname.$error.maxlength" >Package Name is too long.</span>
+            </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group required" ng-class="{'has-error': resource.pcost.$touched && resource.pcost.$error.required  && resource.submit}">
+                <label class="control-label">Monthly charge</label><br>
+                 <input name="pcost" type="text" class="form-control" placeholder="Monthly charge" id="user-pass" ng-model="pkgrent" required  ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" >
+                 <span class="help-block"  ng-show="priceForm.pcost.$touched && priceForm.pcost.$invalid">Invalid</span>
+                </div>
+          </div>
+        </div>
+
+        <div class="row">
+         
+            <div class="col-md-4"> 
+                <div class="form-group required" ng-class="{'has-error': resource.ulimit.$touched && resource.ulimit.$error.required  && resource.submit}">
+                <label class="control-label">User Limit</label><br>
+                 <input name="ulimit" type="text" class="form-control" placeholder="User Limit" id="user-pass" ng-model="userlmt" required ng-blur="mul(quantity,unitcost)" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
+                 <span class="help-block"  ng-show="priceForm.ulimit.$touched && priceForm.ulimit.$invalid">Invalid</span>
+                </div> 
+              
+            </div>
+          
+            </div>
+         
+
+          <div class="row">
+            <div class="col-md-8" >
+             
+                    <label class="control-label">Description</label><br>
+               <textarea  class="form-control" rows="5" id="comment" placeholder="Description" ng-model="message" ></textarea>
+            
+            </div>
+          
+          </div><br><br>
+          
+           <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-success" ng-click="insertpackage()"  ng-disabled="resource.$invalid" ng-hide="update">Save</button>
+            <button class="btn btn-success" ng-click="updatepackagedata()"  ng-disabled="resource.$invalid" ng-show="update">Update</button>
+            <button class="btn btn-primary" ng-click="closeuser()">Cancel</button>
+      
+              </div>
+          </div>
+		   </div>
+          
+
+  </div>
+  
+  </div>
+  <br><br><br><br><br>
+
+</div>
+      
+    <div class="row ">
+	
+	
+	       <div class="col-md-3" ng-repeat ="info in packagedata.packages">
+        <div class="hpanel hblue">
+            <div class="panel-heading hbuilt">
+                <div class="panel-tools">
+                  
+                    <a class="closebox" ng-click="deletepackage(info)"><i class="fa fa-times"></i></a>
+                </div>
+                {{info.name}}
+            </div>
+            <div class="panel-body">
+                 <p class="text-muted text-center">{{info.description}} </p>
+                 <h3 class="font-bold text-center"> ${{info.monthly_charge}}/month </h3>
+                 <center><a class="btn btn-success btn-sm m-t-xs" ng-click="updatepackage(info)">Update</a></center>
+                 <br>
+            </div>
+          
+        </div>
+    </div>
+	
+        
+           
+                
+            
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+  
+        
+    </div>
+</div>

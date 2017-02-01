@@ -1,0 +1,261 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<style type="text/css">.m-t-xl{margin-top:15px;}
+.newbtn{border-radius: 0; padding:54.4% 0px;}</style>
+<div id="wrapper">
+
+
+
+<div class="content animate-panel">
+       
+  
+<div class="row">
+
+<br><br>
+
+
+<div class="col-md-12">
+        <div class="hpanel">
+            <uib-tabset>
+                <uib-tab>
+                    <uib-tab-heading>
+                        Users
+                    </uib-tab-heading>
+                    <div class="panel-body">
+                        <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                        <thead>
+                          <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                             <th>Email</th>
+                            <th>Created by</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="detail in searchdata.users" >
+                            <td >{{detail.first_name}}</td>
+                            <td>{{detail.last_name}}</td>
+                             <td >{{detail.email}}</td>
+                             <td>{{detail.created_users_email}}<br>
+                           {{detail.created_time}}</td>
+                           
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </uib-tab>
+                <uib-tab>
+                    <uib-tab-heading>
+                        Proposal
+                    </uib-tab-heading>
+                    <div class="panel-body">
+                        <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Client</th>
+                             <th>Email</th>
+                            <th>Version</th>
+                             <th>Delivery Date</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="info in searchdata.proposal" >
+                            <td >{{info.name}}</td>
+                            <td>{{info.firstname}}</td>
+                             <td >{{info.email}}</td>
+                             <td>{{info.proposal_version_number}}</td>
+                           <td>{{info.delivery_date}}</td>
+                           
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </uib-tab>
+                <uib-tab>
+                    <uib-tab-heading>
+                        Clients
+                    </uib-tab-heading>
+                    <div class="panel-body">
+                        <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                        <thead>
+                          <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                             <th>Mobile Number</th>
+                            <th>Created by</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="detail in searchdata.clients" >
+                            <td >{{detail.firstname}}</td>
+                            <td>{{detail.lastname}}</td>
+                             <td >{{detail.mobile}}</td>
+                             <td>{{detail.created_users_email}}<br>
+                           {{detail.created_time}}</td>
+                           
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </uib-tab>
+                <uib-tab>
+                    <uib-tab-heading>
+                        Vendors
+                    </uib-tab-heading>
+                    <div class="panel-body">
+                        <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                             <th>Mobile Number</th>
+                            <th>Created by</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="detail in searchdata.vendors" >
+                            <td >{{detail.displayname}}</td>
+                            <td >{{detail.mobile}}</td>
+                            <td>{{detail.created_users_email}}<br>
+                             {{detail.created_time}}</td>
+                           
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </uib-tab>
+                <uib-tab>
+                    <uib-tab-heading>
+                        Task Categories
+                    </uib-tab-heading>
+                    <div class="panel-body">
+                        <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                        <thead>
+                          <tr>
+                             <th>Name</th>
+                            <th>Created By</th>
+                           </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="detail in searchdata.projectCategory" >
+                          <td >{{detail.categoryname}}</td>
+                          <td>{{detail.email}}<br>
+                            {{detail.created_time}}</td>
+                          
+                        
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                </uib-tab>
+                <uib-tab>
+                    <uib-tab-heading>
+                        Project Task
+                    </uib-tab-heading>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+
+                        <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                          <thead>
+                            <tr>
+                              <th>Task Category</th>
+                              <th>Man Days</th>
+                              <th>Total Cost</th>
+                              <th>Created by</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="detail in searchdata.projectTask" >
+                             <td >{{detail.taskshortdesc}}</td>
+                              <td>{{detail.mandays}}</td>
+                              <td>{{detail.totalcost}}</td>
+                              <td>{{detail.email}}<br>
+                              {{detail.created_time}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        
+                      </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab>
+                    <uib-tab-heading>
+                        Notes
+                    </uib-tab-heading>
+                    <div class="panel-body">
+                      <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Created_at</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="nts in searchdata.notes" >
+                             <td >{{nts.name}}</td>
+                              <td>{{nts.created_at}}</td>
+                             
+                            </tr>
+                          </tbody>
+                        </table>
+                       
+
+                              
+                        </div>
+
+
+                </uib-tab>
+                <uib-tab>
+                    <uib-tab-heading>
+                        ToDo's 
+                    </uib-tab-heading>
+                    <div class="panel-body">
+
+                      <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Created_at</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat = "tds in searchdata.todos" >
+                             <td >{{tds.taskname}}</td>
+                            <td > {{tds.created_at}}</td>
+                             
+                             
+                            </tr>
+                          </tbody>
+                        </table>
+                      
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+
+
+
+
+	 
+	 
+	 
+ </div>	 
+	 </div> 
+     </div>
+
+
+
+
+   

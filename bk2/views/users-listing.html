@@ -1,0 +1,54 @@
+<div id="header" ng-include="'views/admin-header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/admin-navigation.html'"></aside>
+<div id="wrapper">
+<div class="content animate-panel">
+<div class="row">
+
+ <div class="col-md-12"  >
+    <h3>Users   
+	<div class="pull-right" id="hbreadcrumb">
+         <ol class="hbreadcrumb breadcrumb">
+            <li class="active"><span>Package Management</span></li>
+        </ol>
+    </div>
+	</h3>
+</div>
+<br>
+   
+  <div class="col-md-12"  >
+  <div class="hpanel">
+
+  	<div class="panel-body">
+                        <table datatable="ng" class="table table-striped table-bordered table-hover" >
+                        <thead>
+                          <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                             <th>email</th>
+                               <th>Package Name</th>
+                               <th>Created Date</th>
+                           
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="detail in allusers" >
+                             <td >{{detail.first_name}}</td>
+                             <td>{{detail.last_name}}</td>
+                             <td >{{detail.email}}</td>
+                             <td ><p ng-if="detail.is_tenant_admin == '1'">{{detail.package_name}}</p></td>
+                             <td>{{detail.sub_created_at}} &nbsp;</td>
+                            
+                           
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+</div>
+
+  </div>
+</div>
+</div>
+</div>

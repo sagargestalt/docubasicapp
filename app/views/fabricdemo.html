@@ -119,11 +119,11 @@
 
 				<div class="pull-right">
 					<button
-						ng-click="updatePage()"
+						ng-click="updateCanvas()"
 						class='btn mrs'>
 						<i class='icon-save'></i>
 						<div class='clearfix'></div>
-						Save <strong ng-if="fabric.isDirty()" class="text-error">*</strong>
+						Save <strong ng-if="fabric.getJSON()" class="text-error">*</strong>
 					</button>
 
 					<button
@@ -280,7 +280,7 @@
 								<a
 									class="btn btn-small btn-block dropdown-toggle"
 									data-toggle="dropdown"
-									href="#">
+									>
 									<span
 										class='object-font-family-preview'
 										style='font-family: "{{ fabric.selectedObject.fontFamily }}";'>

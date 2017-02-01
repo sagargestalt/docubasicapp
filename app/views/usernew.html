@@ -1,16 +1,22 @@
 <div class="modal-dialog modal-lg">
  <div class="color-line"></div>
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Add New User<span class="pull-right"><a ng-click="closebar()"> <i class="pe-7s-close fa-2x"></i></a> </span></h4>
+                                    <h4 class="modal-title">Invite a new user<span class="pull-right"><a ng-click="closebar()"> <i class="pe-7s-close fa-2x"></i></a> </span></h4>
                                   
                                 </div>
 
 
     <div class="modal-body">
-<form name="resource">
+	  <div class="row">
+            <div class="col-md-12">
+      <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+  <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+</div>
+</div>
+  <form name="resource">
     <a id="top"></a>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                <div class="form-group required" ng-class="{'has-error': resource.rname.$touched && resource.rname.$error.required}">
                  <label class="control-label">First Name</label><br>
               <input name="rname" type="text" class="form-control" placeholder="First Name" id="user-pass" ng-model="fname" only-words ng-maxlength="20" ng-minlength="3" required>
@@ -18,7 +24,7 @@
             <span ng-show="resource.rname.$error.maxlength" class="has-error">First name is too long.</span>
             </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group required" ng-class="{'has-error': resource.ltname.$touched && resource.ltname.$error.required}">
                 <label class="control-label">Last Name</label><br>
                   <input name="ltname" type="text" only-words ng-maxlength="20" ng-minlength="3" class="form-control" placeholder="Last Name" id="user-pass" ng-model="lname" required>
@@ -29,14 +35,14 @@
         </div>
 
         <div class="row">
-          <div class="col-md-4"> <label class="control-label">User Email</label><br>
+          <div class="col-md-6"> <label class="control-label">User Email</label><br>
            <div class="form-group required" ng-class="{'has-error': resource.email.$touched && resource.email.$error.required}">
                      <input name="email" ng-hide="update" type="text" class="form-control" placeholder="Email" id="user-pass" ng-model="email" required ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
                       <span ng-show="resource.email.$touched && resource.email.$invalid" class="denger">Invalid Email</span>
                      <p ng-show="update">{{email}}</p>
                   </div>
                 </div>
-            <div class="col-md-4"> 
+            <div class="col-md-6"> 
               <div class="dropdown"> <label class="control-label">Roles</label><br>
                     <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="utype" ng-options="user.id as user.type for user in usertype" >
            <p>Select</p></select>
@@ -47,20 +53,31 @@
          
 
           <div class="row">
-            <div class="col-md-8" ng-hide="update">
+            <div class="col-md-9" ng-hide="update">
               <div class="form-group required" ng-class="{'has-error': resource.dailyprce.$touched && resource.dailyprce.$error.required}">
                     <label class="control-label">Welcome Message</label><br>
-               <textarea  class="form-control" rows="5" id="comment" placeholder="Welcome Message For user" ng-model="message" ></textarea>
+               <textarea  class="form-control" rows="4" id="comment" placeholder="Welcome Message For user" ng-model="message" ></textarea>
             </div>
             </div>
+			
+			
+			<div class="col-md-3"> 
+				<br>
+				 <div class="hpanel hbggreen"> 
+					 <a ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update"> 
+						 <div class="panel-body" style="padding-top: 17px; padding-bottom: 17px;"> 
+							 <div class="text-center"> 
+								  <i class="icon-profile fa-3x"></i><br> 
+								 <p style="margin-top: 10px;">Create User</p> 
+							 </div> 
+						 </div>
+					 </a> 
+				 </div> 
+			 </div>
           
           </div>
       
-       <div class="row">
-      <div class="col-md-12">
-            <button class="btn btn-success" ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update">save</button>
-      
-              </div>
+       
           </div>
       </form>   
 

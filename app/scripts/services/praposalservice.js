@@ -14,6 +14,15 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
             updatename:$resource(apiUrl.changepname, {id:'@id'} ,{
       			query: {method:'PUT',isArray:false}
             }),
+            changeversion:$resource(apiUrl.versionchange, {id:'@id',tid:'@tid'} ,{
+                        get: {method:'GET',isArray:false}
+            }),
+            removecomment:$resource(apiUrl.deletecomment, {id:'@id'} ,{
+                        query: {method:'DELETE',isArray:false}
+            }),
+            editcomment:$resource(apiUrl.commentedit, {id:'@id'} ,{
+                        query: {method:'PUT',isArray:false}
+            }),
             getpagedata: $resource( apiUrl.getpage, {} ),
             pagedata: $resource( apiUrl.sendpagedata, {} ),
             createpraposal:$resource( apiUrl.praposalcreate, {} ),
@@ -30,7 +39,12 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
             uploadsign:$resource( apiUrl.signupload, {} ),
             praposalapprove:$resource( apiUrl.approvepraposal, {} ),
             getpagecontent:$resource( apiUrl.pagecontent, {} ),
+            savepagesort:$resource( apiUrl.pagesort, {} ),
+            getcomments:$resource( apiUrl.getallcomments, {} ),
+            postcomment:$resource( apiUrl.addcomments, {} ),
+            savecanvas:$resource( apiUrl.canvassave, {} ),
           
+
 
 			//praposal summery//
             praposalsummeryget: $resource( apiUrl.getpraposales, {} ),

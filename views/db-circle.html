@@ -1,0 +1,33 @@
+<div class="db-circle-widget" db-resizable ng-style="{'background-color':'{{circlecolor}}'}" ng-class="{'show-config': toggleShowHide}">
+
+  <p contenteditable="true" class="editable-area">
+  </p>
+ <i class="fa fa-close" ng-click="removecircle()"></i>
+ <i class="icon-style pull-right" ng-click="applycolorcircle()"></i>
+
+ <div class="config-area">
+   
+   <!--<i class="fa fa-arrow-up" aria-hidden="true" ng-click="removerow()"></i>-->
+
+
+
+   <div class="row">
+        <div class="col-md-12">
+                <div class="hpanel hbgblue">
+                    <div class="panel-body">
+                        
+                        <div class="row">
+                            
+                             <div class="col-md-9">
+                                 <color-picker ng-model="myColor" options="options"></color-picker><br>
+                                  <i class="fa fa-info" ng-click="fillcircle()"></i>
+                            </div>
+                        <br>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+</div>

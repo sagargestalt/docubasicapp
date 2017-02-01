@@ -1,0 +1,433 @@
+ <div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+<div class="content animate-panel">
+<div class="row"  >
+   
+  <div class="col-lg-12"  >
+            <h3>Proposal Summary View   <div class="pull-right" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i>&nbsp; &nbsp; Dashboard</a></li>
+                       
+                        <li class="active">
+                            <span>Proposal-Summary</span>
+                        </li>
+                    </ol>
+                </div></h3>
+            <br>
+        
+<button class="btn w-xs btn-priblue" ng-class="{ 'btn-success' :selectedTab == 'all'}" type="button"  ng-style="all" ng-click="allpraposal(); selectedTab = 'all'">All</button>
+<button class="btn w-xs btn-priblue" ng-class="{ 'btn-success' :selectedTab == 'open'}" type="button" ng-click="open(); selectedTab = 'open'">Open</button>
+<button class="btn w-xs btn-priblue" ng-class="{ 'btn-success' :selectedTab == 'under'}" type="button" ng-click="underreview();selectedTab = 'under'">Under Review</button>
+<button class="btn w-xs btn-priblue" ng-class="{ 'btn-success' :selectedTab == 'closed'}"  type="button" ng-click="closed();selectedTab = 'closed'">Closed</button>
+ <button class="btn btn-success pull-right" ng-click="createpraposal()" ><i class="icon-plus" ></i> New Proposal</button>
+<br>
+<br>
+            </div>
+
+        
+  <div class="col-lg-12">
+ 
+</div>
+</div>
+<br>
+<div class="row">
+     <div class="col-lg-6" ng-show="praposalall" ng-repeat="detail in praposaldata" >
+        <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4>{{detail.name}}</h4>
+                        
+                               <div class="well">
+                                
+                                <small>{{info.proposal_activity}}</small><br>
+                                <p>{{info.created_at}}</p>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Client</a></div>
+                                        <small>{{detail.firstname}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Version</a></div>
+                                        <small>{{detail.proposal_version_number}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Deadline</a></div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small ng-if="detail.proposal_status == 1">Open <br></small>
+                                        <small ng-if="detail.proposal_status == 2">Sent <br></small>
+                                        <small ng-if="detail.proposal_status == 3">Under Review <br></small>
+                                         <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2  ng-if="detail.proposal_status == 1" class="text-info">25%</h2>
+                                             <h2  ng-if="detail.proposal_status == 2" class="text-info">50%</h2>
+                                              <h2  ng-if="detail.proposal_status == 3" class="text-info">75%</h2>
+                                               <h2  ng-if="detail.proposal_status == 4" class="text-info">100%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-hide="detail.useraccess == 1" ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal(detail)"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab(detail)"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px" ></i></a>
+                   <a ng-click="deletepraposal(detail)"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download(detail)"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a  ng-click="costprofitanalysis(detail)"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-6" ng-show="openpraposal" ng-repeat="detail in praposaldata | filter: { proposal_status: '1' }" >
+        <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4>{{detail.name}}</h4>
+                        
+                              <div class="well">
+                                
+                                <small>{{info.proposal_activity}}</small><br>
+                                <p>{{info.created_at}}</p>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Client</a></div>
+                                        <small>{{detail.firstname}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Version</a></div>
+                                        <small>{{detail.proposal_version_number}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Deadline</a></div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small ng-if="detail.proposal_status == 1">Open <br></small>
+                                        <small ng-if="detail.proposal_status == 2">Sent <br></small>
+                                        <small ng-if="detail.proposal_status == 3">Under Review <br></small>
+                                         <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2  ng-if="detail.proposal_status == 1" class="text-info">25%</h2>
+                                             <h2  ng-if="detail.proposal_status == 2" class="text-info">50%</h2>
+                                              <h2  ng-if="detail.proposal_status == 3" class="text-info">75%</h2>
+                                               <h2  ng-if="detail.proposal_status == 4" class="text-info">100%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-hide="detail.useraccess == 1" ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal()"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab(detail)"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px" ></i></a>
+                   <a ng-click="deletepraposal(detail)"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download(detail)"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a  ng-click="costprofitanalysis(detail)"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-6" ng-show="underreviewpraposal" ng-repeat="detail in praposaldata | filter: { proposal_status: '3' }" >
+       <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4>{{detail.name}}</h4>
+                        
+                                <div class="well">
+                                <small>{{info.proposal_activity}}</small><br>
+                                <p>{{info.created_at}}</p>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Client</a></div>
+                                        <small>{{detail.firstname}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Version</a></div>
+                                        <small>{{detail.proposal_version_number}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Deadline</a></div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small ng-if="detail.proposal_status == 1">Open <br></small>
+                                        <small ng-if="detail.proposal_status == 2">Sent <br></small>
+                                        <small ng-if="detail.proposal_status == 3">Under Review <br></small>
+                                         <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2  ng-if="detail.proposal_status == 1" class="text-info">25%</h2>
+                                             <h2  ng-if="detail.proposal_status == 2" class="text-info">50%</h2>
+                                              <h2  ng-if="detail.proposal_status == 3" class="text-info">75%</h2>
+                                               <h2  ng-if="detail.proposal_status == 4" class="text-info">100%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-hide="detail.useraccess == 1" ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal(detail)"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab(detail)"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px" ></i></a>
+                   <a ng-click="deletepraposal(detail)"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download(detail)"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a  ng-click="costprofitanalysis(detail)"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-6" ng-show="closedpraposal" ng-repeat="detail in praposaldata | filter: { proposal_status: '4' }" >
+        <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4>{{detail.name}}</h4>
+                        
+                                <div class="well">
+                                <small>{{info.proposal_activity}}</small><br>
+                                <p>{{info.created_at}}</p>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Client</a></div>
+                                        <small>{{detail.firstname}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Version</a></div>
+                                        <small>{{detail.proposal_version_number}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Deadline</a></div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small ng-if="detail.proposal_status == 1">Open <br></small>
+                                        <small ng-if="detail.proposal_status == 2">Sent <br></small>
+                                        <small ng-if="detail.proposal_status == 3">Under Review <br></small>
+                                         <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2  ng-if="detail.proposal_status == 1" class="text-info">25%</h2>
+                                             <h2  ng-if="detail.proposal_status == 2" class="text-info">50%</h2>
+                                              <h2  ng-if="detail.proposal_status == 3" class="text-info">75%</h2>
+                                               <h2  ng-if="detail.proposal_status == 4" class="text-info">100%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-hide="detail.useraccess == 1" ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal(detail)"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab(detail)"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px" ></i></a>
+                   <a ng-click="deletepraposal(detail)"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download(detail)"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a ng-click="costprofitanalysis(detail)"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+       </div>
+    </div>

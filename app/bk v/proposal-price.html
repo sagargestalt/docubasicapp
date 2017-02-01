@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+	 <div class="pull-right">
+              <a  ng-click="closebar()" > <i class="pe-7s-close fa-2x"></i></a>
+            </div>
+<div class="panel-body pn" >
+ <h2>Task Categories</h2><br>
+   <table datatable="ng" class="table table-striped table-bordered table-hover" >
+      <thead>
+        <tr>
+         <th>Task Description</th>
+          
+          <!--<th>Quantity</th>
+           <th>Price</th>-->
+         
+          
+        
+        </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="detail in alldata.projectCategory  track by $index" db-draggable data-taskcategories="{{detail}}" id="taskcategories" >
+          <td >{{detail.categoryname}}</td>
+         <!-- <td>{{detail.mandays}}</td>
+           <td>{{detail.totalcost}}</td>-->
+          
+       </tr>
+      </tbody>
+    </table>

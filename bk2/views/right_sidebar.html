@@ -1,0 +1,46 @@
+<div class="p-m">
+    <button id="sidebar-close" class="sidebar-button btn btn-default m-b-md" ng-click="$root.rightSidebar = false"><i
+            class="pe pe-7s-close"></i>
+    </button>
+    
+  
+    
+</div>
+<div class="p-m bg-light border-bottom border-top">
+    <h3>Add New Proposal</h3>
+    <div class = "row">
+        <div class ="col-xs-4">
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Name of the proposal">
+            </div>
+
+        </div> 
+        <div class ="col-xs-4">
+            <div class="form-group">
+               <select class="form-control">
+                        <option>Clients</option>
+                </select>
+            </div>
+
+        </div> 
+    </div>
+    <div class ="row">
+        <div class = "col-xs-6">
+            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                       show-button-bar="false" ng-model="dt" is-open="opened" min-date="minDate"
+                                       max-date="'2019-06-22'" datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                            </p>
+
+        </div>
+
+
+</div>
+<div class="p-m">
+   
+</div>

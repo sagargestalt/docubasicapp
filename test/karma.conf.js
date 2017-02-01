@@ -153,6 +153,7 @@ module.exports = function(config) {
       'bower_components/textAngular/dist/textAngular.js',
       'bower_components/textAngular/dist/textAngular-sanitize.js',
       'bower_components/textAngular/dist/textAngularSetup.js',
+      'bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-inline-text-editor/ite.js',
       // endbower

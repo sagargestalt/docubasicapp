@@ -1,0 +1,178 @@
+ <div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+ <div id="right-sidebar" ng-include="'views/companysetting.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+<div id="wrapper">
+    <div class="content animate-panel">
+
+
+ <div class="row">
+
+            <div class="col-md-2">
+
+                
+                <!--<div class="font-bold m-b-sm text-center">
+                    Settings
+                </div>-->
+
+                <div class="row">
+                    <div class="col-md-12" ng-init="selectedTab = 'Company'">
+
+                        <div class="hpanel zerobottom "  ng-class="{ 'hnavyblue' :selectedTab === 'Company'}">
+                            <div class="panel-body text-center ">
+                               <!-- <img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
+                               <a ng-click="opencompany(); selectedTab = 'Company'">
+                                <i class="icon-company icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Company</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Categories'}">
+                            <div class="panel-body text-center">
+                                 <a ng-click="opentask(); selectedTab = 'Categories'">
+                                <i class="icon-taskcategories icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Task Categories</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Tasks'}">
+                            <div class="panel-body text-center">
+                                <a ng-click="openprojecttask(); selectedTab = 'Tasks'">
+                               <i class="icon-projecttask icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Project Tasks</strong>
+                               </div>
+                           </a>
+                            </div>
+                        </div>
+
+
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Pricing'}">
+                            <div class="panel-body text-center">
+                                <a ng-click="openprice();  selectedTab = 'Pricing'">
+                                <i class="icon-pricing2 icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Pricing</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+
+          
+
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Vendors'}" >
+                            <div class="panel-body text-center">
+                                <a ng-click="openvendor(); selectedTab = 'Vendors'">
+                                <i class="icon-vendors icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Vendors</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Resource'}">
+                            <div class="panel-body text-center">
+                                <a ng-click="openresource(); selectedTab = 'Resource'">
+                                <i class="icon-resourcetypes icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Resource Types</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Clients'}">
+                            <div class="panel-body text-center">
+                                 <a ng-click="openclient(); selectedTab = 'Clients'">
+                                <i class="icon-resourcetypes icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Clients</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Styles'}">
+                            <div class="panel-body text-center">
+                                 <a ng-click="openstyle(); selectedTab = 'Styles'">
+                                <i class="icon-styletheme icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Styles</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Pages'}">
+                            <div class="panel-body text-center">
+                                 <a ng-click="openpage(); selectedTab = 'Pages'">
+                                <i class="icon-page2 icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Pages</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                        <div class="hpanel zerobottom" ng-class="{ 'hnavyblue' :selectedTab === 'Template'}">
+                            <div class="panel-body text-center">
+                                 <a ng-click="opentemplate(); selectedTab = 'Template'">
+                                <i class="icon-1 icon-lg" ></i>
+                                <div class="m-t-sm">
+                                    <strong>Template</strong>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!--<div class="col-md-10">
+
+                <div class="font-bold m-b-sm">
+                    Project details
+                </div>
+
+                <div class="hpanel">
+                    <div class="panel-body">
+
+                        <div class="pull-right">
+                            <button class="btn btn-success btn-xs">  Active</button>
+                            <button class="btn btn-default btn-xs"> <i class="fa fa-pencil"></i> Edit</button>
+                        </div>
+                        <h2 class="m-t-none">Common project </h2>
+                        <small>
+                            A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
+                            spring which I enjoy with my whole heart.
+                            I am alone, and feel the charm of existence in this spot, which was created for the bliss of
+                            souls like mine.
+                        </small>
+                        <div class="small m-t-xs">
+                            <strong>Create by:</strong> Anthony Novic<br/>
+                            <strong>Client:</strong> Nordic Company Walking
+                        </div>
+
+
+
+                        <div class="m-t-md">
+                            <canvas id="lineOptions" height="60"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>-->
+            
+
+        </div>
+    </div>
+     </div>
