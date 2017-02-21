@@ -14,6 +14,7 @@ angular.module('docubasic3App')
   function ($scope, $state, $timeout,$rootScope,$stateParams,$uibModal,$location,localStorageService,$route) {
     $rootScope.isLogin = localStorageService.get('isLogin');
      $rootScope.profilepath = localStorageService.get('profilepath');
+     $rootScope.company_logo = localStorageService.get('company_logo');
         if(!$rootScope.isLogin) {
            // $location.path( "/login" );
             return false;

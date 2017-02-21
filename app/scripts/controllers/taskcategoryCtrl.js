@@ -79,6 +79,7 @@ angular.module('docubasic3App')
 	};
 
 	$scope.insert = function(){
+    $scope.savetask=true;
         $scope.alerts=[];
         $scope.taskForm.submit = true;
         var task = {
@@ -90,6 +91,7 @@ angular.module('docubasic3App')
 
             $scope.message = responce.message;
             if(responce.status === true){
+                $scope.savetask=false;
                 $scope.alerts.push({msg: 'Task category added successfully', type:'success'});
                 $scope.taskname = "";
                 $scope.collapsed = false;
@@ -99,6 +101,7 @@ angular.module('docubasic3App')
             } 
 
             else if(responce.status === false){
+              $scope.savetask=false;
                 //$scope.alerts.push({msg: 'Email already registered', type:'danger'});
                   $scope.errors = responce.message;
 
@@ -118,6 +121,14 @@ angular.module('docubasic3App')
 
 	};
 
+
+  $rootScope.showsearchrecord= function(detail){
+    $scope.collapsed = true;
+      $scope.update = true;
+
+      $scope.taskname = detail.categoryname;
+      $scope.id = detail.id;
+  }
 	$scope.updatetaskdata = function(){
  		$scope.alerts=[];
         var task = {

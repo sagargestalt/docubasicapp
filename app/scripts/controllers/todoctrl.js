@@ -17,6 +17,7 @@ $rootScope.userid = localStorageService.get('userid');
      $rootScope.tenancyid = localStorageService.get('tenancyid');
      $rootScope.isLogin = localStorageService.get('isLogin');
      $rootScope.profilepath = localStorageService.get('profilepath');
+     $rootScope.company_logo = localStorageService.get('company_logo');
         if(!$rootScope.isLogin) {
             $location.path( "/login" );
             return false;
@@ -77,10 +78,24 @@ init();
         $scope.errors = [];
     };
 
+$scope.open = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
 
+        $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
+    };
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
 
 
 $scope.addnote = function(){
+
 	$scope.display = true;
     $scope.editdisplay = false;
     $scope.edit = false;
@@ -133,6 +148,7 @@ settingservice.updatenote.update((data), function(data){
 };
 $scope.isProcessing = false;
 	$scope.submitnote = function(){
+    $scope.submitted = true;
      $scope.isProcessing = true;
   
 		var notesdata = {
@@ -148,8 +164,8 @@ settingservice.postnote.save((notesdata), function(data){
 		 $scope.alerts=[];
         $scope.message = data.message;
          if(data.status === true){
-
-                $scope.alerts.push({msg: 'Note added successfully', type:'success'});
+          $scope.submitted = false;
+          $scope.alerts.push({msg: 'Note added successfully', type:'success'});
                 $scope.newnotediscription="";
                 $scope.newnotename="";
                  //$scope.saving = false;
@@ -214,9 +230,16 @@ settingservice.postnote.save((notesdata), function(data){
 	};
 
 	$scope.submittask = function(){
+    $scope.submitted = true;
+   if(!$scope.enddate)
+      {
+        $scope.enddate="";
+      }
+
 		var data = {
 			tenancy_id:$rootScope.tenancyid,
 			created_by:$rootScope.userid,
+      end_date:$scope.enddate,
 			taskname:$scope.newnotename,
 			description:$scope.taskdiscription,
 
@@ -226,9 +249,11 @@ settingservice.postnote.save((notesdata), function(data){
 		 $scope.alerts=[];
         $scope.message = data1.message;
          if(data1.status === true){
+                $scope.submitted = false;
                 $scope.alerts.push({msg: 'Task added successfully', type:'success'});
                 $scope.newnotename="";
                 $scope.taskdiscription="";
+                $scope.enddate="";
                  init();
             }
 
@@ -280,7 +305,7 @@ settingservice.postnote.save((notesdata), function(data){
     });
 
                     
-                    sweetAlert.swal("completed!", 'Task completed successfully', "success");
+                    sweetAlert.swal("Completed!", 'Task completed successfully', "success");
                 } else {
                     sweetAlert.swal("Cancelled");
                 }
@@ -384,6 +409,13 @@ settingservice.postnote.save((notesdata), function(data){
 		
 
 	};
+        $scope.showalltask = true;
+        $scope.showActivatedtask = false;
+        $scope.showcompeletedtask = false;
+        $scope.all = {'background-color': '#63c685'};
+        $scope.complete = {'background-color': '#919bb6'};
+        $scope.active = {'background-color': '#919bb6'};
+        $scope.newnotename = "";
 
     $scope.alltodos = function(){
 
@@ -423,8 +455,19 @@ settingservice.postnote.save((notesdata), function(data){
       //$scope.edittodo = true;
       $scope.todoid = info.TodosId;
       $scope.taskname = info.TaskName;
-     $scope.newnotename = $scope.taskname;
-     $scope.update = true;
+      $scope.newnotename = $scope.taskname;
+      $scope.update = true;
+
+    };
+      $scope.edittodoall = function(detail){
+
+      //console.log('sdfdafdfasf');
+      $scope.todoid = detail.TodosId;
+      $scope.taskname = detail.TaskName;
+      $scope.newnotename = $scope.taskname;
+      $scope.enddate = detail.end_date1;
+       
+      $scope.update = true;
 
     };
 $scope.updatetask = function(){
@@ -434,6 +477,7 @@ updated_by:$rootScope.userid,
 
         id:$scope.todoid,
         taskname:$scope.newnotename,
+        end_date:$scope.enddate,
 
 };
 
@@ -444,6 +488,7 @@ settingservice.updatetodos.update((data), function(data1){
                 $scope.alerts.push({msg: 'Task Updated successfully', type:'success'});
                  init();
                  $scope.newnotename = "";
+                 $scope.enddate="";
                  $scope.update = false;
             }
 

@@ -123,7 +123,8 @@ angular.module('docubasic3App')
     }
 
 
-    $scope.getresourse = function(){
+    $scope.getresourse = function(mandays){
+      console.log(mandays);
 
       var data = {
 
@@ -133,18 +134,40 @@ angular.module('docubasic3App')
       settingservice.getresourcedetail.get((data), function(data1){
 
             $scope.dailyrate = data1.data.dailyprice;
-             $scope.dailycost = data1.data.dailycost;
+            $scope.dailycost = data1.data.dailycost;
+            $scope.totalrate =  (mandays) * ($scope.dailyrate);
+            $scope.totalcost =  (mandays) * ($scope.dailyrate);
+      
+   
 
         });
 
 
+
+    };
+
+      $scope.mul = function(mandays,dailycost){
+       // alert('onchangevendor')
+
+        $scope.totalcost =  (mandays) * (dailycost);
+    };
+
+    $scope.mul1 = function(mandays,dailyrate){
+
+        $scope.totalrate =  (mandays) * (dailyrate);
     };
 
 
+
+
+
+
     $scope.submitprojecttask = function(){
-      $scope.alerts=[];
+       $scope.alerts=[];
        $scope.projecttaskform.submit = true;
-var postdata = {
+       $scope.submitted=true;
+       $scope.submitprojecttask = true;
+  var postdata = {
   category_id:$scope.category,
   taskshortdesc:$scope.discription,
   description:$scope.taskdetail,
@@ -167,6 +190,8 @@ settingservice.postptask.save((postdata), function(data){
 
         $scope.projecttask = data.data;
         if(data.status === true){
+                $scope.submitted=false;
+                $scope.submitprojecttask = false;
                 $scope.alerts.push({msg: ' Project task added successfully', type:'success'});
                 $scope.collapsed = false;
                 $scope.taskcategory = "";

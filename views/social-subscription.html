@@ -1,0 +1,32 @@
+
+<div id="wrapper">
+<div class="content">
+  
+  
+<div class="ng-scope" animate-panel="" ui-view="">
+	<div class="row ng-scope">
+		
+			<div class="col-sm-4" style="" ng-repeat ="info in packagedata.packages">
+				<div class="hpanel plan-box hgreen active" >
+					<div class="panel-heading hbuilt text-center">
+						<h4 class="font-bold">{{info.name}}</h4>
+					</div>
+					<div class="panel-body">
+						<p class="text-muted"> </p>
+						
+							<p class="text-muted text-center">{{info.description}} </p>
+							<h3 class="font-bold text-center"> ${{info.monthly_charge}}/month </h3>
+							<center><a class="btn btn-success btn-sm m-t-xs" ng-click="active(info)">Select plan</a></center>
+							<br>
+						</div>
+					</div>
+				</div>
+				
+			
+		</div>
+
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</div>
+</div>
+
+</div>

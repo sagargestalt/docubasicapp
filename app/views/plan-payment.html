@@ -1,0 +1,75 @@
+
+<style type="text/css">.m-t-xl{margin-top:15px;}
+.newbtn{border-radius: 0; padding:54.4% 0px;}</style>
+<div id="wrapper">
+
+    <div class="content"  effect="zoomIn">
+        
+        <div class="row">
+          <div class = "col-md-12">
+           
+                 </div>
+        </div>
+        <br>
+
+        <div class="hpanel">
+            <div class="panel-body">
+
+
+
+
+                <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+    <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+    <form id="myCCForm"  ng-submit="submitForm()">
+    <input id="token" name="token" type="hidden" value="">
+    <div class="form-group">
+        <label class="control-label">
+            <span>Card Number</span>
+        </label>
+        <input id="ccNo" type="text" class="form-control" size="20" value="" autocomplete="off" required ng-mode="user.cardno" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">
+            <span>Expiration Date (MM/YYYY)</span>
+        </label>
+         <div class="row">
+        <div class="col-md-5">
+        <input type="text" size="2" id="expMonth"  class="form-control" required ng-mode="user.expmonth"  />
+    </div>
+         <div class="col-md-2 text-center"><span style="font-size:30px;"> / </span></div>
+        <div class="col-md-5">
+        <input type="text" size="2" id="expYear"  class="form-control" required ng-mode="user.expyear"  />
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">
+            <span>CVV</span>
+        </label>
+         <div class="row">
+        <div class="col-md-5">
+        <input id="cvv" size="4" type="text"  class="form-control" value="" autocomplete="off" required ng-mode="user.ccv" />
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <button class="btn btn-success" type="submit" >Submit</button>
+</div>
+
+</form>
+
+</div></div>
+
+
+           </div>
+                </div>
+                </div>
+</div>
+</div>
+</div>
+

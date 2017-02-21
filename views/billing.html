@@ -1,121 +1,96 @@
-<div id="header" ng-include="'views/header.html'"></div>
-<!-- Navigation -->
-<aside id="menu" ng-include="'views/navigation.html'"></aside>
-<div id="wrapper">
-	<div class="content">
+<div class="modal-dialog modal-lg" style="margin:0px; width:100% !important;" ng-controller="billingctrl">
+<div class="color-line"></div>
+                                <div class="panel-body">
+								<div class="pull-left"><h4 class="modal-title">Billing Details</h4></div>
+            <div class="pull-right">
+              <a  ng-click="closesidebar()" > <i class="pe-7s-close fa-2x"></i></a>
+            </div>
+          </div>
+<div  ng-controller="billingctrl">
+<div id="right-sidebar" ng-include="'views/billing-history-new.html'" class="sidebar-open" ng-show="showbilling"></div> 
+
+	  <div class="modal-body">
 <div class="row">
 	
-	<div class="col-lg-12">
-	<div class="col-lg-3 ng-scope"  style="">
-		<div class="hpanel stats">
-			<div class="panel-body h-200">
-				<div class="stats-title pull-left">
-					<h4>Billing Details</h4>
-				</div>
-				
-				<div class="clearfix"></div>
-				<div class="m-t-xs" ng-repeat = "info in billingdata">
-					<div class="row">
-						<div class="col-xs-6" style="">
-							<small class="stat-label">Current Plan</small>
-							<h5>
-							{{info.name}}
-							
-							</h5>
-						</div>
-						<div class="col-xs-6" style="">
-							<small class="stat-label">Due Date</small>
-							<h5>
-							{{info.due_date}}
-							
-							</h5>
-						</div>
-						<div class="col-xs-6" style="">
-							<small class="stat-label">Amount</small>
-							<h5>
-							{{info.amount}}
-							
-							</h5>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6" style="">
-							<small class="stat-label">Start Date</small>
-							<h5>
-							{{info.start}}
-							
-							</h5>
-						</div>
-						<div class="col-xs-6" style="">
-							<small class="stat-label">End Date</small>
-							<h5>
-							{{info.end}}
-							
-							</h5>
-						</div>
-
-					</div>
-					 <div class="panel-footer">
-            <div class="row">
-                            <div class="col-xs-1"><a ng-href="#/billing-history"><i class="icon-more fa-2x pull-left"></i></a></div>
-              <div class="col-xs-10"><h5> View Details </h5></div>
+	
+	
+	<div class="col-md-6">
+                <div class="hpanel stats">
+                    <div class="panel-body h-200">
+                        <div class="stats-title">
+                            <div class="m-xs font-bold no-margins"> <img src="images/icons/dashboard/icon1.png"> &nbsp;Billing Details</div>
                         </div>
+                        <hr>
+                        <div class="m-t-xl" ng-repeat = "info in billingdata">
+              <div class="row">
+                <div class="col-xs-7" >
+                  <div class="m-xs font-bold no-margins">Current Plan</div>
+                  <small class="stat-label">{{info.name}} </small><br><br>
+				  <div class="m-xs font-bold no-margins">Amount</div>
+                   <h1 class="m-xs">{{info.amount}} </h1>
+                </div>
+                 <div class="col-xs-5" style="border-left:1px solid #eeeeee;">
+                  <div class="m-xs font-bold no-margins">Due Date</div>
+                  <small class="stat-label"> {{info.due_date}}</small><br><br>
+				  <div class="m-xs font-bold no-margins">Start Date</div>
+                   <small class="stat-label">{{info.start}} </small><br><br>
+				    <div class="m-xs font-bold no-margins">End Date</div>
+                   <small class="stat-label">{{info.end}} </small>
+                </div>
+              </div>
+                         </div>
                     </div>
-				</div>
-			</div>
-		</div>
+
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-xs-12 text-center">
+									<a ng-click="billinghistory()"> Click here to view more Billing History</a>
+							</div>
+						</div>
+					</div>
+
+     
+
+
+
+                   
+                </div>
+            </div>
+
+
+		
+
+	
+
+	
+
+
 	</div>
-	</div>
-</div>
 
 
 <div class="ng-scope" animate-panel="" ui-view="">
 	<div class="row ng-scope">
-		<div class="col-lg-12" style="">
-			<div class="col-sm-4" style="" ng-repeat ="info in packagedata.packages">
-				<div class="hpanel plan-box hgreen active" >
-					<div class="panel-heading hbuilt text-center">
-						<h4 class="font-bold">{{info.name}}</h4>
-					</div>
-					<div class="panel-body">
-						<p class="text-muted"> </p>
-						<!--<table class="table">
-							<thead>
-								<tr>
-									<td>Charges</td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<i class="fa fa-check-square-o"></i>
-										{{info.monthly_charge}}
-									</td>
-								</tr>
-								<tr>
-									<td>
-									</tr>
-									
-									
-									<tr>
-										<td>
-											<i class="fa fa-square-o"></i>
-											Support
-										</td>
-									</tr>
-								</tbody>-->
-							</table>
-							<p class="text-muted text-center">{{info.description}} </p>
+	
+	
+	       <div class="col-lg-4" ng-repeat ="info in packagedata.packages">
+        <div class="hpanel hgreen active">
+            <div class="panel-heading hbuilt">
+                
+                {{info.name}}
+            </div>
+            <div class="panel-body">
+              <p class="text-muted text-center">{{info.description}} </p>
 							<h3 class="font-bold text-center"> ${{info.monthly_charge}}/month </h3>
 							<center><a class="btn btn-success btn-sm m-t-xs" ng-click="upgrade(info)">Select plan</a></center>
 							<br>
-						</div>
-					</div>
-				</div>
-				
-			</div>
+            </div>
+           
+        </div>
+    </div>
+		
 		</div>
 	</div>
 </div>
 
+</div>
 </div>

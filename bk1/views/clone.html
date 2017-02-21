@@ -1,0 +1,173 @@
+<!--<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation 
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">-->
+<style>
+.modal-content, .modal-body{background-color:#ffffff;}
+</style>
+
+               <div class="modal-dialog modal-lg" >
+                 <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+   <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+
+                
+                                <div class="color-line"></div>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Clone Proposal<span class="pull-right"><a  ng-click="closemodal()"> <i class="pe-7s-close fa-2x"></i></a> </span></h4>
+                                  
+                                </div>
+                                <div class="modal-body" >
+                                  
+                                  <div class="row">
+                                  	
+                                  	
+                                    <div class="col-md-6" >
+                                        <div class="form-group required" >
+                                            <input name="name" type="text" class="form-control" ng-maxlength="50" placeholder="Name of Proposal" ng-model="praposalname" maxlength="20"  minlength="3" required>
+                                        </div>
+                                    </div>
+                                   
+                                
+                                    <div class="col-md-6">
+                                        <div class="form-group required" >
+                                             <div class="dropdown" >
+                                              <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="info.id as info.firstname for info in clients" ng-model="cname">.
+                                                <option selected></option>
+                                              </select>
+                                              
+                                            </div>
+                                                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                       show-button-bar="false" ng-model="myDate" is-open="opened" min-date="minDate"
+                                       max-date="'2019-06-22'" datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" placeholder="DD/MM/YYYY"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" style="height:48px" ng-click="open($event)"><i
+                        class="icon-calander"></i></button>
+              </span>
+                            </p>
+                        </div>
+                                    <!--<div class="col-md-6">
+                                        <div class="form-group required" >
+                                            <input type="date" id="exampleInput-txt" name="input" class="form-control" ng-model="myDate"
+                                                placeholder="yyyy-MM-dd"  required />
+                                                                        </div>
+                                    </div>-->
+                                    <div class="col-md-12">
+                                       <div class="dropdown" >
+                  <select class="selectpicker form-control" multiple data-toggle="dropdown"  ng-options="value.id as value.first_name for value in userdata | filter: { status: '1'}" ng-model="coname" >
+                   <option value="">--Select--</option>
+                  </select>
+                  
+                </div>
+                                    </div>
+								
+
+
+                                    
+                                    
+                                    <div class="col-md-12" >
+									<br>
+                                     <button type="button" class="btn btn-success" ng-click="submit()">Clone</button>
+                                 </div>
+
+                                    <!--<div class="col-md-3">
+                                         <br>
+                                        <div class="hpanel" style="border:1px dotted #434E6E">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <img src="images/portrait.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <!--<div class="col-md-4">
+                                         <br>
+                                        <div class="hpanel" style="border:1px dotted #434E6E">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                   <img src="images/ladscape.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <!--<div class="col-md-4">
+                                         <br>
+                                        <div class="hpanel hbggreen">
+                                            <a ng-click="submit()">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                <br>
+                                                    <i class="pe-7s-note fa-4x"></i><br>
+                                                    <small>Create Proposal</small>
+                                                    <br><br>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        </div>
+                                    </div>-->
+                                </div>
+                                 
+                                <br><br><br>
+                                <!--<div class="row">
+                                    <div class="col-md-12">
+                                        <strong> Select a Template from the gallery</strong>
+                                        <hr>
+                                    </div>
+                                </div>
+                                
+                                 <div class="row" >
+                                     <div class="col-md-3" style=""ng-repeat="temp in templates" ng-click="selecttemp(temp)">
+                                        <div class="hpanel hnavyblue">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <i class="pe-7s-config icon-lg"></i><br>
+                                                    <small>{{temp.template.template_name}}</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    <!--<div class="col-md-3" style="">
+                                        <div class="hpanel hbgblue">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <i class="pe-7s-config icon-lg"></i><br>
+                                                    <small>IT Infrastructure and Delivery</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" style="">
+                                        <div class="hpanel hbgyellow">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <i class="pe-7s-config icon-lg"></i><br>
+                                                    <small>Application Development</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" style="">
+                                        <div class="hpanel hbgred">
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <i class="pe-7s-config icon-lg"></i><br>
+                                                    <small>Hardware/Software License quote</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                                  
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                                  
+                                </div>
+                           
+

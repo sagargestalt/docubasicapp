@@ -34,6 +34,7 @@
      #notes .light-blue h5{ color:#ffffff !important;}
      #notes .light-blue small{ color:#ffffff !important;}
     .hpanel > .panel-footer, .hpanel > .panel-section {color: #3e3e3e !important;}
+	.newtxt{color:#434e6e !important; font-weight:400 !important;}
     </style>
 
 
@@ -43,14 +44,24 @@
                 <div class="panel-section">
                         <div class="row">
                             <div class="col-md-12">
-                         <div class="text-muted font-bold"><h4>Search note or add new</h4></div>
+                         <div class="text-muted font-bold "><h4 class="newtxt">Search note or add new</h4></div>
                      </div>
                  </div>
                     	<div class="row">
                     		<div class="col-md-12">
-                        <input type="text" class="form-control" style="height:44px; margin-right:10px; width:80%; float:left;" ng-model="searchnote" placeholder="Search note...">
-                   
-                                <a ng-click="addnote()" style="float:left; width:50px; height:50px;"><img src="images/addnote.png" > </a>
+
+                               <div class="input-group">
+                  
+                       <input type="text" class="form-control" style="height:44px;" ng-model="searchnote" placeholder="Search note...">
+
+                           <span class="input-group-btn" >
+                                <button style="background-color:#ffffff !important; width:44px; height:44px;" type="button" ng-disabled="!query" class="btn btn-default btntran" disabled="disabled"><i class="icon-search" style=" color: #7384b6 !important;" ></i></button>
+                           </span>
+                    </div>
+
+
+							<!--	<input type="text" class="form-control" style="height:44px; width:79%; float:left;" ng-model="searchnote" placeholder="Search note...">
+								<a ng-click="addnote()" style="float:right; width:50px; height:50px;"><img src="images/addnote.png" > </a>-->
                     
                        </div>
                      
@@ -64,7 +75,7 @@
                         <div id="notes" class="collapse">
 
                     <div class="panel-body  note-link"  ng-repeat = "info in notes | filter:searchnote"  ng-class="{ 'light-blue' : $index===selectedIndex}">
-                        <a href="#note1" data-toggle="tab">
+                        <a href="" data-toggle="tab">
                         <small class="pull-right text-muted" style="padding-top:10px;">{{info.Created_at}}</small>
                             <a ng-click="getnotesdata(info, $index)"><h5>{{info.Name}}</h5></a>
                         <div class="small">
@@ -98,12 +109,12 @@
 										<div>
 											<div class="" style="">
 												<div class="pull-right text-muted m-l-lg">{{date}}</div>
-												<h4 style="margin-bottom:18px">Add New Note</h4>
-												<label>Note Name </label><br>
+												<h4 style="margin-bottom:18px">Update Note</h4>
+												<label>Note Name </label></br>
 												<input  class="form-control" ng-model="notename"> </input>
 												<hr>
 												<div class="note-content">
-													<label>Note Description </label><br>
+													<label>Note Description </label></br>
 													<textarea class="form-control" ng-model="notediscription"> </textarea>
 												</div><br>
 												<div class="btn-group">
@@ -148,8 +159,11 @@
                             	 </p>
                             	  </div><br>
                             	   <div class="btn-group pull-right">
+                                     <button class="btn btn-sm btn-default"  ng-click="addnote()" tooltip-placement="bottom" uib-tooltip="Add" ><i class="fa fa-plus"></i> </button>
+                            
                                 <button class="btn btn-sm btn-default" ng-click="getnote()" tooltip-placement="bottom" uib-tooltip="Update" ><i class="icon-edit2"></i> </button>
-							
+
+
                               <button class="btn btn-sm btn-default" ng-click="deletenote()" tooltip-placement="bottom" uib-tooltip="Remove"><i class="icon-cancel"></i> </button>
                             </div>
 

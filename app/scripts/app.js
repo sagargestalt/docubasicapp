@@ -49,8 +49,8 @@ angular
     'angular-peity',
     'angles',
     'common.fabric',
-    'common.fabric.utilities',
-    'common.fabric.constants'   
+  'common.fabric.utilities',
+  'common.fabric.constants'   
 
   ])
   .config(function ($routeProvider) {
@@ -142,8 +142,8 @@ angular
       })
         .when('/subscription', {
         templateUrl: 'views/subscription.html',
-        controller: 'popupCtrl',
-        controllerAs: 'popupCtrl'
+        controller: 'billingctrl',
+        controllerAs: 'billingctrl'
       })
         .when('/social-subscription', {
         templateUrl: 'views/social-subscription.html',
@@ -258,8 +258,8 @@ angular
       })
          .when('/demoproposal', {
         templateUrl: 'views/demoproposal.html',
-        controller: 'fabricCtrl',
-        controllerAs: 'fabricCtrl'
+        controller: 'proposalCtrl',
+        controllerAs: 'proposalCtrl'
       })
 
 
@@ -312,6 +312,12 @@ angular
         templateUrl: 'views/users-listing.html',
         controller: 'discountmgtctrl',
         controllerAs: 'discountmgtctrl'
+      })
+
+      .when('/plan-payment', {
+        templateUrl: 'views/plan-payment.html',
+        controller: 'paymentCtrl',
+        controllerAs: 'paymentCtrl'
       })
 
 

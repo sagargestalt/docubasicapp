@@ -1,0 +1,60 @@
+
+/* =============================================================== */
+/* LOGIN
+/* =============================================================== */
+
+div.login-box {
+  float: none;
+  margin: 0 auto;
+  clear: both;
+}
+
+.panel-intro {
+  padding: 40px 0 25px;
+}
+
+.panel-intro h2 {
+  padding: 0;
+}
+
+div.login-box .panel-body {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+div.login-box .panel-footer p {
+  margin-top: 10px;
+}
+
+div.login-box .panel-footer label {
+  font-weight: normal;
+}
+
+.login-box-btm {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.login-box .input-icon i {
+  color: #555;
+  opacity: 0.6;
+  border-right: 1px solid #ccc;
+  padding-right: 5px;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon input {
+  padding-left: 45px;
+}
+
+.input-icon i {
+  font-size: 16px;
+  left: 6px;
+  line-height: 22px;
+  margin-top: -11px;
+  position: absolute;
+  top: 50%;
+}

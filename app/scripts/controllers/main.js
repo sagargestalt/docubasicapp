@@ -15,6 +15,10 @@ angular.module('docubasic3App')
  $rootScope.userid = localStorageService.get('userid');
  $rootScope.username = localStorageService.get('username');
  $rootScope.profilepath = localStorageService.get('profilepath');
+ $rootScope.company_logo = localStorageService.get('company_logo');
+ 
+
+ 
 
   $scope.$route = $route;
  $rootScope.alerts=[];
@@ -25,11 +29,7 @@ angular.module('docubasic3App')
   //$rootScope.modalInstance.close();
   
 
- $rootScope.isLogin = localStorageService.get('isLogin');
-        if(!$rootScope.isLogin) {
-            //$location.path( "/login" );
-            return false;
-        }
+ 
  
   $scope.openproposal = function(){
     $rootScope.proposalrightSidebar = true;
@@ -208,7 +208,7 @@ angular.module('docubasic3App')
        else if (data1.status === false){
 
         $scope.errors = data1.message;
-         $scope.alerts.push({msg: 'Error Occured Please Try Again', type:'danger'});
+        
 
        }
 
@@ -248,14 +248,8 @@ $scope.createuser = function(){
       };
 
    $scope.closeAlert = function(index) {
-        $rootScope.errors.splice(1, index);
-        $rootScope.errors = [];
-        $scope.loginalerts.splice(1, index);
-        $scope.loginalerts = [];
-         $scope.alerts.splice(1, index);
-        $scope.alerts = [];
-        $scope.loginalerts.splice(1, index);
-        $scope.loginalerts = [];
+        $scope.errors.splice(1, index);
+        $scope.errors = [];
     };
 
 

@@ -50,7 +50,7 @@
   <input name="Taskcategory" type="text" class="form-control" placeholder="Task Name" id="user-pass" ng-model="taskname" required>
   </div>
   </form>
-      <button class="btn btn-success" ng-click="insert()" ng-disabled="taskForm.$invalid" ng-hide = "update" >Save</button>
+      <button class="btn btn-success" ng-click="insert()" ng-disabled="taskForm.$invalid || savetask" ng-hide = "update" >Save</button>
        <button class="btn btn-success" ng-click="updatetaskdata()" ng-disabled="taskForm.$invalid" ng-show="update">Update</button>
        <button class="btn btn-primary" ng-click="closetask()">Cancel</button>
         

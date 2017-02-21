@@ -68,6 +68,12 @@ var tid = {
         };
 
         $scope.create = function(){
+          if(!$scope.pagename)
+       {
+          $scope.alerts.push({msg: 'Page name is required', type:'danger'});
+          return false;
+
+       }
         
         //pagenameservice.setXxx(data);
         $rootScope.pname = $scope.pagename;
@@ -83,6 +89,16 @@ var tid = {
       localStorageService.set('pname', $rootScope.pname);
      // localStorageService.set('userid',$rootScope.userid);
     }, true);
+
+    $scope.closeAlerts = function(index) {
+       $scope.alerts.splice(1, index);
+       $scope.alerts = [];
+   };
+
+   $scope.closeAlert = function(index) {
+       $scope.errors.splice(1, index);
+       $scope.errors = [];
+   };
 
 
  $( ".draggable" ).draggable();

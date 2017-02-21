@@ -8,9 +8,26 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('customerreviewCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,sweetAlert,$routeParams) {
+  .controller('customerreviewCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,sweetAlert,$routeParams,$window,Fabric,FabricConstants,Keypress) {
    //$scope.reject = false;
    //$scope.approve = false;
+   $scope.fabric = {};
+  //$scope.ImagesConstants = ImagesConstants;
+  $scope.FabricConstants = FabricConstants;
+
+  $scope.init = function() {
+
+    $scope.fabric = new Fabric({
+      JSONExportProperties: FabricConstants.JSONExportProperties,
+      textDefaults: FabricConstants.textDefaults,
+      shapeDefaults: FabricConstants.shapeDefaults,
+      //json: $scope.main.selectedPage.json
+    });
+     $scope.fabric.disableEditing();
+  };
+
+  $scope.$on('canvas:created', $scope.init);
+
     $scope.closeAlerts = function(index) {
         $scope.alerts.splice(1, index);
         $scope.alerts = [];
@@ -34,7 +51,7 @@ angular.module('docubasic3App')
          
           });*/ 
           // proposal_id:'@proposal_id'
-          var url = 'http://107.170.59.79/services/public/api/v1/downloadProposalpdf/';
+          var url = 'http://107.170.59.79/services/public/api/v1/downloadNewProposalpdf/';
           url = url + $rootScope.proposal_id;
           var aEl = document.createElement('a');
           aEl.href = url;
@@ -47,7 +64,7 @@ angular.module('docubasic3App')
 
 
    $scope.closemodal = function(){
-  $rootScope.rightSidebarsign = false;
+    $rootScope.rightSidebarsign = false;
   $rootScope.rightSidebarreject = false;
 
    };
@@ -73,6 +90,7 @@ angular.module('docubasic3App')
             $scope.customertotal = data1.data.customer_total;
             $scope.deadline = data1.data.deadline;
             $scope.pagecontent = data1.data.proposal_page_data;
+
             $scope.discount = data1.data.afterdiscount;
             $scope.pname = data1.data.proposal_name;
 
@@ -155,6 +173,7 @@ angular.module('docubasic3App')
 
        $scope.selectedIndex=i;
       $scope.ssss =  pagecnt.page_content;
+      $scope.fabric.loadJSON($scope.ssss );
       $scope.pageid = pagecnt.template_page_id;
     };
 
@@ -176,6 +195,7 @@ angular.module('docubasic3App')
              $scope.alerts.push({msg: 'Rejected Successfully', type:'success'});
             $rootScope.approve = true;
              $rootScope.rightSidebarreject = false;
+             window.close()
 
             }
              if (data1.status === false){
@@ -228,6 +248,8 @@ angular.module('docubasic3App')
             //$rootScope.modalInstance.close();
              $scope.alerts.push({msg: 'Approved Successfully', type:'success'});
             $scope.approve = true;
+            $rootScope.rightSidebarsign = false;
+            window.close()
              //localStorageService.set('approve', $rootScope.approve);
 
             }
@@ -240,10 +262,19 @@ angular.module('docubasic3App')
         });
 
 
+     
+  };
+
+  
+
+    
+  //
+  // Init
+ 
 
 
 
-    };
+   
         
 
 

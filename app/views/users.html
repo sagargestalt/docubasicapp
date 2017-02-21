@@ -56,29 +56,35 @@
     <a id="top"></a>
           <div class="row">
             <div class="col-md-4">
-               <div class="form-group required" ng-class="{'has-error': resource.rname.$touched && resource.rname.$error.required }">
+               <div class="form-group required">
                  <label class="control-label">First Name</label><br>
               <input name="rname" type="text" class="form-control" placeholder="First Name" id="user-pass" ng-model="fname" only-words ng-maxlength="20" ng-minlength="3" required>
               <span class="help-block"  ng-show="resource.rname.$error.minlength" >First name is too short.</span>
             <span class="help-block"  ng-show="resource.rname.$error.maxlength" >First name is too long.</span>
+              <span class="help-block" ng-show="resource.rname.$touched && resource.rname.$error.required && submitted">
+                  First name is Required!</span>
             </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group required" ng-class="{'has-error': resource.ltname.$touched && resource.ltname.$error.required }">
+              <div class="form-group required" >
                 <label class="control-label">Last Name</label><br>
                   <input name="ltname" type="text" only-words ng-maxlength="20" ng-minlength="3" class="form-control" placeholder="Last Name" id="user-pass" ng-model="lname" required>
                   <span class="help-block"  ng-show="resource.ltname.$error.minlength" >Last name is too short.</span>
             <span class="help-block"  ng-show="resource.ltname.$error.maxlength">Last name is too long.</span>
+             <span class="help-block" ng-show="resource.ltname.$touched && resource.ltname.$error.required && submitted">
+                  Last name is Required!</span>
                 </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-4"> 
-           <div class="form-group required" ng-class="{'has-error': resource.email.$touched && resource.email.$error.required && resource.submit}">
+           <div class="form-group required" >
             <label class="control-label">User Email</label><br>
                      <input name="email" ng-hide="update" type="text" class="form-control" placeholder="Email" id="user-pass" ng-model="email" required ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
-                      <span class="help-block"  ng-show="resource.email.$touched && resource.email.$invalid" >Invalid Email</span>
+                      <span class="help-block"  ng-show="resource.email.$touched && resource.email.$invalid && submitted" >Invalid Email</span>
+                       <span class="help-block" ng-show="resource.email.$touched && resource.email.$error.required && submitted">
+                Email is Required!</span>
                      <p ng-show="update">{{email}}</p>
                   </div>
                 </div>
@@ -95,7 +101,7 @@
 
           <div class="row">
             <div class="col-md-8" ng-hide="update">
-               <div class="form-group required" ng-class="{'has-error': resource.msg.$touched && resource.msg.$error.required}">
+               <div class="form-group required" >
              
                     <label class="control-label">Welcome Message</label><br>
                <textarea  class="form-control" rows="5" id="comment" placeholder="Welcome Message For user" name="msg" ng-model="message" required ></textarea>
@@ -107,7 +113,7 @@
 		  
 		   <div class="row">
 		  <div class="col-md-12">
-            <button class="btn btn-success" ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update" >Save</button>
+            <button class="btn btn-success" ng-click="insertuser()"  ng-disabled="resource.$invalid || saveuser" ng-hide="update" >Save</button>
             <button class="btn btn-success" ng-click="updateuser()"  ng-show="update">Update</button>
             <button class="btn btn-primary" ng-click="closeuser()">Cancel</button>
       

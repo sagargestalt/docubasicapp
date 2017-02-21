@@ -8,8 +8,8 @@ angular.module('common.fabric', [
 ])
 
 .factory('Fabric', [
-	'FabricWindow', '$timeout', '$window', 'FabricCanvas', 'FabricDirtyStatus',
-	function(FabricWindow, $timeout, $window, FabricCanvas, FabricDirtyStatus) {
+	'FabricWindow', '$timeout', '$window', 'FabricCanvas', 'FabricDirtyStatus','$rootScope','localStorageService',
+	function(FabricWindow, $timeout, $window, FabricCanvas, FabricDirtyStatus,$rootScope,localStorageService) {
 
 	return function(options) {
 
@@ -256,26 +256,43 @@ angular.module('common.fabric', [
             oImg.scale(0.2);
         oImg.set({'left':l});
                   oImg.set({'top':t});
+
             self.addObjectToCanvas(oImg);
-        });
+             console.log(oImg);
+            canvas.renderAll();
+
+        }, { crossOrigin: 'Anonymous' });
 		};
 		//
 		//video
-		self.addVideo = function(video){
-		var vframe = video;
-		var video1 = new fabric.Image(vframe, {
+		self.addVideo = function(xyz,videoSrc){
+		//var vframe = video;
+		console.log(xyz);
+		var video1 = new fabric.Image(xyz, {
 		    left: 270,
 		    top: 250,
-		    angle: -15,
+		    imageURL:videoSrc,
+		    src:videoSrc,
+		   // angle: -15,
 		    originX: 'center',
 		    originY: 'center',
+		    crossOrigin: 'Anonymous',
 		    centeredScaling: true
 		});
-		//vframe.id = self.createId();
+		video1.id = self.createId();
 
 			self.addObjectToCanvas(video1);
+			console.log(video1);
+			video1.getElement().play();
+			canvas.renderAll();
+			fabric.util.requestAnimFrame(self.render);
 		};
 
+		fabric.util.requestAnimFrame(function render() {
+		  canvas.renderAll();
+		  fabric.util.requestAnimFrame(render);
+		});
+		
 		//
 		// Shape
 		// ==============================================================
@@ -301,26 +318,55 @@ angular.module('common.fabric', [
 		};
 
 		//
-		// Text
+		// shapes
 		// ==============================================================
 		self.addCircle = function(str) {
 			//str = str || 'New Text';
 			var object = new FabricWindow.Circle({
-    radius: 20, fill: 'green', left: 100, top: 100
- });
+    		radius: 20, fill: 'green', left: 100, top: 100
+ 		});
 			object.id = self.createId();
 
 			self.addObjectToCanvas(object);
 		};
+		self.addCanvasImage = function(svg) {
+			// self.addObjectToCanvas(svg);
+			//var img = canvas.toDataURL("image/png");
+			/*	fabric.Image.fromURL(img, function(oImg) {
+        var l = Math.random() * (500 - 0) + 0;
+        var t = Math.random() * (500 - 0) + 0;                
+            oImg.scale(0.2);
+        oImg.set({'left':l});
+                  oImg.set({'top':t});
+
+            self.addObjectToCanvas(oImg);
+             console.log(oImg);
+            canvas.renderAll();
+
+        }, { crossOrigin: 'Anonymous' });*/
+				//img.src = svg;
+			var imgInstance = new fabric.Image(svg, {
+                left: 0,
+                top: 0,
+                width: 500,
+                height: 300,
+                 crossOrigin: 'Anonymous', 
+              });
+			 imgInstance.crossOrigin='Anonymous';
+               imgInstance.id = self.createId();
+          self.addObjectToCanvas(imgInstance);
+			 canvas.renderAll();
+		};
+
 
 		self.addRect = function(str){
 			//str = str || 'New Text';
 		
 			 var object = new FabricWindow.Rect({ 
-        width: 10, 
-        height: 20, 
-        fill: 'green'
-    });
+		        width: 10, 
+		        height: 20, 
+		        fill: 'green'
+    		});
 
 			object.id = self.createId();
 
@@ -330,11 +376,15 @@ angular.module('common.fabric', [
 		self.addLine = function(str){
 			//str = str || 'New Text';
 		
-			 var object = new FabricWindow.Line([50, 100, 200, 200], {
-        left: 170,
-        top: 150,
-        stroke: 'black'
-    });
+			var object = new FabricWindow.Line([50, 100, 200, 200], {
+			        
+			        left:302.69,
+  					top:123.94,
+			        angle: -35,
+			        originX:'left',
+			        originY:'top',
+			        stroke: 'black',
+			    });
 
 			object.id = self.createId();
 
@@ -350,11 +400,530 @@ angular.module('common.fabric', [
 
 			self.addObjectToCanvas(object);
 		};
+		self.fillShapecolor = function(value){
+			var activeObject = canvas.getActiveObject();
+		        activeObject.fill = value;
+		        canvas.renderAll();
+		        $rootScope.$broadcast('savedata', {
+                
+            });
+        
+		};
+
+		self.filllinecolor = function(value){
+			
+			var activeObject = canvas.getActiveObject();
+	        activeObject.stroke = value;
+	        canvas.renderAll();
+	        $rootScope.$broadcast('savedata', {
+                
+            });
 
 
+		};
+		self.textlaalign = function(value){
+			
+			var activeObject = canvas.getActiveObject();
+	        activeObject.Align = 'left';
+	        canvas.renderAll();
+
+
+		};
+
+
+
+
+
+		/*fabric.LabeledRect1 = fabric.util.createClass(fabric.Rect, {
+
+			  type: 'labeledRect',
+
+			  initialize: function(options) {
+			    options || (options = { });
+
+			    this.callSuper('initialize', options);
+			 
+			    this.set('Task', options.task || '');
+			    this.set('Task Category', options.Category || '');
+			    
+
+
+			  },
+
+			  toObject: function() {
+			    return fabric.util.object.extend(this.callSuper('toObject'), {
+			      task: this.get('Task'),
+			      Category: this.get('Categories'),
+			      
+
+			    });
+			  },
+
+				  _render: function(ctx) {
+				    this.callSuper('_render', ctx);
+
+				    ctx.font = '12px Helvetica';
+				    ctx.fillStyle = '#333';
+				    
+				    ctx.fillText(this.task, - this.width/2 + 10, - this.height/2 + 20);
+				     ctx.fillText(this.Category, - this.width/2 + 10, - this.height/2 + 40);
+				   
+				    
+				  }
+       });
+						fabric.LabeledRect1.fromObject = function(options) {
+			          return new fabric.LabeledRect(options);
+			        }
+
+
+			         self.addtasktable = function(detail){
+							 self.deleteActiveObject();
+							 var lableRectArr1 = [];
+							 var taskArr = [];
+							 taskArr.push(detail);
+							 console.log(taskArr);
+							 localStorageService.set('taskArr', taskArr);
+							 console.log(taskArr);
+
+							var taskArr =  localStorageService.get('taskArr');
+							var pos = taskArr.length;
+							var catarry = [];
+							var data = detail.task;
+							 catarry.push(data);
+							 console.log(catarry[0]);
+							var tpos = catarry.length;
+				         lableRectArr1.push(new fabric.LabeledRect({
+				            width: 400,
+				            height: 400,
+				            left: 10,
+				            top: 50 * 0,
+				            task: 'Task',
+				           	category: 'Categories',
+				           
+				            fill: '#DBEAF9'
+				            }));
+				          
+				         for(var i = 0; i < tpos; i++) {
+				           lableRectArr1.push(new fabric.LabeledRect1({
+				            width: 400,
+				            height: 400,
+				            left: 10,
+				            top: 50 * 1,
+				            task:detail.categoryname,
+				            category:catarry[i],
+				           
+				          
+				          
+				            fill: '#DBEAF9'
+				            }));
+				          }
+				          localStorageService.set('taskArr', taskArr);
+				  var group = new fabric.Group(lableRectArr1);
+				       
+				          self.addObjectToCanvas(group);
+
+				          canvas.renderAll();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						};
+
+
+
+
+
+
+
+
+
+//table//
+	fabric.LabeledRect = fabric.util.createClass(fabric.Rect, {
+
+			  type: 'labeledRect',
+
+			  initialize: function(options) {
+			    options || (options = { });
+
+			    this.callSuper('initialize', options);
+			    this.set('*', options.description || '');
+			    this.set('Quantity', options.quantity || '');
+			    this.set('Price', options.price || '');
+			     this.set('Unit', options.unit || '');
+			      this.set('Total', options.total || '');
+
+
+			  },
+
+			  toObject: function() {
+			    return fabric.util.object.extend(this.callSuper('toObject'), {
+			      description: this.get('description'),
+			      quantity: this.get('quantity'),
+			      price: this.get('price'),
+			      unit: this.get('unit'),
+			      total: this.get('total'),
+
+			    });
+			  },
+
+				  _render: function(ctx) {
+				    this.callSuper('_render', ctx);
+
+				    ctx.font = '14px Helvetica';
+				    ctx.fillStyle = '#333';
+				    
+				    ctx.fillText(this.description, - this.width/2 + 10, - this.height/2 + 20);
+				     ctx.fillText(this.quantity, - this.left - 400, - this.height/2 + 20);
+				       ctx.fillText(this.price, - this.left - 250, - this.height/2 + 20);
+				        ctx.fillText(this.unit, - this.left - 160, - this.height/2 + 20);
+				         ctx.fillText(this.total, - this.left - 80, - this.height/2 + 20);
+				    
+				  }
+       });
+				 fabric.LabeledRect.fromObject = function(options) {
+			          return new fabric.LabeledRect(options);
+			        }
+
+
+
+			        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					
+
+						self.addtable = function(detail){
+							 self.deleteActiveObject();
+							 var lableRectArr = [];
+							 var pricingArr = [];
+							 pricingArr.push(detail);
+							 localStorageService.set('pricingArr', pricingArr);
+							 console.log(pricingArr);
+
+							var pricingArr =  localStorageService.get('pricingArr');
+							if(lableRectArr == null){
+								var pos = 1;
+								 lableRectArr = [];
+							}else{
+							var pos = 2;//lableRectArr.length;
+						}
+							console.log(lableRectArr.length);
+				         	var pos = pricingArr.length;
+				         	console.log(pos);
+				         lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * 0,
+				            description: 'Description',
+				           quantity: 'Quantity',
+				           price: 'Price',
+				           unit: 'Unit',
+				           total: 'Total',
+				            fill: '#DBEAF9'
+				            }));
+				          
+				         for(var i = 1; i <= pos; i++) {
+				           lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * i,
+				            description: detail.description,
+				             total: '$'+''+detail.totalrate ,
+				           
+				           price: '$'+''+ detail.totalcost,
+				           unit: '$'+''+ detail.totalrate,
+				            quantity: detail.mandays +''+ 'Man Days',
+				          
+				            fill: '#DBEAF9'
+				            }));
+				          }
+				          localStorageService.set('pricingArr', pricingArr);
+				  var group = new fabric.Group(lableRectArr);
+				       
+				          self.addObjectToCanvas(group);
+
+				          canvas.renderAll();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						};
+
+
+
+
+		 self.addtaxtable = function(detail){
+		 	 self.deleteActiveObject();
+							 var lableRectArr = [];
+							 var taxArr = [];
+
+							 taxArr.push(detail);
+							 console.log(pricingArr);
+
+							var pricingArr =  localStorageService.get('pricingArr');
+							var taxArr =  localStorageService.get('taxArr');	
+							var discountArr =  localStorageService.get('discountArr');	
+							
+						
+				         	var pos = pricingArr.length;
+				         	//var tpos = taxArr.length;
+				         	
+				         lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * 0,
+				            description: 'Description',				          	
+				           quantity: 'Qty',
+				           price: 'Price',
+				           unit: 'Unit',
+				           total: 'Total',
+				            fill: '#DBEAF9'
+				            }));
+				          
+				         for(var i = 0; i < pos; i++) {
+				           lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 500,
+				            left: 10,
+				            top: 50 * 1,
+				             description: pricingArr[i].taskshortdesc,
+				            quantity: pricingArr[i].mandays +''+ 'Man Days',
+				          	 total: '$'+''+pricingArr[i].totalrate ,
+				           
+				           price: '$'+''+ pricingArr[i].totalcost,
+				           unit: '$'+''+ pricingArr[i].totalrate,
+				            fill: '#DBEAF9'
+				            }));
+				          }
+				         	
+				         	if(discountArr != null)
+				     		{
+				     			lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * 3,
+				              description: '',
+				            quantity:'Discount',
+				           price:'',
+				           unit:'' ,
+				           total:discountArr,
+				            fill: '#DBEAF9'
+				            }));
+				     		}
+
+				           lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * 2,
+				              description: '',
+				            quantity:'Tax',
+				           price:'',
+				           unit:'' ,
+				           total:detail.percentage ,
+				            fill: '#DBEAF9'
+				            }));
+
+
+				          localStorageService.set('taxArr', detail.percentage);
+				  			var group = new fabric.Group(lableRectArr);
+				       
+				          self.addObjectToCanvas(group);
+				         // canvas.renderAll();
+
+
+
+
+
+		 };
+
+
+
+
+
+
+		 self.adddiscounttable = function(detail){
+		 	 self.deleteActiveObject();
+							 var lableRectArr = [];
+							 var discountArr = [];
+
+							 discountArr.push(detail);
+							 console.log(pricingArr);
+
+							var pricingArr =  localStorageService.get('pricingArr');
+							var taxArr =  localStorageService.get('taxArr');
+							console.log(taxArr)	
+							var discountArr =  localStorageService.get('discountArr');	
+							
+						
+				         	var pos = pricingArr.length;
+				         	//var tpos = taxArr.length;
+				         	//var tpos = taxArr.length;
+				         	
+				         lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * 0,
+				            description: 'Description',				          	
+				           quantity: 'Quantity',
+				           price: 'Price',
+				           unit: 'Unit',
+				           total: 'Total',
+				            fill: '#DBEAF9'
+				            }));
+				          
+				         for(var i = 0; i < pos; i++) {
+				         	var total = pricingArr[i].totalrate;
+				           lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * 1,
+				             description: pricingArr[i].taskshortdesc,
+				            quantity: pricingArr[i].mandays +' '+ 'Man Days',
+				          	 total: '$'+''+pricingArr[i].totalrate ,
+				           
+				           price: '$'+''+ pricingArr[i].totalcost,
+				           unit: '$'+''+ pricingArr[i].totalrate,
+				            fill: '#DBEAF9'
+				            }));
+				          }
+
+				          lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * 2,
+				              description: '',
+				            quantity:'Discount' ,
+				           price:'',
+				           unit:'' ,
+				           total:detail.value ,
+				            fill: '#DBEAF9'
+				            }));
+
+
+				           
+				          lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 300,
+				            left: 10,
+				            top: 50 * 3,
+				              description: '',
+				            quantity:'Tax',
+				           price:'',
+				           unit:'',
+				           total:taxArr ,
+				            fill: '#DBEAF9'
+				            }));
+				         	
+				         	
+				     		
+				            var totalvalue = Math.round(total - detail.value / taxArr) ;
+
+				            lableRectArr.push(new fabric.LabeledRect({
+				            width: 700,
+				            height: 500,
+				            left: 10,
+				            top: 50 * 4,
+				              description: '',
+				            quantity:'Total' ,
+				           price:'',
+				           unit:'' ,
+				           total:'$'+''+ totalvalue,
+				            fill: '#DBEAF9'
+				            }));
+				     		
+
+				           
+
+
+				          localStorageService.set('discountArr', detail.value);
+				  			var group = new fabric.Group(lableRectArr);
+				       
+				          self.addObjectToCanvas(group);
+
+				          	//canvas.renderAll();
+
+
+
+
+
+
+
+		 };*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		 var textOptions = { 
+  fontSize:16, 
+  left:20, 
+  top:20, 
+  radius:10, 
+  borderRadius: '25px', 
+  hasRotatingPoint: true 
+};
 
 		self.addText = function(str) {
-			str = str || 'New Text';
+			str = str || 'Start typing here';
 			var object = new FabricWindow.IText(str, self.textDefaults);
 			object.id = self.createId();
 
@@ -368,6 +937,32 @@ angular.module('common.fabric', [
 		self.setText = function(value) {
 			setActiveProp('text', value);
 		};
+
+		self.textlignr = function(value){
+
+			var activeObject = canvas.getActiveObject();
+			activeObject.textAlign = 'right';
+			
+
+		};
+		self.textlignl = function(value){
+
+			var activeObject = canvas.getActiveObject();
+			activeObject.textAlign = 'left';
+			
+
+		};
+		self.textlignc = function(value){
+
+			var activeObject = canvas.getActiveObject();
+			activeObject.textAlign = 'center';
+			
+
+		};
+
+
+
+
 
 		//
 		// Font Size
@@ -389,6 +984,7 @@ angular.module('common.fabric', [
 		};
 
 		self.setTextAlign = function(value) {
+			
 			setActiveProp('textAlign', value.toLowerCase());
 		};
 
@@ -401,6 +997,7 @@ angular.module('common.fabric', [
 		};
 
 		self.setFontFamily = function(value) {
+			console.log(value);
 			setActiveProp('fontFamily', value.toLowerCase());
 		};
 
@@ -478,6 +1075,7 @@ angular.module('common.fabric', [
 		};
 
 		self.setTextAlign = function(value) {
+
 			setActiveProp('textAlign', value);
 		};
 
@@ -573,6 +1171,8 @@ angular.module('common.fabric', [
 				self.render();
 			}
 		};
+
+
 
 		//
 		// Active Object Tint Color
@@ -764,8 +1364,14 @@ angular.module('common.fabric', [
 			self.loading = value;
 		};
 
-		self.setDirty = function(value) {
+		self.setDirty = function(value){
+
 			FabricDirtyStatus.setDirty(value);
+
+			$rootScope.$broadcast('savedata', {
+                
+            });
+
 		};
 
 		self.isDirty = function() {
@@ -793,7 +1399,7 @@ angular.module('common.fabric', [
 
 			self.canvasScale = initialCanvasScale;
 			self.setZoom();
-			console.log(json);
+			//console.log(json);
 
 			return json;
 		};
@@ -801,6 +1407,7 @@ angular.module('common.fabric', [
 		self.loadJSON = function(json) {
 			self.setLoading(true);
 			canvas.loadFromJSON(json, function() {
+				var data = canvas.toDataURL();
 				$timeout(function() {
 					self.setLoading(false);
 
@@ -963,6 +1570,25 @@ angular.module('common.fabric', [
 					self.setDirty(true);
 				});
 			});
+
+			canvas.on('object:moving', function (e) {
+        var obj = e.target;
+         // if object is too big ignore
+        if(obj.currentHeight > obj.canvas.height || obj.currentWidth > obj.canvas.width){
+            return;
+        }        
+        obj.setCoords();        
+        // top-left  corner
+        if(obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < 0){
+            obj.top = Math.max(obj.top, obj.top-obj.getBoundingRect().top);
+            obj.left = Math.max(obj.left, obj.left-obj.getBoundingRect().left);
+        }
+        // bot-right corner
+        if(obj.getBoundingRect().top+obj.getBoundingRect().height  > obj.canvas.height || obj.getBoundingRect().left+obj.getBoundingRect().width  > obj.canvas.width){
+            obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
+            obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
+        }
+});
 		};
 
 		//

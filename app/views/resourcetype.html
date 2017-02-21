@@ -49,7 +49,7 @@
                     Update Resource
                 </h2><br>
  					<div class="row">
- 						<div class="col-md-4">
+ 						<div class="col-md-6">
                <div class="form-group required" ng-class="{'has-error': resource.rname.$touched && resource.rname.$error.required && resource.submit}">
               <label class="control-label">Resource Type Name </label><br>
  							<input name="rname" type="text"  class="form-control" placeholder="Resource Type Name" id="user-pass" ng-model="resourcename" ng-maxlength="20" ng-minlength="3" required>
@@ -57,7 +57,13 @@
             <span class="help-block"  ng-show="resource.rname.$error.maxlength" >Resource name is too long.</span>
             </div>
  						</div>
- 						<div class="col-md-4">
+ 						
+        </div>
+
+ 				
+
+ 					<div class="row">
+ 						 <div class="col-md-6">
               <div class="form-group required" >
               <label class="control-label">Daily Cost </label><br>
               <div class="form-group required" ng-class="{'has-error': resource.dailycost.$touched && resource.dailycost.$error.required  && resource.submit}">
@@ -65,12 +71,19 @@
                   <p class="help-block"   ng-show="resource.dailycost.$touched && resource.dailycost.$invalid && resource.submit">Invalid</p>
                 </div>
               </div>
- 					</div>
-        </div>
-
- 				<div class="row">
+          </div>
+          <div class="col-md-6">
+              <div class="form-group required" ng-class="{'has-error': resource.dailyprce.$touched && resource.dailyprce.$error.required  && resource.submit}">
+                  <label class="control-label">Daily Price </label><br>
+              <input name="dailyprce" type="text" class="form-control" placeholder="Daily Price" id="user-pass" ng-model="dailyprice" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+              <p class="help-block"   ng-show="resource.dailyprce.$touched && resource.dailyprce.$invalid && resource.submit">Invalid</p>
+            </div>
+            </div>
+						</div>
  					
- 						<div class="col-md-4">
+<div class="row">
+          
+            <div class="col-md-6">
               <div class="form-group required" >
              <label class="control-label">Source </label><br>
               <div class="dropdown"> 
@@ -82,7 +95,7 @@
           </div>
           </div>
             </div>
-            <div class="col-md-4"  ng-show="source == '2'"> 
+            <div class="col-md-6"  ng-show="source == '2'"> 
               <div class="form-group required" ><label class="control-label">Vendors </label><br>
              <div class="dropdown">
                      <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="vendors"  ng-options="money.vendor_id as money.displayname for money in vendorsdata" ng-required="source == '2'" >
@@ -93,28 +106,16 @@
                 </div>
               </div>
 
-            <div class="col-md-3" ng-show="source == '1'">
+            <div class="col-md-6" ng-show="source == '1'">
               <div class="form-group required" ng-class="{'has-error': resource.unit.$touched  &&  resource.unit.$error.required && resource.submit}">
-                  <label class="control-label">Line of unit </label><br>
-              <input name="unit" type="text" class="form-control" placeholder="Line of unit" id="user-pass" ng-model="unit"  ng-required="source == '1'" >
+                  <label class="control-label">Line of Business </label><br>
+              <input name="unit" type="text" class="form-control" placeholder="Line of Business" id="user-pass" ng-model="unit"  ng-required="source == '1'" >
               
             </div>
             </div>
- 					
- 						</div>
           
-
- 					<div class="row">
- 						<div class="col-md-8">
-              <div class="form-group required" ng-class="{'has-error': resource.dailyprce.$touched && resource.dailyprce.$error.required  && resource.submit}">
-                  <label class="control-label">Daily Price </label><br>
- 							<input name="dailyprce" type="text" class="form-control" placeholder="Daily Price" id="user-pass" ng-model="dailyprice" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
-              <p class="help-block"   ng-show="resource.dailyprce.$touched && resource.dailyprce.$invalid && resource.submit">Invalid</p>
             </div>
- 						</div>
-						</div>
- 					
-
+          
  					<div class="row">
  					<div class="col-md-12">
  						<button class="btn btn-success" ng-click="insertresource()"  ng-disabled="resource.$invalid" ng-hide="update">Save</button>

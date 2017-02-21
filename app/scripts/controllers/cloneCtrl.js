@@ -8,7 +8,7 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('cloneCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,userservice,settingservice) {
+  .controller('cloneCtrl', function ($scope, $rootScope,localStorageService,praposalservice,$location,$uibModal,userservice,settingservice,$route) {
    
     $rootScope.tenancyid = localStorageService.get('tenancyid');
       $rootScope.userid = localStorageService.get('userid');
@@ -74,7 +74,7 @@ angular.module('docubasic3App')
           $scope.cname = $scope.clonedata[0].Customer_id;
           $rootScope.template_id = $scope.clonedata[0].template_id;
           $scope.coname = data.data.collaborators;
-      
+          
          
           });
 
@@ -106,8 +106,7 @@ angular.module('docubasic3App')
 
 
           $rootScope.modalInstance.close();
-
-
+          $route.reload();
         }
         if(data1.status === false){
           $scope.errors = data1.message;

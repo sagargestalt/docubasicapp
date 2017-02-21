@@ -99,6 +99,7 @@ angular.module('docubasic3App')
 
 
      $scope.submitvendor = function(){
+      $scope.savevendor = true;
      	$scope.alerts=[];
       $scope.vendor.submit = true;
    		var addvendor = {
@@ -126,6 +127,7 @@ angular.module('docubasic3App')
 
         $scope.message = data.message;
         if(data.status === true){
+               $scope.savevendor = false;
                 $scope.alerts.push({msg: 'Vendor added successfully', type:'success'});
                 $scope.collapsed = false;
                  $scope.fname="";
@@ -152,6 +154,7 @@ angular.module('docubasic3App')
 
 
             else if(data.status === false){
+              $scope.savevendor = false;
                   //$scope.alerts.push({msg: 'Email already registered', type:'danger'});
                     $scope.errors = data.message;
 

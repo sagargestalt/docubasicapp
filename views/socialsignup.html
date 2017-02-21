@@ -1,17 +1,24 @@
 <div class="panel-body">
+  <a ng-click="closemodal()"> <span class="pull-right">
+      <i class="pe-7s-close fa-2x"></i>
+    </span></a> 
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+  
     <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
     <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
             <!--<form name="loginForm" role="form" ng-submit="loginSubmit()">-->
               
               <button class="btn btn-primory" ng-model="collapsed" type="button" ng-click="collapsed()">
 
-<br>
+
 New Company Users
 
 </button>
 
 <button class="btn btn-success" type="button" ng-model="collapsed1" type="button" ng-click="collapsed1()">
-<br>
+
 Existing Company Users
 
 </button><br><br>
@@ -56,9 +63,10 @@ Existing Company Users
             </form>
               <div class="form-group">
                 <button class="btn btn-success" type="button" ng-click="socialsignup()"  ng-disabled="etuser.$invalid"><strong>Sign Up !</strong></button>
+
                  
               </div>
-            
+            <br><br><br>
               
             </div>
 
@@ -118,3 +126,5 @@ Existing Company Users
               
             </form>
           </div>
+            </div>
+              </div>

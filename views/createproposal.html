@@ -1,58 +1,68 @@
-<!--<div id="header" ng-include="'views/header.html'"></div>
-<!-- Navigation 
-<aside id="menu" ng-include="'views/navigation.html'"></aside>
-<div id="wrapper">-->
 
-               <div class="modal-dialog modal-lg">
+               <div class="modal-dialog modal-lg" style="margin:0px; width:100% !important;" ng-controller="createproposalCtrl">
 
                 
                                 <div class="color-line"></div>
+                                 <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+  <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Add New Proposal<span class="pull-right"><a ng-click="closemodal()"> <i class="pe-7s-close fa-2x"></i></a> </span></h4>
+                                    <h4 class="modal-title">Add New Proposal<span class="pull-right"><a ng-click="closesidebar()"> <i class="pe-7s-close fa-2x"></i></a> </span></h4>
                                   
                                 </div>
                                 <div class="modal-body">
                                   
                                   <div class="row">
-                                  	
-                                  	
+                                    
+                                    
                                     <div class="col-md-6" >
-                                         <label class="control-label">Name</label>
+                                        
                                         <div class="form-group required" >
-                                            <input name="name" type="text" class="form-control" ng-maxlength="50" placeholder="Name of Proposal" ng-model="praposalname" maxlength="20"  minlength="3" required>
+                                             <label class="control-label">Name</label>
+                                            <input name="name" type="text" class="form-control" ng-maxlength="50" placeholder="Name of Proposal" ng-model="pname" maxlength="20"  minlength="3" required>
                                            
                                         </div>
                                     </div>
                                    
                                 
-                                    <div class="col-md-6">
-                                        <label class="control-label">Client Name:</label>
+                                    <div class="col-md-4">
+                                       
                                         <div class="form-group required" >
+                                             <label class="control-label">Client Name</label>
                                              <div class="dropdown" >
-                                              <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="info.id as info.firstname for info in clients" ng-model="cname">.
+                                              <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="info.id as info.displayname for info in clients" ng-model="cname">.
                                                 <option selected></option>
                                               </select>
                                               
                                             </div>
                                                                     </div>
                                     </div>
+                                      <div class="col-md-2">
+                                         <label class="control-label"></label>
+                                        <div class="form-group">
+                                        <button type="button" class="btn btn-block btn-success" style="padding-bottom: 14px; padding-top: 14px; margin-top: 2px;" ng-click="opencclient()">Add Client</button>
+                                    </div>
+                                      </div>
                                      <div class="col-md-6">
+                                       <div class="required" >
                             <p class="input-group">
+
+                                 <label class="control-label">End Date</label>
                                 <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                        show-button-bar="false" ng-model="dt" is-open="opened" min-date="minDate"
-                                       max-date="'2019-06-22'" datepicker-options="dateOptions"
-                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
-              <span class="input-group-btn">
+                                       datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" placeholder="DD/MM/YYYY"/ ng-model-options="{timezone: 'utc'}">
+              <span class="input-group-btn" style="top: 12px">
                 <button type="button" class="btn btn-default" style="height:48px" ng-click="open($event)"><i
-                        class="glyphicon glyphicon-calendar"></i></button>
+                        class="icon-calander"></i></button>
               </span>
                             </p>
                         </div>
-                                    <div class="col-md-6">
+                        </div>
+                                    <div class="col-md-12">
                                          <label class="control-label">Multiple Collaborators</label>
                                        <div class="dropdown" >
                   <select class="selectpicker form-control" multiple data-toggle="dropdown"  ng-options="value.id as value.first_name for value in userdata | filter: { status: '1'}" ng-model="coname" >.
-                    <option selected></option>
+                  
                   </select>
                   
                 </div>
@@ -61,7 +71,7 @@
                                         <div ng-init="selectedTab == 'portrait'" >
                                     <div class="col-md-3">
                                          <br>
-                                        <div class="hpanel " style="border:1px dotted #434E6E"  ng-click="selectedTab ='portrait'" ng-class="{ 'hnavyblue' : selectedTab == 'portrait'}">
+                                        <div class="hpanel " style="border:1px dotted #63C685"  ng-click="selectedTab ='portrait'" ng-class="{ 'hnavyblue' : selectedTab == 'portrait'}">
                                             <div class="panel-body"  >
                                                 <div class="text-center">
                                                     <img src="images/portrait.png">
@@ -71,7 +81,7 @@
                                     </div>
                                     <div class="col-md-4">
                                          <br>
-                                        <div class="hpanel" style="border:1px dotted #434E6E " ng-click="selectedTab ='landscape'" ng-class="{ 'hnavyblue' : selectedTab == 'landscape'}">
+                                        <div class="hpanel" style="border:1px dotted #63C685 " ng-click=" selectol();selectedTab ='landscape'" ng-class="{ 'hnavyblue' : selectedTab == 'landscape'}">
                                             <div class="panel-body" >
                                                 <div class="text-center">
                                                    <img src="images/ladscape.png">
@@ -84,12 +94,12 @@
                                          <br>
                                         <div class="hpanel hbggreen">
                                             <a ng-click="submit()">
-                                            <div class="panel-body">
+                                            <div class="panel-body" style="padding-top: 38px; padding-bottom: 38px;">
                                                 <div class="text-center">
-                                                <br>
-                                                    <i class="icon-342 fa-4x"></i><br>
-                                                    <small>Create Proposal</small>
-                                                    <br><br>
+                                                <i class="icon-342 fa-2x"></i>
+                                                    <br>
+                                                    
+                                                    <p style="margin-top:10px;">Create Proposal</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -100,18 +110,18 @@
                                 <br><br><br>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <strong> Select a Template from the gallery</strong>
+                                        <h4 class="modal-title"> Select a template from the gallery</h4>
                                         <hr>
                                     </div>
                                 </div>
                                 
                                  <div class="row" >
-                                     <div class="col-md-3" style=""ng-repeat="temp in templates" ng-click="selecttemp(temp, $index)">
+                                     <div class="col-md-4" style=""ng-repeat="temp in templates" ng-click="selecttemp(temp, $index)">
                                         <div class="hpanel"  ng-class="{ 'hnavyblue' : $index===selectedIndex}">
                                             <div class="panel-body">
                                                 <div class="text-center">
                                                   
-                                                    <small>{{temp.template.template_name}}</small>
+                                                    <strong>{{temp.template.template_name}}</strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,7 +159,7 @@
                                     </div>-->
                                 </div>
                                   
-                                  
+                               <div id="right-sidebar" ng-include="'views/add-client.html'" class="sidebar-open" ng-show="clientadd"></div>    
                                 </div>
                                 <div class="modal-footer">
                                     <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

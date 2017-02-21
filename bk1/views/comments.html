@@ -1,0 +1,54 @@
+
+
+
+    <div class="row social-board" style="width:280px">
+    <div class="col-lg-12" ng-controller="proposalCtrl">
+<div class="hpanel" style=" margin-bottom: 0px;">
+
+          <div class="panel-header">
+              <div class="social-talk" >
+                    <div class="media social-profile clearfix" >
+                        <a class="pull-left">
+                            <img ng-src="{{profilepath}}" alt="profile-picture">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="font-bold">{{username}}</h4>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <hr style="margin:0px;">
+
+            
+            <div class="panel-footer" style="box-shadow:none;">
+                <div id='dv1'>
+                <div class="social-talk" >
+                    <div class="media social-profile clearfix" ng-repeat="comnt in commentsdata">
+                        <a class="pull-left">
+                            <img ng-src="{{comnt.logo_url}}" alt="profile-picture">
+                        </a>
+
+                        <div class="media-body">
+                            <span class="font-bold">{{comnt.user_name}}</span>
+                            <small class="text-muted">{{comnt.updated_at}}</small>
+                            <span class="pull-right text-muted"><a ng-hide="combt.user_id !== userid" ng-click="editcmt(comnt)"><i class="fa fa-edit"></i></a> <a ng-click="deletecmt(comnt)" ng-hide ="combt.user_id !== userid"><i class="fa fa-close" ></i></a></span>
+                            <div class="social-content" >
+                               {{ comnt.comment }}
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="social-form">
+                    <textarea class="form-control"  ng-model="txtcomment" placeholder="Your comment"></textarea>
+                     <button class="btn btn-success" ng-click='btn_add();' ng-hide="cupdate" style='margin-top:10px;'>Insert</button>
+                      <button class="btn btn-success" ng-click='btn_update();' ng-show="cupdate" style='margin-top:10px;'>Update</button>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+     </div>
+            
+        </div>

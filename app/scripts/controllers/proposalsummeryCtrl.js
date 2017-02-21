@@ -21,7 +21,9 @@ angular.module('docubasic3App')
        $rootScope.client_email = localStorageService.get('client_email');
        $rootScope.version_id = localStorageService.get('version_id');
         $rootScope.profilepath = localStorageService.get('profilepath');
+        $rootScope.company_logo = localStorageService.get('company_logo');
         $scope.todaysdate = new Date();
+        $scope.date = new Date();
         $scope.$route = $route;
 
        
@@ -46,6 +48,7 @@ angular.module('docubasic3App')
         $scope.errors = [];
     };
 
+ 
       function init(){
          $scope.all = {'background-color': '#63c685'};
          $scope.toemail = $rootScope.client_email;
@@ -71,7 +74,7 @@ angular.module('docubasic3App')
  			$scope.alerts=[];
       if (data1.status === true){
         	$scope.praposaldata= data1.data.proposals;
-          $scope.praposalactivitydata = data1.data.proposals[0].activity;
+           $scope.praposalactivitydata = data1.data.proposals[0].activity;
           $scope.praposalcollab = data1.data.proposals[0].collaborator;
         }
          
@@ -87,7 +90,9 @@ angular.module('docubasic3App')
      init();
 
       $scope.clonepraposal = function(detail){
-        $rootScope.template_id = detail.template_id;
+        $rootScope.proposal_id = detail.id;
+        //console.log(detail);
+         localStorageService.set('proposal_id',$rootScope.proposal_id);
         $rootScope.modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'views/clone.html',
@@ -360,11 +365,14 @@ angular.module('docubasic3App')
       };
 
       $scope.proposalreopen = function(detail){
+        console.log(detail);
          $rootScope.proposal_id =  detail.id;
          var data = {
 
-          id:$rootScope.proposal_id,
-          tid:'2'
+          proposal_id:$rootScope.proposal_id,
+            tenancy_id: $rootScope.tenancyid,
+          created_by:  $rootScope.userid
+          
          }
 
          praposalservice.changeversion.get((data), function(data){
@@ -416,7 +424,7 @@ $scope.$watch('client_email', function () {
           }
             if(data1.status == false){ 
 
-                $scope.alerts.push({msg: 'There is no cost-profit analysis data available for this proposal', type:'denger'});
+                $scope.alerts.push({msg: 'There is no cost-profit analysis data available for this proposal', type:'danger'});
 
             }
         
@@ -427,7 +435,12 @@ $scope.$watch('client_email', function () {
   };
 
   $scope.send = function(){
-
+      if(!$scope.cc){
+       $scope.cc = ""; 
+      }
+      if(!$scope.bcc){
+        $scope.bcc="";
+      }
       var data = {
          proposal_id:$rootScope.proposal_id,
           updated_by:$rootScope.userid,

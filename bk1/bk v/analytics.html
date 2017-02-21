@@ -1,0 +1,435 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<style type="text/css">.m-t-xl{margin-top:15px;}
+.newbtn{border-radius: 0; padding:54.4% 0px;}</style>
+<div id="wrapper">
+<div class="content animate-panel">
+<div class="normalheader transition animated fadeIn">
+
+
+        <div class="hpanel">
+            <div class="panel-body">
+            	<div >
+            		<div class="row" >
+            	 <div class="col-md-4"> 
+              <div class="dropdown"> <label class="control-label">Search By</label><br>
+                    <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="flagtype" ng-options="info.id as info.type for info in flag" >
+           <p>Select</p></select>
+          </div>
+            </div>
+        </div><br>
+        <div class="row" >
+					<div class="col-md-6">
+                                        <label class="control-label">From Date</label>
+                                <div class="form-group required" >        
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                       show-button-bar="false" ng-model="fdt" is-open="opened" min-date="minDate"
+                                       max-date="'2019-06-22'" datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" style="height:48px" ng-click="open($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                            </p>
+                          </div>
+                                    </div>
+
+
+                              <div class="col-md-6">
+                                        <label class="control-label">End Date</label>
+                                        <div class="form-group required" >
+                                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                       show-button-bar="false" ng-model="edt" is-open="opened2"
+                                       max-date="'2019-06-22'" datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" style="height:48px" ng-click="openb($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                            </p>
+                        
+
+                                                                        </div>
+                                    </div>
+
+</div><br>
+ <div class="row"  ng-show="flagtype == '1'" >
+	<div class="col-md-4"> 
+              <div class="dropdown"> <label class="control-label">Status</label><br>
+                    <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="projectstatus" ng-options="user.id as user.type for user in pstatus" >
+           <p>Select</p></select>
+          </div>
+            </div>
+        </div>
+        <div class="row"  ng-show="flagtype == '8'" >
+  <div class="col-md-4"> 
+              <div class="dropdown"> <label class="control-label">Status</label><br>
+                    <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="userstatus" ng-options="user.id as user.type for user in ustatus" >
+           <p>Select</p></select>
+          </div>
+            </div>
+        </div>
+        <div class="row" ng-show="flagtype == '2'">
+	<div class="col-md-4"> 
+              <div class="dropdown" > <label class="control-label">Category</label><br>
+                    <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="tsktype" ng-options="taskp.id as taskp.categoryname for taskp in tasks " >
+           <p>Select</p></select>
+          </div>
+            </div>
+        </div><br>
+        <button class="btn btn-success" ng-click="asearch()" >Search</button>
+
+            </div>
+        </div>
+        </div><br>
+       
+
+
+     <div class="col-lg-6" ng-repeat="detail in analyssearchdata" ng-if="flagtype == '1'" >
+        <div class="hpanel "   >
+                    <div class="panel-body"  >
+                        <div class="row projects">
+                        <div class="col-sm-12">
+                            <h4>{{detail.name}}</h4>
+                        
+                                <div class="well well-lg">
+                                <p></p>
+                                <br><small></small>
+                                </div>
+                                  
+                        </div>
+                         <div class="col-sm-8" style="border-right:1px dashed #7384b6;" >
+                          <h4>Proposal</h4>
+                               <div class="row">
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Client</a></div>
+                                        <small>{{detail.firstname}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Version</a></div>
+                                        <small>{{detail.proposal_version_number}}</small>
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <div class="project-label"><a>Deadline</a></div>
+                                        <small>{{detail.delivery_date}}</small>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                        <h2 class="text-info"> ${{detail.cost}}</h2>
+                                    </div>
+                                     <div class="col-sm-12" >
+                                     <br>
+                                        <div class="project-people">
+                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                            <!--<img src="images/a1.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a2.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a3.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a4.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a5.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a6.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a7.jpg" class="img-circle" alt="logo">
+                                            <img src="images/a8.jpg" class="img-circle" alt="logo">-->
+                                        </div><br><br>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                         <div class="col-sm-4" >
+                                <div class="row">
+                                    <div class="col-sm-12" >
+                                        <div class="project-label">Status</div>
+                                        <small ng-if="detail.proposal_status == 1">Open <br></small>
+                                        <small ng-if="detail.proposal_status == 2">Sent <br></small>
+                                        <small ng-if="detail.proposal_status == 3">Under Review <br></small>
+                                         <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12" >
+                                       <div class="project-value" style="border-top:1px dashed #7384b6;">
+                                            <h2  ng-if="detail.proposal_status == 1" class="text-info">25%</h2>
+                                             <h2  ng-if="detail.proposal_status == 2" class="text-info">50%</h2>
+                                              <h2  ng-if="detail.proposal_status == 3" class="text-info">75%</h2>
+                                               <h2  ng-if="detail.proposal_status == 4" class="text-info">100%</h2>
+                                            <div class="project-label">PROGRESS</div>
+                                            <div class="progress m-t-xs full progress-small">
+                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                             <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="panel-footer">
+                       <div class="row">
+                            <div class="col-sm-12" >
+                            <a ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"></i></a>
+                               <a ng-click="priweviemode()"><i class="icon-search2 prl15 border-right" style="font-size:20px"></i></a>  
+                            <a ng-click="clonepraposal()"><i class="icon-copy prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="opencollab()"><i class="icon-share prl15 border-right" style="font-size:20px"></i></a>
+                             <a ng-click="emailwindow(detail)"><i class="icon-send prl15 border-right" style="font-size:20px" ></i></a>
+                   <a ng-click="deletepraposal()"><i class="icon-close4 prl15 border-right" style="font-size:20px"></i></a>
+                   
+                    <a ng-click="download()"><i class="icon-download prl15 border-right" style="font-size:20px"></i></a>
+                    <a  ng-href="#/costprofitanalysis"><i class="icon-amount prl15 " style="font-size:20px"></i></a>
+                    
+                              <!--<i class="pe-7s-ribbon fa-2x prl15"></i>
+                             
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+        </div>
+
+
+
+        <div class="col-md-6" style="padding:0px 5px"  ng-repeat="info in analyssearchdata" ng-if="flagtype == '8'">
+     
+         
+            <h3>Users</h3>
+          <div class="col-sm-11" style="padding:0px">
+            <div class="hpanel">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                     <div class="row">
+                      <div class="col-sm-12">
+                        <div class="col-sm-6 border-right">
+                          <div class="row">
+                            <!--<div class="col-sm-4" >
+                              <!--<img class="img-circle" src="images/a1.jpg" alt="logo">
+                            </div>-->
+                            <div class="col-sm-8" >
+                              <div class="m-t-sm">
+                                <strong>{{info.first_name}}</strong>
+                                <p class="small" ng-if="info.is_tenant_admin == 1"><i class="fa fa-user"></i> &nbsp; Admin</p>
+                                 <p class="small" ng-if="info.is_tenant_admin == 0"><i class="fa fa-user"></i> &nbsp; End User</p>
+                                 <p class="small" ng-if="info.is_status === 0"><i class="fa fa-user"></i> &nbsp; Inactive</p>
+                                  <p class="small" ng-if="info.is_status === 1"><i class="fa fa-user"></i> &nbsp; Active</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="col-sm-6">
+                          <div class="row">
+                            <div class="col-sm-12" >
+                              <div class="m-t-sm">
+                                <p class="small">{{info.email}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      
+                      <div class="col-sm-12 ">
+                          <hr>
+                      </div>
+                      
+                      <div class="col-sm-12 ">
+                        <div class="row">
+                            <div class="col-sm-3 border-right">
+                              <div class="m-t-sm"><strong>Proposals</strong></div>
+                              <h2 class="text-info">{{info.proposals_submitted}}</h2>
+                            </div>
+                            <div class="col-sm-5 border-right">
+                              <div class="m-t-sm"><strong>Value</strong></div>
+                              <h2 class="text-info">{{info.proposals_value}}</h2>
+                            </div>
+                            <div class="col-sm-4" >
+                              <div class="m-t-sm"><strong>Win/Loss Ratio</strong></div>
+                              <h2 class="text-info">{{info.proposals_ratio}}%</h2>
+                            </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                    
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!--<div class="col-sm-1" style="padding:0px">
+            <div class="hpanel" >
+                 <div class="panel-body no-padding">
+              <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="deleteuser(info)"> <i class="icon-close4" ></i></a></div>
+                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" > <i class="icon-copy" ></i></a></div>
+                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="edituser(info)"> <i class="icon-edit3" ></i></a></div>
+                
+              </div>
+            </div>
+          </div>-->
+          </div>
+
+
+
+          <div class="panel-body pn" ng-if="flagtype == '5'" >
+          <table datatable="ng" class="table table-striped table-bordered table-hover" >
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+           <th>Mobile Number</th>
+          <th>Created by</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="detail in analyssearchdata" >
+          <td >{{detail.firstname}}</td>
+          <td>{{detail.lastname}}</td>
+           <td >{{detail.mobile}}</td>
+           <td>{{detail.created_users_email}}<br>
+         {{detail.created_time}}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div><br>
+
+
+   <div class="panel-body pn" ng-if="flagtype == '4'" >
+    <h4>Vendors</h4>
+  <table datatable="ng" class="table table-striped table-bordered table-hover" >
+    <thead>
+      <tr>
+        <th>Name</th>
+         <th>Mobile Number</th>
+        <th>Created by</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="detail in analyssearchdata" >
+        <td >{{detail.displayname}}</td>
+        <td >{{detail.mobile}}</td>
+        <td>{{detail.created_users_email}}<br>
+         {{detail.created_time}}</td>
+       
+      </tr>
+    </tbody>
+  </table>
+  
+</div><br>
+
+
+    <div class="panel-body pn" ng-if="flagtype == '3'"  >
+  <h4>Task Categories</h4>
+
+  <table datatable="ng" class="table table-striped table-bordered table-hover" >
+      <thead>
+        <tr>
+           <th>Name</th>
+          <th>Created By</th>
+         
+    
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="detail in analyssearchdata" >
+          <td >{{detail.categoryname}}</td>
+          <td>{{detail.email}}<br>
+            {{detail.created_time}}</td>
+          
+        
+        </tr>
+      </tbody>
+    </table>
+     
+  </div><br>
+
+  <div class="panel-body pn" ng-if="flagtype == '2'"  >
+    <h4>Project Tasks</h4>
+    <div class="table-responsive">
+
+    <table datatable="ng" class="table table-striped table-bordered table-hover" >
+      <thead>
+        <tr>
+          <th>Task Category</th>
+          <th>Man Days</th>
+          <th>Total Cost</th>
+          <th>Created by</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="detail in analyssearchdata" >
+         <td >{{detail.taskshortdesc}}</td>
+          <td>{{detail.mandays}}</td>
+          <td>{{detail.totalcost}}</td>
+          <td>{{detail.email}}<br>
+          {{detail.created_time}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+    </div><br>
+
+
+    <div class="tab-content" ng-repeat="nts in analyssearchdata" ng-if="flagtype == '6'"  >
+      <h4>Notes</h4>
+                        <div id="note1" class="tab-pane active">
+                            <div class="pull-right text-muted m-l-lg">
+                                {{nts.date}}
+                            </div>
+                            <h4>{{nts.notename}}</h4>
+                            <hr/>
+                            <div class="note-content">
+                               <p>
+                                {{nts.notediscription}}
+
+                               </p>
+                                </div><br>
+                                 <div class="btn-group pull-right">
+                                <button class="btn btn-sm btn-default" ng-click="getnote()"><i class="fa fa-edit fa-2x"></i> </button>
+              
+                              <button class="btn btn-sm btn-default" ng-click="deletenote()"><i class="fa fa-close fa-2x"></i> </button>
+                            </div>
+
+                              
+                        </div>
+
+
+                    </div><br>
+
+
+
+          <div class="hpanel forum-box" ng-repeat = "tds in analyssearchdata"  ng-if="flagtype == '7'">
+              <h4>Todo's</h4>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-11 forum-heading border-right" >
+                <div class="form-group">
+                  <div>
+                    <label>  <h4>{{tds.TaskName}}</h4> </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group" style="margin-top:15px;">
+                <span> <!--<i class="fa fa-edit" ng-click="edittodo(detail)"></i>Edit</span>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+
+
+
+
+    </div>
+    </div>

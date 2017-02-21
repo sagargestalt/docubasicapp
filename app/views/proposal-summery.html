@@ -34,7 +34,7 @@
         
   <div class="col-lg-12">
     <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
-                <uib-alert ng-repeat="alert in loginalerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+               
 </div>
 </div>
 <br>
@@ -64,9 +64,11 @@
                                         <div class="project-label"><a>Version</a></div>
                                         <small>{{detail.proposal_version_number}}</small>
                                     </div>
+
                                     <div class="col-sm-4 "  >
                                         <div class="project-label"><a>Deadline</a></div>
-                                        <small ng-class="{ 'help-block' :{{detail.dDate}} > todaysdate }">{{detail.delivery_date}}</small>
+                                     
+                                        <small ng-class="{ 'help-block' : detail.redflag=='expire' }">{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
                                         <h2 > ${{detail.cost}}</h2>
@@ -87,9 +89,10 @@
 .btn-circle:nth-child(10){background-color:#ffb606; border-color:#ffb606; margin-right: 5px;}
 </style>
                                         <div class="project-people" >
-                                          <p></p>
-                                           <button ng-repeat="c1 in detail.collaborator track by $index"   class="btn btn-primary btn-circle" type="button">{{c1}}</button>
-											
+                                        <button   class="btn btn-white btn-circle" style="width:2px !important; background-color:#ffffff !important; border-color:#ffffff !important;  visibility: hidden; margin-right: 0px !important;" type="button">&nbsp;</button>
+
+                                       <button ng-repeat="c1 in detail.collaborator track by $index"   class="btn btn-primary btn-circle" type="button">{{c1}}</button>
+                      
                                         </div><br><br>
                                 </div>
                                     
@@ -102,19 +105,20 @@
                                         <small ng-if="detail.proposal_status == 1">Open <br></small>
                                         <small ng-if="detail.proposal_status == 2">Sent <br></small>
                                         <small ng-if="detail.proposal_status == 3">Under Review <br></small>
-                                         <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        <small ng-if="detail.proposal_status == 5">Reopen<br></small>
                                         
                                         <br><br>
                                     </div>
                                     <div class="col-sm-12" >
                                        <div class="project-value" style="border-top:1px dashed #7384b6;">
-                                            <h1  ng-if="detail.proposal_status == 1" class="text-info">25%</h1>
+                                            <h1  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class="text-info">25%</h1>
                                             <h1  ng-if="detail.proposal_status == 2" class="text-info">50%</h1>
                                             <h1  ng-if="detail.proposal_status == 3" class="text-info">75%</h1>
                                             <h1  ng-if="detail.proposal_status == 4" class="text-info">100%</h1>
                                             <div class="project-label" style="color:#3e3e3e;">Progress</div>
                                             <div class="progress m-t-xs full progress-small">
-                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            <div  ng-if="detail.proposal_status == 1|| detail.proposal_status == 5" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
@@ -129,7 +133,7 @@
                     <div class="panel-footer">
                        <div class="row">
                             <div class="col-sm-12" >
-                            <a ng-hide="detail.useraccess == 1" ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px" data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Edit"></i></a>
+                            <a ng-hide="detail.useraccess == 1 || detail.proposal_status == 4" ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px" data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Edit"></i></a>
                                <a ng-click="priweviemode(detail)"><i class="icon-search2 prl15 border-right" style="font-size:20px" data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Preview"></i></a>  
                             <a ng-click="clonepraposal(detail)"><i class="icon-copy prl15 border-right" style="font-size:20px" data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Clone"></i></a>
                              <a  ng-show="isAdmin" ng-click="opencollab(detail)"><i class="icon-share prl15 border-right" style="font-size:20px"data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Collaborators"></i></a>
@@ -137,7 +141,7 @@
                    <a ng-show="isAdmin" ng-click="deletepraposal(detail)"><i class="icon-close4 prl15 border-right" style="font-size:20px"data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Delete"></i></a>
                    
                     <a ng-click="download(detail)"><i class="icon-download prl15 border-right" style="font-size:20px"data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Download"></i></a>
-                    <a  ng-click="costprofitanalysis(detail)"><i class="icon-amount prl15 " style="font-size:20px"  uib-tooltip="Cost Profit"></i></a>
+                    <a  ng-click="costprofitanalysis(detail)"><i class="icon-amount prl15 " style="font-size:20px"  uib-tooltip="Cost Profit" data-toggle="tooltip" tooltip-placement="bottom"></i></a>
                     
                               <!--<i class="pe-7s-ribbon fa-2x prl15"></i>-->
                              
@@ -172,15 +176,17 @@
                                     </div>
                                     <div class="col-sm-4" >
                                         <div class="project-label"><a>Deadline</a></div>
-                                        <small>{{detail.delivery_date}}</small>
+                                          <small ng-class="{ 'help-block' : detail.redflag=='expire' }">{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
                                         <h2 > ${{detail.cost}}</h2>
                                     </div>
                                      <div class="col-sm-12" >
                                      <br>
+
                                         <div class="project-people">
-                                          <p></p>
+                                        <button   class="btn btn-white btn-circle" style="width:2px !important; background-color:#ffffff !important; border-color:#ffffff !important;  visibility: hidden; margin-right: 0px !important;" type="button">&nbsp;</button>
+
                                          <button ng-repeat="c1 in detail.collaborator track by $index"   class="btn btn-primary btn-circle" type="button">{{c1}}</button>
                                         </div><br><br>
                                 </div>
@@ -194,19 +200,20 @@
                                         <small ng-if="detail.proposal_status == 1">Open <br></small>
                                         <small ng-if="detail.proposal_status == 2">Sent <br></small>
                                         <small ng-if="detail.proposal_status == 3">Under Review <br></small>
-                                         <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                        <small ng-if="detail.proposal_status == 5">Reopen<br></small>
                                         
                                         <br><br>
                                     </div>
                                     <div class="col-sm-12" >
                                        <div class="project-value" style="border-top:1px dashed #7384b6;">
-                                            <h1  ng-if="detail.proposal_status == 1" class="text-info">25%</h1>
+                                            <h1  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class="text-info">25%</h1>
                                             <h1  ng-if="detail.proposal_status == 2" class="text-info">50%</h1>
                                             <h1  ng-if="detail.proposal_status == 3" class="text-info">75%</h1>
                                             <h1  ng-if="detail.proposal_status == 4" class="text-info">100%</h1>
                                             <div class="project-label" style="color:#3e3e3e;">Progress</div>
                                             <div class="progress m-t-xs full progress-small">
-                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            <div  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
@@ -263,8 +270,7 @@
                                     </div>
                                     <div class="col-sm-4" >
                                         <div class="project-label"><a>Deadline</a></div>
-                                        <small>{{detail.delivery_date}}</small>
-                                    </div>
+                                          <small ng-class="{ 'help-block' : detail.redflag=='expire' }">{{detail.delivery_date}}</small>                                    </div>
                                      <div class="col-sm-12" >
                                         <h2> ${{detail.cost}}</h2>
                                     </div>
@@ -272,7 +278,8 @@
                                      <br>
              
                                         <div class="project-people">
-                                          <p></p>
+                                           <button   class="btn btn-white btn-circle" style="width:2px !important; background-color:#ffffff !important; border-color:#ffffff !important;  visibility: hidden; margin-right: 0px !important;" type="button">&nbsp;</button>
+                                           
                                           <button ng-repeat="c1 in detail.collaborator track by $index"   class="btn btn-primary btn-circle" type="button">{{c1}}</button>
                                         </div><br><br>
                                 </div>
@@ -287,18 +294,18 @@
                                         <small ng-if="detail.proposal_status == 2">Sent <br></small>
                                         <small ng-if="detail.proposal_status == 3">Under Review <br></small>
                                          <small ng-if="detail.proposal_status == 4">Closed<br></small>
-                                        
+                                        <small ng-if="detail.proposal_status == 5">Reopen<br></small>
                                         <br><br>
                                     </div>
                                     <div class="col-sm-12" >
                                        <div class="project-value" style="border-top:1px dashed #7384b6;">
-                                           <h1  ng-if="detail.proposal_status == 1" class="text-info">25%</h1>
+                                           <h1  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class="text-info">25%</h1>
                                             <h1  ng-if="detail.proposal_status == 2" class="text-info">50%</h1>
                                             <h1  ng-if="detail.proposal_status == 3" class="text-info">75%</h1>
                                             <h1  ng-if="detail.proposal_status == 4" class="text-info">100%</h1>
                                             <div class="project-label" style="color:#3e3e3e;">Progress</div>
                                             <div class="progress m-t-xs full progress-small">
-                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            <div  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
@@ -355,7 +362,7 @@
                                     </div>
                                     <div class="col-sm-4" >
                                         <div class="project-label"><a>Deadline</a></div>
-                                        <small>{{detail.delivery_date}}</small>
+                                         <small ng-class="{ 'help-block' : detail.redflag=='expire' }">{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
                                         <h2 > ${{detail.cost}}</h2>
@@ -363,7 +370,7 @@
                                      <div class="col-sm-12" >
                                      <br>
                                         <div class="project-people">
-                                          <p>{{detail[1].collaborator.first_name}}</p>
+                                          <button   class="btn btn-white btn-circle" style="width:2px !important; background-color:#ffffff !important; border-color:#ffffff !important;  visibility: hidden; margin-right: 0px !important;" type="button">&nbsp;</button>
                                            <button ng-repeat="c1 in detail.collaborator track by $index"   class="btn btn-primary btn-circle" type="button">{{c1}}</button>
                                         </div><br><br>
                                 </div>
@@ -378,18 +385,19 @@
                                         <small ng-if="detail.proposal_status == 2">Sent <br></small>
                                         <small ng-if="detail.proposal_status == 3">Under Review <br></small>
                                          <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                         <small ng-if="detail.proposal_status == 5">Reopen<br></small>
                                         
                                         <br><br>
                                     </div>
                                     <div class="col-sm-12" >
                                        <div class="project-value" style="border-top:1px dashed #7384b6;">
-                                           <h1  ng-if="detail.proposal_status == 1" class="text-info">25%</h1>
+                                           <h1  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class="text-info">25%</h1>
                                             <h1  ng-if="detail.proposal_status == 2" class="text-info">50%</h1>
                                             <h1  ng-if="detail.proposal_status == 3" class="text-info">75%</h1>
                                             <h1  ng-if="detail.proposal_status == 4" class="text-info">100%</h1>
                                              <div class="project-label" style="color:#3e3e3e;">Progress</div>
                                             <div class="progress m-t-xs full progress-small">
-                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            <div  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
@@ -404,7 +412,7 @@
                     <div class="panel-footer">
                        <div class="row">
                             <div class="col-sm-12" >
-                            <a ng-hide="detail.useraccess == 1" ng-click="editpraposal(detail)"><i class="icon-edit3 prl15 border-right" style="font-size:20px"data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Edit" ></i></a>
+                           
 
                                <a ng-click="priweviemode(detail)"><i class="icon-search2 prl15 border-right" style="font-size:20px"data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Preview"></i></a>  
                             <a ng-click="clonepraposal(detail)"><i class="icon-copy prl15 border-right" style="font-size:20px"data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Clone"></i></a>
@@ -423,7 +431,7 @@
                 </div>
 
         </div>
-        <div class="col-lg-6" ng-show="rejectproposal" ng-repeat="detail in praposaldata | filter:{proposal_status:'4' }  && { is_won:'0' } " >
+        <div class="col-lg-6" ng-show="rejectproposal" ng-repeat="detail in praposaldata | filter: { is_won:'0' } && {proposal_status:'4' } " >
        <div class="hpanel " ng-repeat="info in praposalactivitydata"  >
                     <div class="panel-body"  >
                         <div class="row projects">
@@ -448,7 +456,7 @@
                                     </div>
                                     <div class="col-sm-4" >
                                         <div class="project-label"><a>Deadline</a></div>
-                                        <small>{{detail.delivery_date}}</small>
+                                          <small ng-class="{ 'help-block' : detail.redflag=='expire' }">{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
                                         <h2> ${{detail.cost}}</h2>
@@ -457,8 +465,9 @@
                                      <br>
              
                                         <div class="project-people">
-                                          <p></p>
-                                          <button ng-repeat="c1 in detail.collaborator track by $index"   class="btn btn-primary btn-circle" type="button">{{c1}}</button>
+                                           <button   class="btn btn-white btn-circle" style="width:2px !important; background-color:#ffffff !important; border-color:#ffffff !important;  visibility: hidden; margin-right: 0px !important;" type="button">&nbsp;</button>
+
+                                          <button  ng-repeat="c1 in detail.collaborator track by $index" class="btn btn-primary btn-circle" type="button">{{c1}}</button>
                                         </div><br><br>
                                 </div>
                                     
@@ -472,18 +481,19 @@
                                         <small ng-if="detail.proposal_status == 2">Sent <br></small>
                                         <small ng-if="detail.proposal_status == 3">Under Review <br></small>
                                          <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                         <small ng-if="detail.proposal_status == 5">Reopen<br></small>
                                         
                                         <br><br>
                                     </div>
                                     <div class="col-sm-12" >
                                        <div class="project-value" style="border-top:1px dashed #7384b6;">
-                                           <h1  ng-if="detail.proposal_status == 1" class="text-info">25%</h1>
+                                           <h1  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class="text-info">25%</h1>
                                             <h1  ng-if="detail.proposal_status == 2" class="text-info">50%</h1>
                                             <h1  ng-if="detail.proposal_status == 3" class="text-info">75%</h1>
                                             <h1  ng-if="detail.proposal_status == 4" class="text-info">100%</h1>
                                              <div class="project-label" style="color:#3e3e3e;">Progress</div>
                                             <div class="progress m-t-xs full progress-small">
-                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            <div  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
@@ -532,7 +542,7 @@
                                     </div>
                                     <div class="col-sm-4" >
                                         <div class="project-label"><a>Deadline</a></div>
-                                        <small>{{detail.delivery_date}}</small>
+                                          <small ng-class="{ 'help-block' : detail.redflag=='expire' }">{{detail.delivery_date}}</small>
                                     </div>
                                      <div class="col-sm-12" >
                                         <h2> ${{detail.cost}}</h2>
@@ -541,7 +551,7 @@
                                      <br>
              
                                         <div class="project-people">
-                                          <p></p>
+                                          <button   class="btn btn-white btn-circle" style="width:2px !important; background-color:#ffffff !important; border-color:#ffffff !important;  visibility: hidden; margin-right: 0px !important;" type="button">&nbsp;</button>
                                           <button ng-repeat="c1 in detail.collaborator track by $index"   class="btn btn-primary btn-circle" type="button">{{c1}}</button>
                                         </div><br><br>
                                 </div>
@@ -556,18 +566,19 @@
                                         <small ng-if="detail.proposal_status == 2">Sent <br></small>
                                         <small ng-if="detail.proposal_status == 3">Under Review <br></small>
                                          <small ng-if="detail.proposal_status == 4">Closed<br></small>
+                                         <small ng-if="detail.proposal_status == 5">Reopen<br></small>
                                         
                                         <br><br>
                                     </div>
                                     <div class="col-sm-12" >
                                        <div class="project-value" style="border-top:1px dashed #7384b6;">
-                                           <h1  ng-if="detail.proposal_status == 1" class="text-info">25%</h1>
+                                           <h1  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class="text-info">25%</h1>
                                             <h1  ng-if="detail.proposal_status == 2" class="text-info">50%</h1>
                                             <h1  ng-if="detail.proposal_status == 3" class="text-info">75%</h1>
                                             <h1  ng-if="detail.proposal_status == 4" class="text-info">100%</h1>
                                              <div class="project-label" style="color:#3e3e3e;">Progress</div>
                                             <div class="progress m-t-xs full progress-small">
-                                            <div  ng-if="detail.proposal_status == 1" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
+                                            <div  ng-if="detail.proposal_status == 1 || detail.proposal_status == 5" class=" progress-bar progress-bar-info" style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 2" class=" progress-bar progress-bar-info" style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 3" class=" progress-bar progress-bar-info" style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>
                                              <div  ng-if="detail.proposal_status == 4" class=" progress-bar progress-bar-info" style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar"> </div>

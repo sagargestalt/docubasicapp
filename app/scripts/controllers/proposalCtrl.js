@@ -8,7 +8,7 @@
  * Controller of the docubasic3App
  */
 angular.module('docubasic3App')
-  .controller('proposalCtrl', function ($scope, $rootScope,$window, $timeout, localStorageService,praposalservice,$location,$uibModal,userservice,settingservice,sweetAlert,$sce,$compile,styleservice,Fabric,FabricConstants,Keypress) {
+  .controller('proposalCtrl', function ($scope, $rootScope,$window, $timeout, localStorageService,praposalservice,$location,$uibModal,userservice,settingservice,sweetAlert,$sce,$compile,styleservice,Fabric,FabricConstants,Keypress,pageservice) {
     
      //$rootScope.pageid = "";
       $rootScope.tenancyid = localStorageService.get('tenancyid');
@@ -24,17 +24,52 @@ angular.module('docubasic3App')
           $rootScope.profilepath = localStorageService.get('profilepath');
            $rootScope.praposalname = localStorageService.get('praposalname');
              $rootScope.pageid = localStorageService.get('pageid');
+             $rootScope.company_logo = localStorageService.get('company_logo');
+               $rootScope.rightSidebar1 = false;
+        $rootScope.rightSidebar2 = false;
+        $rootScope.rightSidebar3 = false;
+         $rootScope.rightSidebar = false;
+
+             /*var pricingArr = null;
+              localStorageService.set('pricingArr',pricingArr);
+              var taxArr = null;
+              localStorageService.set('taxArr',taxArr);
+              var discountArr = null;
+               localStorageService.set('discountArr',discountArr);*/
+
 
         
         if(!$rootScope.isLogin) {
-            $location.path( "/login" );
+            //$location.path( "/login" );
             return false;
         }
+
+
          $scope.update = false;
           $scope.toemail = $rootScope.client_email; 
             $rootScope.finalpricedata = [];
             $rootScope.finaltaxdata =[];
             $rootScope.finaldisdata = [];
+
+            $scope.addprice = function(){
+              $rootScope.addpriceblock = true;
+               $scope.dynamicPopover = false;
+                $scope.myPopover.isOpen = false;
+
+            };
+             $scope.addtax = function(){
+          $rootScope.addtaxblock = true;
+        };
+
+        $scope.adddiscount = function(){
+          $rootScope.adddiscountblock = true;
+        };
+              $scope.closeprice = function(){
+          $scope.addpriceblock = false;
+         
+
+        };
+        
 
 function init() {
 
@@ -144,6 +179,20 @@ function init() {
          
       });
 
+        var tid = {
+       tenancy_id:$rootScope.tenancyid 
+        };
+
+         pageservice.getpagedata.save((tid), function(data){
+         $scope.alerts=[];
+                $scope.pdata= data.data;
+
+                     
+                       
+                 
+            });
+
+
 
 }
 
@@ -160,7 +209,8 @@ function init() {
           $rootScope.rightSidebar1 = false;
            $rootScope.rightSidebar2 = false;
            $rootScope.rightSidebar3 = false;
-           $rootScope.modalInstance.close();
+            $rootScope.rightSidebar4 = false;           
+           //$rootScope.modalInstance.close();
 
 
       };
@@ -241,6 +291,32 @@ function init() {
       };
 
 
+      $scope.deletepage = function(pagecnt){
+         $rootScope.pageid = pagecnt.template_page_id;
+         var data = {
+            id: $rootScope.pageid,
+            proposal_id:$rootScope.proposal_id,
+            updated_by:$rootScope.userid
+
+         };
+
+         praposalservice.deletepage.query((data), function(responce){
+                    $scope.alerts=[];
+
+                    if(responce.status == true){
+                        $scope.alerts.push({msg: 'Page deleted successfully', type:'success'});
+
+                        init();
+
+                    }
+                
+                   
+                    });
+
+
+      };
+
+
 
 
       $scope.deletepraposal = function(){
@@ -281,6 +357,7 @@ function init() {
       };
 
       $rootScope.callme = function(){
+        $scope.loading = true;
           var imgdata = $scope.fabric.getCanvasBlob();
           var data = $scope.fabric.getJSON();
        // $scope.videoSource = "https://www.youtube.com/embed/r4O4Xec60_k";
@@ -304,6 +381,10 @@ function init() {
         };
 
         praposalservice.savecanvas.save((data), function(data1){
+        if (data1.status == true){
+          $rootScope.totalprice = data1.data.after_tax_total;
+          $scope.loading = false;
+        }
         $scope.alerts=[];
         //$scope.pagedata= data1.data;
         //$scope.ssss = data1.data.page_contents;
@@ -315,7 +396,15 @@ function init() {
 
       };
 
+      $scope.openimageslider = function(){
+         $scope.isOpen1 = false;
+           $scope.isOpen = false; 
+        $rootScope.rightSidebar3 = true;
+
+      };
+
       $scope.uploadimage = function(){
+         $scope.isOpen1 = false; 
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/imageupload.html',
@@ -333,12 +422,13 @@ function init() {
 
 
       $scope.emailwindow = function(){
-
+        $scope.isOpen1 = false;
+           $scope.isOpen = false; 
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/email.html',
         controller: 'proposalCtrl',
-        windowClass: 'modal-lg animated fadeInRight in',
+        windowClass: 'modal-lg ',
         //size: size,
         resolve: {
           
@@ -350,11 +440,13 @@ function init() {
 
 
       $scope.opencollab = function(){
+         $scope.isOpen1 = false;
+           $scope.isOpen = false; 
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/collabraters.html',
         controller: 'proposalCtrl',
-        windowClass: 'modal-lg animated fadeInRight in',
+        windowClass: 'modal-lg',
         //size: size,
         resolve: {
           
@@ -379,17 +471,25 @@ function init() {
       };
 
        $scope.clonepraposal = function(){
+         $scope.isOpen1 = false;
+           $scope.isOpen = false; 
         $rootScope.modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/clone.html',
         controller: 'cloneCtrl',
-        windowClass: 'modal-lg animated fadeInRight in',
+        windowClass: 'modal-lg ',
         //size: size,
         });
       };
 
 
-    $scope.send = function(){
+     $scope.send = function(){
+      if(!$scope.cc){
+       $scope.cc = ""; 
+      }
+      if(!$scope.bcc){
+        $scope.bcc="";
+      }
 
       var data = {
          proposal_id:$rootScope.proposal_id,
@@ -451,7 +551,15 @@ function init() {
       };
 
 
+ $scope.closeAlerts = function(index) {
+       $scope.alerts.splice(1, index);
+       $scope.alerts = [];
+   };
 
+   $scope.closeAlert = function(index) {
+       $scope.errors.splice(1, index);
+       $scope.errors = [];
+   };
 
 
       $scope.submitname = function(){
@@ -479,6 +587,66 @@ function init() {
       };
  
 
+ $scope.isOpen = false; 
+      
+     // $scope.htmlString = "";
+      //$scope.ssss =  page.template_page_content;
+        //$scope.htmlString = $sce.trustAsHtml(page.template_page_content);
+     
+           $scope.selected = true;
+
+       $scope.selectedIndex=0;
+      
+       //$("#proposalDropContainer").empty();
+        //$scope.ssss =  $('#proposalDropContainer').html();
+      $rootScope.pageid = 1;
+        localStorageService.set('pageid',$rootScope.pageid);
+        var data = {
+
+          page_id:$rootScope.pageid,
+          proposal_id:$rootScope.proposal_id,
+        };
+        $scope.demo = true;
+         praposalservice.getpagecontent.save((data), function(data1){
+          $scope.alerts=[];
+          //$scope.ssss = data1.data.page_contents;
+           //$scope.htmlString = $sce.trustAsHtml(data1.data.page_contents);
+             //$scope.htmlString = data1.data.proposal_page_contents;
+               //console.log($scope.html);
+
+            //var link = $compile(data1.data.proposal_page_contents);
+             //console.log(link);
+           // var compiledText = link($scope);
+            //console.log(compiledText);
+            //$('#proposalDropContainer').append(compiledText);
+            //$scope.html = compiledText;   
+            //$scope.demo = false;
+            //$timeout(function() {
+              // $scope.demo = true;
+            //}, 5000);
+            //$scope.contentdata = compiledText;
+            var pagedata = data1.data.proposal_page_contents;
+            //console.log(pagedata);
+            $scope.fabric.loadJSON(pagedata);
+
+
+           //$rootScope.loaddata();
+          //$scope.pagedata= data1.data;
+           
+        });
+
+          var cmntdata = {
+        proposal_id: $rootScope.proposal_id,
+        tenancy_id: $rootScope.tenancyid,
+        page_id:$rootScope.pageid
+
+        };
+
+        praposalservice.getcomments.save((cmntdata), function(data){
+        //$scope.alerts=[];
+        $scope.commentsdata= data.data;
+         
+      });
 
 
 
@@ -497,7 +665,9 @@ function init() {
     };*/
 
     $scope.sendpage = function(page,i){
-      $scope.isOpen = false; 
+      // $rootScope.callme();
+      $scope.isOpen = false;
+      $scope.isOpen1 = false; 
       
      // $scope.htmlString = "";
       //$scope.ssss =  page.template_page_content;
@@ -506,9 +676,19 @@ function init() {
            $scope.selected = true;
 
        $scope.selectedIndex=i;
-       $("#proposalDropContainer").empty();
+       $scope.fabric.clearCanvas();
+       //$("#proposalDropContainer").empty();
         //$scope.ssss =  $('#proposalDropContainer').html();
       $rootScope.pageid = page.template_page_id;
+
+      if($rootScope.template_id && $rootScope.pageid !== '3'){
+
+        $rootScope.rightSidebar1 = false
+      }
+      if($rootScope.template_id == '1' && $rootScope.pageid !== '4'){
+
+        $rootScope.rightSidebar = false
+      }
         localStorageService.set('pageid',$rootScope.pageid);
         var data = {
 
@@ -560,6 +740,7 @@ function init() {
     };
 
     $scope.priweviemode = function(){
+
 
       $location.path( "/preview" );
     };
@@ -662,7 +843,7 @@ function init() {
               //$scope.ssss = data1.data.page_contents;
               $rootScope.totalvalue = data1.data.after_tax_total;
               console.log($rootScope.totalvalue);
-               $rootScope.callme();
+               //$rootScope.callme();
              }
                
             });
@@ -730,13 +911,85 @@ function init() {
 
           
          $rootScope.pushdata = function(detail){
-          console.log(detail);
-           $rootScope.finalpricedata = [];
+
+          
+
+             //
+
+              $rootScope.finalpricedata = [];
           $scope.newprice=[];
           var pricedata = detail;
-          console.log(pricedata);
-          $scope.newprice.push(pricedata);
-          console.log($scope.newprice);
+          console.log("in pushdatafunction"+pricedata);
+        $scope.newprice.push(pricedata);
+          console.log($scope.newprice[0]);
+         // $scope.fabric.deleteActiveObject();
+          var svgDataHeader = '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="300">' +
+           '<foreignObject width="100%" height="100%">' +
+           '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:20px;">' +
+             '<table border="1"  width="100%" height="100%">'+
+             '<thead><tr><td>Task Description</td><td>Quantity</td><td>Unit</td><td>Price</td><td>Total</td></tr></thead><tbody>';
+         
+             
+             
+            var svgDataContent = localStorageService.get('svgDataContent');
+            var svgDataTax = localStorageService.get('svgDataTax');
+          var svgDataDiscount = localStorageService.get('svgDataDiscount');
+
+              if(svgDataContent == null)
+                  svgDataContent = "";
+              if(svgDataDiscount == null)
+                  svgDataDiscount = "";
+              if(svgDataTax == null)
+                  svgDataTax = "";
+           
+              var svgDataContent = svgDataContent + '<tr><td>'+$scope.newprice[0]["categoryname"]+'</td><td>'+$scope.newprice[0]["mandays"]+'</td><td>1</td><td>'+$scope.newprice[0]["dailyrate"]+'</td><td>'+$scope.newprice[0]["totalrate"]+'</td></tr>';
+
+               var svgDataFooter = '</tbody></table>' + 
+               '</div>' +
+               '</foreignObject>' +
+               '</svg>';
+
+               var svgData = svgDataHeader + svgDataContent + svgDataDiscount + svgDataTax + svgDataFooter;
+
+
+                localStorageService.set('svgDataHeader', svgDataHeader);
+                 localStorageService.set('svgDataContent', svgDataContent);
+                 localStorageService.set('svgDataTax', svgDataTax);
+                 localStorageService.set('svgDataDiscount', svgDataDiscount);
+                  localStorageService.set('svgDataFooter', svgDataFooter);
+
+              // creating image from svg
+              var DOMURL = window.URL || window.webkitURL || window;
+              var img = new Image();
+              
+         
+              var svg = new Blob([svgData], {type: 'image/svg+xml;'});
+           //   console.log("asdasdasd"+svg);
+              var url = DOMURL.createObjectURL(svg);
+                img.setAttribute('crossOrigin', 'Anonymous');
+           
+              img.onload = function() {
+               // alert("sdh");
+                console.log("sdashd");
+                //ctx.drawImage(img, 0, 0);
+                DOMURL.revokeObjectURL(url);
+               };
+                 img.src = url; 
+            /* svg.toDataURL("image/png", {
+                callback: function(data) {
+                    img.setAttribute("src", data)
+                }
+              })*/
+              console.log("asdjhas url"+url);
+            
+              
+              $scope.fabric.addCanvasImage(img);
+             /* var rect =  $scope.fabric.addCanvasRect();
+                 rect.on('selected', function(e) {
+              console.log("deleting data");
+              $scope.deletedata();
+            });*/
+          
           //$rootScope.finalpricedata.push($scope.customerprice);
           $rootScope.finalpricedata.push(pricedata);
            console.log($rootScope.finalpricedata);
@@ -745,26 +998,75 @@ function init() {
          };
 
           $rootScope.pushtaxdata = function(detail){
+            $scope.fabric.addtaxtable(detail);
+            $rootScope.finaltaxdata = [];
+            $rootScope.finaltaxdata.push(detail);
+
             $rootScope.finaltaxdata=[];
           $scope.newtax=[];
           var appendtax = detail;
           //console.log(finaltaxdata);
           $scope.newtax.push(appendtax);
+
+           //$scope.fabric.deleteActiveObject();
+
+          var svgDataHeader = localStorageService.get('svgDataHeader');
+          var svgDataContent = localStorageService.get('svgDataContent');
+          var svgDataDiscount = localStorageService.get('svgDataDiscount');
+          var svgDataTax = localStorageService.get('svgDataTax');
+          var svgDataFooter = localStorageService.get('svgDataFooter');
+
+          var svgDataTax = '<tr><td style="text-align:right;">Tax </td><td></td><td></td><td></td><td>'+appendtax["percentage"]+'</td></tr>';
+          
+          localStorageService.set('svgDataTax', svgDataTax);
+         
+          var svgData = svgDataHeader + svgDataContent + svgDataDiscount + svgDataTax + svgDataFooter;
+
+           //creating image from svg
+            var DOMURL = window.URL || window.webkitURL || window;
+            var img = new Image();
+            var svg = new Blob([svgData], {type: 'image/svg+xml'});
+            var url = DOMURL.createObjectURL(svg);
+            img.src = url; 
+
+            $scope.fabric.addCanvasImage(img);
+
+
            
-          //console.log($scope.pblock);
+          console.log($scope.pblock);
           $rootScope.finaltaxdata.push(appendtax);
-          //appendtax={};
+          appendtax={};
 
          };
 
          $rootScope.pushdisdata = function(detail){
-          $rootScope.finaldisdata = [];
-          $scope.newdis=[];
-          var appenddis = detail;
-          //console.log(appenddis);
-          $scope.newdis.push(appenddis);
+           $scope.fabric.adddiscounttable(detail);
+           $rootScope.finaldisdata=[];
+           $rootScope.finaldisdata.push(detail);
+           var svgDataHeader = localStorageService.get('svgDataHeader');
+          var svgDataContent = localStorageService.get('svgDataContent');
+          var svgDataDiscount = localStorageService.get('svgDataDiscount');
+          var svgDataTax = localStorageService.get('svgDataTax');
+          var svgDataFooter = localStorageService.get('svgDataFooter');
+
+          var svgDataDiscount ='<tr><td style="text-align:right;">Discount</td><td></td><td></td><td></td><td>'+["value"]+'</td></tr>';
+
+          localStorageService.set('svgDataDiscount', svgDataDiscount);
+
+          var svgData = svgDataHeader + svgDataContent + svgDataDiscount + svgDataTax + svgDataFooter;
+
+            // creating image from svg
+            var DOMURL = window.URL || window.webkitURL || window;
+            var img = new Image();
+            var svg = new Blob([svgData], {type: 'image/svg+xml'});
+            var url = DOMURL.createObjectURL(svg);
+            img.src = url; 
+
+         $scope.fabric.addCanvasImage(img);
+
+
           //console.log($scope.pblock);
-           $rootScope.finaldisdata.push(appenddis);
+          // $rootScope.finaldisdata.push(appenddis);
           //appendtax={};
           //console.log($rootScope.finaldata);
          };
@@ -776,6 +1078,7 @@ function init() {
 
          };
          $rootScope.pushtask = function(tasklist){
+          $scope.fabric.addtasktable(tasklist);
            $rootScope.finaltask = [];
          // $scope.newprice=[];
           var taskdata = tasklist;
@@ -799,6 +1102,11 @@ function init() {
               templateUrl: 'views/comments.html',
             
             };
+
+            $scope.closepopover = function(){
+              $scope.isOpen1 = false;
+
+            };
 $scope.color = '#FF0000';
 
             $scope.options = {
@@ -809,21 +1117,64 @@ $scope.color = '#FF0000';
 
 
    $rootScope.stylesadd = function(stylesdata){
+    
+
+       var canvasdata = $scope.fabric.getJSON();
+      
     $scope.styleid = stylesdata.id;
     var data = {
       id:$scope.styleid
     }
 
      styleservice.getstyledetail.query((data), function(data1){
+
+          $scope.canvasdatanew =[];
+            canvasdatanew = new object();
   
-       
-         var link = $compile(data1.data.content);
-            var compiledText = link($scope);
-            console.log(compiledText);
-            $('#proposalDropContainer').append(compiledText);
+       canvasdata = new object();
+        canvasdata = data1.data.conten;
+        $scope.canvasdatanew.push(canvasdata);
+        console.log(canvasdatanew);
+          $scope.fabric.loadJSON($scope.canvasdatanew);
+          $rootScope.rightSidebar2 = false;
+           
          
 
     });
+
+   };
+
+   $rootScope.pageadd = function(page){
+
+    console.log(page);
+     $rootScope.rightSidebar4 = false;
+    $scope.proposal_pageid = page.Page_id;
+
+    var data = {
+        proposal_id:$rootScope.proposal_id,
+        created_by:$rootScope.userid,
+        proposal_version_id:$rootScope.version_id,
+        template_id:$rootScope.template_id,
+        page_id:$scope.proposal_pageid
+
+    };
+
+
+      styleservice.addpage.query((data), function(data1){
+    
+       
+         init();
+           
+         
+
+    });
+
+
+
+
+
+
+
 
    };
 
@@ -906,13 +1257,14 @@ $scope.color = '#FF0000';
 
 
     $scope.fabric = {};
+     var lableGroup;
   //$scope.ImagesConstants = ImagesConstants;
   $scope.FabricConstants = FabricConstants;
 
   //
   // Creating Canvas Objects
   // ================================================================
-  $rootScope.addtextbox = function(){
+  $scope.addtextbox = function(){
     $scope.fabric.addText();
 
   };
@@ -928,39 +1280,95 @@ $scope.color = '#FF0000';
 
   $rootScope.addImageUpload = function(imagepath) {
  
-     $scope.addImage(imagepath);
+    $scope.fabric.addpicture(imagepath);
     //var obj = angular.fromJson(data);
    // $scope.addImage(data);
     //Modal.close();
   };
 
-$rootScope.addcircle = function() {
+$scope.addcircle = function() {
   $scope.fabric.addCircle();
 
     };
 
-     $rootScope.addSqure = function(){
+     $scope.addSqure = function(){
       $scope.fabric.addRect();
 
 
      };
 
-     $rootScope.addLine = function(){
+     $scope.addLine = function(){
       $scope.fabric.addLine();
 
      };
 
-     $rootScope.addTri =function(){
+     $scope.addTri =function(){
 
       $scope.fabric.addTriangle();
      };
 
-     $rootScope.videoadd = function(){
-      var video = $("#videoframe");
-      console.log(video);
-       $scope.fabric.addVideo(video);
+     $scope.videoadd = function(){
+    // var video1El = document.getElementById('video');
+
+        //$scope.videadd = true;
+
+    //var video2El = document.getElementById('video2');  
+
+     //$scope.fabric.addVideo(video2El);
+
+      $rootScope.modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'views/videoupload.html',
+        controller: 'videoUploadCtrl',
+        windowClass: 'modal-md ',
+        //size: size,
+        resolve: {
+          
+        }
+        });
+
 
      };
+
+     $rootScope.$on('catchurl', function(event, obj) {
+      console.log(obj);
+      $scope.videoUrl = obj;
+
+      
+      
+      //$scope.videopath =  angular.copy($scope.videoUrl);
+       /*var video = document.getElementById('video2');
+         video.src = $scope.videoUrl;
+         video.play();*/
+
+         var video = document.getElementById('video2');
+         var source = document.createElement('source');
+
+          source.setAttribute('src', $scope.videoUrl);
+          video.setAttribute('crossOrigin', 'anonymous');
+          video.appendChild(source);
+          var videoSrc = $scope.videoUrl;
+            //video.play();
+    
+          // var video2El = document.getElementById('video2');  
+           console.log(video);
+           $scope.fabric.addVideo(video,videoSrc);
+
+   
+    
+
+
+     });
+
+     $scope.addurltovideo = function(){
+       var video2El = document.getElementById('video2');  
+
+     $scope.fabric.addVideo(video2El);
+
+     };
+     $scope.trustSrc = function(src) {
+          return $sce.trustAsResourceUrl(src);
+        };
 
   //
   // Editing Canvas Size
@@ -1017,7 +1425,7 @@ $rootScope.addcircle = function() {
               //$scope.ssss = data1.data.page_contents;
               $rootScope.totalvalue = data1.data.after_tax_total;
               console.log($rootScope.totalvalue);
-               $rootScope.callme();
+               //$rootScope.callme();
              }
                
             });
@@ -1026,6 +1434,16 @@ $rootScope.addcircle = function() {
     
   };
 
+    $scope.fillcolor = function(){
+      var value = $scope.mycoler;
+      $scope.fabric.fillShapecolor(value);
+      console.log($scope.fabric.selectedObject.type);
+      if($scope.fabric.selectedObject.type == 'line'){
+             $scope.fabric.filllinecolor(value);
+        }
+
+
+    };
   //
   // Init
   // ================================================================
@@ -1049,5 +1467,65 @@ $rootScope.addcircle = function() {
   };
 
   $scope.$on('canvas:created', $scope.init);
+
+
+  $scope.insertText = function(shapeType){
+
+    console.log("text - " + shapeType);
+    switch(shapeType) {
+      case 'text':
+        $scope.addtextbox();
+        break;
+      default:
+        break;
+    }
+    switch(shapeType){
+      case 'circle':
+      $scope.addcircle();
+      break;
+      default:
+      break;
+    }
+
+    switch(shapeType){
+      case 'squre':
+      $scope.addSqure();
+      break;
+      default:
+      break;
+    }
+    switch(shapeType){
+      case 'triangle':
+      $scope.addTri();
+      break;
+      default:
+      break;
+    }
+    switch(shapeType){
+      case 'line':
+      $scope.addLine();
+      break;
+      default:
+      break;
+    }
+  
+  switch(shapeType){
+      case 'image':
+      $scope.openimageslider();
+      break;
+      default:
+      break;
+    }
+    switch(shapeType){
+      case 'video':
+      $scope.videoadd();
+      break;
+      default:
+      break;
+    }
+  };
+$scope.$on('savedata', function(event, data) {
+      $rootScope.callme();
+    })
             
   });

@@ -1,0 +1,65 @@
+
+  <div class="modal-dialog modal-lg" style="margin:0px; width:100% !important;" ng-controller="pricingsettingCtrl">
+  
+  
+  <div class="color-line"></div>   
+<div class="modal-header"> 
+  <h4 class="modal-title">Add Discount Block
+    <span class="pull-right">
+      <a ng-click="closediscountbar()"> <i class="pe-7s-close fa-2x"></i></a> 
+    </span>
+  </h4> 
+</div>
+
+
+<div class="content" effect="zoomIn">
+      
+ 
+<div class="setting">
+  <div class="row">
+    <div class="col-lg-12" >
+      <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+      <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+    </div>
+  </div>
+
+ <div class="row">
+      
+      <div class="discount" ><br><br>
+         <form name="discountForm">
+          <div class="row">
+            <div class="col-md-3">
+               <div class="form-group required" ng-class="{'has-error': discountForm.distname.$touched && discountForm.distname.$error.required && discountForm.submit}">
+                  <label class="control-label">Discount Name</label><br>
+               <input name="distname" type="text" class="form-control" placeholder="Discount Name" id="user-pass" ng-model="discountname" required>
+             </div>
+           </div>
+             <div class="col-md-3"><div class="form-group required" ><label class="control-label">Discount Type </label>
+             <div class="dropdown">
+                     <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="distype" ng-options="types.id as types.type for types in dbased" >
+           <option value="">--Select--</option></select>
+          </div>
+        </div>
+             </div>
+       <div class="col-md-4">
+               <div class="form-group required" ng-class="{'has-error': discountForm.val.$touched && discountForm.val.$error.required && discountForm.submit}">
+                 <label class="control-label">Amount/Percentage</label><br>
+                <input name="val" type="text" class="form-control" placeholder="Amount/Percentage" id="user-pass" ng-model="value" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required >
+                 <span class="help-block"  ng-show="discountForm.val.$touched && discountForm.val.$invalid">Invalid</span>
+              </div>
+             </div>
+           </div>
+            <div class="row">
+             <div class="col-md-6">
+               <button class="btn btn-success" ng-click="adddiscount()" ng-disabled="discountForm.$invalid"  >Save</button>
+                
+             </div>
+       </div>
+       </form>
+
+      </div>
+     
+           
+        </div>
+            </div>
+     

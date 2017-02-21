@@ -18,9 +18,9 @@
 <div class="col-md-12">
         <div class="hpanel">
             <uib-tabset>
-                <uib-tab>
+                <uib-tab  active="tabOneActive">
                     <uib-tab-heading>
-                        Users
+                        Users<p class="help-block" ng-bind="unb"></p>
                     </uib-tab-heading>
                     <div class="panel-body">
                         <table datatable="ng" class="table table-striped table-bordered table-hover" >
@@ -30,6 +30,7 @@
                             <th>Last Name</th>
                              <th>Email</th>
                             <th>Created by</th>
+                              <th>Action</th>
                            
                           </tr>
                         </thead>
@@ -40,20 +41,21 @@
                              <td >{{detail.email}}</td>
                              <td>{{detail.created_users_email}}<br>
                            {{detail.created_time}}</td>
+                            <td><a href="" title="Update" ng-click="edituser(detail)"  class="btn"><i class="glyphicon glyphicon-pencil"></i></a></td>
                            
                           </tr>
                         </tbody>
                       </table>
                     </div>
                 </uib-tab>
-                <uib-tab>
+                <uib-tab  active="tabTwoActive">
                     <uib-tab-heading>
-                        Proposal
+                        Proposal<p class="help-block" ng-bind="pnb"></p>
                     </uib-tab-heading>
                     <div class="panel-body">
                         <table datatable="ng" class="table table-striped table-bordered table-hover" >
                         <thead>
-                          <tr>
+                         <tr>
                             <th>Name</th>
                             <th>Client</th>
                              <th>Email</th>
@@ -63,7 +65,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="info in searchdata.proposal" >
+                         
+                          <tr ng-repeat="info in searchdata.proposal" ng-click="openproposal()">
+                            
                             <td >{{info.name}}</td>
                             <td>{{info.firstname}}</td>
                              <td >{{info.email}}</td>
@@ -71,41 +75,44 @@
                            <td>{{info.delivery_date}}</td>
                            
                           </tr>
+                        
                         </tbody>
                       </table>
                     </div>
                 </uib-tab>
-                <uib-tab>
+                <uib-tab active="tabThreeActive">
                     <uib-tab-heading>
-                        Clients
+                        Clients<p class="help-block" ng-bind="cnb"></p>
                     </uib-tab-heading>
                     <div class="panel-body">
                         <table datatable="ng" class="table table-striped table-bordered table-hover" >
                         <thead>
-                          <tr>
+                          <tr >
                             <th>First Name</th>
                             <th>Last Name</th>
                              <th>Mobile Number</th>
                             <th>Created by</th>
+                              <th>Action</th>
                            
                           </tr>
                         </thead>
                         <tbody>
                           <tr ng-repeat="detail in searchdata.clients" >
-                            <td >{{detail.firstname}}</td>
+                            <td  >{{detail.firstname}}</td>
                             <td>{{detail.lastname}}</td>
                              <td >{{detail.mobile}}</td>
                              <td>{{detail.created_users_email}}<br>
                            {{detail.created_time}}</td>
+                            <td><a href="" title="Update" ng-click="editClient(detail)"  class="btn"><i class="glyphicon glyphicon-pencil"></i></a></td>
                            
                           </tr>
                         </tbody>
                       </table>
                     </div>
                 </uib-tab>
-                <uib-tab>
+                <uib-tab active="tabFourActive">
                     <uib-tab-heading>
-                        Vendors
+                        Vendors<p class="help-block" ng-bind="vnb"></p>
                     </uib-tab-heading>
                     <div class="panel-body">
                         <table datatable="ng" class="table table-striped table-bordered table-hover" >
@@ -114,23 +121,25 @@
                             <th>Name</th>
                              <th>Mobile Number</th>
                             <th>Created by</th>
+                              <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr ng-repeat="detail in searchdata.vendors" >
-                            <td >{{detail.displayname}}</td>
+                            <td  >{{detail.displayname}}</td>
                             <td >{{detail.mobile}}</td>
                             <td>{{detail.created_users_email}}<br>
                              {{detail.created_time}}</td>
+                             <td><a href="" title="Update" ng-click="editVendor(detail)"  class="btn"><i class="glyphicon glyphicon-pencil"></i></a></td>
                            
                           </tr>
                         </tbody>
                       </table>
                     </div>
                 </uib-tab>
-                <uib-tab>
+                <uib-tab  active="tabFiveActive">
                     <uib-tab-heading>
-                        Task Categories
+                        Task Categories<p class="help-block" ng-bind="tnb"></p>
                     </uib-tab-heading>
                     <div class="panel-body">
                         <table datatable="ng" class="table table-striped table-bordered table-hover" >
@@ -138,6 +147,7 @@
                           <tr>
                              <th>Name</th>
                             <th>Created By</th>
+                              <th>Action</th>
                            </tr>
                       </thead>
                       <tbody>
@@ -145,6 +155,7 @@
                           <td >{{detail.categoryname}}</td>
                           <td>{{detail.email}}<br>
                             {{detail.created_time}}</td>
+                            <td><a href="" title="Update" ng-click="edittask(detail)"   class="btn"><i class="glyphicon glyphicon-pencil"></i></a></td>
                           
                         
                         </tr>
@@ -152,9 +163,9 @@
                     </table>
                     </div>
                 </uib-tab>
-                <uib-tab>
+                <uib-tab active="tabSixActive">
                     <uib-tab-heading>
-                        Project Task
+                        Project Task<p class="help-block" ng-bind="prnb"></p>
                     </uib-tab-heading>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -166,15 +177,18 @@
                               <th>Man Days</th>
                               <th>Total Cost</th>
                               <th>Created by</th>
+                                <th>Action</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr ng-repeat="detail in searchdata.projectTask" >
-                             <td >{{detail.taskshortdesc}}</td>
+                             <td  >{{detail.taskshortdesc}}</td>
                               <td>{{detail.mandays}}</td>
                               <td>{{detail.totalcost}}</td>
                               <td>{{detail.email}}<br>
                               {{detail.created_time}}</td>
+                               <td><a href="" title="Update"ng-click="editprojecttask(detail)"   class="btn"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                          
                             </tr>
                           </tbody>
                         </table>
@@ -183,9 +197,9 @@
                     </div>
                 </uib-tab>
 
-                <uib-tab>
+                <uib-tab active="tabSevenActive">
                     <uib-tab-heading>
-                        Notes
+                        Notes<p class="help-block" ng-bind="nnb"></p>
                     </uib-tab-heading>
                     <div class="panel-body">
                       <table datatable="ng" class="table table-striped table-bordered table-hover" >
@@ -198,7 +212,7 @@
                           </thead>
                           <tbody>
                             <tr ng-repeat="nts in searchdata.notes" >
-                             <td >{{nts.name}}</td>
+                             <td ><a ng-href="#/notes">{{nts.name}}</a></td>
                               <td>{{nts.created_at}}</td>
                              
                             </tr>
@@ -211,9 +225,9 @@
 
 
                 </uib-tab>
-                <uib-tab>
+                <uib-tab active="tabEightActive">
                     <uib-tab-heading>
-                        ToDo's 
+                        ToDo's <p class="help-block" ng-bind="tonb"></p>
                     </uib-tab-heading>
                     <div class="panel-body">
 
@@ -227,7 +241,7 @@
                           </thead>
                           <tbody>
                             <tr ng-repeat = "tds in searchdata.todos" >
-                             <td >{{tds.taskname}}</td>
+                             <td > <a ng-href="#/todos">{{tds.taskname}}</a></td>
                             <td > {{tds.created_at}}</td>
                              
                              
@@ -243,6 +257,13 @@
 
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
+
+
+<div id="right-sidebar" ng-include="'views/search-add-client.html'" class="sidebar-open" ng-show="Searchclientadd"></div>  
+<div id="right-sidebar" ng-include="'views/search-add-vendor.html'" class="sidebar-open" ng-show="Searchvendoradd"></div> 
+<div id="right-sidebar" ng-include="'views/search-add-task.html'" class="sidebar-open" ng-show="Searhtaskadd"></div> 
+<div id="right-sidebar" ng-include="'views/search-add-projecttask.html'" class="sidebar-open" ng-show="Searhprojecttaskadd"></div> 
+<div id="right-sidebar" ng-include="'views/search-add-user.html'" class="sidebar-open" ng-show="useradd"></div> 
 
 
 

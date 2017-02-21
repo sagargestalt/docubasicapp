@@ -153,13 +153,17 @@ $scope.closemodal = function(){
 
             $scope.message = responce.message;
             if(responce.status === true){
+              $rootScope.company_logo=responce.data.logo_path;
+               localStorageService.set('company_logo',$rootScope.company_logo);
               $scope.loading = false;
-                $scope.alerts.push({msg: 'Picture Updated successfully', type:'success'});
+                $scope.alerts.push({msg: 'Company Logo Updated successfully', type:'success'});
                 $scope.imageptah = responce.data.logo_path;
                 init();
             }
             if(responce.status === false){
-                $scope.alerts.push({msg: 'error occurd', type:'denger'});
+                $scope.loading = false;
+                $scope.errors = responce.message;
+                $scope.alerts.push({msg: 'Image should be only 163x41 in size', type:'danger'});
                 init();
             }
             });

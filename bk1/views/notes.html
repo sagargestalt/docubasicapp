@@ -1,0 +1,204 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<div id="wrapper">
+	
+
+	<div class="content animate-panel">
+
+
+        <div class="row">
+            <div class="col-md-12">
+            <h3 class="font-light m-b-xs">
+                   Notes <div class="pull-right" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a ng-href="#/main"><i class="icon-page-14"></i> &nbsp; &nbsp; Dashboard</a></li>
+                       
+                        <li class="active">
+                            <span>Notes</span>
+                        </li>
+                    </ol>
+                </div>
+                </h3>
+                <br>
+            </div>
+        </div>
+   <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+   <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+
+<div class="row">
+
+    <style>
+    #notes .panel-body{margin:15px; padding:12px; background-color: #f9f9f9;}
+     #notes .light-blue {background-color: #97a3c7 !important; color:#ffffff !important;}
+     #notes .light-blue h5{ color:#ffffff !important;}
+     #notes .light-blue small{ color:#ffffff !important;}
+    .hpanel > .panel-footer, .hpanel > .panel-section {color: #3e3e3e !important;}
+	.newtxt{color:#434e6e !important; font-weight:400 !important;}
+    </style>
+
+
+		<div class="col-md-4">
+            			<div class="hpanel panel-group">
+                
+                <div class="panel-section">
+                        <div class="row">
+                            <div class="col-md-12">
+                         <div class="text-muted font-bold "><h4 class="newtxt">Search note or add new</h4></div>
+                     </div>
+                 </div>
+                    	<div class="row">
+                    		<div class="col-md-12">
+
+								<input type="text" class="form-control" style="height:44px; width:79%; float:left;" ng-model="searchnote" placeholder="Search note...">
+								<a ng-click="addnote()" style="float:right; width:50px; height:50px;"><img src="images/addnote.png" > </a>
+                    
+                       </div>
+                     
+                    </div>
+                    <button type="button" data-toggle="collapse" data-target="#notes"
+                            class="btn-sm visible-xs visible-sm collapsed btn-default btn btn-block m-t-sm">
+                        All notes <i class="fa fa-angle-down"></i>
+                    </button>
+
+                    <div class="row">
+                        <div id="notes" class="collapse">
+
+                    <div class="panel-body  note-link"  ng-repeat = "info in notes | filter:searchnote"  ng-class="{ 'light-blue' : $index===selectedIndex}">
+                        <a href="" data-toggle="tab">
+                        <small class="pull-right text-muted" style="padding-top:10px;">{{info.Created_at}}</small>
+                            <a ng-click="getnotesdata(info, $index)"><h5>{{info.Name}}</h5></a>
+                        <div class="small">
+                           {{info.ShortDescription}}
+                        </div>
+                        </a>
+                    </div>
+
+                    
+                    
+
+                    
+
+                   
+                </div>
+                    </div>
+
+                </div>
+
+                
+
+
+
+            </div>
+        </div>
+
+		<div class="col-md-8" ng-init="note = 'note1'" style="" ng-show = "edit">
+								<div class="hpanel">
+									<div class="panel-body">
+										<div class="text-center hidden"> We couldn't find any notes for you. </div>
+										<div>
+											<div class="" style="">
+												<div class="pull-right text-muted m-l-lg">{{date}}</div>
+												<h4 style="margin-bottom:18px">Add New Note</h4>
+												<label>Note Name </label><br>
+												<input  class="form-control" ng-model="notename"> </input>
+												<hr>
+												<div class="note-content">
+													<label>Note Description </label><br>
+													<textarea class="form-control" ng-model="notediscription"> </textarea>
+												</div><br>
+												<div class="btn-group">
+													<button class="btn btn-success" ng-click="updatenote()">
+												
+													Save
+													</button>&nbsp;&nbsp;&nbsp;
+													</div>
+													<div class="btn-group">
+													<button class="btn btn-primary" ng-click="addnote()" >
+													
+													Cancel</button>
+													</div>
+													
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+		<div class="col-md-8" ng-init="note = 'note1'"  ng-show = "editdisplay">
+            <div class="hpanel">
+
+                <div class="panel-body">
+
+                    <div class="text-center hidden">
+                        We couldn't find any notes for you.
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="note1" class="tab-pane active">
+                            <div class="pull-right text-muted m-l-lg">
+                                {{date}}
+                            </div>
+                            <h4>{{notename}}</h4>
+                            <hr/>
+                            <div class="note-content">
+                            	 <p>
+                            	 	{{notediscription}}
+
+                            	 </p>
+                            	  </div><br>
+                            	   <div class="btn-group pull-right">
+                                <button class="btn btn-sm btn-default" ng-click="getnote()" tooltip-placement="bottom" uib-tooltip="Update" ><i class="icon-edit2"></i> </button>
+							
+                              <button class="btn btn-sm btn-default" ng-click="deletenote()" tooltip-placement="bottom" uib-tooltip="Remove"><i class="icon-cancel"></i> </button>
+                            </div>
+
+                            	
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+		<div class="col-md-8" ng-init="note = 'note1'" style="" ng-show="display">
+								<div class="hpanel">
+									<div class="panel-body">
+										<div class="text-center hidden"> We couldn't find any notes for you. </div>
+										<div>
+											<div class="" style="">
+												<div class="pull-right text-muted m-l-lg"></div>
+												<h4>Add New</h4>
+												<hr>
+												<label>Note Name</label><br>
+												<input  class="form-control" maxlength="20" ng-model="newnotename"> </input>
+												<br>
+												<div class="note-content">
+													<label>Note Description</label><br>
+													<textarea class="form-control" ng-model="newnotediscription"> </textarea>
+												</div><br>
+												<div class="btn-group">
+													<button class="btn btn-success" ng-click="submitnote()">
+													
+													Save
+													</button>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						
+
+</div>
+
+
+
+						</div>
+					</div>

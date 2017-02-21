@@ -16,6 +16,9 @@ $rootScope.isLogin = localStorageService.get('isLogin');
             $location.path( "/main" );
             return false;
         }
+        $rootScope.proposalrightSidebar = false;
+        
+         $rootScope.billingSidebar = false;
         $scope.closemodal = function(){
           //console.log("hi");
           $rootScope.modalInstance.close();
@@ -23,7 +26,6 @@ $rootScope.isLogin = localStorageService.get('isLogin');
         };
 
          billingservice.getpackages.query({}, function(data){
-     $scope.alerts=[];
         $scope.packagedata = data.data;
          
 
@@ -64,12 +66,22 @@ $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
                     $rootScope.tenancy_code = data.data.tenancy_code;
                      localStorageService.set('tenancy_code',$rootScope.tenancy_code);
                       $rootScope.profilepath = data.data.image_path;
+                       $rootScope.upgrade = true;
 
 
                      if(data.data.istenantadmin === "1"){
 
                     $rootScope.isAdmin = true;
                   }
+
+                     if(data.data.issubscriptionActive === "0"){
+                        $rootScope.upgrade = false;
+
+
+                        $location.path( "/subscription" );
+
+
+                      }
 
                    $location.path( "/main" );
 
@@ -133,7 +145,19 @@ $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
                   $rootScope.username = data.data.firstname;
                   $rootScope.tenancy_code = data.data.tenancy_code;
                   $rootScope.profilepath = data.data.image_path;
+                  $rootScope.company_logo = data.data.company_logo;
+                  $rootScope.upgrade = true;
                    localStorageService.set('tenancy_code',$rootScope.tenancy_code);
+
+
+                      if(data.data.issubscriptionActive === "0"){
+                        $rootScope.upgrade = false;
+
+
+                        $location.path( "/subscription" );
+
+
+                      }
               
 
                   //$rootScope.tenancyid = 1;
@@ -202,6 +226,17 @@ $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
      // localStorageService.set('userid',$rootScope.userid);
     }, true);
 
+         $scope.$watch('company_logo', function () {
+      localStorageService.set('company_logo',$rootScope.company_logo);
+     // localStorageService.set('userid',$rootScope.userid);
+    }, true);
+
+       $scope.$watch('upgrade', function () {
+      localStorageService.set('upgrade',$rootScope.upgrade);
+     // localStorageService.set('userid',$rootScope.userid);
+    }, true);
+
+
 
 
     function init() {
@@ -255,17 +290,12 @@ $scope.closeAlerts = function(index) {
         $scope.alerts = [];
     };
     $scope.closeAlert = function(index) {
-        $scope.loginalerts.splice(1, index);
-        $scope.loginalerts = [];
+        $rootScope.loginalerts.splice(1, index);
+        $rootScope.loginalerts = [];
     };
 
     $scope.closeAlert = function(index) {
-        $rootScope.errors.splice(1, index);
-        $rootScope.errors = [];
-        $scope.loginalerts.splice(1, index);
-        $scope.loginalerts = [];
-         $scope.alerts.splice(1, index);
-        $scope.alerts = [];
+       
         $scope.loginalerts.splice(1, index);
         $scope.loginalerts = [];
     };
@@ -301,12 +331,21 @@ $scope.closeAlerts = function(index) {
                     $rootScope.username = data.data.firstname;
                      $rootScope.tenancy_code = data.data.tenancy_code;
                       $rootScope.profilepath = data.data.image_path;
-
+                       $rootScope.upgrade = true;
 
                      if(data.data.istenantadmin === "1"){
 
                     $rootScope.isAdmin = true;
                   }
+
+                   if(data.data.issubscriptionActive === "0"){
+                        $rootScope.upgrade = false;
+
+
+                        $location.path( "/subscription" );
+
+
+                      }
 
                    $location.path( "/main" );
 
@@ -564,8 +603,37 @@ $scope.active = function(info){
   };
 
  
+//closing slider on logout//
+ $rootScope.proposalrightSidebar = false;
+  $rootScope.billingSidebar = false;
+  $rootScope.rightSidebar1 = false;
+   $rootScope.clientadd = false;
+    $rootScope.addpriceblock = false;
+     $rootScope.addtaxblock = false;
+     $rootScope.adddiscountblock =false;
+     $rootScope.rightSidebar3 = false;
+      $rootScope.billingSidebar = false;
 
 
+   $rootScope.rightSidebar1 = false;
+ $rootScope.rightSidebarcompanysetting = false;
+ $rootScope.rightSidebartask = false;
+ $rootScope.rightSidebarprojecttask = false;
+  $rootScope.rightSidebarprice = false;
+  $rootScope.rightSidebarvendors = false;
+  $rootScope.rightSidebarresourcetype = false;
+  $rootScope.rightSidebarclient = false;
+   $rootScope.rightSidebarstyle = false;
+   $rootScope.rightSidebarpage = false;
+  $rootScope.rightSidebartemplate = false;
+   $rootScope.rightSidebar1 = false;
+        $rootScope.rightSidebar2 = false;
+        $rootScope.rightSidebar3 = false;
+         $rootScope.rightSidebar = false;
+
+         if($rootScope.modalInstance != null){
+   $rootScope.modalInstance.close();}
+    //$rootScope.modalInstance.close();
   
 
 }]);

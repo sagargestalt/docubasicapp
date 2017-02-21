@@ -1,0 +1,221 @@
+<div class="modal-dialog modal-lg">
+
+  
+<div class="setting">
+
+  <div class="normalheader transition animated fadeIn">
+    <div class="hpanel">
+      <div class="panel-body">
+            <div class="pull-right">
+              <a  ng-click="closemodal()" > <i class="pe-7s-close fa-2x"></i></a>
+            </div>
+          </div>
+      <div class="panel-body">
+        
+        <div class="pull-right m-t-lg" id="hbreadcrumb">
+          <ol class="hbreadcrumb breadcrumb">
+            <li><a ng-href="#/main"><i class="icon-page-14"></i>Dashboard</a></li>
+            
+            <li class="active">
+              <span>Company</span>
+            </li>
+          </ol>
+        </div>
+        <h2 class="font-light m-b-xs">
+        Company
+        </h2>
+        <small></small>
+      </div>
+    </div>
+  </div>
+  <div class="content animate-panel" effect="zoomIn">
+    <uib-alert ng-repeat="alert in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert}}</uib-alert>
+    <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+    
+    <div class="row">
+      <div class="col-lg-12" >
+        <div class="hpanel">
+          <div class="panel-body">
+             <form name="logovalidate">
+            <h3>Company Logo</h3>
+            <div>
+              <img style="margin-bottom:5px; border: 5px solid #e0e1e7;" height="210" width="250" ng-src="{{orgdata[0].image_path}}"><loading></loading>
+              <img ngf-thumbnail="files">
+            </div>
+            
+            <input type="file" ng-model="files" name="files" multiple accept="image/*, .zip" maxsize="500" required base-sixty-four-input>
+            <span ng-show="logovalidate.files.$error.maxsize">Files must not exceed 500 KB</span><br>
+            <button class="btn btn-success" ng-click="send()"  ng-disabled="logovalidate.$invalid" >Upload</button>
+            </form>
+          </div>
+          <br><br>
+          
+          <div class="panel-body">
+            <h3>Company Address</h3>
+            <div class= "address" ng-hide="editaddress">
+              <a class="pull-right" ng-hide="editaddress" ng-click="edit()"><i class="glyphicon glyphicon-pencil"></i></a>
+              <label>{{orgdata[0].address}}</label><br>
+              <label>{{orgdata[0].address_line_1}}</label><br>
+              <label>{{orgdata[0].city}}</label><br>
+             <div ng-repeat="info in allstates | filter: { stateid :statedetail}:true">
+                <label>{{info.statename}}</label>
+              </div>
+              <div ng-repeat="info in allProducts | filter: { countryid :countrydetail}:true">
+                <label>{{info.countryname}}</label>
+              </div>
+              <label>{{orgdata[0].url}}</label><br>
+              <!--<label>{{orgdata[0].domain}}</label>-->
+               <label>{{orgdata[0].phone_number}}</label><br>
+                <label>{{orgdata[0].email_address}}</label><br>
+              
+            </div>
+           
+              <div class = "row">
+                
+                <div class ='col-md-8' ng-show="editaddress">
+                  <label class="control-label">Street Address / Landmark</label><br>
+                  <input name="Tenancy" id="sender-Tenancy" type="text" placeholder="Street Address / Landmark" class="form-control email" ng-model="mainaddress" required><br>
+                  <label class="control-label">Address line 1</label><br>
+                  <input name="Tenancy" id="sender-Tenancy" type="text" placeholder="Address line 1" class="form-control email" ng-model="address1" required>
+                  <!--<input name="Tenancy" id="sender-Tenancy" type="text" placeholder="Address line 2" class="form-control email" ng-model="address2" required>-->
+                </div>
+              </div><br>
+              <div class ="row">
+                <div class="col-md-4"><label class="control-label" ng-show="editaddress">Country</label><br>
+                
+                <div class="dropdown" ng-show="editaddress">
+                  <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="value.countryid as value.countryname for value in allProducts" ng-model="country" >
+                    <span class="caret"></span>Country:{{orgdata[0].country_id}}</select>
+                    
+                    
+                  </div>
+                </div>
+                <div class="col-md-4"><label class="control-label" ng-show="editaddress">State</label><br>
+                
+                <div class="dropdown" ng-show="editaddress">
+                  <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="value.stateid as value.statename for value in allstates | filter: { countryid:country } " ng-model="state" ng-init="state = allstates[0]">.
+                    <option selected></option>
+                  </select>
+                  
+                </div>
+              </div>
+            </div><br>
+            <div class="row" ng-show="editaddress">
+              <div class="col-md-3">
+                <label class="control-label">City</label><br>
+                <input name="Tenancy" only-words id="sender-Tenancy" type="text" placeholder="Enter City" class="form-control email" ng-model="city" required>
+              </div>
+              <form name="validate">
+              <div class="col-md-3">
+                   <div class="form-group required" ng-class="{'has-error': validate.input.$touched && validate.input.$error.required}">
+                <label class="control-label">Website</label><br>
+                <input  type="url" name="input"   placeholder="Enter website" class="form-control email" ng-model="urlsite" required>
+                
+                <div role="alert">
+                  <span class="error" ng-show="validate.input.$touched && validate.input.$error.required">
+                  Required!</span>
+                  <span class="error" ng-show="validate.input.$touched && validate.input.$error.url">
+                  Not valid url!</span>
+                </div>
+              </div>
+            </div>
+
+              <div class="col-md-3">
+                 <div class="form-group required" ng-class="{'has-error': validate.ph.$touched && validate.ph.$error.required}">
+                <label class="control-label">Phone Number</label><br>
+                <input name="ph"  ng-pattern="ph_numbr"  id="sender-Tenancy" type="text" placeholder="Phone Number" class="form-control email" ng-model="phone" required>
+                <span ng-show="validate.ph.$touched && validate.ph.$invalid" class="denger">Phone number is invalid.</span>
+              </div>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label">Email</label><br>
+                <input name="Tenancy"  id="sender-Tenancy" type="text" placeholder="Email" class="form-control email" ng-model="aemail" required ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+
+              </div>
+              
+              <!--<div class="col-md-8"><br>
+                <label class="control-label">Domain :</label><br>
+                <input name="domain" type="url" id="sender-Tenancy"  placeholder="Enter domain" class="form-control email" ng-model="domain" required>
+                <div role="alert">
+                  <span class="error" ng-show="adressform.domain.$touched && adressform.domain.$error.required">
+                  Required!</span>
+                  <span class="error" ng-show="adressform.domain.$touched && adressform.domain.$error.url">
+                  Not valid url!</span>
+                </div>
+                
+              </div>-->
+              
+            </form>
+            <div class="col-md-12" ng-show="editaddress">
+              <br>
+              <button class="btn btn-success" ng-click="address()" >Save</button>
+              <button class="btn btn-primary" ng-click="canceladdress()"  >Cancel</button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="panel-body">
+          
+          <h3>Account Administration</h3><a class="pull-right" ng-click="editadmin()" ng-show="isAdmin"><i class="glyphicon glyphicon-pencil"></i></a>
+          
+          <!--<label>{{orgdata[0].account_admin}}</label><br>-->
+          <div ng-repeat="info in userdata | filter: { is_tenant_admin :'1'}">
+            <h4>{{info.email}}</h4>
+          </div>
+          <div ng-show="showadmin" >
+            <div class = "row">
+              <div class = "col-md-8">
+                <div class="dropdown">
+                  <select class="selectpicker form-control" multiple data-toggle="dropdown" ng-options=" value.user_id as value.email for value in userdata" ng-model="adminsuser" >
+                    
+                    <span class="caret"></span>Select</select><br>
+                    
+                  </div><br>
+                  <button class="btn btn-success" ng-click="saveadmin()"  >Save</button>
+                  <button class="btn btn-primary" ng-click="cancleeditadmin()"  >Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <br><br>
+          <div class="panel-body">
+            <!--<h3>Currency:{{orgdata[0].currency_id}}-->
+            <h3>Currency<h3>
+            <!--6666<a class="pull-right" ng-click="collapsed=!collapsed" ng-hide="collapsed"><i class="glyphicon glyphicon-pencil"></i></a><br>
+            <!--dd<div ng-repeat="info in currancys | filter: { currencyid :money}">
+              <h5>{{info.currencyName}}</h5>
+            </div>oo-->
+            <h5>USD</h5>
+            
+            <div class="row">
+              
+              <!--<div ng-show="collapsed">
+                <div class="col-md-8">
+                  <div class="dropdown" >
+                    <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown" ng-options="m.currencyid as m.currencyName for m in currancys" ng-model="money">
+                      <span class="caret"></span>Select</select>
+                      
+                    </div>
+                  </div><br>
+                  <div class="col-md-12">   <br>
+                    <button class="btn btn-primary" ng-click="currancy()" >Save</button>
+                    <button class="btn btn-primary" ng-click="collapsed=!collapsed" >Cancel</button>
+                  </div>
+                </div>-->
+              </div>
+              
+            </div>
+             <div class="panel-body">
+              <h3>Company Code<h3><br>
+                {{tenancyid}}
+             </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

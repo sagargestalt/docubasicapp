@@ -1,8 +1,14 @@
 <div id="header" ng-include="'views/header.html'"></div>
 <!-- Navigation -->
 <aside id="menu" ng-include="'views/navigation.html'"></aside>
-<style type="text/css">.m-t-xl{margin-top:15px;}
-.newbtn{border-radius: 0; padding:54.4% 0px;}</style>
+<style type="text/css">
+
+.m-t-xl{margin-top:15px;}
+.newbtn{border-radius: 0;  } 
+
+.row-eq-height {
+    display: flex;
+}</style>
 <div id="wrapper">
 
 
@@ -10,9 +16,9 @@
  <div class="content" animate-panel effect="zoomIn">
 
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-md-12" >
          
-                <h3 class="font-light m-b-xs">
+                <h3 class="font-light m-b-xs" style="padding:0px 12px;">
                    Users <div class="pull-right" id="hbreadcrumb">
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a ng-href="#/main"><i class="icon-page-14"></i> &nbsp; &nbsp; Dashboard</a></li>
@@ -21,7 +27,7 @@
                             <span>Users</span>
                         </li>
                         <li>
-                          <span><button class="btn btn-xs btn-success" ng-model="collapsed" ng-click="collapsed=!collapsed" ng-hide="!isAdmin" ng-disabled="!isAdmin" ><i class="icon-plus" ></i> New User</button></span>
+                          <span><button class="btn btn-xs btn-success" ng-model="collapsed" ng-click="openuser()" ng-hide="!isAdmin" ng-disabled="!isAdmin" ><i class="pe-7s-plus "></i>&nbsp;New User</button></span>
                        
                       </li>
                     </ol>
@@ -33,6 +39,7 @@
 
   	<div class="row">
 <div class="col-lg-12" >
+  <br>
 <div class="hpanel">
 	 <div >
 	 
@@ -49,35 +56,43 @@
     <a id="top"></a>
           <div class="row">
             <div class="col-md-4">
-               <div class="form-group required" ng-class="{'has-error': resource.rname.$touched && resource.rname.$error.required}">
+               <div class="form-group required">
                  <label class="control-label">First Name</label><br>
               <input name="rname" type="text" class="form-control" placeholder="First Name" id="user-pass" ng-model="fname" only-words ng-maxlength="20" ng-minlength="3" required>
-              <span ng-show="resource.rname.$error.minlength" class="denger">First name is too short.</span>
-            <span ng-show="resource.rname.$error.maxlength" class="has-error">First name is too long.</span>
+              <span class="help-block"  ng-show="resource.rname.$error.minlength" >First name is too short.</span>
+            <span class="help-block"  ng-show="resource.rname.$error.maxlength" >First name is too long.</span>
+              <span class="help-block" ng-show="resource.rname.$touched && resource.rname.$error.required && submitted">
+                  First name is Required!</span>
             </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group required" ng-class="{'has-error': resource.ltname.$touched && resource.ltname.$error.required}">
+              <div class="form-group required" >
                 <label class="control-label">Last Name</label><br>
                   <input name="ltname" type="text" only-words ng-maxlength="20" ng-minlength="3" class="form-control" placeholder="Last Name" id="user-pass" ng-model="lname" required>
-                  <span ng-show="resource.ltname.$error.minlength" class="denger">Last name is too short.</span>
-            <span ng-show="resource.ltname.$error.maxlength" class="has-error">Last name is too long.</span>
+                  <span class="help-block"  ng-show="resource.ltname.$error.minlength" >Last name is too short.</span>
+            <span class="help-block"  ng-show="resource.ltname.$error.maxlength">Last name is too long.</span>
+             <span class="help-block" ng-show="resource.ltname.$touched && resource.ltname.$error.required && submitted">
+                  Last name is Required!</span>
                 </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-4"> <label class="control-label">User Email</label><br>
-           <div class="form-group required" ng-class="{'has-error': resource.email.$touched && resource.email.$error.required}">
+          <div class="col-md-4"> 
+           <div class="form-group required" >
+            <label class="control-label">User Email</label><br>
                      <input name="email" ng-hide="update" type="text" class="form-control" placeholder="Email" id="user-pass" ng-model="email" required ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
-                      <span ng-show="resource.email.$touched && resource.email.$invalid" class="denger">Invalid Email</span>
+                      <span class="help-block"  ng-show="resource.email.$touched && resource.email.$invalid && submitted" >Invalid Email</span>
+                       <span class="help-block" ng-show="resource.email.$touched && resource.email.$error.required && submitted">
+                Email is Required!</span>
                      <p ng-show="update">{{email}}</p>
                   </div>
                 </div>
             <div class="col-md-4"> 
-              <div class="dropdown"> <label class="control-label">Roles</label><br>
+              <div class="form-group required"><div class="dropdown"> <label class="control-label">Roles</label><br>
                     <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="utype" ng-options="user.id as user.type for user in usertype" >
-           <p>Select</p></select>
+            <option value="">--Select--</option></select>
+          </div>
           </div>
             </div>
           
@@ -86,18 +101,20 @@
 
           <div class="row">
             <div class="col-md-8" ng-hide="update">
-              <div class="form-group required" ng-class="{'has-error': resource.dailyprce.$touched && resource.dailyprce.$error.required}">
+               <div class="form-group required" >
+             
                     <label class="control-label">Welcome Message</label><br>
-               <textarea  class="form-control" rows="5" id="comment" placeholder="Welcome Message For user" ng-model="message" ></textarea>
-            </div>
+               <textarea  class="form-control" rows="5" id="comment" placeholder="Welcome Message For user" name="msg" ng-model="message" required ></textarea>
+            
             </div>
           
-          </div>
+          </div><br><br>
+        </div>
 		  
 		   <div class="row">
 		  <div class="col-md-12">
-            <button class="btn btn-success" ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update">Save</button>
-            <button class="btn btn-success" ng-click="updateuser()"  ng-disabled="resource.$invalid" ng-show="update">Update</button>
+            <button class="btn btn-success" ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update" >Save</button>
+            <button class="btn btn-success" ng-click="updateuser()"  ng-show="update">Update</button>
             <button class="btn btn-primary" ng-click="closeuser()">Cancel</button>
       
               </div>
@@ -115,30 +132,31 @@
 
     <div class="col-md-12" >
 
-      <div class="col-md-6" style="padding:0px 5px"  ng-repeat="info in userdata.users">
+      <div class="col-md-6" style="padding:0px 12px;"  ng-repeat="info in userdata.users">
       
-         <div class="row" >
+         <div class="row row-eq-height" >
           <div class="col-sm-12">
-          <div class="col-sm-11" style="padding:0px">
+          <div class="col-sm-11" style="padding:0px;  ">
             <div class="hpanel">
-              <div class="panel-body">
+              <div class="panel-body" style="min-height:210px; border-radius: 3px 0px 0px 3px;">
                 <div class="row">
                   <div class="col-sm-12">
                      <div class="row">
                       <div class="col-sm-12">
                         <div class="col-sm-6 border-right">
                           <div class="row">
-                            <!--<div class="col-sm-4" >
-                              <!--<img class="img-circle" src="images/a1.jpg" alt="logo">
-                            </div>-->
-                            <div class="col-sm-8" >
-                              <div class="m-t-sm">
-                                <strong>{{info.first_name}}</strong>
-                                <p class="small" ng-if="info.is_tenant_admin == 1"><i class="fa fa-user"></i> &nbsp; Admin</p>
-                                 <p class="small" ng-if="info.is_tenant_admin == 0"><i class="fa fa-user"></i> &nbsp; End User</p>
-                                 <p class="small" ng-if="info.is_status === 0"><i class="fa fa-user"></i> &nbsp; Inactive</p>
-                                  <p class="small" ng-if="info.is_status === 1"><i class="fa fa-user"></i> &nbsp; Active</p>
+                              <div class="col-sm-3 no-padding"  >
+                                <img ng-src="{{info.image_path}}" class="img-circle" style="width:45px; height:45px">
                               </div>
+                            <div class="col-sm-9 no-padding" >
+                             
+                           
+								<h4 class="fs16 no-margin" > {{info.first_name}}</h4>
+                                 <p class="light-gray" ng-if="info.is_tenant_admin == 1"><img src="images/icons/dashboard/users.png" style="vertical-align: middle;"> <span style="vertical-align: middle;"> Admin </span></p>
+                                 <p class="light-gray" ng-if="info.is_tenant_admin == 0"><img src="images/icons/dashboard/users.png"style="vertical-align: middle;"><span style="vertical-align: middle;"> End User</span></p>
+                                 <p class="light-gray" ng-if="info.is_status === 0"><img src="images/icons/dashboard/users.png" style="vertical-align: middle;"><span style="vertical-align: middle;"> Inactive</span></p>
+                                 <p class="light-gray" ng-if="info.is_status === 1"><img src="images/icons/dashboard/users.png"style="vertical-align: middle;"><span style="vertical-align: middle;"> Active</span></p>
+                              
                             </div>
                           </div>
                         </div>
@@ -146,9 +164,15 @@
                         <div class="col-sm-6">
                           <div class="row">
                             <div class="col-sm-12" >
-                              <div class="m-t-sm">
-                                <p class="small">{{info.email}}</p>
-                              </div>
+                              <div class="dark-grey fs14">
+                             
+                                </div>
+                                <div class="dark-grey fs14">
+                              {{info.proposal_activity}}
+                                  </div>
+                                  <div class="dark-grey fs14">
+                                  {{info.proposals_created_date}}
+                                </div>
                             </div>
                           </div>
                         </div>
@@ -162,16 +186,16 @@
                       <div class="col-sm-12 ">
                         <div class="row">
                             <div class="col-sm-3 border-right">
-                              <div class="m-t-sm"><strong>Proposals</strong></div>
-                              <h2 class="text-info">{{info.proposals_submitted}}</h2>
+                              <div class="dark-grey fs14">Proposals</div>
+                              <h1 class="font-normal dark-grey">{{info.proposals_submitted}}</h1>
                             </div>
                             <div class="col-sm-5 border-right">
-                              <div class="m-t-sm"><strong>Value</strong></div>
-                              <h2 class="text-info">{{info.proposals_value}}</h2>
+                              <div class="dark-grey fs14">Value</div>
+                              <h1 class="font-normal dark-grey">{{info.proposals_value}}</h1>
                             </div>
                             <div class="col-sm-4" >
-                              <div class="m-t-sm"><strong>Win/Loss Ratio</strong></div>
-                              <h2 class="text-info">{{info.proposals_ratio}}%</h2>
+                              <div class="dark-grey fs14">Win/Loss Ratio</div>
+                              <h1 class="font-normal dark-grey">{{info.proposals_ratio}}%</h1>
                             </div>
                         </div>
                       </div>
@@ -188,12 +212,13 @@
             </div>
           </div>
           
-          <div class="col-sm-1" style="padding:0px">
+          <div class="col-sm-1" style="padding:0px; ">
             <div class="hpanel" >
-                 <div class="panel-body no-padding">
-              <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="deleteuser(info)"> <i class="icon-close4" ></i></a></div>
-                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn"ng-click="copyuser(info)" > <i class="icon-copy" ></i></a></div>
-                <div class="col-sm-12 no-padding"><a class="btn btn-info btn-block newbtn" ng-click="edituser(info)"> <i class="icon-edit3" ></i></a></div>
+                 <div class="panel-body no-padding" style="min-height:210px; background-color:#898df6; border-radius: 0px 3px 3px 0px;">
+              
+                <div class="col-sm-12 no-padding"><a class="btn btn-infouser btn-block newbtn"ng-click="copyuser(info)" style="height: 70px; padding-bottom: 30px; padding-top: 30px;" > <i class="icon-copy" ></i></a></div>
+                <div class="col-sm-12 no-padding"><a class="btn btn-infouser btn-block newbtn" ng-click="edituser(info)" ng-disabled="!isAdmin" style="height: 70px; padding-bottom: 30px; padding-top: 30px; border-radius: 0px 0px 3px 0px;"> <i class="icon-edit3" ></i></a></div>
+                <div class="col-sm-12 no-padding" ><a ng-hide="info.user_id == userid" class="btn btn-infouser btn-block newbtn" ng-disabled="!isAdmin" style="height: 70px; padding-bottom: 30px; padding-top: 30px; border-radius: 0px 3px 0px 0px;" ng-click="deleteuser(info)"> <i class="icon-close4" ></i></a></div>
                 
               </div>
             </div>
@@ -210,7 +235,7 @@
 
     </div>
 
-</div>
+
 
 
   <!--<div class="normalheader transition ng-scope" small-header="">
@@ -246,7 +271,4 @@
 </div>-->
 
 
-    <div class="content" animate-panel effect="zoomIn">
-
-</div>
-
+   

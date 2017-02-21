@@ -21,6 +21,15 @@ angular.module('docubasic3App').factory('styleservice', ['$resource', 'apiUrl', 
                query: {method:'GET'}
          }),
 
+             getpagedetail:$resource(apiUrl.updatepagecontent, {id:'@id'} ,{
+               query: {method:'GET'}
+         }),
+
+              addpage:$resource(apiUrl.proposalpagadd, {} ,{
+               query: {method:'POST'}
+         }),
+
+
 			
       // getpackages:$resource(apiUrl.packagedata, {} ,{
       //			query: {method:'GET',isArray:false}

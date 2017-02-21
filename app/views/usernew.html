@@ -35,20 +35,24 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6"> <label class="control-label">User Email</label><br>
+          <div class="col-md-6">
+             <div class="form-group required">
+           <label class="control-label">User Email</label><br>
            <div class="form-group required" ng-class="{'has-error': resource.email.$touched && resource.email.$error.required}">
                      <input name="email" ng-hide="update" type="text" class="form-control" placeholder="Email" id="user-pass" ng-model="email" required ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
                       <span ng-show="resource.email.$touched && resource.email.$invalid" class="denger">Invalid Email</span>
                      <p ng-show="update">{{email}}</p>
+                   </div>
                   </div>
                 </div>
             <div class="col-md-6"> 
+               <div class="form-group required">
               <div class="dropdown"> <label class="control-label">Roles</label><br>
                     <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="utype" ng-options="user.id as user.type for user in usertype" >
            <p>Select</p></select>
           </div>
             </div>
-          
+          </div>
             </div>
          
 
@@ -56,16 +60,16 @@
             <div class="col-md-9" ng-hide="update">
               <div class="form-group required" ng-class="{'has-error': resource.dailyprce.$touched && resource.dailyprce.$error.required}">
                     <label class="control-label">Welcome Message</label><br>
-               <textarea  class="form-control" rows="4" id="comment" placeholder="Welcome Message For user" ng-model="message" ></textarea>
+               <textarea  class="form-control" rows="4" id="comment" placeholder="Welcome Message For user" ng-model="message" style="height:108px; resize: none;"></textarea>
             </div>
             </div>
 			
 			
 			<div class="col-md-3"> 
-				<br>
+				<label class="control-label">&nbsp;</label><br>
 				 <div class="hpanel hbggreen"> 
 					 <a ng-click="insertuser()"  ng-disabled="resource.$invalid" ng-hide="update"> 
-						 <div class="panel-body" style="padding-top: 17px; padding-bottom: 17px;"> 
+						 <div class="panel-body" style="padding-top: 15px; padding-bottom: 15px;"> 
 							 <div class="text-center"> 
 								  <i class="icon-profile fa-3x"></i><br> 
 								 <p style="margin-top: 10px;">Create User</p> 

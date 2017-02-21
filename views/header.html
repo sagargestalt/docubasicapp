@@ -2,13 +2,13 @@
 <div id="logo" class="light-version">
         <span>
         
-             <a ng-href="#/main"><img src="images/docbasiclogo1.png"></a>
+             <a ng-href="#/main"><img src="images/docbasiclogo1.png"  ></a>
         </span>
 </div>
 <nav role="navigation" >
         <minimaliza-menu></minimaliza-menu>
     <div class="small-logo">
-        <span class="text-primary">HOMER APP</span>
+        <span class="text-primary">Docubasic</span>
     </div>
     <div ng-controller="searchCtrl">
     <form role="search" class="navbar-form-custom"  ng-submit="search()" >
@@ -17,9 +17,9 @@
         </div> -->
 		
 		<div class="input-group">
-                        <input type="text" placeholder="Search." class="form-control searchpra" ng-model="query" >
+                        <input type="text" placeholder="Search" class="form-control searchpra" ng-model="query" >
                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btntran"><i class="icon-search" style="color: #7384b6 !important;" ng-click="search()"></i></button>
+                                <button type="button" ng-disabled="!query" class="btn btn-default btntran"><i class="icon-search" style="color: #7384b6 !important;" ng-click="search()"></i></button>
                            </span>
                     </div>
     </form>
@@ -67,7 +67,7 @@
                 </ul>
             </li>
             <li uib-dropdown>
-                <a  uib-dropdown-toggle ng-href="#/companysetting">
+                <a  uib-dropdown-toggle ng-click="companysetting()">
                     <i class="icon-settings"></i>
                 </a>
              <!--   <div uib-dropdown-menu class="hdropdown bigmenu animated flipInX">
@@ -164,22 +164,22 @@
        
 			
 			
-			 <li uib-dropdown>
-                <a class="label-menu-corner" href="#" uib-dropdown-toggle>
-                    <!--<img class="img-circle m-b pull-left" alt="logo" src="images/profile.jpg" width="25px" height="25px">-->
-					<span class="pull-right" style="font-size:13px; padding-left:10px">{{username}}</span>
+			 <li uib-dropdown >
+                <a class="label-menu-corner" style="padding:7px 40px 7px 15px" ng-click="userprofile()" uib-dropdown-toggle >
+                    <img class="img-circle pull-left" alt="logo" ng-src="{{profilepath}}" style="width:35px; height:35px;">
+
+					<div class="pull-right" style="font-size:13px; padding-left:10px; padding-top: 2px;">
+                 
+
+                    <div style="width:100%;"> {{username}} </div>
+                      
+                    <div  ng-if="isAdmin" style="font-size:10px; color:#7384b6; margin-top:-3px; width:100%;"> Admin </div>
+                    <div  ng-if="!isAdmin" style="font-size:10px; color:#7384b6; margin-top:-3px; width:100%;"> End User</div>
+
+                </div>
                    
                 </a>
-                <ul uib-dropdown-menu class="hdropdown animated flipInX">
-                    <!--<div class="title">
-                        Profile Setting
-                    </div>-->
-                    <!--<li><a><i class="fa fa-edit"> </i>&nbsp; Edit Profile </a></li>
-                    <li><a><i class="fa fa-key"> </i>&nbsp; Change Password</a></li>
-					<li><a ng-href="#/login"><i class="pe-7s-power"></i>&nbsp; Logout</a></li>-->
-					
-                    
-                </ul>
+               
             </li>
      
             </ul>

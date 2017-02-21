@@ -108,6 +108,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
 
 
     $scope.submitclient = function() {
+        $scope.saveclient=true;
     	$scope.alerts=[];
 		var clientdata = {
     	tenancy_id:$rootScope.tenancyid,
@@ -134,6 +135,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
 
         $scope.message = data.message;
         if(data.status === true){
+                $scope.saveclient=false;
                 $scope.alerts.push({msg: 'Client added successfully', type:'success'});
                 $scope.collapsed = false;
                 $scope.fname="";
@@ -160,7 +162,7 @@ $scope.ph_numbr =/[0-9-()]*[1-9][0-9-()]*/;
             }
 
             else if(data.status === false){
-
+                 $scope.saveclient=false;
                  $scope.errors = data.message;
             }
 

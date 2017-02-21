@@ -60,7 +60,7 @@
                                 <!--<i id="draggable" class="prl15 border-right"><img src="images/widget/text.png"></i>-->
                                 <i data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Text" class="icon-text2 fa-2x prl10 border-right" db-draggable data-text="true"></i>
 
-                                <a ng-click="uploadimage()"  tooltip-placement="bottom" uib-tooltip="Image"><i class="icon-image2 fa-2x prl10 border-right"></i></a>
+                                <a ng-click="$root.rightSidebar3 = !$root.rightSidebar3"  tooltip-placement="bottom" uib-tooltip="Image"><i class="icon-image2 fa-2x prl10 border-right"></i></a>
 
                                 <i class="icon-video2 fa-2x prl10 border-right" tooltip-placement="bottom" uib-tooltip="Video" db-draggable data-video="true"></i>
 
@@ -145,7 +145,8 @@
                             </div>
                         </div>
                     </div>-->
-                    
+                    <div id="right-sidebar" ng-include="'views/image-listing1.html'" class="sidebar-open" ng-if="rightSidebar3"></div>
+        
                 </div>
                 
                 
@@ -175,8 +176,8 @@
                             
                         </div>-->
                     </div>
-                    <button class="btn btn-success" ng-click="submitpage()">Save</button>
-                    <!--<button class="btn btn-primary" ng-click="updatepage()" >update</button>-->
+                    <button class="btn btn-success" ng-show="!xxx" ng-click="submitpage()">Save</button>
+                    <button class="btn btn-success" ng-show="xxx" ng-click="updatepage()" >Update</button>
                    
                 </div>
                 
@@ -192,5 +193,4 @@
 
     </div>
 </div>
-</div>
-</div>
+

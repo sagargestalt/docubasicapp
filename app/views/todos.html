@@ -192,12 +192,36 @@
 		
 		
 		 <div class="row">
+
+		 	 <div class="col-md-4">
+                                       
+                            <p class="input-group">
+
+                                 <label class="control-label">End Date</label>
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                       show-button-bar="false" ng-model="enddate" is-open="opened" min-date="minDate"
+                                       datepicker-options="dateOptions"
+                                      
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" placeholder="DD/MM/YYYY" cs-date-to-iso >
+              <span class="input-group-btn" style="top: 12px">
+                <button type="button" class="btn btn-default" style="height:48px" ng-click="open($event)"><i
+                        class="icon-calander"></i></button>
+              </span>
+                            </p>
+                       
+                        </div>
+                  </div>
+                  
+                        <div class="row">
 		    <div class="col-lg-12" >
 				<div class="form-group" ><textarea class="form-control" placeholder="What needs to be done? Start writing your task in this text field" name="message" rows="3" ng-model="newnotename"></textarea></div>
 			</div>
+                </div>
+                        <div class="row">
+
 			<div class="col-lg-12" >
 			
-				<button class="btn  w-xs btn-success pull-right" ng-click="submittask()" ng-hide="update" ng-disabled="isProcessing" >
+				<button class="btn  w-xs btn-success pull-right" ng-click="submittask()" ng-disabled="submitted"  ng-hide="update" ng-disabled="isProcessing" >
 										
 										Save
 										</button>
@@ -214,16 +238,20 @@
 				<div class="hpanel forum-box" ng-repeat = "detail in todos" ng-show = "showalltask">
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-md-11 forum-heading " >
-								<div class="form-group"  style="margin-bottom: 0px">
-									<div>
-										<label>  <h4>{{detail.TaskName}}</h4> </label>
-									</div>
+							<div class="col-md-10 forum-heading " >
+								<div class="form-group"  style="margin-top:10px; margin-bottom: 0px">
+									
+								<label>  <h4>{{detail.TaskName}} </h4> </label>
+									
 								</div>
+									
+								
 							</div>
-							<div class="col-md-1">
-								<div class="form-group" style="margin-top:15px;">
-								<span> <!--<i class="fa fa-edit" ng-click="edittodo(detail)"></i>Edit</span>-->
+							<div class="col-md-2">
+								<div class="form-group" style="margin-top:10px;">
+									<span class="pull-right" ng-show="detail.IsActive == 1"> <i class="fa fa-edit" ng-click="edittodoall(detail)"></i> Edit</span>&nbsp;&nbsp;&nbsp;&nbsp;
+									<span>{{detail.end_date}} </span>
+								
 								</div>
 							</div>
 						</div>

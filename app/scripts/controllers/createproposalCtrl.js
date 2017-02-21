@@ -9,11 +9,19 @@
  */
 angular.module('docubasic3App')
   .controller('createproposalCtrl', function ($scope,$location, $rootScope,localStorageService,praposalservice,userservice,pageservice,settingservice) {
-   
+   var pricingArr = null;
+              localStorageService.set('pricingArr',pricingArr);
+              var taxArr = null;
+              localStorageService.set('taxArr',taxArr);
+              var discountArr = null;
+               localStorageService.set('discountArr',discountArr);
 $scope.selectedTab = 'portrait';
       $scope.closesidebar = function(){
           $rootScope.proposalrightSidebar = false;
           $scope.pname = "";
+          $scope.cname ="" ;
+          $scope.coname = "";
+          $scope.dt = "";
 
         };
 
@@ -152,6 +160,10 @@ $scope.selectedTab = 'portrait';
 
 
     $scope.submit = function(){
+      if(!$scope.coname)
+      {
+        $scope.coname=[];
+      }
       var data = {
         name:$scope.pname,
         tenancy_id:$rootScope.tenancyid,

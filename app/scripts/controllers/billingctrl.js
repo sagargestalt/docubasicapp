@@ -36,10 +36,37 @@ var tid = {
 
     });
 
+  $scope.open = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.opened = true;
+    };
+
+    
+  $scope.openb = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.opened2 = true;
+    };
+
+
+
+$scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
+    };
+
+
+
+
+ $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+ $scope.format = $scope.formats[0];
   $scope.billinghistory = function(){
 
-  $rootScope.billingSidebar = false;
-    $location.path( "/billing-history" );
+  //$rootScope.billingSidebar = false;
+   $rootScope.showbilling = true;
 
 
   };
@@ -48,6 +75,11 @@ var tid = {
   $scope.closesidebar = function(){
    $rootScope.billingSidebar = false;
 
+
+      };
+
+      $scope.closehistorysidebar = function(){
+         $rootScope.showbilling = false;
 
       };
   $scope.upgrade = function(info){
@@ -68,6 +100,28 @@ var tid = {
     });*/
 
     $location.path( "/payment" );
+
+
+  };
+
+  $scope.upgradeplan = function(info){
+    $rootScope.packageid = info.package_id;
+    localStorageService.set('packageid',$rootScope.packageid);
+    $rootScope.billingSidebar = false;
+    /*var packagedata = {
+      package_id:$scope.packageid,
+      tenancy_id :$rootScope.tenancyid 
+  
+    };
+
+    billingservice.upgarde.post((packagedata), function(data){
+     $scope.alerts=[];
+        $scope.packagedata = data.data;
+         
+
+    });*/
+
+    $location.path( "/plan-payment" );
 
 
   };

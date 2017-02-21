@@ -16,6 +16,7 @@ angular.module('docubasic3App')
     $rootScope.username = localStorageService.get('username');
     $rootScope.isLogin = localStorageService.get('isLogin');
     $rootScope.profilepath = localStorageService.get('profilepath');
+    $rootScope.company_logo = localStorageService.get('company_logo');
         if(!$rootScope.isLogin) {
             $location.path( "/login" );
             return false;
@@ -73,6 +74,7 @@ init();
           $scope.message="";
           $scope.email="";
           $scope.resource.submit = false;
+          $scope.submitted= false;
 
     };
     $scope.openuser = function(){
@@ -94,6 +96,8 @@ $scope.usertype = [{id:1,type:'Tenant Admin'},
                   {id:0,type:'End User'}];
 
   $scope.insertuser = function(){
+     $scope.saveuser=true;
+     $scope.submitted= true;
      $scope.resource.submit = true;
   	var data = {
   		first_name:$scope.fname,
@@ -106,10 +110,11 @@ $scope.usertype = [{id:1,type:'Tenant Admin'},
 
   	};
   		userservice.postuserdetail.save((data), function(data1){
-		 $scope.alerts=[];
+		  $scope.alerts=[];
         $scope.userdata = data1;
 
         if(data1.status === true){
+          $scope.saveuser=false;
 
           $scope.alerts.push({msg: 'User added successfully', type:'success'});
           $scope.collapsed = false;
@@ -120,10 +125,12 @@ $scope.usertype = [{id:1,type:'Tenant Admin'},
           $scope.email="";
          init();
           $timeout(countUp, 10000);
+          $scope.submitted= false;
        }
 
        else if (data1.status === false){
 
+        $scope.saveuser=false;
         $scope.errors = data1.message;
         // init();
 
@@ -201,6 +208,16 @@ $scope.usertype = [{id:1,type:'Tenant Admin'},
        // $scope.userdata = data1;
         
         if(data1.status === true){
+          if($scope.id == $rootScope.userid){
+            $rootScope.isLogin = false;
+            $rootScope.tenancyid = undefined;
+            $rootScope.userid = undefined;
+            $rootScope.username = undefined;
+            $rootScope.isAdmin = undefined;
+
+
+              $location.path( "/login" );
+          }
           //$scope.edit = false;
           $scope.collapsed = false;
     $scope.update = false;

@@ -8,15 +8,15 @@
  * Service in the docubasic3App.
  */
 angular.module('docubasic3App').constant('apiUrl', function () {
-	var BASE_URL = 'api/v1/',
-       	apiRoot = $('#apiRoot').attr('href') ? $('#apiRoot').attr('href') : '';
+      var BASE_URL = 'api/v1/',
+            apiRoot = $('#apiRoot').attr('href') ? $('#apiRoot').attr('href') : '';
 
-   	BASE_URL = apiRoot + BASE_URL;
-	
+      BASE_URL = apiRoot + BASE_URL;
+      
 return {
       'orgname': BASE_URL + 'autocode',
-  	'signup':BASE_URL + 'register',
-  	'tcode':BASE_URL + 'chkcode',
+      'signup':BASE_URL + 'register',
+      'tcode':BASE_URL + 'chkcode',
       'tcodecheck':BASE_URL + 'autocodeexist',
       'admin':BASE_URL + 'auth',
       'nation':BASE_URL + 'countries',
@@ -73,7 +73,7 @@ return {
       'userlogo':BASE_URL +'updatelogo',
       'singleuser':BASE_URL +'users/:id',
       'profileupdate':BASE_URL +'updateProfile',
-      'versionchange':BASE_URL +'insert_version/:id/:tid',
+      'versionchange':BASE_URL +'insert_version',
       'pagesort':BASE_URL +'page_sorting',
       'billinggraph':BASE_URL +'billing_graph_day',
       'getallcomments':BASE_URL +'allcomments',
@@ -81,6 +81,7 @@ return {
       'deletecomment':BASE_URL +'comments/:id',
       'commentedit':BASE_URL +'comments/:id',
       'canvassave':BASE_URL +'saveNewContent',
+      'updatepagecontent':BASE_URL +'pages/details/:id',
             
 
       //update service//
@@ -103,6 +104,7 @@ return {
       'searchbilling':BASE_URL +'billing_history',
       'packageupdate':BASE_URL +'packages/:id',
       'discountupdate':BASE_URL +'discounts/:id',
+      'proposalpagadd':BASE_URL +'savePages',
 
       //delete service//
       'removetask':BASE_URL +'deleteCategory',
@@ -117,6 +119,7 @@ return {
       'stylecontent':BASE_URL +'style/details/:id',
       'packagedelete':BASE_URL +'packages/:id',
       'discountdelete':BASE_URL +'discounts/:id',
+      'deleteproposalpage':BASE_URL +'delete_proposal_page',
 
       'sendpagedata':BASE_URL +'pages',
       'getpage':BASE_URL +'allpages',
@@ -153,5 +156,6 @@ return {
       'profitanalysys':BASE_URL +'costProfitview',
       'cstprofit':BASE_URL +'dashboardcostprofit',
       'costprofitgraph':BASE_URL +'costprofit_graph_day',
-   	};
+      'sendsvg':BASE_URL +'uploadContent',
+      };
 }());

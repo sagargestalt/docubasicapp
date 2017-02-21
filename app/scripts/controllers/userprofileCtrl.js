@@ -14,6 +14,7 @@ angular.module('docubasic3App')
   $rootScope.userid = localStorageService.get('userid');
    $rootScope.isAdmin = localStorageService.get('isAdmin');
     $rootScope.username = localStorageService.get('username');
+    $rootScope.company_logo = localStorageService.get('company_logo');
     $scope.$route = $route;
    	$scope.closeAlerts = function(index) {
         $scope.alerts.splice(1, index);
@@ -62,7 +63,7 @@ init();
                 init();
             }
             if(responce.status === false){
-                $scope.alerts.push({msg: 'error occurd', type:'denger'});
+                $scope.alerts.push({msg: 'error occurd', type:'danger'});
                 //init();
             }
             });
@@ -83,9 +84,9 @@ init();
        settingservice.updateprofile.save((data), function(responce){
         if(responce.status == true)
         {
-          $scope.alerts.push({msg: 'Profile Updated successfully', type:'success'});
+          //$scope.alerts.push({msg: 'Profile Updated successfully', type:'success'});
             init();
-            // $location.path( "/main" );
+          $location.path( "/main" );
 
         }
 

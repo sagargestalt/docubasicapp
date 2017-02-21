@@ -5,24 +5,36 @@
 
                
                 <!--<div class="modal modalnew animated fadeInRight"  id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">-->
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
+                        <div class="modal-dialog modal-lg" style="margin:0px; width:100% !important;" ng-controller="pageCtrl">
+
                                 <div class="color-line"></div>
-                                <div class="panel-body">
-            <div class="pull-right">
-              <a  ng-click="closemodal()" > <i class="pe-7s-close fa-2x"></i></a>
-            </div>
+                            <div class="modal-header"> 
+                                    <h4 class="modal-title">Add New Page<span class="pull-right"> <a  ng-click="closemodal()" > <i class="pe-7s-close fa-2x"></i></a></h4></span>   
+                                
+           
           </div>
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Add New Page<span class="pull-right"></span></h4>
-                                  
-                                </div>
-                                <div class="modal-body">
+       
+                               
+                                <div class="content" effect="zoomIn" >
+                                    <div class="row">
+        <div class="col-lg-12" >
+            <div class="pull-right m-t-lg" id="hbreadcrumb">
+            <ol class="hbreadcrumb breadcrumb">
+                <li><a ng-href="#/main"><i class="icon-page-14"></i> &nbsp; Dashboard</a></li>
+                <li class="active"><span>Add New Page</span></li>
+            </ol>
+            </div>
+        </div>
+   </div><br>
                                   
                                   
                                   	 <button type="button" class="btn btn-success" ng-click="show=!show">New Page</button><br><br>
                                   	 <div ng-show="show">
                                         <div class="row">
+                                            <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlert($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+                                            <form name="page">
+
+
                                     <div class="col-md-6" >
                                         <div class="form-group required" >
                                             <input name="name" type="text" class="form-control" ng-maxlength="50" placeholder="Name of Page" ng-model="pagename" maxlength="20"  minlength="3" required>
@@ -78,7 +90,8 @@
                                         </div>
                                     </div>-->
                                 </div>
-                                 
+                                 </form>
+
                                 <br><br><br>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -88,12 +101,15 @@
                                 </div>
                                 
                                  <div class="row" >
-                                    <div class="col-md-3" style=""ng-repeat="page in sdata" ng-click="updatepage(page,$index)">
+                                     <div ng-if="nullpage"  >There is No Pages Available</div>
+                                    <div class="col-md-3" style=""ng-repeat="page in sdata" ng-click="updatepage(page,$index)"  data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="click to edit">
                                         <div class="hpanel" ng-class="{ 'hnavyblue' : $index===selectedIndex}">
-                                            <div class="panel-body">
+                                            <div class="panel-body" style="background-color:#f7f7f7;">
                                                 <div class="text-center">
-                                            
+                                             <i class="icon-page2 icon-lg" ></i>
+											  <div class="m-t-sm" style="margin-bottom:10px;">
                                                     <small>{{page.PageName}}</small>
+													</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -136,8 +152,8 @@
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>-->
-                            </div>
+                           
                         </div>
-                  <!--  </div>-->
-
+   </div>               <!--  </div>-->
+</div>
 </div>

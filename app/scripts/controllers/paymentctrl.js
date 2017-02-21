@@ -26,6 +26,7 @@ angular.module('docubasic3App')
         // Posting data to php file
 
         ///
+        $scope.alerts=[];
          tokenRequest();
 
             // Prevent form from submitting
@@ -35,6 +36,7 @@ angular.module('docubasic3App')
       };
 
       var successCallback = function(data) {
+        $rootScope.alerts=[];
         $scope.errors= [];
         var userdata = {
           tenancy_id:$rootScope.tenancyid,
@@ -71,9 +73,13 @@ angular.module('docubasic3App')
 
                $rootScope.alerts.push({msg: 'Payment done successully', type:'success'});
                $location.path( "/main" );
+               $rootScope.upgrade = true;
             }
             if(data.status == false){
                $scope.errors = data.message;
+               $rootScope.alerts.push({msg: $scope.errors, type:'danger'});
+               $location.path( "/payment" );
+               //$location.path( "/main" );
 
             }
            $scope.alerts=[];

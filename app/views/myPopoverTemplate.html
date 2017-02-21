@@ -3,15 +3,18 @@
 </style>
 
 <div >
-	 <ul class="popoverstyle" style="list-style-type: none; margin-bottom: 0px; padding-left:5px; width:120px">
-<li class="text-right" ng-hide="template_id == '1' && pageid !== '4'">
-<a style="padding:10px 5px" ng-click="$root.rightSidebar = !$root.rightSidebar" > Price Block <span class="icon-price"></span></a>
+	 <ul class="popoverstyle" style="list-style-type: none; margin-bottom: 0px; padding-left:5px; width:135px">
+<li class="text-right" style="padding:5px;" >
+<a style="padding:0px 5px" ng-click="closepopover();$root.rightSidebar = !$root.rightSidebar" > Price Block <span class="icon-price"></span></a>
 </li>
-<li class="text-right" ng-hide="template_id == '1' && pageid !== '3'">
-<a style="padding:10px 5px" ng-click="$root.rightSidebar1 = !$root.rightSidebar1" > Project Task <span class="icon-task "></span></a>
+<li class="text-right" style="padding:5px;">
+<a style="padding:0px 5px" ng-click="closepopover();$root.rightSidebar1 = !$root.rightSidebar1" > Project Task <span class="icon-task "></span></a>
 </li>
-<li class="text-right">
-<a style="padding:10px 5px" ng-click="$root.rightSidebar2 = !$root.rightSidebar2"> Styles <span class="icon-style"></span></a>
+<li class="text-right" style="padding:5px;" >
+<a style="padding:0px 5px" ng-click="closepopover();$root.rightSidebar2 = !$root.rightSidebar2"> Styles <span class="icon-style"></span></a>
+</li>
+<li class="text-right" style="padding:5px;" >
+<a style="padding:0px 5px" ng-click="closepopover();$root.rightSidebar4 = !$root.rightSidebar4"> Pages <span class="icon-page"></span></a>
 </li>
 
 </ul>

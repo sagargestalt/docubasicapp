@@ -3,8 +3,8 @@
 <aside id="menu" ng-include="'views/navigation.html'"></aside>
 <div id="wrapper">
 
-<container-directive></container-directive>
-
+<container-directive 
+            insert-text="insertText(shapeType)"></container-directive>
 <div id="container" class="content animate-panels" >
 
 	  <div class="row">
@@ -37,89 +37,148 @@
 </div>
   
  
-<div class="row">
+ <div class="row">
             
             <div class="col-md-12">
-                <div class="col-md-2 no-padding">
+                <div class="col-md-2 no-padding" >
                     <div class="hpanel">
-                        <div class="panel-body no-padding">
-                            <div class="p20 themecolor">
+                        <div class="panel-body no-padding" >
+                            <div class="p15 themecolor" style="border-radius:3px 0px 0px 3px;">
                                 <p>Widgets</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <style>.p20 i img{width:20px !important;}</style>
-                <div class="col-md-10 no-padding">
+                
+                <div class="col-md-9 no-padding" >
                     <div class="hpanel">
                         <div class="panel-body no-padding">
-                            <div class="pull-left p15">
+                             
+                               <div class="pull-right black" style="padding:10px">
+                                 <button class="btn btn-success" ng-show="!xxx" ng-click="submitstyle()">Save</button>
+                    <button class="btn btn-success" ng-show="xxx"  ng-click="updatestyle()" >Update</button> 
+                            </div>
+
+                            <div class="pull-left black p15">
                                  
                                
-                                <!--<i id="draggable" class="prl15 border-right"><img src="images/widget/text.png"></i>-->
-                                <i data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Text" class="icon-text2 fa-2x prl10 border-right" db-draggable data-text="true"></i>
+                                
+                                <i data-toggle="tooltip" tooltip-placement="bottom" uib-tooltip="Text" class="icon-text2 fa-2x prl10 " db-draggable data-text="true"></i>
 
-                                 <a ng-click="$root.rightSidebar3 = !$root.rightSidebar3"  tooltip-placement="bottom" uib-tooltip="Image"><i class="icon-image2 fa-2x prl10 border-right"></i></a>
+                                <a ng-click="openimageslider()"  tooltip-placement="bottom" uib-tooltip="Image"><i class="icon-image2 fa-2x prl10 "></i></a>
+                               
+                                <a ng-click="videoadd()"><i class="icon-video2 fa-2x prl10 " tooltip-placement="bottom" uib-tooltip="Video" db-draggable data-video="true"></i></a>
 
+                                <!--<i class="icon-application fa-2x prl10"  tooltip-placement="bottom" uib-tooltip="Table"  db-draggable data-table="true"></i>-->
 
-                                <i class="icon-video2 fa-2x prl10 border-right" tooltip-placement="bottom" uib-tooltip="Video" db-draggable data-video="true"></i>
-
-                                <i class="icon-application fa-2x prl10 border-right"  tooltip-placement="bottom" uib-tooltip="Table"  db-draggable data-table="true"></i>
-
-                                 <div class="btn-group"  tooltip-placement="bottom" uib-tooltip="Shapes" uib-dropdown is-open="status.isopen" > 
-              <button id="single-button" type="button" class="btn btn-default" style="padding: 0px; border: 0px none; width: 70px ! important; margin-top: -15px;" uib-dropdown-toggle ng-disabled="disabled" >
-                <i class="icon-shape3  fa-2x" ></i> <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" style="min-width: 70px !important;">
-                <li role="menuitem"><a><i class="icon-rectangle-38 fa-2x" db-draggable data-square="true"></i></a></li>
-            <li class="divider"></li>
-                <li role="menuitem"><a><i class="icon-oval fa-2x" db-draggable data-circle="true"></i></a></li>
-            <li class="divider"></li>
-                <li role="menuitem"><a><i class="icon-triangle fa-2x"db-draggable data-triangle="true"></i></a></li>
-              
-              </ul>
-            </div>
+                                 <div class="btn-group"  tooltip-placement="top" uib-tooltip="Shapes" uib-dropdown is-open="status.isopen" > 
+        <button id="single-button" type="button" class="btn btn-default" style="padding: 0px; border: 0px none; width: 50px ! important; margin-top: -7px;" uib-dropdown-toggle ng-disabled="disabled" >
+       <i class="icon-shape3  fa-2x" ></i> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" style="min-width: 62px !important;">
+        <li role="menuitem"><a><i class="icon-rectangle-38 fa-2x" db-draggable data-square="true" id="draggable"></i></a></li>
+      <li class="divider"></li>
+        <li role="menuitem"><a><i class="icon-oval fa-2x" db-draggable data-circle="true"></i></a></li>
+       <li class="divider"></li>
+       <li role="menuitem"><a><i class="icon-triangle fa-2x" db-draggable data-triangle="true"></i></a></li>
+       </ul>
+       </div>
                                 
                                 
                                 
-                                <i class="fa fa-arrows-h fa-2x prl10 border-left"  aria-hidden="true" db-draggable data-line="true" tooltip-placement="bottom" uib-tooltip="Line"></i>
+                                <i class="fa fa-arrows-h fa-2x prl10"  aria-hidden="true" db-draggable data-line="true" tooltip-placement="bottom" uib-tooltip="Line"></i>
                                 <!--<i class="pe-7s-male fa-2x prl15" db-draggable data-line="true"></i>-->
                                 
                                 
-                                
+                              
                                 
                             </div>
-                            <!--<div class="pull-right light-blue p20">
-                                <a ng-click="clonepraposal()"><i class="prl15 border-right"><img src="images/widget/copy.png"></i></a>
-                                <a ng-click="deletepraposal()"> <i class="prl15 border-right"><img src="images/widget/close.png"></i></a>
-                                <a ng-click="priweviemode()">   <i class="prl15 border-right"><img src="images/widget/search.png"></i></a>
-                                <a ng-click="download()"> <i class="prl15 border-right"><img src="images/widget/download.png"></i></a>
-                                <a ng-click="opencollab()"> <i class=" prl15 border-right"><img src="images/widget/collab.png"></i></a>
-                                <a ng-click="emailwindow()">  <i class="prl15 border-right"><img src="images/widget/send.png"></i></a>
-                            </div>
-                        </div>-->
+                           
+                           
+                        </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
-        
-        
-        <div class="row">
+          <div class="row" style="position:relative; z-index:999"  >
+        <div class="col-md-12"  class="object-controls" ng-show='fabric.selectedObject' style=":position:fixed;">
+                  
+                 
+                <div class="col-md-2 no-padding" >
+                    
+                            &nbsp;&nbsp;&nbsp;
+                        
+                </div>
+                
+                <div class="col-md-10 no-padding"  >
+
+
+               <div class="hpanel hnavyblue"  ng-switch='fabric.selectedObject.type' style="position:fixed; top:30px;">
+                   <div class="panel-body" style="padding:10px 20px;">
+                       
+                        <div class="row">
+                            <div class="col-md-7" style="padding-top:5px;">
+                                <a  ng-class="{ active: fabric.isBold() }" ng-click="fabric.toggleBold()"><i class="fa fa-bold prl15 border-right" style="font-size:18px; color:#ffffff;" ></i></a>
+                                <a ng-class="{ active: fabric.isItalic() }" ng-click="fabric.toggleItalic()"> <i class="fa fa-italic prl15 border-right" style="font-size:18px; color:#ffffff;"></i></a>
+                                <a ng-class="{ active: fabric.isUnderline() }" ng-click="fabric.toggleUnderline()"><i class="fa fa-underline  prl15 border-right" style="font-size:18px; color:#ffffff;"></i></a>
+                                <a  ng-class="{ active: fabric.isLinethrough() }" ng-click="fabric.toggleLinethrough()"><i class="fa fa-strikethrough prl15 border-right" style="font-size:18px; color:#ffffff;"></i> </a> 
+                               
+                                <a ng-click="fabric.textlignr()"> <i class="fa fa-align-right fa-2x prl15" style="font-size:18px; color:#ffffff;"> </i></a>
+                                <a ng-click="fabric.textlignc()"> <i class="fa fa-align-center fa-2x prl15" style="font-size:18px; color:#ffffff;"> </i></a>
+                                <a ng-click="fabric.textlignl()"> <i class="fa fa-align-left fa-2x prl15" style="font-size:18px; color:#ffffff;"> </i></a>
+                                 <a> <i class="icon-text prl15 border-right" style="font-size:18px; color:#ffffff;"> </i></a>
+                                
+                            </div>
+                            <div class="col-md-2">
+
+                                <input type='number' class="form-control-new input-mini" ng-model="fabric.selectedObject.fontSize">
+                            </div>
+                            <div class="col-md-1" style="padding-top:5px;">
+                                <input type="color" id="colorpicker" ng-model="mycoler" ng-change="fillcolor()" />
+
+
+                            </div>
+                            <div class="col-md-2" style="padding-top:5px;">
+
+                                <a ng-disabled="!fabric.selectedObject" ng-click="fabric.deleteActiveObject(); fabric.setDirty(true)"><i class="icon-45 prl15 border-left " style="color:#ffffff; font-size:18px"></i></a>
+                                 <!--<select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="category" ng-options="font.name for font in FabricConstants.fonts" ng-change="fabric.selectedObject.fontFamily = category.name">
+                                   <option value="">--Select--</option>
+                                  </select>-->
+
+                                
+                         </div>
+
+                        </div>
+                       
+                   </div>
+               
+               </div>
+               </div>
+           </div>
+        </div>
+          <div class="row">
             
             <div class="col-md-12">
+
                 <div class="col-md-2 no-padding">
-                    
-                    <div class="hpanel zerobottom" ng-repeat="pagecnt in pagedata">
-                        <div class="panel-body navy-blue text-center">
-                            <a ng-click="sendpage(pagecnt)">
-                                <!--<img alt="logo" class="img-circle img-small" src="images/a1.jpg">-->
-                                <i class="pe-7s-config icon-lg" ></i>
-                                <div class="m-t-sm">
+                    <!--<ul ui-sortable ng-model="pagedata" style="padding-left:0px;">
+                    <div class="hpanel zerobottom" ng-repeat="pagecnt in pagedata track by $index" ng-class="{ 'hnavyblue' : $index === selectedIndex}">
+                        <div class="panel-body text-center" >
+                            <a ng-click="sendpage(pagecnt,  $index)">
+                                <img alt="logo" class="img-circle img-small" src="images/a1.jpg">
+                                 <i class="icon-{{pagecnt.icon}} icon-lg" ></i>
+                                <div class="m-t-sm" style="margin-bottom:10px;">
                                     <strong>{{pagecnt.template_page_name}}</strong>
                                 </div>
                             </a>
                         </div>
                     </div>
+                </ul>-->
+
+
+               
                     <!--<div class="hpanel zerobottom">
                         <div class="panel-body text-center">
                             <i class="pe-7s-config icon-lg" ></i>
@@ -149,15 +208,36 @@
                 </div>
                 
                 
-                <div class="col-md-10">
-                    
+                <div class="col-md-9 " style="padding-right:0px" >
+                   
+                  
                     <div class="hpanel">
-                        <div db-droppable class="proposal-drop-container"  id="proposalDropContainer" >
-    <div data-ng-bind-html="htmlString" id="pagecontaint" ></div>
-       
-    
+                        <!--<div class="panel-body"  ng-model="ssss"  medium-editor bind-options="{'toolbar': {'buttons': ['bold', 'italic', 'underline']}}"  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;">
+                            <div class="pull-right">
+                                <img src="../images/chat.png">
+                            </div>
+
+                            <!--<h2 class="m-t-none border-all p20 text-center">You just created a new Proposal </h2>
+                            <p class="border-all p20 text-center">
+                                <br><br><br>
+                                Customize your page as you would like by dragging and dropping<br> thewidgets from the widgets panel above
+                                <br><br><br>
+                            </p>
+                            <br><br><br><br><br><br><br>
+
+
+                        </div>-->
+                       
+
+
+                        
+                        <div id="demoCanvas">
+                        <canvas fabric='fabric'   id="droppable"></canvas>
 </div>
-                       <!--<div class="panel-body"  ng-model="ssss"  medium-editor bind-options="{'toolbar': {'buttons': ['bold', 'italic', 'underline']}}"  id="droppable" style="border:2px solid #696969; padding:20px; margin:10px; height:800px;">
+                          </div>
+                          
+                   
+                        <!--<div class="panel-body"  bind-html-compile="htmlString"    ng-model="ssss"  medium-editor bind-options="{'toolbar': {'buttons': ['bold',
                             <div class="pull-right">
                                 <img src="../images/chat.png">
                             </div>
@@ -173,16 +253,30 @@
                             
                         </div>-->
                     </div>
-                    <button class="btn btn-success" ng-show="!xxx" ng-click="submitstyle()">Save</button>
-                    <button class="btn btn-success" ng-show="xxx"  ng-click="updatestyle()" >update</button>
-                   
-                </div>
+
+                  
+                    <!--<button class="btn btn-primary" ng-click="updatepage()" >update</button>-->
+                    
+           
+                 <!--<button class="btn btn-primary" ng-click="callme()">Save</button>-->
+                 <!--<div class="col-md-1 no-padding">
+                     <div class="pull-right" >
+                         <button class="btn btn-success" ng-show="!xxx" ng-click="submitstyle()">Save</button>
+                    <button class="btn btn-success" ng-show="xxx"  ng-click="updatestyle()" >Update</button>
+                     
+                  </div>
                 
-            </div>
+            </div>-->
         </div>
-        <div id="right-sidebar" ng-include="'views/image-listing2.html'" class="sidebar-open" ng-if="rightSidebar3"></div>
         
         
+        
+     
+         <div id="right-sidebar" ng-include="'views/image-listing.html'" class="sidebar-open" ng-if="rightSidebar3"></div>
+        
+        <video height="360" width="640" id="video2" style="display: none">
+
+</video>
 
  
 

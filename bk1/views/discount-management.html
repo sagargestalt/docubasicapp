@@ -1,0 +1,157 @@
+<div id="header" ng-include="'views/admin-header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/admin-navigation.html'"></aside>
+<div id="wrapper">
+<div class="content animate-panel">
+<div class="row"  >
+
+
+   
+  <div class="col-lg-12"  >
+  	
+            <h3>Discount Management   <div class="pull-right" id="hbreadcrumb">
+                    <ol class="hbreadcrumb breadcrumb">
+                        
+                       
+                        <li class="active">
+                            <span>Discount Management</span>
+                        </li>
+                    </ol>
+                </div></h3>
+            <br>
+        
+ <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+   <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+ <button class="btn btn-success pull-right" ng-hide="update" ng-click="createpackage()" ><i class="pe-7s-plus " ></i>&nbsp; Add Discount</button>
+<br>
+<br>
+            </div><br>
+            <br>
+            
+<div class="col-lg-12"  >
+
+<div class="hpanel">
+             <div class="panel-body" ng-show="collapsed" >
+  
+ 
+  
+    <form name="resource">
+       <h4 ng-hide="update">New Discount</h4>
+    <h4 ng-show="update">Update Discount</h4> 
+	<hr>
+    <a id="top"></a>
+          <div class="row">
+            <div class="col-md-6">
+             <label class="control-label" ng-show="update">{{tname}} </label>
+            	<div ng-hide="update"> <label class="control-label">Select Company </label><br>
+               
+                    <div class="dropdown" >
+                      <select class="form-control dropdown-toggle" type="button" data-toggle="dropdown"  ng-model="tncy" ng-options="tns.id as tns.name for tns in tenancys  ">
+                       <option value="">--Select--</option>
+                      </select>
+                    </div>
+                </div>
+               
+            </div>
+        </div><br>
+
+        <div class="row">
+          <div class="col-md-6">
+                                        <label class="control-label">From Date</label>
+                                <div class="form-group required" >        
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                       show-button-bar="false" ng-model="fdt" is-open="opened"
+                                       max-date="'2019-06-22'" datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" style="height:48px" ng-click="open($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                            </p>
+                          </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <label class="control-label">End Date</label>
+                                        <div class="form-group required" >
+                                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                       show-button-bar="false" ng-model="edt" is-open="opened2"
+                                       max-date="'2019-06-22'" datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" style="height:48px" ng-click="openb($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                            </p>
+                        
+
+                                                                        </div>
+                                    </div>
+
+
+
+        </div><br>
+         <div class="row">
+            <div class="col-md-6">
+            	 <div class="form-group" ng-class="{'has-error':projecttaskform.dcost.$touched && projecttaskform.dcost.$invalid && projecttaskform.submit}">
+                      <label class="control-label">Discount</label><br>
+                      <input  type="text" name="dcost" class="form-control" placeholder="Discount" id="user-pass" ng-model="disct" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"  required>
+                      <span class="help-block"    ng-show="projecttaskform.dcost.$touched && projecttaskform.dcost.$invalid">Invalid</span>
+                    </div>
+             
+          </div>
+        </div>
+
+       
+         
+
+          
+           <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-success" ng-click="insertdiscount()"  ng-disabled="resource.$invalid" ng-hide="update">Save</button>
+            <button class="btn btn-success" ng-click="updatepackagedata()"  ng-disabled="resource.$invalid" ng-show="update">Update</button>
+            <button class="btn btn-primary" ng-click="closeuser()">Cancel</button>
+      
+              </div>
+          </div>
+          
+
+  </div><br><br>
+
+  <div class="panel-body pn" >
+
+  <table datatable="ng" class="table table-striped table-bordered table-hover" dt-options="dtOptions" >
+      <thead>
+        <tr>
+           <th>Name</th>
+          <th>Discount</th>
+         
+    
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="detail in dtenancys" >
+          <td >{{detail.first_name}}</td>
+          <td>{{detail.discount}}</td>
+          
+         
+          <td><a href="" title="Update" ng-click="updatediscount(detail)" class="btn"><i class="glyphicon glyphicon-pencil"></i></a>
+            <a href="" title="Delete" ng-click="deletediscount(detail)" class="btn"><i class="glyphicon glyphicon-trash"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+     
+  </div>
+
+
+      
+
+  </div>
+</div>
+</div>
+</div>
+</div>

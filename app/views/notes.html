@@ -50,8 +50,18 @@
                     	<div class="row">
                     		<div class="col-md-12">
 
-								<input type="text" class="form-control" style="height:44px; width:79%; float:left;" ng-model="searchnote" placeholder="Search note...">
-								<a ng-click="addnote()" style="float:right; width:50px; height:50px;"><img src="images/addnote.png" > </a>
+                               <div class="input-group">
+                  
+                       <input type="text" class="form-control" style="height:44px;" ng-model="searchnote" placeholder="Search note...">
+
+                           <span class="input-group-btn" >
+                                <button style="background-color:#ffffff !important; width:44px; height:44px;" type="button" ng-disabled="!query" class="btn btn-default btntran" disabled="disabled"><i class="icon-search" style=" color: #7384b6 !important;" ></i></button>
+                           </span>
+                    </div>
+
+
+							<!--	<input type="text" class="form-control" style="height:44px; width:79%; float:left;" ng-model="searchnote" placeholder="Search note...">
+								<a ng-click="addnote()" style="float:right; width:50px; height:50px;"><img src="images/addnote.png" > </a>-->
                     
                        </div>
                      
@@ -99,12 +109,12 @@
 										<div>
 											<div class="" style="">
 												<div class="pull-right text-muted m-l-lg">{{date}}</div>
-												<h4 style="margin-bottom:18px">Add New Note</h4>
-												<label>Note Name </label><br>
+												<h4 style="margin-bottom:18px">Update Note</h4>
+												<label>Note Name </label></br>
 												<input  class="form-control" ng-model="notename"> </input>
 												<hr>
 												<div class="note-content">
-													<label>Note Description </label><br>
+													<label>Note Description </label></br>
 													<textarea class="form-control" ng-model="notediscription"> </textarea>
 												</div><br>
 												<div class="btn-group">
@@ -114,7 +124,7 @@
 													</button>&nbsp;&nbsp;&nbsp;
 													</div>
 													<div class="btn-group">
-													<button class="btn btn-primary" ng-click="addnote()" >
+											<button class="btn btn-primary" ng-click="addnote()" >
 													
 													Cancel</button>
 													</div>
@@ -149,8 +159,11 @@
                             	 </p>
                             	  </div><br>
                             	   <div class="btn-group pull-right">
+                                     <button class="btn btn-sm btn-default"  ng-click="addnote()" tooltip-placement="bottom" uib-tooltip="Add" ><i class="fa fa-plus"></i> </button>
+                            
                                 <button class="btn btn-sm btn-default" ng-click="getnote()" tooltip-placement="bottom" uib-tooltip="Update" ><i class="icon-edit2"></i> </button>
-							
+
+
                               <button class="btn btn-sm btn-default" ng-click="deletenote()" tooltip-placement="bottom" uib-tooltip="Remove"><i class="icon-cancel"></i> </button>
                             </div>
 
@@ -182,7 +195,7 @@
 													<textarea class="form-control" ng-model="newnotediscription"> </textarea>
 												</div><br>
 												<div class="btn-group">
-													<button class="btn btn-success" ng-click="submitnote()">
+													<button class="btn btn-success" ng-click="submitnote()" ng-disabled="submitted" >
 													
 													Save
 													</button>

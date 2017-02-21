@@ -2,9 +2,19 @@
 	 <div class="pull-right">
               <a  ng-click="closebar()" > <i class="pe-7s-close fa-2x"></i></a>
             </div>
-<div class="panel-body pn" >
 
-  <h2>Add price blocks to your proposal</h2><br>
+
+  <div class="col-md-12">
+    <h2>Add price blocks to your proposal</h2><br>
+    <button class="btn w-xs btn-priblue" ng-class="{ 'btn-success' :selectedTab == 'all'}" type="button"  ng-style="all" ng-click="addprice(); selectedTab = 'all'">New Price Block </button>&nbsp;&nbsp;&nbsp;
+    <button class="btn w-xs btn-priblue" ng-class="{ 'btn-success' :selectedTab == 'all'}" type="button"  ng-style="all" ng-click="adddiscount(); selectedTab = 'all'">New Discount Block </button>&nbsp;&nbsp;&nbsp;
+    <button class="btn w-xs btn-priblue" ng-class="{ 'btn-success' :selectedTab == 'all'}" type="button"  ng-style="all" ng-click="addtax(); selectedTab = 'all'">New Tax Block </button>&nbsp;&nbsp;&nbsp;
+    <button class="btn w-xs btn-priblue" ng-class="{ 'btn-success' :selectedTab == 'all'}" type="button"  ng-style="all">New Project Task </button><br>
+
+  </div><br><br><br><br><br><br><br>
+<div class="panel-body pn" >
+  <br><br>
+   <h2>Project Task</h2>
    <table datatable="ng" class="table table-striped table-bordered table-hover"   >
       <thead>
         <tr>
@@ -21,6 +31,30 @@
           <td  >{{detail.categoryname}}</td>
           <td >{{detail.mandays}}</td>
            <td>{{detail.totalcost}}</td>
+          
+       </tr>
+      </tbody>
+    </table>
+      </div><br>
+      <div class="panel-body pn" >
+  <br><br>
+   <h2>Pricing</h2>
+   <table datatable="ng" class="table table-striped table-bordered table-hover"   >
+      <thead>
+        <tr>
+         <th>Name</th>
+          <th>Quantity</th>
+           <th>Total Cost</th>
+         
+          
+        
+        </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="detail in alldata.priceblock  track by $index" db-draggable data-tasktable="{{detail}}" id="ttable" >
+          <td  >{{detail.productname}}</td>
+          <td >{{detail.quantity}}</td>
+           <td>{{detail.totalprice}}</td>
           
        </tr>
       </tbody>
@@ -75,6 +109,9 @@
     </table>
     
   </div><br>
+<div id="right-sidebar" ng-include="'views/proposal-add-price.html'" class="sidebar-open" ng-show="addpriceblock"></div>
+<div id="right-sidebar" ng-include="'views/proposal-add-tax.html'" class="sidebar-open" ng-show="addtaxblock"></div>  
+<div id="right-sidebar" ng-include="'views/proposal-add-discount.html'" class="sidebar-open" ng-show="adddiscountblock"></div>  
 
 
 </div>

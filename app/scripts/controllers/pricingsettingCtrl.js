@@ -27,6 +27,20 @@ angular.module('docubasic3App')
         $scope.errors.splice(1, index);
         $scope.errors = [];
     };
+    $scope.closepricebar = function() {
+        $rootScope.addpriceblock =false;
+    };
+     $scope.closetaxbar = function() {
+        $rootScope.addtaxblock =false;
+    };
+    $scope.closediscountbar = function(){
+      $rootScope.adddiscountblock = false;
+
+
+    };
+
+   
+    
     $scope.closemodal = function(){
           //console.log("hi");
         $rootScope.rightSidebarprice = false;
@@ -189,6 +203,8 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
 
 	$scope.submitdata = function(){
+      $scope.saving=true;
+      console.log($scope.saving);
     	$scope.alerts=[];
        $scope.priceForm.submit =true;
     	var pricedata = {
@@ -211,27 +227,30 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
         $scope.price = data.data;
         if(data.status === true){
-                 $scope.priceForm.submit =true;
-                $scope.alerts.push({msg: 'Price block added successfully', type:'success'});
-                $scope.pricesectionshow = false;
-                 $scope.pricesectionshow ="";
-          $scope.updateprice ="" ;
-          $scope.productname ="" ;
-            $scope.skuid ="";
-            $scope.quantity ="";
-            $scope.unitcost ="";
-            $scope.unitprice ="";
-            $scope.source ="";
-            $scope.discriptions ="" ;
-            $scope.totalprice="";
-            $scope.totalcost="";
-            $scope.moneys="";
+              $scope.saving=false;
+              console.log($scope.saving);
+              $scope.priceForm.submit =false;
+              $scope.alerts.push({msg: 'Price block added successfully', type:'success'});
+              $scope.pricesectionshow = false;
+              $scope.pricesectionshow ="";
+              $scope.updateprice ="" ;
+              $scope.productname ="" ;
+              $scope.skuid ="";
+              $scope.quantity ="";
+              $scope.unitcost ="";
+              $scope.unitprice ="";
+              $scope.source ="";
+              $scope.discriptions ="" ;
+              $scope.totalprice="";
+              $scope.totalcost="";
+              $scope.moneys="";
                 init();
             }
 
             else if(data.status === false){
 
                $scope.errors = data.message;
+               $scope.saving=false;
             }
 
     	});
@@ -389,6 +408,7 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
 
 	$scope.adddiscount = function(){
+    $scope.savediscount=true;
     $scope.discountForm.submit = true;
     	$scope.alerts = [];
  		var discountdata = {
@@ -404,10 +424,11 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
         $scope.discountblock = data.status;
          if(data.status === true){
+                $scope.savediscount=false;
                 $scope.alerts.push({msg: 'Discount added successfully', type:'success'});
                 init();
                 $scope.collapsed1 = false;
-                 $scope.taxForm.submit = false;
+                $scope.discountForm.submit = false;
 
                 $scope.discountname="";
                 $scope.distype="";
@@ -415,6 +436,7 @@ $scope.mulall = function(quantity,unitcost,unitprice){
             }
 
             else if(data.status === false){
+              $scope.savediscount=false;
 
                $scope.errors = data.message;
             }
@@ -543,7 +565,8 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
 
 	$scope.addtax = function(){
-     $scope.taxForm.submit = true;
+    $scope.taxsaving=true;
+    $scope.taxForm.submit = true;
 
  		$scope.alerts = [];
   		var taxpostdata = {
@@ -557,6 +580,8 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
         	$scope.taxblock = data.data;
          		if(data.status === true){
+                $scope.taxsaving=false;
+                $scope.taxForm.submit = false;
                 $scope.alerts.push({msg: 'Tax added successfully', type:'success'});
                 $scope.taxname ="";
                 $scope.taxPercentage="";
@@ -566,6 +591,7 @@ $scope.mulall = function(quantity,unitcost,unitprice){
 
               else if(data.status === false){
 
+               $scope.taxsaving=false;
                $scope.errors = data.message;
             }
 

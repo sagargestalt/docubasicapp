@@ -74,7 +74,7 @@
                  <div class="form-group required" ng-class="{'has-error': clientform.email.$touched && clientform.email.$error.required && clientform.submit}">
                  <label class="control-label">Email</label><br>
  							 <input name="email" type="text" class="form-control" placeholder="Email" id="user-pass" ng-model="email" required  ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
-                <span class="help-block"  ng-show="clientform.email.$touched && clientform.email.$invalid" >Invalid Email</span>
+                <span class="help-block"  ng-show="clientform.email.$touched && clientform.email.$invalid && clientform.submit" >Invalid Email</span>
               </div>
  							</div>
  							<div class="col-md-6">
@@ -108,8 +108,8 @@
  							<div class="col-md-6">
                  <div class="form-group required" ng-class="{'has-error': clientform.pnumber.$touched && clientform.pnumber.$error.required  && clientform.submit}">
                  <label class="control-label">Phone Number </label><br>
- 							  <input name="pnumber" type="text" class="form-control" placeholder="Phone number" id="user-pass" ng-model="phone" ng-maxlength="20" ng-minlength="10" ng-pattern="ph_numbr"  required>
-                 <span class="help-block"  ng-show="clientform.pnumber.$touched && clientform.pnumber.$invalid" class="denger">Phone number is invalid.</span>
+ 							  <input name="pnumber" type="text" class="form-control" placeholder="Phone number" id="user-pass" ng-model="phone" ng-maxlength="20" ng-minlength="10"  required>
+                 <span class="help-block"  ng-show="clientform.pnumber.$touched && clientform.pnumber.$invalid && clientform.submit" class="denger">Phone number is invalid.</span>
                 <span ng-show="clientform.pnumber.$error.minlength" class="help-block">Phone number is too short.</span>
             <span class="help-block"  ng-show="clientform.pnumber.$error.maxlength" >Phone number is too long.</span>
               </div>
@@ -117,8 +117,8 @@
  							<div class="col-md-6">
                 <div class="form-group required" ng-class="{'has-error': clientform.mnumber.$touched && clientform.mnumber.$error.required  && clientform.submit}">
                 <label class="control-label">Mobile Number</label><br>
- 						 <input name="mnumber" type="text" ng-pattern="ph_numbr" class="form-control" placeholder="Mobile number" id="user-pass" ng-model="mobile"  ng-maxlength="20" ng-minlength="10" required>
-             <span class="help-block"  ng-show="clientform.mnumber.$touched && clientform.mnumber.$invalid" class="denger">Mobile number is invalid.</span>
+ 						 <input name="mnumber" type="text" class="form-control" placeholder="Mobile number" id="user-pass" ng-model="mobile"  ng-maxlength="20" ng-minlength="10" required>
+             <span class="help-block"  ng-show="clientform.mnumber.$touched && clientform.mnumber.$invalid && clientform.submit" class="denger">Mobile number is invalid.</span>
              <span class="help-block"  ng-show="clientform.mnumber.$error.minlength" >Mobile number is too short.</span>
             <span class="help-block"  ng-show="clientform.mnumber.$error.maxlength" >Mobile number is too long.</span>
             </div>
@@ -131,7 +131,7 @@
                 <div class="form-group required" ng-class="{'has-error': clientform.site.$touched && clientform.site.$error.required  && clientform.submit}">
                  <label class="control-label">Website Url</label><br>
 							 <input name="site" type="url" class="form-control" placeholder="Website url" id="user-pass" ng-model="url" required>
-               <span class="help-block"  ng-show="clientform.site.$error.url">
+               <span class="help-block"  ng-show="clientform.site.$error.url ">
       Not valid url!</span>
               </div>
 						</div>
@@ -170,7 +170,7 @@
  				<div class ="row">
 				 <div class = "col-md-6">
 
-          <div class="form-group required" ng-class="{'has-error': clientform.city.$touched && clientform.city.$error.required}">
+          <div class="form-group required" ng-class="{'has-error': clientform.city.$touched && clientform.city.$error.required  && clientform.submit}">
             <label class="control-label">City </label><br>
                 <input name="city" type="text" only-words class="form-control" placeholder="City" id="user-pass" ng-model="city" required>
               </div>
@@ -195,7 +195,7 @@
       </form>
 		<div class ="row">
             <div class ="col-md-8">
-        <button class="btn btn-success" ng-model="collapsed" ng-click="submitclient()" ng-hide="update" ng-disabled="clientform.$invalid"  >Save</button>
+        <button class="btn btn-success" ng-model="collapsed" ng-click="submitclient()" ng-hide="update" ng-disabled="clientform.$invalid || saveclient"  >Save</button>
          <button class="btn btn-success" ng-model="collapsed" ng-click="updateclientdata()" ng-disabled="clientform.$invalid"  ng-show="update" >Update</button>
          <button class="btn btn-primary" ng-click="closeclient()">Cancel</button>
 		 </div>

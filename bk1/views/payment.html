@@ -1,0 +1,145 @@
+<div id="header" ng-include="'views/header.html'"></div>
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/navigation.html'"></aside>
+<style type="text/css">.m-t-xl{margin-top:15px;}
+.newbtn{border-radius: 0; padding:54.4% 0px;}</style>
+<div id="wrapper">
+
+<div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="panel-body">
+
+                <uib-alert ng-repeat="alert in alerts" class="display-alert" type="{{alert.type}}" close="closeAlerts($index)" ng-click="closeAlerts($index)" id="display-error-home">{{alert.msg}}</uib-alert>
+    <uib-alert ng-repeat="error in errors" class="display-alert" type="{{alert.type}}" close="closeAlert($index)" ng-click="closeAlert($index)" id="display-error-home">{{error}}</uib-alert>
+                <!--<form id="myCCForm"  ng-submit="submitForm()">
+    <input id="token" name="token" type="hidden" value="">
+            	<div class = "row">
+            		<div class="col-md-4"> 
+			              	 <input name="Taskcategory"  class="form-control" placeholder="Card Number"  ng-mode="user.cardno" id="ccNo" type="text" size="20" value="" autocomplete="off" required>
+			                  
+			          </div>
+			            </div><br>
+			        
+			            <div class ="row">
+			            	<div class="col-md-2"> 
+			             
+			              	<input name="yeardate" type="number" class="form-control" placeholder="DD" size="2" id="expMonth" required ng-mode="user.expmonth">
+			              </div>
+			              
+			              <div class="col-md-2"> 
+			              	<input name="yeardate" type="number" class="form-control" placeholder="YYYY"  size="2" id="expYear" required ng-mode="user.expyear">
+			                  </div>
+			          </div><br>
+			       
+			       <div class ="row">
+			        <div class="col-md-4"> 
+			              
+			              	<input name="cvc" class="form-control" placeholder="CVC" id="cvv" size="4" type="text" value="" autocomplete="off" required ng-mode="user.ccv">
+			                  
+			          </div>
+			            </div><br>
+			            <button class="btn btn-success"  type="submit"  >Submit</button>
+
+                        </form>
+
+
+
+
+            </div>
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-md-6">
+
+    <form id="myCCForm"  ng-submit="submitForm()">
+    <input id="token" name="token" type="hidden" value="">
+    <div class="form-group">
+        <label class="control-label">
+            <span>Card Number</span>
+        </label>
+        <input id="ccNo" type="text" class="form-control" size="20" value="" autocomplete="off" required ng-mode="user.cardno" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">
+            <span>Expiration Date (MM/YYYY)</span>
+        </label>
+         <div class="row">
+        <div class="col-md-5">
+        <input type="text" size="2" id="expMonth"  class="form-control" required ng-mode="user.expmonth"  />
+    </div>
+         <div class="col-md-2 text-center"><span style="font-size:30px;"> / </span></div>
+        <div class="col-md-5">
+        <input type="text" size="2" id="expYear"  class="form-control" required ng-mode="user.expyear"  />
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">
+            <span>CVV</span>
+        </label>
+         <div class="row">
+        <div class="col-md-5">
+        <input id="cvv" size="4" type="text"  class="form-control" value="" autocomplete="off" required ng-mode="user.ccv" />
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <button class="btn btn-success" type="submit" >Submit</button>
+</div>
+</form>
+
+<div>
+    </div>
+
+
+<!--<script>
+    // Called when token created successfully.
+    var successCallback = function(data) {
+        var myForm = document.getElementById('myCCForm');
+
+        // Set the token as the value for the token input
+        myForm.token.value = data.response.token.token;
+
+        // IMPORTANT: Here we call `submit()` on the form element directly instead of using jQuery to prevent and infinite token request loop.
+        myForm.submit();
+    };
+
+    // Called when token creation fails.
+    var errorCallback = function(data) {
+        if (data.errorCode === 200) {
+            tokenRequest();
+        } else {
+            alert(data.errorMsg);
+        }
+    };
+
+    var tokenRequest = function() {
+        // Setup token request arguments
+        var args = {
+            sellerId: "901328901",
+            publishableKey: "43727D77-26F6-4402-AB6A-F5941DABE2F1",
+            ccNo: $("#ccNo").val(),
+            cvv: $("#cvv").val(),
+            expMonth: $("#expMonth").val(),
+            expYear: $("#expYear").val()
+        };
+
+        // Make the token request
+        TCO.requestToken(successCallback, errorCallback, args);
+    };
+
+    $(function() {
+        // Pull in the public encryption key for our environment
+        TCO.loadPubKey('sandbox');
+
+        $("#myCCForm").submit(function(e) {
+            // Call our token request function
+            tokenRequest();
+
+            // Prevent form from submitting
+            return false;
+        });
+    });
+</script>-->
+</div>
+

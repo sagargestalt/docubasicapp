@@ -88,6 +88,7 @@ var countUp = function() {
         $scope.pdata= data.data;
         if(data.status === true){
           init();
+           $location.path( "/main" );
         //$rootScope.modalInstance.close();
         $rootScope.rightSidebartemplate = false;
       }
@@ -126,6 +127,7 @@ var countUp = function() {
  		var data = {
  		template_id:$scope.tid,
  		page_id:$scope.pagedata,
+    template_name:$scope.tempname,
  		updated_by:$rootScope.userid,
  		tenancy_id:$rootScope.tenancyid,
  	};
@@ -136,6 +138,7 @@ var countUp = function() {
         //$rootScope.modalInstance.close();
         init();
         $rootScope.rightSidebartemplate = false;
+         $location.path( "/main" );
      
        init();
        $scope.update = false;

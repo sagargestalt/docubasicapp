@@ -10,7 +10,7 @@
     <div class = "row">
       <div class = "col-md-12">
       <input type="file" ng-model="files" name="files" multiple accept="image/*, .zip" maxsize="500" required base-sixty-four-input>
-            <span ng-show="logovalidate.files.$error.maxsize">Files must not exceed 500 KB</span><br>
+            <span  ng-show="logovalidate.files.$error.maxsize">Files must not exceed 500 KB</span><br>
             <button class="btn btn-primary" ng-click="imageupload()" >Upload</button>
 
       </div>

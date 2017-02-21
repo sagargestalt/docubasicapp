@@ -11,54 +11,17 @@ angular.module('docubasic3App')
     return {
       restrict: 'E',
       scope: {
-      ssss: "=ngModel"
+      ssss: "=ngModel",
+      insertText: '&'
     },
 
     link: function check(scope,element)
    
   {
-     $("#dbSqure").draggable({ revert: true, helper: "clone", containment: '#wrapper' });
-      $( "#draggable" ).draggable({ revert: true, helper: "clone", containment: '#wrapper' });
-      $(".window").draggable({handle:'.bar'});
+    
 
-
-      $(".textbox").on("click", function() {
-        //$(".window").draggable('disable');
-        $(this).find(".textbox").focus();
-
-      });
-
-    $(".textbox").on("blur", function(){
-        $(".window").draggable('enable');
-
-
-    });
-
-
-      $('.db-circle-widget').draggable();
-
-
-      $("#d")
-          .draggable()
-          .click(function(){
-          if ( $(this).is('.ui-draggable-dragging') ) {
-              return;
-          }
-          $(this).draggable( "option", "disabled", true );
-          $(this).attr('contenteditable','true');
-        })
-        .blur(function(){
-          $(this).draggable( 'option', 'disabled', false);
-          $(this).attr('contenteditable','false');
-      });
-
-
-
-
-
-
-    $( "#dragThis" ).draggable();
-    $( "#droppable" ).droppable({
+      $( "#dragThis" ).draggable();
+      $( "#droppable" ).droppable({
          accept: '.ui-draggable',
         drop: function(event , ui) {
           //scope.mockContent = scope.mockContent || {};
@@ -81,27 +44,50 @@ angular.module('docubasic3App')
              $( ".draggable" ).draggable();*/
 
               if(configData.text) {
-             $rootScope.addtextbox();
+             //$rootScope.addtextbox();
+             scope.insertText({
+              shapeType: 'text'
+             });
             }
 
             if(configData.circle) {
-             $rootScope.addcircle();
+              scope.insertText({
+              shapeType: 'circle'
+             });
+             //$rootScope.addcircle();
+
             }
 
             if(configData.square) {
-             $rootScope.addSqure();
+               scope.insertText({
+              shapeType: 'squre'
+             });
             }
 
             if(configData.line) {
-              $rootScope.addLine();
+              scope.insertText({
+              shapeType: 'line'
+             });
             }
 
             if(configData.triangle) {
-              $rootScope.addTri();
+              scope.insertText({
+              shapeType: 'triangle'
+             });
               
             }
+            if(configData.imagedrop) {
+               scope.insertText({
+              shapeType: 'image'
+             });
+
+              
+              
+                }
+
 
              if(configData.image) {
+               $rootScope.rightSidebar3 = false;
               var imagepath = configData.image.image_path;
               //var dynamicId = new Date().getTime(); //Date.now();
               $rootScope.addImageUpload(imagepath);
@@ -112,68 +98,92 @@ angular.module('docubasic3App')
                 }
 
                 if(configData.video) {
-             $rootScope.videoadd();
+
+                    scope.insertText({
+              shapeType: 'video'
+             });
+              
+            }
+              if(configData.tasktable) {
+              
+                var detail = configData.tasktable;
+                
+                $rootScope.pushdata(detail);
+               //$(ui.draggable).clone().appendTo($(this));  
+               //$(this).append(ui.helper.children());
+                //$('.selectedRow').remove();
+                $rootScope.rightSidebar = false;
+                needCompile = true;
+            }
+        if(configData.taskrow) {
+              //$(ui.draggable).clone().appendTo('#ttable');  
+              var detail = configData.taskrow;
+              $rootScope.droptax = true;
+              $rootScope.pushtaxdata(detail);
+             
+              //$(this).append(ui.helper.children());
+              //$(this).appendTo(ui.helper.children('#ttable'));
+              //$('.selectedRow').remove();
+              $rootScope.rightSidebar = false;
+              needCompile = true;
+            }
+            if(configData.dtask) {
+              //$(ui.draggable).clone().appendTo('#ttable'); 
+              //$(this).append(ui.helper.children());
+              var detail = configData.dtask;
+              $rootScope.droptdiscount = true;
+              $rootScope.pushdisdata(detail);
+              $rootScope.rightSidebar = false;
+              needCompile = true;
             }
 
+            if(configData.taskcategories) {
+               //$(element).append('<db-tasktable dynamic-id=' + dynamicId + '></db-tasktable>');
+                var tasklist = configData.taskcategories;
+                $rootScope.pushtask(tasklist);
+               //$(ui.draggable).clone().appendTo($(this));  
+               //$(this).append(ui.helper.children());
+                //$('.selectedRow').remove();
+                $rootScope.rightSidebar1 = false;
+                needCompile = true;
+            }
+
+             if(configData.styles) {
+              var stylesdata = configData.styles;
+
+              $rootScope.stylesadd(stylesdata);
+              needCompile = true;
+            }
+
+            if(configData.pages) {
+              var page = configData.pages;
+
+              $rootScope.pageadd(page);
+              needCompile = true;
+            }
+
+
        
-           $("#droppable").append($compile('<db-text dynamic-id=' + dynamicId + '></db-text>')(scope));
-            //$compile(element)(scope);
-            needCompile = true;
 
 
 
-        $(".textbox").on("click", function() {
-            //$(".window").draggable('disable');
-            $(this).find(".textbox").focus();
-             $rootScope.callme();
+       
 
-        });
-
-        $(".textbox").on("blur", function(){
-            $(".window").draggable('enable');
-
-
-
-
-        });
-
+       
 
 
     }
   });
 
 
-  $( "#edit" ).draggable()
-    .click(function(){
-        if ( $(this).is('.ui-draggable-dragging') ) {
-            return;
-        }
-        $(this).draggable( "option", "disabled", true );
-       $(this).attr('contenteditable','true');
-      })
-      .blur(function(){
-        $(this).draggable( 'option', 'disabled', false);
-        $(this).attr('contenteditable','false');
-      });
-
-      $("#dgg")
-        .draggable()
-        .click(function(){
-        if ( $(this).is('.ui-draggable-dragging') ) {
-            return;
-        }
-        $(this).draggable( "option", "disabled", true );
-       $(this).attr('contenteditable','true');
-        })
-      .blur(function(){
-        $(this).draggable( 'option', 'disabled', false);
-        $(this).attr('contenteditable','false');
-      });
+ 
+      
+     
 
 
 
 
-	}
+  }
 
   };
 

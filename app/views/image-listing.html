@@ -1,10 +1,11 @@
   <div class="modal-lg"> 
+    <div  ng-controller="ImageUploadCtrl">
                        <div class="modal-header"> 
-	<h4 class="modal-title">Image Gallery
-		<span class="pull-right">
-			<a  ng-click="closebar()" > <i class="pe-7s-close fa-2x"></i></a>
-		</span>
-	</h4> 
+  <h4 class="modal-title">Image Gallery
+    <span class="pull-right">
+      <a  ng-click="closebar()" > <i class="pe-7s-close fa-2x"></i></a>
+    </span>
+  </h4> 
 </div>
                   
                                
@@ -12,28 +13,28 @@
                                     <div class = "row">
                                     <div class ="col-md-12">
       <h5>Select From Library</h5>
-	  
+    
     <div ng-repeat="thumbs in iamgedata">
-	 <div class ="col-md-2 no-padding">
+   <div class ="col-md-2 no-padding">
       <img style="margin-bottom:5px; border: 5px solid #e0e1e7;" height="100" width="100" ng-src="{{thumbs.image_path}}" db-draggable data-image="{{thumbs}}">
      </div>
-	  </div>
+    </div>
       </div>
           </div>
-		  <br>
-
+      <br>
+<form name="imageform">
 
           <div class = "row">
-      <div class = "col-md-12" ng-controller="stylecreateCtrl">
+      <div class = "col-md-12" >
       <input type="file" ng-model="files" name="files" multiple accept="image/*, .zip" maxsize="500" required base-sixty-four-input><loading></loading>
-            <span ng-show="logovalidate.files.$error.maxsize">Files must not exceed 500 KB</span><br>
-            <button class="btn btn-success" ng-click="imageupload()" >Upload</button>
-
+            <span class="help-block" ng-show="imageform.files.$error.maxsize">Files must not exceed 500 KB</span><br>
+            <button class="btn btn-success" ng-click="imageupload()"  ng-disabled="imageform.$invalid" >Upload</button>
+</form>
       </div>
     </div>                        
-                                  
-                                  	
-                                  	 
+    </div>                              
+                                    
+                                     
                             
 
 </div>

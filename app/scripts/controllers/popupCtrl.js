@@ -137,7 +137,7 @@ $scope.signup = function(){
           $scope.orgname="";*/
           $scope.signup="";
 
-       $rootScope.alerts.push({msg: 'Thank you signing up with DocuBasic. Please check your email for password setup.', type:'success'});
+       $rootScope.loginalerts.push({msg: 'Thank you signing up with DocuBasic. Please check your email for password setup.', type:'success'});
        //$rootScope.modalInstance.close();
        
      }
@@ -215,7 +215,7 @@ $scope.signupnew = function() {
       $scope.tenancycode = "";*/
       $scope.signup="";
 
-       $rootScope.alerts.push({msg: 'Thank you signing up with DocuBasic. Please check your email for password setup.', type:'success'});
+       $rootScope.loginalerts.push({msg: 'Thank you signing up with DocuBasic. Please check your email for password setup.', type:'success'});
         //$rootScope.modalInstance.close();
         
 
@@ -248,7 +248,7 @@ loginService.frgtpassword.save(data1, function(data) {
      
     } 
 else if (data.status === true) {
-  $scope.alerts.push({msg: 'Check Your Email', type:'success'});
+  $scope.alerts.push({msg: 'Please check your email for further instructions to reset your password', type:'success'});
 
 }
     

@@ -12,13 +12,16 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
       //return $resource( apiUrl.getGenericData, {} );
       return{
             updatename:$resource(apiUrl.changepname, {id:'@id'} ,{
-      			query: {method:'PUT',isArray:false}
+                        query: {method:'PUT',isArray:false}
             }),
-            changeversion:$resource(apiUrl.versionchange, {id:'@id',tid:'@tid'} ,{
-                        get: {method:'GET',isArray:false}
+            changeversion:$resource(apiUrl.versionchange, {} ,{
+                        get: {method:'POST',isArray:false}
             }),
             removecomment:$resource(apiUrl.deletecomment, {id:'@id'} ,{
                         query: {method:'DELETE',isArray:false}
+            }),
+            deletepage:$resource(apiUrl.deleteproposalpage, {} ,{
+                        query: {method:'POST',isArray:false}
             }),
             editcomment:$resource(apiUrl.commentedit, {id:'@id'} ,{
                         query: {method:'PUT',isArray:false}
@@ -46,7 +49,7 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
           
 
 
-			//praposal summery//
+                  //praposal summery//
             praposalsummeryget: $resource( apiUrl.getpraposales, {} ),
 
 
@@ -55,6 +58,7 @@ angular.module('docubasic3App').factory('praposalservice', ['$resource', 'apiUrl
             upiamage: $resource( apiUrl.imageup, {} ),
             getproposaltask:$resource( apiUrl.proposaltask, {} ),
             costprofit:$resource( apiUrl.profitanalysys, {} ),
+            sendimage:$resource( apiUrl.sendsvg, {} ),
 
 
       
